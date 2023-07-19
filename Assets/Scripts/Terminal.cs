@@ -24,6 +24,28 @@ public class Terminal : MonoBehaviour
 
     public int oldCommandIndex = 0;
 
+    // Text colors
+    public string commandColor = "#6495ED";
+    public string puzzleColor = "#FFD700";
+    public string errorColor = "#DC143C";
+    public string successColor = "#50C878";
+    public string plainTextColor = "#FFFFFF";
+    public string directoryColor = "#9400D3";
+
+    public readonly List<string> commands = new List<string>
+    {
+        "help",
+        "exit",
+        "cat",
+        "unlock",
+        "clear",
+        "cat",
+        "ls",
+        "cd",
+        "solve"
+    };
+
+
     // REMOVE AFTER GAMEMANAGER IS ADDED
     public void Start()
     {
@@ -119,11 +141,10 @@ public class Terminal : MonoBehaviour
 
         foreach(string word in words)
         {
-            KeyValuePair<string, string> kvp = GameManager.terminalKeyWords.Find(pair => pair.Key == word.Trim());
-            
-            if(!kvp.Equals(default(KeyValuePair<string, string>)))
+            string trimmedWord = word.Trim();
+            if(commands.Contains(trimmedWord))
             {
-                coloredLine += $"<color={kvp.Value}>{word}</color>";
+                coloredLine += $"<color={commandColor}>{word}</color>";
             }
             else
             {
@@ -387,16 +408,8 @@ public class Terminal : MonoBehaviour
         {
             string[] dirPath = dirData.dirName.Split('\\');
             string dirName = dirPath[dirPath.Length - 1];
-            PrintLineToTerminal(dirName, false);
+            PrintLineToTerminal($"<color={directoryColor}>{dirName}</color>", false);
         }
-
-        /*
-        // Print python notes
-        foreach(string noteName in pythonNotes.Keys)
-        {
-            PrintLineToTerminal("\t" + noteName);
-        }
-        */
     }
 
     private void HandleCdCommand(string line)

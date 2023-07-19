@@ -152,19 +152,6 @@ public class GameManager : MonoBehaviour
         new KeyValuePair<string, string>("__import__", "#9400D3")
     };
 
-    public static readonly List<KeyValuePair<string, string>> terminalKeyWords = new List<KeyValuePair<string, string>>()
-    {
-        new KeyValuePair<string, string>("help", "#DC143C"),
-        new KeyValuePair<string, string>("exit", "#DC143C"),
-        new KeyValuePair<string, string>("cat", "#DC143C"),
-        new KeyValuePair<string, string>("unlock", "#DC143C"),
-        new KeyValuePair<string, string>("clear", "#DC143C"),
-        new KeyValuePair<string, string>("cat", "#DC143C"),
-        new KeyValuePair<string, string>("ls", "#DC143C"),
-        new KeyValuePair<string, string>("cd", "#DC143C"),
-        new KeyValuePair<string, string>("solve", "#DC143C"),
-    };
-
 
     private void Awake()
     {
