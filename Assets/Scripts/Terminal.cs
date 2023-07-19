@@ -46,7 +46,7 @@ public class Terminal : MonoBehaviour
         terminalColoredText.Add("");
         HandleReturn(false);
         terminalInput[terminalLineIndex] = "help";
-        ColorizeCurrentLine();
+        ColorizeCurrentLine(true);
         DisplayText();
     }
 
@@ -100,7 +100,7 @@ public class Terminal : MonoBehaviour
     /// <summary>
     /// This function colorizes commands
     /// </summary>
-    private void ColorizeCurrentLine()
+    private void ColorizeCurrentLine(bool caretIncluded = true)
     {
         string line = terminalInput[terminalLineIndex];
         string[] words = Regex.Split(line, @"(?<= )");
@@ -110,7 +110,12 @@ public class Terminal : MonoBehaviour
             words = new string[] { line };
         }
 
-        string coloredLine = "> ";
+        string coloredLine = " ";
+
+        if(caretIncluded)
+        {
+            coloredLine = " " + GameManager.currentDirectory.dirName + " > ";
+        }
 
         foreach(string word in words)
         {
@@ -143,7 +148,7 @@ public class Terminal : MonoBehaviour
 
         // Add a new line to input and colored text lists 
         terminalInput.Add("");
-        terminalColoredText.Add("> " + caret);
+        terminalColoredText.Add(" " + GameManager.currentDirectory.dirName + " > " + caret);
         terminalLineIndex++;
 
         // Adjust the scroll view to show the bottom of the text
@@ -231,6 +236,10 @@ public class Terminal : MonoBehaviour
                 HandleCdCommand(line);
                 break;
 
+            case "solve":
+                HandleSolveCommand(line);
+                break;
+
             case "":
                 break;
 
@@ -254,16 +263,16 @@ public class Terminal : MonoBehaviour
             return;
         }
 
-        PrintLineToTerminal("Avaliable Commands");
-        PrintLineToTerminal("==================");
-        PrintLineToTerminal("help: Prints all the commands avaliable");
-        PrintLineToTerminal("exit: Exits the application");
-        PrintLineToTerminal("unlock: Unlocks the next puzzle when the correct keyword is provided");
-        PrintLineToTerminal("   Example: unlock KEYWORD");
-        PrintLineToTerminal("clear: Clears all the content of the terminal");
-        PrintLineToTerminal("ls: Shows files in current directory");
-        PrintLineToTerminal("cat: Prints text from files to terminal when a file path is provided");
-        PrintLineToTerminal("   Example: cat comments.txt");
+        PrintLineToTerminal("Avaliable Commands", false);
+        PrintLineToTerminal("==================", false);
+        PrintLineToTerminal("help: Prints all the commands avaliable", false);
+        PrintLineToTerminal("exit: Exits the application", false);
+        PrintLineToTerminal("unlock: Unlocks the next puzzle when the correct keyword is provided", false);
+        PrintLineToTerminal("   Example: unlock KEYWORD", false);
+        PrintLineToTerminal("clear: Clears all the content of the terminal", false);
+        PrintLineToTerminal("ls: Shows files in current directory", false);
+        PrintLineToTerminal("cat: Prints text from files to terminal when a file path is provided", false);
+        PrintLineToTerminal("   Example: cat comments.txt", false);
     }
 
     /// <summary>
@@ -299,11 +308,11 @@ public class Terminal : MonoBehaviour
         // Check if the argument is a keyword
         if(GameManager.UnlockPuzzle(argument))
         {
-            PrintLineToTerminal("<color=#006400>Keyword unlocked a puzzle</color>");
+            PrintLineToTerminal("<color=#006400>Keyword unlocked a puzzle</color>", false);
         }
         else
         {
-            PrintLineToTerminal("<color=#FF0000>Keyword did not unlock anything</color>");
+            PrintLineToTerminal("<color=#FF0000>Keyword did not unlock anything</color>", false);
         }
 
     }
@@ -367,6 +376,19 @@ public class Terminal : MonoBehaviour
             return;
         }
 
+        // Print contents of current directory
+
+        foreach(FileData fileData in GameManager.currentDirectory.files)
+        {
+            PrintLineToTerminal(fileData.fileName, false);
+        }
+
+        foreach (DirectoryData dirData in GameManager.currentDirectory.directories)
+        {
+            string[] dirPath = dirData.dirName.Split('\\');
+            string dirName = dirPath[dirPath.Length - 1];
+            PrintLineToTerminal(dirName, false);
+        }
 
         /*
         // Print python notes
@@ -378,6 +400,46 @@ public class Terminal : MonoBehaviour
     }
 
     private void HandleCdCommand(string line)
+    {
+        // Check if syntax is incorrect
+        if (!CheckCommandSyntax(line, 1))
+        {
+            return;
+        }
+
+        // Get argument after command
+        string argument = line.Split(' ')[1];
+
+        // Check if argument is a directory that exists
+        foreach(DirectoryData dirData in GameManager.currentDirectory.directories)
+        {
+            string[] dirNames = dirData.dirName.Split('\\');
+            string dirName = dirNames[dirNames.Length - 1];
+
+            if(argument == dirName)
+            {
+                // Move to new directory
+                GameManager.currentDirectory = dirData;
+            }
+            
+        }
+
+        // Check for back command
+        if (argument == "..")
+        {
+            if (GameManager.currentDirectory.hasParent)
+            {
+                // Move to parent directory
+                GameManager.currentDirectory = GameManager.currentDirectory.parentDir;
+            }
+        }
+
+
+        terminalColoredText[terminalColoredText.Count - 1] = " " + GameManager.currentDirectory.dirName + " > " + caret;
+
+    }
+
+    private void HandleSolveCommand(string line)
     {
 
     }
@@ -444,10 +506,10 @@ public class Terminal : MonoBehaviour
     /// Prints text to a new line in the terminal
     /// </summary>
     /// <param name="line">line to print</param>
-    private void PrintLineToTerminal(string line)
+    private void PrintLineToTerminal(string line, bool caretIncluded = true)
     {
         terminalInput[terminalLineIndex] = line;
-        ColorizeCurrentLine();
+        ColorizeCurrentLine(caretIncluded);
         DisplayText();
         HandleReturn(false);
     }

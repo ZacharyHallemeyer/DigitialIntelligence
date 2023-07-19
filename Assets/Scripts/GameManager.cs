@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static int levelIndex;
+    public static string folderName;
+    public static string startingDirectoryPath;
 
     // Puzzles
     public List<PuzzleContainer> puzzleDataList;
@@ -33,6 +35,11 @@ public class GameManager : MonoBehaviour
     public static int timeLimitMinutes = 29;
     private static int currentTimeMinutes;
     private static int currentTimeSeconds;
+
+
+    // File system
+    public static DirectoryData directoryRoot;
+    public static DirectoryData currentDirectory;
 
 
 
@@ -155,11 +162,13 @@ public class GameManager : MonoBehaviour
         new KeyValuePair<string, string>("cat", "#DC143C"),
         new KeyValuePair<string, string>("ls", "#DC143C"),
         new KeyValuePair<string, string>("cd", "#DC143C"),
+        new KeyValuePair<string, string>("solve", "#DC143C"),
     };
 
 
     private void Awake()
     {
+        
         if(instance == null)
         {
             instance = this;
@@ -169,7 +178,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        //StartGame();
+        StartGame();
     }
 
     /// <summary>
@@ -182,8 +191,11 @@ public class GameManager : MonoBehaviour
         currentTimeMinutes = timeLimitMinutes;
         CreatePuzzles();
         //SpawnPuzzleObjects(puzzleObjectTransforms);
+
+        startingDirectoryPath = "Assets/Resources/Variables"; // REMOVE 
+        CreateFileSystem();
+
         CreateTerminal();
-        CreateTimer();
     }
 
     // ========================= TERMINAL ========================= //
@@ -198,11 +210,96 @@ public class GameManager : MonoBehaviour
         terminal = terminalObject.GetComponent<Terminal>();
         terminalUI = GameObject.Find("TerminalUI");
         terminal.Initialize();
-        terminalUI.SetActive(false);
-        terminal.enabled = false;
     }
 
     // ========================= Data Manipulation ========================= //
+
+    private void CreateFileSystem()
+    {
+        // Inititialize directories
+
+        string currentDirectoryPath = startingDirectoryPath;
+
+        directoryRoot = FillDirectories(currentDirectoryPath, 0, null);
+        currentDirectory = directoryRoot;
+        directoryRoot.hasParent = false;
+    }
+
+    private DirectoryData FillDirectories(string currentDirectoryPath, int directoryIndex, DirectoryData parentDir)
+    {
+        int newDirectoryIndex = directoryIndex + 1;
+        DirectoryData dirData = new DirectoryData();
+        string[] dirPathSplit = currentDirectoryPath.Split('/');
+
+        dirData.dirName = dirPathSplit[dirPathSplit.Length - 1];
+        dirData.parentDir = parentDir;
+        
+        // Fill directory with files if there are files
+        if(Directory.GetFiles(currentDirectoryPath).Length > 0)
+        {
+            FillDirectoryWithFiles(dirData, currentDirectoryPath);
+        }
+
+
+        string[] dirsInCurrentDir = Directory.GetDirectories(currentDirectoryPath);
+        foreach(string dirName in dirsInCurrentDir)
+        {
+            dirData.directories.Add(FillDirectories(dirName, newDirectoryIndex, dirData));
+        }
+
+        return dirData;
+    }
+
+    private void FillDirectoryWithFiles(DirectoryData dirData, string currentDirectoryPath)
+    {
+        string[] files = Directory.GetFiles(currentDirectoryPath);
+
+        // Loop through files 
+        foreach(string fileName in files)
+        {
+            // Check if not meta file
+            if (!fileName.Contains(".meta"))
+            {
+                string[] fileNameSplit = fileName.Split('\\');
+                //Debug.Log(fileName);
+                FileData newFile = new FileData();
+                newFile.fileName = fileNameSplit[fileNameSplit.Length - 1];
+
+                // add current file to current directory
+                dirData.files.Add(newFile);
+                // Add information if found in `FileInfoList`
+
+            }
+        }
+
+    }
+
+    private void PrintDirectories(DirectoryData dirData, string indent)
+    {
+        string output = "";
+        output += "\n" + indent + dirData.dirName;
+
+        foreach(FileData fileData in dirData.files)
+        {
+            output += "\n\t" + indent + fileData.fileName;
+        }
+
+        Debug.Log(output);
+
+        foreach(DirectoryData dirDataInner in dirData.directories)
+        {
+            PrintDirectories(dirDataInner, indent + "\t");
+        }
+
+    }
+
+    private string PrintDirectoriesHelper()
+    {
+        string output = "";
+
+
+        return output;
+    }
 
     /// <summary>
     /// Reads puzzle data from a Json file and creates corresponding puzzle objects in the game world.
