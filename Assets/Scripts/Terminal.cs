@@ -325,18 +325,36 @@ public class Terminal : MonoBehaviour
         }
 
         // Get argument after command
-        string argument = line.Split(' ')[1];
+        string target = line.Split(' ')[1];
+        string keyword = line.Split(' ')[2];
+        bool fileFound = false;
 
-        // Check if the argument is a keyword
-        if(GameManager.UnlockPuzzle(argument))
+        // Check if target exists
+        // Check if file exists in current context
+        foreach (FileData file in GameManager.currentDirectory.files)
         {
-            PrintLineToTerminal("<color=#006400>Keyword unlocked a puzzle</color>", false);
-        }
-        else
-        {
-            PrintLineToTerminal("<color=#FF0000>Keyword did not unlock anything</color>", false);
+            if (file.fileName == target)
+            {
+                fileFound = true;
+                // Check if correct unlock keyword 
+                if (file.unlockKeyword == keyword)
+                {
+                    string fileContent = File.ReadAllText(file.path);
+                    PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
+                }
+                // Otherwise, print error message
+                else
+                {
+                    PrintLineToTerminal($"<color={errorColor}>Incorrect keyword. {target} was not unlocked</color>", false);
+                }
+            }
         }
 
+        // Otherwise, print that the argument does not exit
+        if (!fileFound)
+        {
+            PrintLineToTerminal($"<color={errorColor}>The file {target} does not exist</color>", false);
+        }
     }
 
     /// <summary>
@@ -402,14 +420,6 @@ public class Terminal : MonoBehaviour
         {
             PrintLineToTerminal($"<color={errorColor}>The file {argument} does not exist</color>", false);
         }
-
-        /*
-        // Check if argument exists in notes
-        if(pythonNotes.ContainsKey(argument))
-        {
-            PrintLineToTerminal(pythonNotes[argument]);
-        }
-        */
     }
 
     /// <summary>
