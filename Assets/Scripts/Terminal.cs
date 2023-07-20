@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 
 /// <summary>
@@ -374,6 +375,33 @@ public class Terminal : MonoBehaviour
 
         // Get argument after command
         string argument = line.Split(' ')[1];
+        bool fileFound = false;
+
+        // Check if file exists in current context
+        foreach(FileData file in GameManager.currentDirectory.files)
+        {
+            if(file.fileName == argument)
+            {
+                fileFound = true;
+                // Check if the file is unlocked 
+                if(file.unlocked)
+                {
+                    string fileContent = File.ReadAllText(file.path);
+                    PrintLineToTerminal(fileContent, false);
+                }
+                // Otherwise, print that the file is locked
+                else
+                {
+                    PrintLineToTerminal($"<color={errorColor}>This file is locked. Use `unlock` command</color>", false);
+                }
+            }
+        }
+
+        // Otherwise, print that the argument does not exit
+        if(!fileFound)
+        {
+            PrintLineToTerminal($"<color={errorColor}>The file {argument} does not exist</color>", false);
+        }
 
         /*
         // Check if argument exists in notes
@@ -397,13 +425,13 @@ public class Terminal : MonoBehaviour
             return;
         }
 
-        // Print contents of current directory
-
+        // Print files of current directory
         foreach(FileData fileData in GameManager.currentDirectory.files)
         {
             PrintLineToTerminal(fileData.fileName, false);
         }
 
+        // Print child directories of current directory
         foreach (DirectoryData dirData in GameManager.currentDirectory.directories)
         {
             string[] dirPath = dirData.dirName.Split('\\');
@@ -454,7 +482,28 @@ public class Terminal : MonoBehaviour
 
     private void HandleSolveCommand(string line)
     {
+        // Check if syntax is incorrect
+        if (!CheckCommandSyntax(line, 1))
+        {
+            return;
+        }
 
+        // Get argument after command
+        string argument = line.Split(' ')[1];
+
+        // Loop through level puzzles to see if any puzzles have the name held in `argument`
+        foreach(GameObject puzzleObject in GameManager.puzzles)
+        {
+            Puzzle puzzle = puzzleObject.GetComponent<Puzzle>();
+            
+            if(puzzle.puzzleName == argument)
+            {
+                // show puzzle and hide terminal
+                puzzleObject.SetActive(true);
+                gameObject.SetActive(false);
+            }
+
+        }
     }
 
     /// <summary>

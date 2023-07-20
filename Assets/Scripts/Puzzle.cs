@@ -84,7 +84,9 @@ public class Puzzle : MonoBehaviour
     [JsonProperty("puzzleType")]
     public string puzzleType;
     [JsonProperty("unlockKeyword")]
-    public string unlockKeyword;
+    public string unlockKeyword;    
+    [JsonProperty("puzzleName")]
+    public string puzzleName;
 
     public int puzzleIndex;
 
@@ -143,28 +145,30 @@ public class Puzzle : MonoBehaviour
     public string pythonOutput;
     public string unsolvedImagePath = "PuzzleImages/Unsolved";
 
-    public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string clueImagePath, string startingCode, string directions, string puzzleType, string unlockKeyword, int puzzleIndex)
+    public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string clueImagePath, string startingCode, string directions, string puzzleType, string unlockKeyword, string puzzleName, int puzzleIndex)
     {
-        this.testCases      = new List<TestCase>(testCases);
-        this.hiddenTestCases = new List<TestCase>(testCases);
-        this.clueImagePath  = clueImagePath;
-        this.startingCode   = startingCode;
-        this.directions     = directions;
-        this.puzzleType     = puzzleType;
-        this.unlockKeyword = unlockKeyword;
-        this.puzzleIndex    = puzzleIndex;
+        this.testCases          = new List<TestCase>(testCases);
+        this.hiddenTestCases    = new List<TestCase>(testCases);
+        this.clueImagePath      = clueImagePath;
+        this.startingCode       = startingCode;
+        this.directions         = directions;
+        this.puzzleType         = puzzleType;
+        this.unlockKeyword      = unlockKeyword;
+        this.puzzleName         = puzzleName;
+        this.puzzleIndex        = puzzleIndex;
     }
 
     public void Initialize(Puzzle puzzleData)
     {
-        this.testCases      = new List<TestCase>(puzzleData.testCases);
-        this.hiddenTestCases = new List<TestCase>(puzzleData.hiddenTestCases);
-        this.clueImagePath  = puzzleData.clueImagePath;
-        this.startingCode   = puzzleData.startingCode;
-        this.directions     = puzzleData.directions;
-        this.puzzleType     = puzzleData.puzzleType;
-        this.unlockKeyword  = puzzleData.unlockKeyword;
-        this.puzzleIndex    = puzzleData.puzzleIndex;
+        this.testCases          = new List<TestCase>(puzzleData.testCases);
+        this.hiddenTestCases    = new List<TestCase>(puzzleData.hiddenTestCases);
+        this.clueImagePath      = puzzleData.clueImagePath;
+        this.startingCode       = puzzleData.startingCode;
+        this.directions         = puzzleData.directions;
+        this.puzzleType         = puzzleData.puzzleType;
+        this.unlockKeyword      = puzzleData.unlockKeyword;
+        this.puzzleIndex        = puzzleData.puzzleIndex;
+        this.puzzleName         = puzzleData.puzzleName;
 
         pythonFunctions = new List<string>();
         pythonFinishedEvent = new ManualResetEvent(false);

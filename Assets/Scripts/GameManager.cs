@@ -218,11 +218,25 @@ public class GameManager : MonoBehaviour
         DirectoryData dirData = new DirectoryData();
         string[] dirPathSplit = currentDirectoryPath.Split('/');
 
+        TextAsset jsonData = Resources.Load<TextAsset>("JsonData/DirectoryInfoList");
+        string data = jsonData.text;
+        List<JsonDirectoryObject> jsonDirInfo = JsonConvert.DeserializeObject<List<JsonDirectoryObject>>(data);
+
         dirData.dirName = dirPathSplit[dirPathSplit.Length - 1];
         dirData.parentDir = parentDir;
-        
+
+        // Add information if found in `DirectoryInfoList`
+        foreach (JsonDirectoryObject dirObject in jsonDirInfo)
+        {
+            if (dirData.dirName == dirObject.name)
+            {
+                dirData.unlocked = false;
+                dirData.unlockKeyword = dirObject.unlockKeyword;
+            }
+        }
+
         // Fill directory with files if there are files
-        if(Directory.GetFiles(currentDirectoryPath).Length > 0)
+        if (Directory.GetFiles(currentDirectoryPath).Length > 0)
         {
             FillDirectoryWithFiles(dirData, currentDirectoryPath);
         }
@@ -240,6 +254,9 @@ public class GameManager : MonoBehaviour
     private void FillDirectoryWithFiles(DirectoryData dirData, string currentDirectoryPath)
     {
         string[] files = Directory.GetFiles(currentDirectoryPath);
+        TextAsset jsonData = Resources.Load<TextAsset>("JsonData/FileInfoList");
+        string data = jsonData.text;
+        List<JsonFileObject> jsonFileInfo = JsonConvert.DeserializeObject<List<JsonFileObject>>(data);
 
         // Loop through files 
         foreach(string fileName in files)
@@ -251,11 +268,21 @@ public class GameManager : MonoBehaviour
                 //Debug.Log(fileName);
                 FileData newFile = new FileData();
                 newFile.fileName = fileNameSplit[fileNameSplit.Length - 1];
+                newFile.path = fileName;
 
                 // add current file to current directory
                 dirData.files.Add(newFile);
-                // Add information if found in `FileInfoList`
 
+                // Add information if found in `FileInfoList`
+                foreach(JsonFileObject fileObject in jsonFileInfo)
+                {
+                    if(newFile.fileName == fileObject.name)
+                    {
+                        newFile.unlocked = false;
+                        newFile.unlockKeyword = fileObject.unlockKeyword;
+                        newFile.question = fileObject.question;
+                    }
+                }
             }
         }
 
