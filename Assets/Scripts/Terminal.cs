@@ -460,6 +460,7 @@ public class Terminal : MonoBehaviour
 
         // Get argument after command
         string argument = line.Split(' ')[1];
+        bool dirFound = false;
 
         // Check if argument is a directory that exists
         foreach(DirectoryData dirData in GameManager.currentDirectory.directories)
@@ -469,8 +470,18 @@ public class Terminal : MonoBehaviour
 
             if(argument == dirName)
             {
-                // Move to new directory
-                GameManager.currentDirectory = dirData;
+                dirFound = true;
+                // Check if directory is unlocked
+                if (dirData.unlocked)
+                {
+                    // Move to new directory
+                    GameManager.currentDirectory = dirData;
+                }
+                else
+                {
+                    PrintLineToTerminal($"<color={errorColor}>Directory is locked. Use the command `solve {dirName}` to unlock it</color>", false);
+                }
+
             }
             
         }
@@ -480,11 +491,16 @@ public class Terminal : MonoBehaviour
         {
             if (GameManager.currentDirectory.hasParent)
             {
+                dirFound = true;
                 // Move to parent directory
                 GameManager.currentDirectory = GameManager.currentDirectory.parentDir;
             }
         }
 
+        if(!dirFound)
+        {
+            PrintLineToTerminal($"<color={errorColor}>Directory {argument} was not found</color>", false);
+        }
 
         terminalColoredText[terminalColoredText.Count - 1] = " " + GameManager.currentDirectory.dirName + " > " + caret;
 
@@ -578,7 +594,7 @@ public class Terminal : MonoBehaviour
     /// Prints text to a new line in the terminal
     /// </summary>
     /// <param name="line">line to print</param>
-    private void PrintLineToTerminal(string line, bool caretIncluded = true)
+    public void PrintLineToTerminal(string line, bool caretIncluded = true)
     {
         terminalInput[terminalLineIndex] = line;
         ColorizeCurrentLine(caretIncluded);

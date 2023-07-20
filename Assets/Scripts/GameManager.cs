@@ -380,6 +380,18 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    public void PuzzleSolved(string puzzleName)
+    {
+        // Find puzzle in directories
+        foreach(DirectoryData dirData in currentDirectory.directories)
+        {
+            if(dirData.dirName == puzzleName)
+            {
+                dirData.unlocked = true;
+                terminal.PrintLineToTerminal($"<color={terminal.successColor}>Directory {puzzleName} successfully unlocked</color>", false);
+            }
+        }
+    }
 
     // ========================= Player ========================= //
 
