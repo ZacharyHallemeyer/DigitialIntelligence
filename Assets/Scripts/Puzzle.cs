@@ -1387,6 +1387,7 @@ public class Puzzle : MonoBehaviour
         if(!testFailed)
         {
             ShowClue();
+            GameManager.instance.PuzzleSolved(this.puzzleName);
         }
     }
 
