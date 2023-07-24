@@ -5,5 +5,4 @@ using UnityEngine;
 public class JsonDirectoryObject
 {
     public string name;
-    public string unlockKeyword;
 }

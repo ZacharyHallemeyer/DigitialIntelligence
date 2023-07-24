@@ -137,7 +137,7 @@ public class Terminal : MonoBehaviour
 
         if(caretIncluded)
         {
-            coloredLine = " " + GameManager.currentDirectory.dirName + " > ";
+            coloredLine = " " + GameManager.currentDirectory.path + " > ";
         }
 
         foreach(string word in words)
@@ -170,7 +170,7 @@ public class Terminal : MonoBehaviour
 
         // Add a new line to input and colored text lists 
         terminalInput.Add("");
-        terminalColoredText.Add(" " + GameManager.currentDirectory.dirName + " > " + caret);
+        terminalColoredText.Add(" " + GameManager.currentDirectory.path + " > " + caret);
         terminalLineIndex++;
 
         // Adjust the scroll view to show the bottom of the text
@@ -465,10 +465,8 @@ public class Terminal : MonoBehaviour
         // Check if argument is a directory that exists
         foreach(DirectoryData dirData in GameManager.currentDirectory.directories)
         {
-            string[] dirNames = dirData.dirName.Split('\\');
-            string dirName = dirNames[dirNames.Length - 1];
 
-            if(argument == dirName)
+            if(argument == dirData.dirName)
             {
                 dirFound = true;
                 // Check if directory is unlocked
@@ -479,7 +477,7 @@ public class Terminal : MonoBehaviour
                 }
                 else
                 {
-                    PrintLineToTerminal($"<color={errorColor}>Directory is locked. Use the command `solve {dirName}` to unlock it</color>", false);
+                    PrintLineToTerminal($"<color={errorColor}>Directory is locked. Use the command `solve {dirData.dirName}` to unlock it</color>", false);
                 }
 
             }
@@ -502,7 +500,7 @@ public class Terminal : MonoBehaviour
             PrintLineToTerminal($"<color={errorColor}>Directory {argument} was not found</color>", false);
         }
 
-        terminalColoredText[terminalColoredText.Count - 1] = " " + GameManager.currentDirectory.dirName + " > " + caret;
+        terminalColoredText[terminalColoredText.Count - 1] = " " + GameManager.currentDirectory.path + " > " + caret;
 
     }
 

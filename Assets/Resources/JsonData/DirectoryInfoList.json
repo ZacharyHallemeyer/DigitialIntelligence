@@ -1,6 +1,17 @@
 ﻿[
   {
-    "name": "",
-    "unlockKeyword": ""
+    "name": "VariableOne"
+  },
+  {
+    "name": "VariableTwo"
+  },
+  {
+    "name": "VariableThree"
+  },
+  {
+    "name": "VariableFour"
+  },
+  {
+    "name": "VariableFive"
   }
 ]

@@ -222,16 +222,18 @@ public class GameManager : MonoBehaviour
         string data = jsonData.text;
         List<JsonDirectoryObject> jsonDirInfo = JsonConvert.DeserializeObject<List<JsonDirectoryObject>>(data);
 
-        dirData.dirName = dirPathSplit[dirPathSplit.Length - 1];
+        dirData.path = dirPathSplit[dirPathSplit.Length - 1];
+        string[] dirNames = dirData.path.Split('\\');
+        dirData.dirName = dirNames[dirNames.Length - 1];
         dirData.parentDir = parentDir;
 
         // Add information if found in `DirectoryInfoList`
         foreach (JsonDirectoryObject dirObject in jsonDirInfo)
         {
+
             if (dirData.dirName == dirObject.name)
             {
                 dirData.unlocked = false;
-                dirData.unlockKeyword = dirObject.unlockKeyword;
             }
         }
 
@@ -305,14 +307,6 @@ public class GameManager : MonoBehaviour
             PrintDirectories(dirDataInner, indent + "\t");
         }
 
-    }
-
-    private string PrintDirectoriesHelper()
-    {
-        string output = "";
-
-
-        return output;
     }
 
     /// <summary>
@@ -391,6 +385,14 @@ public class GameManager : MonoBehaviour
                 terminal.PrintLineToTerminal($"<color={terminal.successColor}>Directory {puzzleName} successfully unlocked</color>", false);
             }
         }
+
+        puzzleIndex++;
+
+        // Check if game won
+        if(puzzleIndex >= puzzles.Count)
+        {
+            GameWon();
+        }
     }
 
     // ========================= Player ========================= //
@@ -404,10 +406,6 @@ public class GameManager : MonoBehaviour
 
     private static void GameWon()
     {
-        // TODO
-
-        // TESTING SECTION (ADD OR REMOVE WHEN IMPLEMENTING ACTUAL FUNCTIONALITY)
-        
         // Loop through puzzle UI and remove
         foreach(GameObject puzzle in puzzles)
         {
@@ -415,10 +413,6 @@ public class GameManager : MonoBehaviour
         }
         // Remove terminal
         Destroy(terminalObject);
-
-
-        SceneManager.LoadScene("MainMenu"); 
-        SceneManager.UnloadSceneAsync("SampleScene");
 
         Debug.Log("You won!!!!!");
     }

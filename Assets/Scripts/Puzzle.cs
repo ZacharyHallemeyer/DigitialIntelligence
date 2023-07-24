@@ -104,8 +104,6 @@ public class Puzzle : MonoBehaviour
     public TMP_Text directionsDisplay;
     public TMP_Text widthDisplay;
 
-        // Images
-    public Image clueImageDisplay;
         // Buttons
     public Button clearConsoleButton;
     public Button runTestsButton;
@@ -115,7 +113,6 @@ public class Puzzle : MonoBehaviour
     public Image clearConsoleButtonImage;
 
     public Image directionsButtonImage;
-    public Image clueButtonImage;
 
     // Emulator variables
     public bool isChangingCode = false;
@@ -1322,9 +1319,6 @@ public class Puzzle : MonoBehaviour
 
         // Set directions text
         directionsDisplay.text = "\n" + directions;
-
-        // set image to unsolved image display
-        clueImageDisplay.sprite = Resources.Load<Sprite>(unsolvedImagePath);
     }
 
     /// <summary>
@@ -1386,18 +1380,9 @@ public class Puzzle : MonoBehaviour
         // Check if all tests passed
         if(!testFailed)
         {
-            ShowClue();
+            //ShowClue();
             GameManager.instance.PuzzleSolved(this.puzzleName);
         }
-    }
-
-    /// <summary>
-    /// Displays the clue image by showing the clue container and setting the clue image to the appropriate sprite.
-    /// </summary>
-    public void ShowClue()
-    {
-        ShowClueUI();
-        clueImageDisplay.sprite = Resources.Load<Sprite>(clueImagePath);
     }
 
     /// <summary>
@@ -1418,7 +1403,6 @@ public class Puzzle : MonoBehaviour
         clueContainer.SetActive(true);
 
         directionsButtonImage.color = new Color(0f,0f,0f);
-        clueButtonImage.color = new Color(0.2156863f, 0.2156863f, 0.2156863f);
     }
 
     /// <summary>
@@ -1430,8 +1414,17 @@ public class Puzzle : MonoBehaviour
         clueContainer.SetActive(false);
         directionsContainer.SetActive(true);
 
-        clueButtonImage.color = new Color(0f, 0f, 0f);
         directionsButtonImage.color = new Color(0.2156863f, 0.2156863f, 0.2156863f);
+    }
+
+    /// <summary>
+    /// Exits the puzzle UI by seting the puzzle's state to inactive
+    /// and sets the terminal UI to active
+    /// </summary>
+    public void ExitPuzzleUI()
+    {
+        gameObject.SetActive(false);
+        GameManager.terminal.gameObject.SetActive(true);
     }
 
     // ========================= Helper Functions ========================= //
