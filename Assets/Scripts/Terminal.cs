@@ -38,7 +38,6 @@ public class Terminal : MonoBehaviour
     public readonly List<string> commands = new List<string>
     {
         "help",
-        "exit",
         "cat",
         "unlock",
         "clear",
@@ -236,10 +235,6 @@ public class Terminal : MonoBehaviour
                 HandleHelpCommand(line);
                 break;
 
-            case "exit":
-                HandleExitCommand(line);
-                break;
-
             case "unlock":
                 HandleUnlockCommand(line);
                 break;
@@ -290,28 +285,19 @@ public class Terminal : MonoBehaviour
         PrintLineToTerminal("Avaliable Commands", false);
         PrintLineToTerminal("==================", false);
         PrintLineToTerminal("help: Prints all the commands avaliable", false);
-        PrintLineToTerminal("exit: Exits the application", false);
-        PrintLineToTerminal("unlock: Unlocks the next puzzle when the correct keyword is provided", false);
-        PrintLineToTerminal("   Example: unlock KEYWORD", false);
+        PrintLineToTerminal("unlock: Unlocks a file when the correct keyword is provided", false);
+        PrintLineToTerminal("   Example: unlock FILE_NAME KEYWORD ", false);
+        PrintLineToTerminal("   Example: unlock Hello.txt fun", false);
+        PrintLineToTerminal("solve: Opens a puzzle to unlock a directory", false);
+        PrintLineToTerminal("   Example: unlock DIRECTORY_NAME", false);
+        PrintLineToTerminal("   Example: unlock VariableOne", false);
         PrintLineToTerminal("clear: Clears all the content of the terminal", false);
-        PrintLineToTerminal("ls: Shows files in current directory", false);
+        PrintLineToTerminal("ls: Shows files and child directories in current directory", false);
+        PrintLineToTerminal("cd: Moves into the directory provided by argument", false);
+        PrintLineToTerminal("   Example: cd DIRECTORY_NAME", false);
+        PrintLineToTerminal("   Example: cd VariableOne", false);
         PrintLineToTerminal("cat: Prints text from files to terminal when a file path is provided", false);
         PrintLineToTerminal("   Example: cat comments.txt", false);
-    }
-
-    /// <summary>
-    /// Handles the exit command. 
-    /// Closes the game
-    /// </summary>
-    /// <param name="line">command line</param>
-    private void HandleExitCommand(string line)
-    {
-        if (!CheckCommandSyntax(line, 0))
-        {
-            return;
-        }
-
-        Application.Quit();
     }
 
     /// <summary>
