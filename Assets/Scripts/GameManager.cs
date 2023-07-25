@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static int levelIndex;
     public static string folderName;
+    public static string levelName;
     public static string startingDirectoryPath;
 
     // Puzzles
@@ -40,6 +41,11 @@ public class GameManager : MonoBehaviour
     // File system
     public static DirectoryData directoryRoot;
     public static DirectoryData currentDirectory;
+
+    // Hub
+    public GameObject hubPrefab;
+    public GameObject hubObject;
+    public Hub hub;
 
 
 
@@ -178,11 +184,13 @@ public class GameManager : MonoBehaviour
         currentTimeMinutes = timeLimitMinutes;
         CreatePuzzles();
         //SpawnPuzzleObjects(puzzleObjectTransforms);
-
+        levelName = "Variables"; // REMOVE
         startingDirectoryPath = "Assets/Resources/Variables"; // REMOVE 
         CreateFileSystem();
 
         CreateTerminal();
+
+        CreateHub();
     }
 
     // ========================= TERMINAL ========================= //
@@ -197,6 +205,7 @@ public class GameManager : MonoBehaviour
         terminal = terminalObject.GetComponent<Terminal>();
         terminalUI = GameObject.Find("TerminalUI");
         terminal.Initialize();
+        terminalObject.SetActive(false);
     }
 
     // ========================= Data Manipulation ========================= //
@@ -345,7 +354,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     // ========================= Puzzles ========================= //
 
     /// <summary>
@@ -395,11 +403,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ========================= Player ========================= //
+    // ========================= HUB ========================= //
 
-    public static void CompleteLevel()
+    private void CreateHub()
     {
-
+        hubObject = Instantiate(hubPrefab);
+        hub = hubObject.GetComponent<Hub>();
+        hub.Initialize(levelName);
     }
 
     // ========================= Game Management ========================= //

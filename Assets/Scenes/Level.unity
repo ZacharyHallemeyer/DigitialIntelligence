@@ -247,6 +247,9 @@ MonoBehaviour:
   puzzleDataList: []
   puzzlePrefab: {fileID: 118615744006008955, guid: 156d6de52e4cacb4caad1e1179a58d30, type: 3}
   terminalObjectPrefab: {fileID: 413582401186663486, guid: fb7b14e1125f36247ab5bd641660980b, type: 3}
+  hubPrefab: {fileID: 3566338326482183071, guid: 09a05b3b445405a49b0b73a68ca72d0c, type: 3}
+  hubObject: {fileID: 0}
+  hub: {fileID: 0}
 --- !u!4 &724787526
 Transform:
   m_ObjectHideFlags: 0
