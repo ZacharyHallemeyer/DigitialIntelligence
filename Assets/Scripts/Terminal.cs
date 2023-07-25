@@ -328,6 +328,7 @@ public class Terminal : MonoBehaviour
                 if (file.unlockKeyword == keyword)
                 {
                     string fileContent = File.ReadAllText(file.path);
+                    GameManager.numRemainingLockedFiles--;
                     PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
                 }
                 // Otherwise, print error message
@@ -342,6 +343,12 @@ public class Terminal : MonoBehaviour
         if (!fileFound)
         {
             PrintLineToTerminal($"<color={errorColor}>The file {target} does not exist</color>", false);
+        }
+        
+        // Check if all files have been unlocked and game is won
+        if(GameManager.numRemainingLockedFiles <= 0)
+        {
+            GameManager.GameWon();
         }
     }
 

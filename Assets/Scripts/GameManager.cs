@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public static string folderName;
     public static string levelName;
     public static string startingDirectoryPath;
+    public static int numRemainingLockedFiles;
 
     // Puzzles
     public List<PuzzleContainer> puzzleDataList;
@@ -179,6 +180,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         puzzleIndex = 0;
+        numRemainingLockedFiles = 0;
         currentTimeSeconds = 61;
         currentTimeMinutes = timeLimitMinutes;
         CreatePuzzles();
@@ -275,7 +277,6 @@ public class GameManager : MonoBehaviour
             if (!fileName.Contains(".meta"))
             {
                 string[] fileNameSplit = fileName.Split('\\');
-                //Debug.Log(fileName);
                 FileData newFile = new FileData();
                 newFile.fileName = fileNameSplit[fileNameSplit.Length - 1];
                 newFile.path = fileName;
@@ -291,6 +292,7 @@ public class GameManager : MonoBehaviour
                         newFile.unlocked = false;
                         newFile.unlockKeyword = fileObject.unlockKeyword;
                         newFile.question = fileObject.question;
+                        numRemainingLockedFiles++;
                     }
                 }
             }
@@ -355,32 +357,6 @@ public class GameManager : MonoBehaviour
 
     // ========================= Puzzles ========================= //
 
-    /// <summary>
-    /// Activates the puzzle associated with a given keyword, if one exists.
-    /// </summary>
-    public static bool UnlockPuzzle(string keyword)
-    {
-        // Activate any puzzles that has the parameter keyword as the unlockKeyword and return true
-        foreach(GameObject puzzleObject in puzzles)
-        {
-            Puzzle puzzleComponent = puzzleObject.GetComponent<Puzzle>();
-
-            if(keyword == puzzleComponent.unlockKeyword)
-            {
-                puzzleIndex++;
-                if(puzzleIndex >= puzzles.Count)
-                {
-                    GameWon();
-                }
-                
-                return true;
-            }
-        }
-
-        // If no key word was found, return false
-        return false;
-    }
-
     public void PuzzleSolved(string puzzleName)
     {
         // Find puzzle in directories
@@ -394,12 +370,6 @@ public class GameManager : MonoBehaviour
         }
 
         puzzleIndex++;
-
-        // Check if game won
-        if(puzzleIndex >= puzzles.Count)
-        {
-            GameWon();
-        }
     }
 
     // ========================= HUB ========================= //
@@ -413,7 +383,7 @@ public class GameManager : MonoBehaviour
 
     // ========================= Game Management ========================= //
 
-    private static void GameWon()
+    public static void GameWon()
     {
         // Loop through puzzle UI and remove
         foreach(GameObject puzzle in puzzles)
