@@ -636,4 +636,10 @@ public class Terminal : MonoBehaviour
         this.enabled = false;
         GameManager.terminalUI.SetActive(false);
     }
+
+    public void GoToHub()
+    {
+        GameManager.instance.hubObject.SetActive(true);
+        gameObject.SetActive(false);
+    }
 }
