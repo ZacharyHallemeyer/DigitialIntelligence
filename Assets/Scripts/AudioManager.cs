@@ -58,6 +58,16 @@ public class AudioManager : MonoBehaviour
 
             s.source.pitch = s.pitch;
             s.source.loop = s.looping;
+        }        
+        foreach (Sound s in soundsSoundEffects)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+
+            s.source.volume = PlayerPrefs.GetFloat("SoundEffectsVolume");
+
+            s.source.pitch = s.pitch;
+            s.source.loop = s.looping;
         }
     }
 
@@ -103,6 +113,30 @@ public class AudioManager : MonoBehaviour
         if (s == null)
             return;
         s.source.Stop();
+    }
+
+    public void PlaySuccessSoundEffect()
+    {
+        Sound s = Array.Find(soundsSoundEffects, sound => sound.name == "SuccessSoundEffect");
+        if (s == null)
+            return;
+        s.source.Play();
+    }
+
+    public void PlayErrorSoundEffect()
+    {
+        Sound s = Array.Find(soundsSoundEffects, sound => sound.name == "ErrorSoundEffect");
+        if (s == null)
+            return;
+        s.source.Play();
+    }
+    
+    public void PlayButtonClickSoundEffect()
+    {
+        Sound s = Array.Find(soundsSoundEffects, sound => sound.name == "ButtonClickSoundEffect");
+        if (s == null)
+            return;
+        s.source.Play();
     }
 
 }

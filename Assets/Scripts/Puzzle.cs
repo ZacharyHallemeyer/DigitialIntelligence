@@ -1204,6 +1204,7 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     public void ClearConsole()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         WriteToEmuConsole("");
     }
 
@@ -1213,6 +1214,7 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     public async void RunPython()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         // Get python code from input text
         string pythonCode = string.Join("\n", inputText);
         // Execute python 
@@ -1327,6 +1329,7 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     async public void RunTests()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         bool testFailed = false;
         string pythonCode = string.Join("\n", inputText);
         string testOutput = "";
@@ -1381,7 +1384,12 @@ public class Puzzle : MonoBehaviour
         if(!testFailed)
         {
             //ShowClue();
+            AudioManager.instance.PlaySuccessSoundEffect();
             GameManager.instance.PuzzleSolved(this.puzzleName);
+        }
+        else
+        {
+            AudioManager.instance.PlayErrorSoundEffect();
         }
     }
 
@@ -1390,6 +1398,7 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     public void ResetPuzzle()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         SetPuzzleDisplay();
     }
 
@@ -1423,6 +1432,7 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     public void ExitPuzzleUI()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         gameObject.SetActive(false);
         GameManager.terminal.gameObject.SetActive(true);
     }

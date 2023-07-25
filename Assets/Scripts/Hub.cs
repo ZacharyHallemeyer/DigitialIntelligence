@@ -66,27 +66,31 @@ public class Hub : MonoBehaviour
 
     public void SettingsButtonClick()
     {
-
+        AudioManager.instance.PlayButtonClickSoundEffect();
     }
 
     public void StoryButtonClick()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         ShowStoryText();
     }
 
     public void NotesButtonClick()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         ShowNotesText();
     }
 
     public void ExitButtonClick()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         SceneManager.LoadScene("MainMenu");
         SceneManager.UnloadSceneAsync("Level");
     }
 
     public void TerminalButtonClick()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         GameManager.terminalObject.SetActive(true);
         GameManager.instance.hubObject.SetActive(false);
     }

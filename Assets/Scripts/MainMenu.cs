@@ -63,29 +63,32 @@ public class MainMenu : MonoBehaviour
     public void StartButtonClick()
     {
         MoveToLevelScreen();
+        AudioManager.instance.PlayButtonClickSoundEffect();
     }
 
     // Go to About Screen
     public void AboutButtonClick()
     {
-
+        AudioManager.instance.PlayButtonClickSoundEffect();
     }
 
 
     // Go to Settings Screen
     public void SettingsButtonClick()
     {
-
+        AudioManager.instance.PlayButtonClickSoundEffect();
     }
 
     // Close application
     public void QuitButtonClick()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         Application.Quit();
     }
 
     public void StartLevel(int levelIndex, string levelName)
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         // Set game manager level index 
         GameManager.levelIndex = levelIndex;
         GameManager.levelName = levelName;

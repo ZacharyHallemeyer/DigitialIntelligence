@@ -327,6 +327,7 @@ public class Terminal : MonoBehaviour
                 // Check if correct unlock keyword 
                 if (file.unlockKeyword == keyword)
                 {
+                    AudioManager.instance.PlaySuccessSoundEffect();
                     string fileContent = File.ReadAllText(file.path);
                     GameManager.numRemainingLockedFiles--;
                     PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
@@ -334,6 +335,7 @@ public class Terminal : MonoBehaviour
                 // Otherwise, print error message
                 else
                 {
+                    AudioManager.instance.PlayErrorSoundEffect();
                     PrintLineToTerminal($"<color={errorColor}>Incorrect keyword. {target} was not unlocked</color>", false);
                 }
             }
@@ -342,6 +344,7 @@ public class Terminal : MonoBehaviour
         // Otherwise, print that the argument does not exit
         if (!fileFound)
         {
+            AudioManager.instance.PlayErrorSoundEffect();
             PrintLineToTerminal($"<color={errorColor}>The file {target} does not exist</color>", false);
         }
         
@@ -405,6 +408,7 @@ public class Terminal : MonoBehaviour
                 // Otherwise, print that the file is locked
                 else
                 {
+                    AudioManager.instance.PlayErrorSoundEffect();
                     PrintLineToTerminal($"<color={errorColor}>This file is locked. Use `unlock` command</color>", false);
                 }
             }
@@ -413,6 +417,7 @@ public class Terminal : MonoBehaviour
         // Otherwise, print that the argument does not exit
         if(!fileFound)
         {
+            AudioManager.instance.PlayErrorSoundEffect();
             PrintLineToTerminal($"<color={errorColor}>The file {argument} does not exist</color>", false);
         }
     }
@@ -492,6 +497,7 @@ public class Terminal : MonoBehaviour
                 }
                 else
                 {
+                    AudioManager.instance.PlayErrorSoundEffect();
                     PrintLineToTerminal($"<color={errorColor}>Directory is locked. Use the command `solve {dirData.dirName}` to unlock it</color>", false);
                 }
 
@@ -512,11 +518,11 @@ public class Terminal : MonoBehaviour
 
         if(!dirFound)
         {
+            AudioManager.instance.PlayErrorSoundEffect();
             PrintLineToTerminal($"<color={errorColor}>Directory {argument} was not found</color>", false);
         }
 
         terminalColoredText[terminalColoredText.Count - 1] = " " + GameManager.currentDirectory.path + " > " + caret;
-
     }
 
     private void HandleSolveCommand(string line)
@@ -554,6 +560,7 @@ public class Terminal : MonoBehaviour
 
         if(!puzzleFound)
         {
+            AudioManager.instance.PlayErrorSoundEffect();
             PrintLineToTerminal($"<color={errorColor}>Directory not found in current directory</color>", false);
         }
     }
@@ -611,6 +618,7 @@ public class Terminal : MonoBehaviour
         if (words.Length == numOfArguments + 1)
             return true;
 
+        AudioManager.instance.PlayErrorSoundEffect();
         PrintLineToTerminal(words[0] + " needs " + numOfArguments + " argument(s)");
 
         return false;
@@ -667,6 +675,7 @@ public class Terminal : MonoBehaviour
 
     public void GoToHub()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         GameManager.instance.hubObject.SetActive(true);
         gameObject.SetActive(false);
     }
