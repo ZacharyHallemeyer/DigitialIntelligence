@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: HubSettingsButton
     originalName: 
-    pivot: {x: 0.49324325, y: -0.040000003}
+    pivot: {x: 0.49358976, y: -0.012658228}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 74
-      height: 75
+      width: 78
+      height: 79
     spriteID: cdce94f819ff5214cbaaf6b1eb247fe3
     spriteBone: []
     spriteOutline: []
@@ -151,10 +151,10 @@ ScriptedImporter:
     - name: HubSettingsButton
       frameIndex: 0
       cellRect:
-        x: 6
-        y: 3
-        width: 74
-        height: 75
+        x: 4
+        y: 1
+        width: 78
+        height: 79
       spriteId: cdce94f819ff5214cbaaf6b1eb247fe3
     linkedCells: []
     parentIndex: -1

@@ -1,6 +1,6 @@
 ﻿[
   {
-    "name": "Variables",
+    "puzzleName": "Variables",
     "index": 0,
     "puzzles": [
       {
@@ -98,7 +98,7 @@
     ]
   },
   {
-    "name": "Conditionals",
+    "puzzleName": "Conditionals",
     "index": 1,
     "puzzles": [
       {
@@ -296,7 +296,7 @@
     ]
   },
   {
-    "name": "Puzzle One",
+    "puzzleName": "Puzzle One",
     "index": 2,
     "puzzles": [
       {

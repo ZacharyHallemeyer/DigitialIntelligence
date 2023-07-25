@@ -158,7 +158,6 @@ public class GameManager : MonoBehaviour
         new KeyValuePair<string, string>("__import__", "#9400D3")
     };
 
-
     private void Awake()
     {
         
@@ -183,9 +182,9 @@ public class GameManager : MonoBehaviour
         currentTimeSeconds = 61;
         currentTimeMinutes = timeLimitMinutes;
         CreatePuzzles();
-        //SpawnPuzzleObjects(puzzleObjectTransforms);
-        levelName = "Variables"; // REMOVE
-        startingDirectoryPath = "Assets/Resources/Variables"; // REMOVE 
+        //levelName = "Variables"; // REMOVE
+        //startingDirectoryPath = "Assets/Resources/Variables"; // REMOVE 
+        startingDirectoryPath = "Assets/Resources/" + levelName; 
         CreateFileSystem();
 
         CreateTerminal();

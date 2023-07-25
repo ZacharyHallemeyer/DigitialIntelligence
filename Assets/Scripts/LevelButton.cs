@@ -7,6 +7,7 @@ public class LevelButton : MonoBehaviour
 {
     public TMP_Text buttonText;
 
+    public string puzzleContainerName;
     public int puzzleContainerIndex;
 
     public LevelButton(int puzzleContainerIndex)

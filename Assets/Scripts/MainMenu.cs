@@ -84,12 +84,13 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void StartLevel(int levelIndex)
+    public void StartLevel(int levelIndex, string levelName)
     {
         // Set game manager level index 
         GameManager.levelIndex = levelIndex;
+        GameManager.levelName = levelName;
         // move to level scene
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level");
         SceneManager.UnloadSceneAsync("MainMenu");
     }
 
@@ -137,10 +138,11 @@ public class MainMenu : MonoBehaviour
 
             // Get LevelButton component and assign puzzle container index
             LevelButton levelButton = button.GetComponent<LevelButton>();
+            levelButton.puzzleContainerName = puzzleContainer.puzzleName;
             levelButton.puzzleContainerIndex = puzzleContainer.index;
 
             // Set button text to puzzle container name
-            levelButton.SetButtonText(puzzleContainer.name);
+            levelButton.SetButtonText(puzzleContainer.puzzleName);
 
             // Adjust scroll view
             LayoutRebuilder.ForceRebuildLayoutImmediate(levelScrollRect.content);
@@ -157,7 +159,7 @@ public class MainMenu : MonoBehaviour
             // Add event listener
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                StartLevel(levelButton.puzzleContainerIndex);
+                StartLevel(levelButton.puzzleContainerIndex, levelButton.puzzleContainerName);
             });
 
         }

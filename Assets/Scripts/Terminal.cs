@@ -514,6 +514,7 @@ public class Terminal : MonoBehaviour
 
         // Get argument after command
         string argument = line.Split(' ')[1];
+        bool puzzleFound = false;
 
         // Loop through level puzzles to see if any puzzles have the name held in `argument`
         foreach(GameObject puzzleObject in GameManager.puzzles)
@@ -522,11 +523,23 @@ public class Terminal : MonoBehaviour
             
             if(puzzle.puzzleName == argument)
             {
-                // show puzzle and hide terminal
-                puzzleObject.SetActive(true);
-                gameObject.SetActive(false);
+                // Check if puzzle is in directory
+                foreach( DirectoryData dirData in GameManager.currentDirectory.directories)
+                {
+                    if(dirData.dirName == argument)
+                    {
+                        puzzleFound = true;
+                        // show puzzle and hide terminal
+                        puzzleObject.SetActive(true);
+                        gameObject.SetActive(false);
+                    }
+                }
             }
+        }
 
+        if(!puzzleFound)
+        {
+            PrintLineToTerminal($"<color={errorColor}>Directory not found in current directory</color>", false);
         }
     }
 

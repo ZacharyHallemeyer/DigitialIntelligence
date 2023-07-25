@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Hub : MonoBehaviour
 {
@@ -80,7 +81,8 @@ public class Hub : MonoBehaviour
 
     public void ExitButtonClick()
     {
-
+        SceneManager.LoadScene("MainMenu");
+        SceneManager.UnloadSceneAsync("Level");
     }
 
     public void TerminalButtonClick()
