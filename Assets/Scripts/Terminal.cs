@@ -26,12 +26,14 @@ public class Terminal : MonoBehaviour
     public int oldCommandIndex = 0;
 
     // Text colors
-    public string commandColor = "#6495ED";
-    public string puzzleColor = "#FFD700";
-    public string errorColor = "#DC143C";
-    public string successColor = "#50C878";
-    public string plainTextColor = "#FFFFFF";
-    public string directoryColor = "#9400D3";
+    public string commandColor = "#6495ED"; // cornflower blue
+    public string puzzleColor = "#FFD700"; // gold
+    public string errorColor = "#DC143C"; // crimson
+    public string successColor = "#50C878"; // emerald green
+    public string plainTextColor = "#FFFFFF"; // white
+    public string directoryColor = "#9400D3"; // Dark Orchid (purple)
+    public string lockedFileColor = "#8B0000"; // Dark red
+    public string lockedDirectoryColor = "#770737"; // Mulberry (Dark red and purple)
 
     public readonly List<string> commands = new List<string>
     {
@@ -438,7 +440,17 @@ public class Terminal : MonoBehaviour
         // Print files of current directory
         foreach(FileData fileData in GameManager.currentDirectory.files)
         {
-            PrintLineToTerminal(fileData.fileName, false);
+            // Check if file is locked
+            if(!fileData.unlocked)
+            {
+                PrintLineToTerminal($"<color={lockedFileColor}>{fileData.fileName}</color>", false);
+            }
+            // Otherwise, the file is unlocked
+            else
+            {
+                PrintLineToTerminal(fileData.fileName, false);
+            }
+
         }
 
         // Print child directories of current directory
@@ -446,7 +458,17 @@ public class Terminal : MonoBehaviour
         {
             string[] dirPath = dirData.dirName.Split('\\');
             string dirName = dirPath[dirPath.Length - 1];
-            PrintLineToTerminal($"<color={directoryColor}>{dirName}</color>", false);
+            
+            // Check if directory is locked
+            if(!dirData.unlocked)
+            {
+                PrintLineToTerminal($"<color={lockedDirectoryColor}>{dirName}</color>", false);
+            }
+            // Otherwise, the directory is unlocked
+            else
+            {
+                PrintLineToTerminal($"<color={directoryColor}>{dirName}</color>", false);
+            }
         }
     }
 
