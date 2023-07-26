@@ -307,7 +307,7 @@ public class Terminal : MonoBehaviour
     /// <param name="line">command line</param>
     private void HandleUnlockCommand(string line)
     {
-        if (!CheckCommandSyntax(line, 1))
+        if (!CheckCommandSyntax(line, 2))
         {
             return;
         }
