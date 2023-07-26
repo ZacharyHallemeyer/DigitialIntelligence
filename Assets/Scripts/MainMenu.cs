@@ -24,18 +24,18 @@ public class MainMenu : MonoBehaviour
     public ScrollRect levelScrollRect;
 
     // UI containers
-    public List<GameObject> baseMainMenuUI;
+    public GameObject startContainer;
+    public GameObject aboutContainer;
+    public GameObject settingsContainer;
     public List<GameObject> levelMenuUI;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        // Add UI elements to main menu list
-        baseMainMenuUI.Add(startButton);
-        baseMainMenuUI.Add(aboutButton);
-        baseMainMenuUI.Add(settingsButton);
-        baseMainMenuUI.Add(quitButton);
+        startContainer.SetActive(true);
+        aboutContainer.SetActive(false);
+        settingsContainer.SetActive(false);
 
         // Add UI elements to level menu list
         levelMenuUI.Add(levelScrollView);
@@ -48,13 +48,7 @@ public class MainMenu : MonoBehaviour
         levelScrollView.SetActive(false);
 
         //
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // ============================== Buttons ============================== //
@@ -70,8 +64,9 @@ public class MainMenu : MonoBehaviour
     public void AboutButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
+        startContainer.SetActive(false);
+        aboutContainer.SetActive(true);
     }
-
 
     // Go to Settings Screen
     public void SettingsButtonClick()
@@ -86,6 +81,14 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    // Move to start container
+    public void BackButtonClick()
+    {
+        startContainer.SetActive(true);
+        aboutButton.SetActive(false);
+        settingsContainer.SetActive(false);
+    }
+
     public void StartLevel(int levelIndex, string levelName)
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
@@ -97,6 +100,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.UnloadSceneAsync("MainMenu");
     }
 
+    // NOT USED...KEEP IN CASE IT IS NEEDED LATER
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if(scene.name == "SampleScene")
@@ -108,17 +112,12 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    
-
     // ============================== NAVIGATION ============================== //
 
     public void MoveToLevelScreen()
     {
         // Hide Main Menu screen
-        foreach(GameObject UIElement in baseMainMenuUI)
-        {
-            UIElement.SetActive(false);
-        }
+        startContainer.SetActive(false);
 
         // Show button elements for each level
         levelScrollView.SetActive(true);
