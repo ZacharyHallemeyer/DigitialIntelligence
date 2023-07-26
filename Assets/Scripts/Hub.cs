@@ -13,8 +13,11 @@ public class Hub : MonoBehaviour
     public TMP_Text storyText;
     public TMP_Text notesText;
 
+    public GameObject settingsContainer;
+
     public void Initialize(string levelName)
     {
+        settingsContainer.SetActive(false);
         JsonHubObject hubInfo = null;
         // Get hub information list
         TextAsset jsonData = Resources.Load<TextAsset>("JsonData/HubInfoList");
@@ -67,6 +70,7 @@ public class Hub : MonoBehaviour
     public void SettingsButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
+        settingsContainer.SetActive(true);
     }
 
     public void StoryButtonClick()
@@ -86,6 +90,12 @@ public class Hub : MonoBehaviour
         AudioManager.instance.PlayButtonClickSoundEffect();
         SceneManager.LoadScene("MainMenu");
         SceneManager.UnloadSceneAsync("Level");
+    }
+
+    public void BackButtonClick()
+    {
+        AudioManager.instance.PlayButtonClickSoundEffect();
+        settingsContainer.SetActive(false);
     }
 
     public void TerminalButtonClick()

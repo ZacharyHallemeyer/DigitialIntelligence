@@ -30,6 +30,9 @@ public class AudioManager : MonoBehaviour
     public Sound[] soundsSoundEffects;
     public static AudioManager instance;
 
+    /// <summary>
+    /// Sets sounds and volume
+    /// </summary>
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -71,11 +74,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts music
+    /// </summary>
     private void Start()
     {
         StartCoroutine(PlayMusicOnLoop());
     }
-        
+
+    /// <summary>
+    /// Plays music on loop. Plays a random song from music list 
+    /// </summary>
     private IEnumerator PlayMusicOnLoop()
     {
         // Get random song
@@ -115,6 +124,9 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+    /// <summary>
+    /// Plays success sound
+    /// </summary>
     public void PlaySuccessSoundEffect()
     {
         Sound s = Array.Find(soundsSoundEffects, sound => sound.name == "SuccessSoundEffect");
@@ -123,6 +135,10 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+
+    /// <summary>
+    /// Plays error sound
+    /// </summary>
     public void PlayErrorSoundEffect()
     {
         Sound s = Array.Find(soundsSoundEffects, sound => sound.name == "ErrorSoundEffect");
@@ -130,13 +146,44 @@ public class AudioManager : MonoBehaviour
             return;
         s.source.Play();
     }
-    
+
+    /// <summary>
+    /// Plays button click sound
+    /// </summary>
     public void PlayButtonClickSoundEffect()
     {
         Sound s = Array.Find(soundsSoundEffects, sound => sound.name == "ButtonClickSoundEffect");
         if (s == null)
             return;
         s.source.Play();
+    }
+
+    /// <summary>
+    /// Set music audio clip's volume to player preference
+    /// </summary>
+    public void SetMusicVolume()
+    {
+        foreach (Sound s in soundsMusic)
+        {
+            if (s.source != null)
+            {
+                s.source.volume = PlayerPrefs.GetFloat("MusicVolume", .75f);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Set sounds (other than music) audio clip's volume to player preference
+    /// </summary>
+    public void SetSoundEffectVolume()
+    {
+        foreach (Sound s in soundsSoundEffects)
+        {
+            if (s.source != null)
+            {
+                s.source.volume = PlayerPrefs.GetFloat("SoundEffectsVolume", .75f);
+            }
+        }
     }
 
 }

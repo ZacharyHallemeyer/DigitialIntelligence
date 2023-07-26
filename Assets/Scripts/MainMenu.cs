@@ -72,6 +72,8 @@ public class MainMenu : MonoBehaviour
     public void SettingsButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
+        startContainer.SetActive(false);
+        settingsContainer.SetActive(true);
     }
 
     // Close application
@@ -84,8 +86,9 @@ public class MainMenu : MonoBehaviour
     // Move to start container
     public void BackButtonClick()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         startContainer.SetActive(true);
-        aboutButton.SetActive(false);
+        aboutContainer.SetActive(false);
         settingsContainer.SetActive(false);
     }
 

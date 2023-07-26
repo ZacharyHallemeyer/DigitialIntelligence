@@ -1346,11 +1346,17 @@ public class Puzzle : MonoBehaviour
             // Check the python code result to test case answer
             if(pythonResult.ToString() == ans)
             {
-                testOutput += "<color=#00AB66>Input: " + input + ", Correct Output: " + ans + ", Output: " + pythonResult + "</color>\n";
+                if(input != "")
+                    testOutput += "<color=#00AB66>Input: " + input + ", Correct Output: " + ans + ", Output: " + pythonResult + "</color>\n";
+                else 
+                    testOutput += "<color=#00AB66>Correct Output: " + ans + ", Output: " + pythonResult + "</color>\n";
             }
             else
             {
-                testOutput += "<color=#CC0000>Input: " + input + ", Correct Output: " + ans + ", Output: " + pythonResult + "</color>\n";
+                if(input != "")
+                    testOutput += "<color=#CC0000>Input: " + input + ", Correct Output: " + ans + ", Output: " + pythonResult + "</color>\n";
+                else 
+                    testOutput += "<color=#CC0000>Correct Output: " + ans + ", Output: " + pythonResult + "</color>\n";
                 testFailed = true;
             }
 
