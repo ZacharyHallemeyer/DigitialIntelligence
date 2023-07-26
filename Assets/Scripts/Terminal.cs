@@ -72,6 +72,7 @@ public class Terminal : MonoBehaviour
         terminalInput[terminalLineIndex] = "help";
         ColorizeCurrentLine(true);
         DisplayText();
+        HandleReturn(true);
     }
 
     /// <summary>
@@ -289,8 +290,8 @@ public class Terminal : MonoBehaviour
         PrintLineToTerminal("   Example: unlock FILE_NAME KEYWORD ", false);
         PrintLineToTerminal("   Example: unlock Hello.txt fun", false);
         PrintLineToTerminal("solve: Opens a puzzle to unlock a directory", false);
-        PrintLineToTerminal("   Example: unlock DIRECTORY_NAME", false);
-        PrintLineToTerminal("   Example: unlock VariableOne", false);
+        PrintLineToTerminal("   Example: solve DIRECTORY_NAME", false);
+        PrintLineToTerminal("   Example: solve VariableOne", false);
         PrintLineToTerminal("clear: Clears all the content of the terminal", false);
         PrintLineToTerminal("ls: Shows files and child directories in current directory", false);
         PrintLineToTerminal("cd: Moves into the directory provided by argument", false);

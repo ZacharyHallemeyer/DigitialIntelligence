@@ -38,10 +38,10 @@ public class Hub : MonoBehaviour
         }
 
         // Set story text
-        storyText.text = File.ReadAllText(hubInfo.storyPath);
+        storyText.text = "\n" + File.ReadAllText(hubInfo.storyPath);
 
         // Set notes text
-        notesText.text = File.ReadAllText(hubInfo.notesPath);
+        notesText.text = "\n" + File.ReadAllText(hubInfo.notesPath);
 
         // Show story text and hide notes text
         ShowStoryText();

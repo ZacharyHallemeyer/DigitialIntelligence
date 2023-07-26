@@ -8,9 +8,11 @@ public class IntroScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Move to main menu after 3 seconds
         Invoke("MoveToMainMenu", 3);
     }
 
+    // Load main menu and unload intro
     private void MoveToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
