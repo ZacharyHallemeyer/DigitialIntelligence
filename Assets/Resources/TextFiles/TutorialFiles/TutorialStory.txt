@@ -28,4 +28,4 @@ If you ever feel lost and need a reminder of available commands, simply type `he
 
   To progress, use the `cat` command to read unlocked file contents, and leverage the `solve` command to crack coding puzzles and unlock locked directories.
 
-  Now that you're all set, press the terminal at the bottom right and embark on your infiltration journey! Happy exploring! 🔍🔒
+  Now that you're all set, press the terminal at the bottom right and embark on your infiltration journey! Happy exploring! 

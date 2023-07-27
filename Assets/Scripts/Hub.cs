@@ -43,11 +43,11 @@ public class Hub : MonoBehaviour
         }
 
         // Set story text
-        story = "\n" + File.ReadAllText(hubInfo.storyPath);
+        story = "\n" + Resources.Load<TextAsset>(hubInfo.storyPath).text;
         infoText.text = story;
 
         // Set notes text
-        notes = "\n" + File.ReadAllText(hubInfo.notesPath);
+        notes = "\n" + Resources.Load<TextAsset>(hubInfo.notesPath).text;
 
         // Show story text and hide notes text
         ShowStoryText();

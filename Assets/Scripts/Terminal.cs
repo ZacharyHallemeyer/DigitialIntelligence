@@ -321,7 +321,7 @@ public class Terminal : MonoBehaviour
         }
 
         // Get argument after command
-        string argument = line.Split(' ')[1];
+        string argument = line.Split(' ')[1].Replace(".txt", "");
         bool fileFound = false;
 
         // Check if target exists
@@ -329,7 +329,7 @@ public class Terminal : MonoBehaviour
         foreach (FileData file in GameManager.currentDirectory.files)
         {
             // Check if file name matches argument
-            if (file.fileName == argument)
+            if (file.fileName.Replace(".txt", "") == argument)
             {
                 fileFound = true;
                 // Check if file is locked
@@ -362,7 +362,7 @@ public class Terminal : MonoBehaviour
         }
 
         // Get argument after command
-        string target = line.Split(' ')[1];
+        string target = line.Split(' ')[1].Replace(".txt", "");
         string keyword = line.Split(' ')[2].ToLower();
         bool fileFound = false;
 
@@ -370,14 +370,13 @@ public class Terminal : MonoBehaviour
         // Check if file exists in current context
         foreach (FileData file in GameManager.currentDirectory.files)
         {
-            if (file.fileName == target)
+            if (file.fileName.Replace(".txt", "") == target)
             {
                 fileFound = true;
                 // Check if correct unlock keyword 
                 if (file.unlockKeyword.ToLower() == keyword)
                 {
                     AudioManager.instance.PlaySuccessSoundEffect();
-                    string fileContent = File.ReadAllText(file.path);
                     file.unlocked = true;
                     GameManager.numRemainingLockedFiles--;
                     PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
@@ -410,7 +409,14 @@ public class Terminal : MonoBehaviour
         if (GameManager.numRemainingLockedFiles <= 0)
         {
             AudioManager.instance.PlaySuccessSoundEffect();
-            GameManager.GameWon();
+            PrintLineToTerminal($"<color={successColor}>You have unlocked all files and directories!</color>", false);
+            PrintLineToTerminal($"<color={successColor}>This is temporary</color>", false);
+            //GameManager.GameWon();
+        }
+        else
+        {
+            AudioManager.instance.PlayErrorSoundEffect();
+            PrintLineToTerminal($"<color={errorColor}>You have not unlocked all files and directories</color>", false);
         }
     } 
 
@@ -449,19 +455,19 @@ public class Terminal : MonoBehaviour
         }
 
         // Get argument after command
-        string argument = line.Split(' ')[1];
+        string argument = line.Split(' ')[1].Replace(".txt", "");
         bool fileFound = false;
 
         // Check if file exists in current context
         foreach(FileData file in GameManager.currentDirectory.files)
         {
-            if(file.fileName == argument)
+            if(file.fileName.Replace(".txt", "") == argument)
             {
                 fileFound = true;
                 // Check if the file is unlocked 
                 if(file.unlocked)
                 {
-                    string fileContent = File.ReadAllText(file.path);
+                    string fileContent = Resources.Load<TextAsset>(file.path).text;
                     PrintLineToTerminal(fileContent, false);
                 }
                 // Otherwise, print that the file is locked
@@ -500,12 +506,12 @@ public class Terminal : MonoBehaviour
             // Check if file is locked
             if(!fileData.unlocked)
             {
-                PrintLineToTerminal($"<color={lockedFileColor}>{fileData.fileName}</color>", false);
+                PrintLineToTerminal($"<color={lockedFileColor}>{fileData.fileName.Replace(".txt", "")}</color>", false);
             }
             // Otherwise, the file is unlocked
             else
             {
-                PrintLineToTerminal(fileData.fileName, false);
+                PrintLineToTerminal(fileData.fileName.Replace(".txt", ""), false);
             }
 
         }

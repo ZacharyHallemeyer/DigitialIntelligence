@@ -1,8 +1,8 @@
 ﻿[
   {
     "name": "Tutorial",
-    "storyPath": "Assets/Resources/TextFiles/TutorialFiles/TutorialStory.txt",
-    "notesPath": "Assets/Resources/TextFiles/TutorialFiles/TutorialNotes.txt"
+    "storyPath": "TextFiles/TutorialFiles/TutorialStory",
+    "notesPath": "TextFiles/TutorialFiles/TutorialNotes"
   },
   {
     "name": "Variables",

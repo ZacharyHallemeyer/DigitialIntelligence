@@ -6,7 +6,6 @@ public class DirectoryData : MonoBehaviour
 {
     public string dirName;
     public string path;
-    public string unlockKeyword;
     public List<FileData> files;
     public List<DirectoryData> directories;
     public DirectoryData parentDir;
@@ -17,7 +16,6 @@ public class DirectoryData : MonoBehaviour
     {
         this.dirName = "";
         this.path = "";
-        this.unlockKeyword = "";
         this.unlocked = true;
         this.files = new List<FileData>();
         this.directories = new List<DirectoryData>();
@@ -29,7 +27,6 @@ public class DirectoryData : MonoBehaviour
     {
         this.dirName = dirName;
         this.path = path;
-        this.unlockKeyword = unlockKeyword;
         this.unlocked = unlocked;
         this.files = new List<FileData>(files);
         this.directories = new List<DirectoryData>(directories);

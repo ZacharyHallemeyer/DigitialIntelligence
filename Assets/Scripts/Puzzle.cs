@@ -1293,7 +1293,8 @@ public class Puzzle : MonoBehaviour
         // Set starting code
         // Set input field text
         //inputText = startingCode.Split('\n').ToList();
-        inputText = File.ReadAllText(startingCode).Split('\n').ToList();
+        //inputText = File.ReadAllText(startingCode).Split('\n').ToList();
+        inputText = Resources.Load<TextAsset>(startingCode).text.Split('\n').ToList();
         coloredText = new List<string>();
         caretPosY = 0;
         caretPosX = 0;
@@ -1310,7 +1311,8 @@ public class Puzzle : MonoBehaviour
 
         // Set directions text
         //directionsDisplay.text = "\n" + directions;
-        directionsDisplay.text = "\n" + File.ReadAllText(directions);
+        //directionsDisplay.text = "\n" + File.ReadAllText(directions);
+        directionsDisplay.text = "\n" + Resources.Load<TextAsset>(directions).text;
     }
 
     /// <summary>

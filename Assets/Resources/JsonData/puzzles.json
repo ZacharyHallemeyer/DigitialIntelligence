@@ -11,8 +11,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "Assets/Resources/TextFiles/TutorialFiles/TutorialPuzzleOneStartingCode.txt",
-        "directions": "Assets/Resources/TextFiles/TutorialFiles/TutorialPuzzleOneDirections.txt",
+        "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleOneStartingCode",
+        "directions": "TextFiles/TutorialFiles/TutorialPuzzleOneDirections",
         "puzzleName": "LevelOne",
         "puzzleIndex": 0
       },
@@ -24,8 +24,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "Assets/Resources/TextFiles/TutorialFiles/TutorialPuzzleTwoStartingCode.txt",
-        "directions": "Assets/Resources/TextFiles/TutorialFiles/TutorialPuzzleTwoDirections.txt",
+        "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleTwoStartingCode",
+        "directions": "TextFiles/TutorialFiles/TutorialPuzzleTwoDirections",
         "puzzleName": "LevelTwo",
         "puzzleIndex": 1
       },
@@ -37,8 +37,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "Assets/Resources/TextFiles/TutorialFiles/TutorialPuzzleThreeStartingCode.txt",
-        "directions": "Assets/Resources/TextFiles/TutorialFiles/TutorialPuzzleThreeDirections.txt",
+        "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleThreeStartingCode",
+        "directions": "TextFiles/TutorialFiles/TutorialPuzzleThreeDirections",
         "puzzleName": "LevelThree",
         "puzzleIndex": 2
       }
