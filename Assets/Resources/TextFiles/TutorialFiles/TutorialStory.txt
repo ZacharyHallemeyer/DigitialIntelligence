@@ -1,0 +1,31 @@
+<color=#8B0000>  Welcome to the Tutorial! </color>
+
+  Let's delve into the fascinating world of this game. Your mission is to infiltrate a challenging file system and unlock all the locked files and directories to conquer each level. The terminal will be your primary companion on this journey (find it with the button at the bottom right).
+
+<color=#8B0000>  Files</color>
+
+  Some files will be locked and require a keyword to unlock. When you attempt to unlock a file, the terminal will prompt you with a question. These locked files will appear as a dark red in the file system. Once unlocked, you can use the command `cat` to view the valuable information they contain. This information will be crucial for unlocking future files.
+
+<color=#8B0000>  Directories</color>
+
+  Directories house both files and other directories. To enter an unlocked directory, use the `cd` command followed by the directory's name. For instance, to access the 'Variables' directory, type `cd Variables`. However, certain directories will be locked, indicated by a mulberry color (a mix of dark purple and red). To unlock these directories, use the `solve` command and crack the coding puzzle presented to you. Upon success, the directory will be yours to explore!
+
+<color=#8B0000>  Terminal Commands</color>
+
+If you ever feel lost and need a reminder of available commands, simply type `help` into the terminal, and a list of commands will be displayed.
+
+<color=#8B0000>  Python Notes</color>
+
+  For those who need a bit of Python knowledge to aid them in their task, the 'notes' tab above holds valuable information to assist you.
+
+<color=#8B0000>  Get Ready to Begin!</color>
+
+  A great starting point is the `ls` command in the terminal. It will show you what files and directories you currently have access to:
+	• Unlocked files will appear as white.
+	• Unlocked directories will be displayed in purple.
+	• Locked files will show as dark red.
+	• Locked directories will have a dark purple and red coloration.
+
+  To progress, use the `cat` command to read unlocked file contents, and leverage the `solve` command to crack coding puzzles and unlock locked directories.
+
+  Now that you're all set, press the terminal at the bottom right and embark on your infiltration journey! Happy exploring! 🔍🔒

@@ -1,0 +1,19 @@
+<color=#8B0000>  Directions</color>
+
+  For this puzzle, we will get acquainted with the user interface of the puzzles.
+
+  User interface
+	• The text input to the left of the screen is where your code will be written.
+	• The directions tab (which you are currently looking at) will have the directions for each puzzle
+	• The console (below the directions tab) will show the output of the python code when the run button is pressed
+
+  Buttons  
+	• If you want to go back to the terminal, use the exit button below. Your changes will be saved while in the level
+	• To run your python code, you will press the run button, and the output will display in the console
+	• To solve the coding puzzle, you will press the run tests button. This will run your code multiple times with inputs and checks if the output is the correct output. If the correct output is recieved, the puzzle is solved and the directory is unlocked
+	• To clear the console of text, simply press the clear console button
+	• To revert the puzzle back to its default state, press the reset puzzle button
+		○ This is useful for if you want all your changes to the code to be deleted
+
+<color=#8B0000>  For this puzzle</color>
+  You simply need to press the run tests button to solve the puzzle and unlock the directory. Try it now, exit the terminal, and cd into the unlocked directory!

@@ -44,7 +44,8 @@ public class Terminal : MonoBehaviour
         "cat",
         "ls",
         "cd",
-        "solve"
+        "solve",
+        "hint"
     };
 
 
@@ -260,6 +261,14 @@ public class Terminal : MonoBehaviour
                 HandleSolveCommand(line);
                 break;
 
+            case "hint":
+                HandleHintCommand(line);
+                break;
+
+            case "extract":
+                HandleExtractCommand(line);
+                break;
+
             case "":
                 break;
 
@@ -297,8 +306,47 @@ public class Terminal : MonoBehaviour
         PrintLineToTerminal("cd: Moves into the directory provided by argument", false);
         PrintLineToTerminal("   Example: cd DIRECTORY_NAME", false);
         PrintLineToTerminal("   Example: cd VariableOne", false);
+        PrintLineToTerminal("   Example: cd ..", false);
+        PrintLineToTerminal("       This commands move one directory up", false);
         PrintLineToTerminal("cat: Prints text from files to terminal when a file path is provided", false);
         PrintLineToTerminal("   Example: cat comments.txt", false);
+        PrintLineToTerminal("extract: This command allows the player to complete the level if all files and directories are unlocked", false);
+    }
+
+    private void HandleHintCommand(string line)
+    {
+        if (!CheckCommandSyntax(line, 1))
+        {
+            return;
+        }
+
+        // Get argument after command
+        string argument = line.Split(' ')[1];
+        bool fileFound = false;
+
+        // Check if target exists
+        // Check if file exists in current context
+        foreach (FileData file in GameManager.currentDirectory.files)
+        {
+            // Check if file name matches argument
+            if (file.fileName == argument)
+            {
+                fileFound = true;
+                // Check if file is locked
+                if(!file.unlocked)
+                    PrintLineToTerminal($"<color={successColor}>The file {argument} has the following hint: {file.question}</color>", false);      
+                else 
+                    PrintLineToTerminal($"<color={successColor}>The file {argument} is already unlocked!</color>", false);      
+
+            }
+        }
+
+        // Otherwise, print that the argument does not exit
+        if (!fileFound)
+        {
+            AudioManager.instance.PlayErrorSoundEffect();
+            PrintLineToTerminal($"<color={errorColor}>The file {argument} does not exist</color>", false);
+        }
     }
 
     /// <summary>
@@ -315,7 +363,7 @@ public class Terminal : MonoBehaviour
 
         // Get argument after command
         string target = line.Split(' ')[1];
-        string keyword = line.Split(' ')[2];
+        string keyword = line.Split(' ')[2].ToLower();
         bool fileFound = false;
 
         // Check if target exists
@@ -326,10 +374,11 @@ public class Terminal : MonoBehaviour
             {
                 fileFound = true;
                 // Check if correct unlock keyword 
-                if (file.unlockKeyword == keyword)
+                if (file.unlockKeyword.ToLower() == keyword)
                 {
                     AudioManager.instance.PlaySuccessSoundEffect();
                     string fileContent = File.ReadAllText(file.path);
+                    file.unlocked = true;
                     GameManager.numRemainingLockedFiles--;
                     PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
                 }
@@ -348,13 +397,22 @@ public class Terminal : MonoBehaviour
             AudioManager.instance.PlayErrorSoundEffect();
             PrintLineToTerminal($"<color={errorColor}>The file {target} does not exist</color>", false);
         }
-        
-        // Check if all files have been unlocked and game is won
-        if(GameManager.numRemainingLockedFiles <= 0)
+    }
+
+    private void HandleExtractCommand(string line)
+    {
+        if (!CheckCommandSyntax(line, 0))
         {
+            return;
+        }
+
+        // Check if all files have been unlocked and game is won
+        if (GameManager.numRemainingLockedFiles <= 0)
+        {
+            AudioManager.instance.PlaySuccessSoundEffect();
             GameManager.GameWon();
         }
-    }
+    } 
 
     /// <summary>
     /// Handles the clear command. 

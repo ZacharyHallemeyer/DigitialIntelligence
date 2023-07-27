@@ -10,10 +10,12 @@ using UnityEngine.SceneManagement;
 public class Hub : MonoBehaviour
 {
 
-    public TMP_Text storyText;
-    public TMP_Text notesText;
+    public TMP_Text infoText;
 
     public GameObject settingsContainer;
+
+    private string story;
+    private string notes;
 
     public void Initialize(string levelName)
     {
@@ -36,15 +38,16 @@ public class Hub : MonoBehaviour
         // Check if hub info was found
         if(hubInfo == null)
         {
-            storyText.text = "<color=#FF0000>Hub info was not found</color>";
+            infoText.text = "<color=#FF0000>Hub info was not found</color>";
             return;
         }
 
         // Set story text
-        storyText.text = "\n" + File.ReadAllText(hubInfo.storyPath);
+        story = "\n" + File.ReadAllText(hubInfo.storyPath);
+        infoText.text = story;
 
         // Set notes text
-        notesText.text = "\n" + File.ReadAllText(hubInfo.notesPath);
+        notes = "\n" + File.ReadAllText(hubInfo.notesPath);
 
         // Show story text and hide notes text
         ShowStoryText();
@@ -52,18 +55,12 @@ public class Hub : MonoBehaviour
 
     public void ShowNotesText()
     {
-        // Hide story
-        storyText.gameObject.SetActive(false);
-        // Show notes
-        notesText.gameObject.SetActive(true);
+        infoText.text = notes;
     }
 
     public void ShowStoryText()
     {
-        // Hide notes
-        notesText.gameObject.SetActive(false);
-        // Show story
-        storyText.gameObject.SetActive(true);
+        infoText.text = story;
     }
 
 

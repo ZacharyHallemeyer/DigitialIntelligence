@@ -1,0 +1,5 @@
+You just moved into a new directory!
+
+To move back to the previous directory, use the command `cd ..`. This command will move to the parent directory (the previous directory).
+
+Anyways! Keep on unlocking files and directories to finish the level!

@@ -75,16 +75,10 @@ public class Puzzle : MonoBehaviour
     public List<TestCase> testCases;
     [JsonProperty("hiddenTestCases")]
     public List<TestCase> hiddenTestCases;
-    [JsonProperty("clueImagePath")]
-    public string clueImagePath;
     [JsonProperty("startingCode")]
     public string startingCode;
     [JsonProperty("directions")]
     public string directions;
-    [JsonProperty("puzzleType")]
-    public string puzzleType;
-    [JsonProperty("unlockKeyword")]
-    public string unlockKeyword;    
     [JsonProperty("puzzleName")]
     public string puzzleName;
 
@@ -146,11 +140,8 @@ public class Puzzle : MonoBehaviour
     {
         this.testCases          = new List<TestCase>(testCases);
         this.hiddenTestCases    = new List<TestCase>(testCases);
-        this.clueImagePath      = clueImagePath;
         this.startingCode       = startingCode;
         this.directions         = directions;
-        this.puzzleType         = puzzleType;
-        this.unlockKeyword      = unlockKeyword;
         this.puzzleName         = puzzleName;
         this.puzzleIndex        = puzzleIndex;
     }
@@ -159,11 +150,8 @@ public class Puzzle : MonoBehaviour
     {
         this.testCases          = new List<TestCase>(puzzleData.testCases);
         this.hiddenTestCases    = new List<TestCase>(puzzleData.hiddenTestCases);
-        this.clueImagePath      = puzzleData.clueImagePath;
         this.startingCode       = puzzleData.startingCode;
         this.directions         = puzzleData.directions;
-        this.puzzleType         = puzzleData.puzzleType;
-        this.unlockKeyword      = puzzleData.unlockKeyword;
         this.puzzleIndex        = puzzleData.puzzleIndex;
         this.puzzleName         = puzzleData.puzzleName;
 
@@ -1304,7 +1292,8 @@ public class Puzzle : MonoBehaviour
     {
         // Set starting code
         // Set input field text
-        inputText = startingCode.Split('\n').ToList();
+        //inputText = startingCode.Split('\n').ToList();
+        inputText = File.ReadAllText(startingCode).Split('\n').ToList();
         coloredText = new List<string>();
         caretPosY = 0;
         caretPosX = 0;
@@ -1320,7 +1309,8 @@ public class Puzzle : MonoBehaviour
         DisplayText();
 
         // Set directions text
-        directionsDisplay.text = "\n" + directions;
+        //directionsDisplay.text = "\n" + directions;
+        directionsDisplay.text = "\n" + File.ReadAllText(directions);
     }
 
     /// <summary>
@@ -1406,30 +1396,6 @@ public class Puzzle : MonoBehaviour
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
         SetPuzzleDisplay();
-    }
-
-    /// <summary>
-    /// Shows the clue UI by hiding the directions container and showing the clue container.
-    /// Adjusts the button colors to indicate the active state.
-    /// </summary>
-    public void ShowClueUI()
-    {
-        directionsContainer.SetActive(false);
-        clueContainer.SetActive(true);
-
-        directionsButtonImage.color = new Color(0f,0f,0f);
-    }
-
-    /// <summary>
-    /// Shows the directions UI by hiding the clue container and showing the directions container.
-    /// Adjusts the button colors to indicate the active state.
-    /// </summary>
-    public void ShowDirectionsUI()
-    {
-        clueContainer.SetActive(false);
-        directionsContainer.SetActive(true);
-
-        directionsButtonImage.color = new Color(0.2156863f, 0.2156863f, 0.2156863f);
     }
 
     /// <summary>
