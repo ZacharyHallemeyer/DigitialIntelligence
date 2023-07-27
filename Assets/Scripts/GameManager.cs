@@ -210,18 +210,29 @@ public class GameManager : MonoBehaviour
 
     // ========================= Data Manipulation ========================= //
 
+    /// <summary>
+    /// Create file system and assigns current directory
+    /// </summary>
     private void CreateFileSystem()
     {
+        // Get file system structure from json file
         TextAsset jsonData = Resources.Load<TextAsset>("JsonData/" + levelName);
         string data = jsonData.text;
 
+        // Convert json to DirectoryData object
         DirectoryData rootDir = JsonConvert.DeserializeObject<DirectoryData>(data);
+        // Assign parent directories
         AssignParentDirs(rootDir, null);
-        PrintDirectories(rootDir, "");
+        // Assign current directory to root and set hasParent to false as it does not have a parent
         currentDirectory = rootDir;
         currentDirectory.hasParent = false;
     }
 
+    /// <summary>
+    /// Assigns directory's parent to its parent if it has one
+    /// </summary>
+    /// <param name="dir">current directory</param>
+    /// <param name="parentDir">parent directory</param>
     void AssignParentDirs(DirectoryData dir, DirectoryData parentDir)
     {
         dir.parentDir = parentDir;
@@ -232,7 +243,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Used for debugging, prints directory and files
+    /// </summary>
+    /// <param name="dirData">current directory</param>
+    /// <param name="indent">use ""</param>
     private void PrintDirectories(DirectoryData dirData, string indent)
     {
         string output = "";
@@ -290,6 +305,11 @@ public class GameManager : MonoBehaviour
 
     // ========================= Puzzles ========================= //
 
+    /// <summary>
+    /// Called from Puzzle.RunTests if all tests pass
+    /// Loops through directories and unlocked the directory with the same name as the puzzle
+    /// </summary>
+    /// <param name="puzzleName">puzzle name that was solved</param>
     public void PuzzleSolved(string puzzleName)
     {
         // Find puzzle in directories
@@ -307,6 +327,9 @@ public class GameManager : MonoBehaviour
 
     // ========================= HUB ========================= //
 
+    /// <summary>
+    /// Instantiates the hub from a prefab and sets the hubObject and hub variables
+    /// </summary>
     private void CreateHub()
     {
         hubObject = Instantiate(hubPrefab);

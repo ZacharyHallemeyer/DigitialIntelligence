@@ -313,6 +313,10 @@ public class Terminal : MonoBehaviour
         PrintLineToTerminal("extract: This command allows the player to complete the level if all files and directories are unlocked", false);
     }
 
+    /// <summary>
+    /// Prints the question associated with a locked file
+    /// </summary>
+    /// <param name="line"></param>
     private void HandleHintCommand(string line)
     {
         if (!CheckCommandSyntax(line, 1))
@@ -398,6 +402,10 @@ public class Terminal : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ends level if all files and directories are unlocked
+    /// </summary>
+    /// <param name="line"></param>
     private void HandleExtractCommand(string line)
     {
         if (!CheckCommandSyntax(line, 0))

@@ -17,6 +17,10 @@ public class Hub : MonoBehaviour
     private string story;
     private string notes;
 
+    /// <summary>
+    /// Sets hub to default state and gets story and notes from json files
+    /// </summary>
+    /// <param name="levelName"></param>
     public void Initialize(string levelName)
     {
         settingsContainer.SetActive(false);
@@ -53,35 +57,52 @@ public class Hub : MonoBehaviour
         ShowStoryText();
     }
 
+    /// <summary>
+    /// Moves to notes section
+    /// </summary>
     public void ShowNotesText()
     {
         infoText.text = notes;
     }
 
+    /// <summary>
+    /// Moves to story section
+    /// </summary>
     public void ShowStoryText()
     {
         infoText.text = story;
     }
 
-
+    /// <summary>
+    /// Moves to settings screen
+    /// </summary>
     public void SettingsButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
         settingsContainer.SetActive(true);
     }
 
+    /// <summary>
+    /// Moves to notes section
+    /// </summary>
     public void StoryButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
         ShowStoryText();
     }
 
+    /// <summary>
+    /// Moves to notes section
+    /// </summary>
     public void NotesButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
         ShowNotesText();
     }
 
+    /// <summary>
+    /// Moves to main menu
+    /// </summary>
     public void ExitButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
@@ -89,12 +110,18 @@ public class Hub : MonoBehaviour
         SceneManager.UnloadSceneAsync("Level");
     }
 
+    /// <summary>
+    /// Moves to hub
+    /// </summary>
     public void BackButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
         settingsContainer.SetActive(false);
     }
 
+    /// <summary>
+    /// Moves to terminal
+    /// </summary>
     public void TerminalButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
