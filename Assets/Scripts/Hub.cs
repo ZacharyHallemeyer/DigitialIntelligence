@@ -54,6 +54,7 @@ public class Hub : MonoBehaviour
         notes = "\n" + Resources.Load<TextAsset>(hubInfo.notesPath).text;
 
         // Show story text and hide notes text
+        SetFontSize();
         ShowStoryText();
     }
 
@@ -117,6 +118,7 @@ public class Hub : MonoBehaviour
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
         settingsContainer.SetActive(false);
+        ShowHub();
     }
 
     /// <summary>
@@ -125,8 +127,25 @@ public class Hub : MonoBehaviour
     public void TerminalButtonClick()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
-        GameManager.terminalObject.SetActive(true);
-        GameManager.instance.hubObject.SetActive(false);
+        //GameManager.terminalObject.SetActive(true);
+        //GameManager.instance.hubObject.SetActive(false);
+        GameManager.terminal.ShowTerminal();
+        HideHub();
     }
 
+    public void ShowHub()
+    {
+        SetFontSize();   
+        gameObject.SetActive(true);
+    }
+
+    public void HideHub()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void SetFontSize()
+    {
+        infoText.fontSize = PlayerPrefs.GetFloat("HubFontSize", 15);
+    }
 }

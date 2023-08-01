@@ -311,8 +311,13 @@
       }
     ]
   },
+
+
+
+
+
   {
-    "puzzleName": "Puzzle One",
+    "puzzleName": "Greek Myths",
     "index": 3,
     "puzzles": [
       {
@@ -344,9 +349,9 @@
             "answer": "[4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80]"
           }
         ],
-        "startingCode": "def main(list):\n\n\t# Sort list here\n\n\treturn list # Remember to return the calculated value\n\n\nprint(main([1,3,2,5,4]))",
-        "directions": "Directions:\nSorting an integer list is your task! Follow these steps:\n1. Start with the given list of integers.\n2. Sort the list in ascending order.\n\t- For example, [2, 1, 4, 3] becomes [1, 2, 3, 4].\n3. Once you have sorted the list, it will be the final result.\n4. Remember to return the sorted list as the output of your function.\n\nExample:\nSort the list [2, 1, 4, 3] using the steps above:\n- After sorting, the list becomes [1, 2, 3, 4].\n\nNow it's your turn! Write a function to sort the given list of integers, following these steps. Good luck!\n",
-        "puzzleName": "PuzzleOne",
+        "startingCode": "TextFiles/GreekMythsFiles/GreekMythsChaosStartingCode",
+        "directions": "TextFiles/GreekMythsFiles/GreekMythsChaosDirections",
+        "puzzleName": "Chaos",
         "puzzleIndex": 1
       },
       {
@@ -370,52 +375,48 @@
             "answer": "pneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosis"
           }
         ],
-        "startingCode": "def main(string):\n\n\t# Decrypt string here\n\n\treturn string # Remember to return the decrypted string\n\n\nprint(main('czggj'))",
-        "directions": "Directions:\nDecrypting a secret message is your mission! Follow these steps:\n1. Examine the encrypted string, character by character.\n2. Replace each character with the one that is 5 places up in the alphabet.\n\t- For example, 'a' becomes 'f', and 'z' becomes 'e'.\n3. Continue this process until you've replaced all characters.\n4. The resulting string is your decrypted message.\n5. Remember to return the decrypted string as the final output of your function.\n\nExample:\nDecrypt 'czggj' using the steps above:\n\t- 'c' becomes 'h'\n\t- 'z' becomes 'e'\n\t- 'g' becomes 'l'\n\t- 'g' becomes 'l'\n\t- 'j' becomes 'o'\n\nSo, 'czggj' decrypts to 'hello'.\n\nNow it's your turn! Write a function to decrypt the given encrypted string, following these steps. Good luck!\n",
-        "puzzleName": "PuzzleTwo",
+        "startingCode": "TextFiles/GreekMythsFiles/GreekMythsFireStartingCode",
+        "directions": "TextFiles/GreekMythsFiles/GreekMythsFireDirections",
+        "puzzleName": "Fire",
         "puzzleIndex": 2
       },
       {
         "testCases": [
           {
-            "problem": "1",
+            "problem": "[1,3,2]",
             "answer": "-1"
           },
           {
-            "problem": "13",
-            "answer": "13"
-          },
-          {
-            "problem": "89",
-            "answer": "89"
-          },
-          {
-            "problem": "42",
+            "problem": "[1,5,4,3,2]",
             "answer": "-1"
           },
           {
-            "problem": "60",
-            "answer": "-1"
+            "problem": "[1,3,4,5,6]",
+            "answer": "2"
           },
           {
-            "problem": "47",
-            "answer": "47"
+            "problem": "[1,3,4,5,2,7]",
+            "answer": "6"
+          },
+          {
+            "problem": "[1,2,4,3,5,6,8,9,10]",
+            "answer": "-1"
           }
         ],
         "hiddenTestCases": [
           {
-            "problem": "2",
-            "answer": "2"
+            "problem": "[1,3,2,4]",
+            "answer": "-1"
           },
           {
-            "problem": "15",
-            "answer": "-1"
+            "problem": "[1,3,4,5,2,6,8]",
+            "answer": "7"
           }
         ],
-        "startingCode": "def main(number):\n\n\t# Add code here\n\n\treturn 0 # Remember to return the calculated value\n\n\nprint(main(1))\nprint(main(89))",
-        "directions": "Directions:\nDetermining if an integer is prime is your mission! Follow these steps:\n1. Take the given integer as input to your main function.\n2. Check if the integer is prime using the appropriate method.\n\t- If the integer is prime:\n\t\t- Return the integer as the final result.\n\t- If the integer is not prime:\n\t\t- Return -1 as the final result.\n\nExample:\nLet's check if the integer 17 is prime using the steps above:\n\t- 17 is a prime number, so we would return 17.\n\nNow it's your turn! Write a function that accepts an integer as input, checks if it's prime, and follows the steps above to return either the prime integer or -1 as the final result. Good luck!\n",
-        "puzzleName": "PuzzleThree",
-        "puzzleIndex": 3
+        "startingCode": "TextFiles/GreekMythsFiles/GreekMythsHadesStartingCode",
+        "directions": "TextFiles/GreekMythsFiles/GreekMythsHadesDirections",
+        "puzzleName": "Hades",
+        "puzzleIndex": 10
       },
       {
         "testCases": [
@@ -446,56 +447,10 @@
             "answer": "34"
           }
         ],
-        "startingCode": "def main(number):\n\n\t# Add fibonacci sequence code here\n\t\n\treturn 0 # Remember to return the calculated value\n\nprint(main(10))",
-        "directions": "Directions:\nCalculating the Fibonacci sequence value is your mission! Follow these steps:\n\t1. Take the given integer as input to your main function.\n\t2. Calculate the Fibonacci sequence value for the given number using the appropriate method.\n\t3. Return the Fibonacci sequence value as the final result of your function.\n\nAbout the Fibonacci Sequence:\nThe Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones. It typically starts with 0 and 1.\nFor example, the Fibonacci sequence begins as follows: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.\nEach number is obtained by adding the two previous numbers in the sequence. The first two numbers are defined as 0 and 1.\n\nCalculation Process:\nTo calculate the Fibonacci sequence value for a given number, follow these steps:\n\t- If the given number is 0, return 0.\n\t- If the given number is 1, return 1.\n\t- For any other number, recursively calculate the sum of the Fibonacci sequence values for the two preceding numbers.\n\t- Continue this process until you reach the given number in the sequence.\n\n\nExample:\nLet's calculate the Fibonacci sequence value for the number 10 using the steps above:\n- The Fibonacci sequence value for 10 is 55, so we would return 55.\n\nNow it's your turn! Write a function that accepts an integer as input, calculates the Fibonacci sequence value, and follows the steps above to return the Fibonacci sequence value as the final result. Good luck!\n",
-        "puzzleName": "PuzzleFour",
+        "startingCode": "TextFiles/GreekMythsFiles/GreekMythsHadesStartingCode",
+        "directions": "TextFiles/GreekMythsFiles/GreekMythsHadesDirections",
+        "puzzleName": "Minotaur",
         "puzzleIndex": 4
-      },
-      {
-        "testCases": [
-          {
-            "problem": "15",
-            "answer": "blue"
-          },
-          {
-            "problem": "20",
-            "answer": "red"
-          },
-          {
-            "problem": "50",
-            "answer": "green"
-          },
-          {
-            "problem": "75",
-            "answer": "purple"
-          },
-          {
-            "problem": "100",
-            "answer": "black"
-          },
-          {
-            "problem": "101",
-            "answer": "black"
-          },
-          {
-            "problem": "1000000",
-            "answer": "black"
-          }
-        ],
-        "hiddenTestCases": [
-          {
-            "problem": "1",
-            "answer": "blue"
-          },
-          {
-            "problem": "76",
-            "answer": "purple"
-          }
-        ],
-        "startingCode": "def main(number):\n\n\t# Add code here\n\n\treturn 'black'\n\nprint(main(15))\nprint(main(20))\nprint(main(50))\nprint(main(75))\nprint(main(100))\nprint(main(101))\nprint(main(1000000))",
-        "directions": "Directions:\nAnalyzing a number and returning a corresponding color is your mission! Follow these steps:\n1. Accept the input number as a parameter to your main function.\n2. Analyze the number according to the provided conditions:\n\t- If the number is less than 20, return 'blue'.\n\t- If the number is less than 40, return 'red'.\n\t- If the number is less than 60, return 'green'.\n\t- If the number is less than 80, return 'purple'.\n\t- If the number is less than 100, return 'yellow'.\n\t- If none of the conditions match, return 'black'.\n4. Return the color as the final result of your main function.\n\nExample:\nLet's analyze the number 35 using the steps above:\n- Since 35 is less than 40, we would return 'red'.\n\nNow it's your turn! Write a function that accepts a number as input, implements the provided code, and follows the steps above to return the corresponding color as the final result. Good luck!\n",
-        "puzzleName": "PuzzleFive",
-        "puzzleIndex": 5
       }
     ]
   }

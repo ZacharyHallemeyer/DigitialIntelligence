@@ -165,6 +165,7 @@ public class Puzzle : MonoBehaviour
         coloredCodeDisplay.text = "";
 
         // Set text
+        SetFontSize();
         SetPuzzleDisplay();
     }
 
@@ -1372,20 +1373,23 @@ public class Puzzle : MonoBehaviour
                 testFailed = true;
             }
 
-            WriteToEmuConsole(testOutput);
         }
 
         // Check if all tests passed
         if(!testFailed)
         {
             //ShowClue();
+            testOutput += $"<color=#00AB66>directory {puzzleName} is now unlocked. Exit to terminal and use command `cd {puzzleName}` to move into the directory</color>";
             AudioManager.instance.PlaySuccessSoundEffect();
             GameManager.instance.PuzzleSolved(this.puzzleName);
         }
         else
         {
+            testOutput += $"<color=#CC0000>directory {puzzleName} is still locked. Edit your code and try again!";
             AudioManager.instance.PlayErrorSoundEffect();
         }
+
+        WriteToEmuConsole(testOutput);
     }
 
     /// <summary>
@@ -1409,5 +1413,26 @@ public class Puzzle : MonoBehaviour
     }
 
     // ========================= Helper Functions ========================= //
+
+    public void HidePuzzle()
+    {
+        AudioManager.instance.PlayButtonClickSoundEffect();
+        gameObject.SetActive(false);
+        GameManager.terminal.ShowTerminal();
+    }
+
+    public void ShowPuzzle()
+    {
+        SetFontSize();
+        gameObject.SetActive(true);
+    }
+
+    private void SetFontSize()
+    {
+        directionsDisplay.fontSize = PlayerPrefs.GetFloat("PuzzleDirectionsFontSize", 15);
+        widthDisplay.fontSize = PlayerPrefs.GetFloat("PuzzleCodeFontSize", 15);
+        coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat("PuzzleCodeFontSize", 15);
+        emuConsole.fontSize = PlayerPrefs.GetFloat("PuzzleConsoleFontSize", 15);
+    }
 
 }

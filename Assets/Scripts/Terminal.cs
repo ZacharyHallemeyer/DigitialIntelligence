@@ -52,7 +52,7 @@ public class Terminal : MonoBehaviour
     // REMOVE AFTER GAMEMANAGER IS ADDED
     public void Start()
     {
-        Initialize();
+        //Initialize();
     }
 
     /// <summary>
@@ -74,6 +74,7 @@ public class Terminal : MonoBehaviour
         ColorizeCurrentLine(true);
         DisplayText();
         HandleReturn(true);
+        SetFontSize();
     }
 
     /// <summary>
@@ -514,12 +515,12 @@ public class Terminal : MonoBehaviour
             // Check if file is locked
             if(!fileData.unlocked)
             {
-                PrintLineToTerminal($"<color={lockedFileColor}>{fileData.fileName.Replace(".txt", "")}</color>", false);
+                PrintLineToTerminal($"<color={lockedFileColor}>{fileData.fileName}.txt</color>", false);
             }
             // Otherwise, the file is unlocked
             else
             {
-                PrintLineToTerminal(fileData.fileName.Replace(".txt", ""), false);
+                PrintLineToTerminal(fileData.fileName+".txt", false);
             }
 
         }
@@ -614,6 +615,7 @@ public class Terminal : MonoBehaviour
         foreach(GameObject puzzleObject in GameManager.puzzles)
         {
             Puzzle puzzle = puzzleObject.GetComponent<Puzzle>();
+            Debug.Log(puzzle.puzzleName);
             
             if(puzzle.puzzleName == argument)
             {
@@ -624,8 +626,10 @@ public class Terminal : MonoBehaviour
                     {
                         puzzleFound = true;
                         // show puzzle and hide terminal
-                        puzzleObject.SetActive(true);
-                        gameObject.SetActive(false);
+                        //puzzleObject.SetActive(true);
+                        //gameObject.SetActive(false);
+                        puzzle.ShowPuzzle();
+                        HideTerminal();
                     }
                 }
             }
@@ -721,26 +725,17 @@ public class Terminal : MonoBehaviour
     /// <summary>
     /// Displays terminal UI and called AllowInput
     /// </summary>
-    public void ActivateTerminal()
+    public void ShowTerminal()
     {
+        SetFontSize();
+        gameObject.SetActive(true);
         GameManager.terminalUI.SetActive(true);
-        StartCoroutine(AllowInput());
-    }
-
-    /// <summary>
-    /// Allows player input after .1 second after terminal activation to prevent any unintended input
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator AllowInput()
-    {
-        yield return new WaitForSecondsRealtime(.1f);
-        this.enabled = true;
     }
 
     /// <summary>
     /// Hides terminal UI and disables update loop
     /// </summary>
-    public void DeactivateTerminal()
+    public void HideTerminal()
     {
         this.enabled = false;
         GameManager.terminalUI.SetActive(false);
@@ -751,5 +746,10 @@ public class Terminal : MonoBehaviour
         AudioManager.instance.PlayButtonClickSoundEffect();
         GameManager.instance.hubObject.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    private void SetFontSize()
+    {
+        coloredTerminalDisplay.fontSize = PlayerPrefs.GetFloat("TerminalFontSize", 15);
     }
 }

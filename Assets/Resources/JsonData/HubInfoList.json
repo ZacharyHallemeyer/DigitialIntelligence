@@ -5,6 +5,11 @@
     "notesPath": "TextFiles/TutorialFiles/TutorialNotes"
   },
   {
+    "name": "Greek Myths",
+    "storyPath": "TextFiles/GreekMythsFiles/GreekMythsStory",
+    "notesPath": "TextFiles/GreekMythsFiles/GreekMythsNotes"
+  },
+  {
     "name": "Variables",
     "storyPath": "Assets/Resources/TextFiles/VariablesStory.txt",
     "notesPath": "Assets/Resources/TextFiles/VariablesNotes.txt"

@@ -355,6 +355,8 @@ MonoBehaviour:
   successColor: '#50C878'
   plainTextColor: '#FFFFFF'
   directoryColor: '#9400D3'
+  lockedFileColor: '#8B0000'
+  lockedDirectoryColor: '#770737'
 --- !u!1 &413582401239437882
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,11 +992,11 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: -2
+  m_characterSpacing: 5.7
   m_wordSpacing: -30
-  m_lineSpacing: 10
+  m_lineSpacing: 14.2
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 50
+  m_paragraphSpacing: 45.1
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4

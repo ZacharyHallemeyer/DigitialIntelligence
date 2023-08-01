@@ -277,7 +277,6 @@ public class GameManager : MonoBehaviour
         string data = jsonData.text;
         List<PuzzleContainer> puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
 
-
         puzzles = new List<GameObject>();
 
 
