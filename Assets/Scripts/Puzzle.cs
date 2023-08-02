@@ -114,7 +114,6 @@ public class Puzzle : MonoBehaviour
     public bool recolorAllText = false;
     public int lineMarginY = -145;
     public List<string> pythonFunctions = new List<string>();
-    public string functionColor = "#00FFFF";
     private Thread pythonThread;
     private ManualResetEvent pythonFinishedEvent = new ManualResetEvent(false);
 
@@ -126,15 +125,20 @@ public class Puzzle : MonoBehaviour
 
     public bool processingInput = false;
     public float initialProcessingDelay = .05f;
-    public float processingDelay = .01f;
-    public string caret = "<color=#0000FF>|</color>";
     public float lineHeight;
     public int scrollPadding;
+    public float processingDelay = .01f;
 
     // Puzzle variables
     public object pythonResult;
     public string pythonOutput;
     public string unsolvedImagePath = "PuzzleImages/Unsolved";
+
+    // Colors
+    public string caret = "<color=#0000FF>|</color>";
+    public string keywordColor;
+    public string functionColor = "#00FFFF";
+    public string stringColor;
 
     public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string clueImagePath, string startingCode, string directions, string puzzleType, string unlockKeyword, string puzzleName, int puzzleIndex)
     {
@@ -900,7 +904,6 @@ public class Puzzle : MonoBehaviour
 
         // Define colors for comments and strings
         string commentColor = "#808080"; // Grey
-        string stringColor = "#008000"; // Green
 
         bool wordAdded = false;
         bool isComment = false;
@@ -1000,7 +1003,18 @@ public class Puzzle : MonoBehaviour
                 // Loop through python keywords
                 for (int keywordIndex = 0; !wordAdded && keywordIndex < GameManager.pythonKeyWords.Count; keywordIndex++)
                 {
-                    KeyValuePair<string, string> keyValue = GameManager.pythonKeyWords[keywordIndex];
+                    KeyValuePair<string, int> keyValue = GameManager.pythonKeyWords[keywordIndex];
+
+                    string color = "";
+
+                    if(keyValue.Value == (int)PlayerPrefNames.PYTHON_COLORS.FUNCTION)
+                    {
+                        color = functionColor;
+                    }
+                    else
+                    {
+                        color = keywordColor;
+                    }
 
                     // Check if caret is in word
                     if (caretIndex != -1)
@@ -1009,14 +1023,14 @@ public class Puzzle : MonoBehaviour
                         if (Regex.IsMatch(wordNoCaret, @"\b" + keyValue.Key + @"\b"))
                         {
                             wordAdded = true;
-                            coloredTextString += AddColoredKeywordWithCaret(wordNoCaret, keyValue.Key, keyValue.Value, caretIndex);
+                            coloredTextString += AddColoredKeywordWithCaret(wordNoCaret, keyValue.Key, color, caretIndex);
                         }
                     }
                     // Check if word is a keyword
                     else if (Regex.IsMatch(wordNoCaret, @"\b" + keyValue.Key + @"\b"))
                     {
                         wordAdded = true;
-                        coloredTextString += AddColoredKeyword(wordNoCaret, keyValue.Key, keyValue.Value);
+                        coloredTextString += AddColoredKeyword(wordNoCaret, keyValue.Key, color);
                     }
                 }
             }
@@ -1429,10 +1443,37 @@ public class Puzzle : MonoBehaviour
 
     private void SetFontSize()
     {
-        directionsDisplay.fontSize = PlayerPrefs.GetFloat("PuzzleDirectionsFontSize", 15);
-        widthDisplay.fontSize = PlayerPrefs.GetFloat("PuzzleCodeFontSize", 15);
-        coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat("PuzzleCodeFontSize", 15);
-        emuConsole.fontSize = PlayerPrefs.GetFloat("PuzzleConsoleFontSize", 15);
+        directionsDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15);
+        widthDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        emuConsole.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
+    }
+
+    private void SetColorSize()
+    {
+        caret = $"<color={PlayerPrefs.GetString(PlayerPrefNames.CODE_CARET_COLOR)}>|</color>";
+        keywordColor = PlayerPrefs.GetString(PlayerPrefNames.CODE_KEYWORD_COLOR);
+        functionColor = PlayerPrefs.GetString(PlayerPrefNames.CODE_FUNCTION_COLOR);
+        stringColor = PlayerPrefs.GetString(PlayerPrefNames.CODE_STRING_COLOR);
+        ColorizeAllLines();
+    }
+
+    private void ColorizeAllLines()
+    {
+        int oldCaretY = caretPosY;
+        int oldCaretX = caretPosX;
+
+        for(int rowIndex = 0; rowIndex < coloredText.Count; rowIndex++)
+        {
+            if(rowIndex != oldCaretY)
+            {
+                caretPosY = rowIndex;
+                ColorizeCurrentLine(false);
+            }
+        }
+
+        caretPosY = oldCaretY;
+        ColorizeCurrentLine(true);
     }
 
 }

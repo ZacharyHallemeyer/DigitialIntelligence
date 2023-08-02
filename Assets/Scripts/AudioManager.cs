@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
-            s.source.volume = PlayerPrefs.GetFloat("MusicVolume");
+            s.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.MUSIC_VOLUME);
 
             s.source.pitch = s.pitch;
             s.source.loop = s.looping;
@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
-            s.source.volume = PlayerPrefs.GetFloat("SoundEffectsVolume");
+            s.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.SOUND_EFFECT_VOLUME);
 
             s.source.pitch = s.pitch;
             s.source.loop = s.looping;
@@ -167,7 +167,7 @@ public class AudioManager : MonoBehaviour
         {
             if (s.source != null)
             {
-                s.source.volume = PlayerPrefs.GetFloat("MusicVolume", .75f);
+                s.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.MUSIC_VOLUME, .75f);
             }
         }
     }
@@ -181,7 +181,7 @@ public class AudioManager : MonoBehaviour
         {
             if (s.source != null)
             {
-                s.source.volume = PlayerPrefs.GetFloat("SoundEffectsVolume", .75f);
+                s.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.SOUND_EFFECT_VOLUME, .75f);
             }
         }
     }

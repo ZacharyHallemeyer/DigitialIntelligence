@@ -13,6 +13,9 @@ public class Hub : MonoBehaviour
     public TMP_Text infoText;
 
     public GameObject settingsContainer;
+    public GameObject sliderContainer;
+    public GameObject colorContainer;
+
 
     private string story;
     private string notes;
@@ -121,6 +124,18 @@ public class Hub : MonoBehaviour
         ShowHub();
     }
 
+    public void ColorButtonClick()
+    {
+        colorContainer.SetActive(true);
+        sliderContainer.SetActive(false);
+    }
+
+    public void ColorBackButtonClick()
+    {
+        sliderContainer.SetActive(true);
+        colorContainer.SetActive(false);
+    }
+
     /// <summary>
     /// Moves to terminal
     /// </summary>
@@ -146,6 +161,6 @@ public class Hub : MonoBehaviour
 
     private void SetFontSize()
     {
-        infoText.fontSize = PlayerPrefs.GetFloat("HubFontSize", 15);
+        infoText.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.HUB_FONT_SIZE, 15);
     }
 }

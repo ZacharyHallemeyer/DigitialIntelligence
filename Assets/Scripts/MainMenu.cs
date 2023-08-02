@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetPlayerPrefs();
         startContainer.SetActive(true);
         aboutContainer.SetActive(false);
         settingsContainer.SetActive(false);
@@ -176,5 +177,66 @@ public class MainMenu : MonoBehaviour
         TextAsset jsonData = Resources.Load<TextAsset>("JsonData/puzzles");
         string data = jsonData.text;
         puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
+    }
+
+    private void SetPlayerPrefs()
+    {
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.MUSIC_VOLUME)) {
+            PlayerPrefs.SetFloat(PlayerPrefNames.MUSIC_VOLUME, .75f);
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.SOUND_EFFECT_VOLUME)) {
+            PlayerPrefs.SetFloat(PlayerPrefNames.SOUND_EFFECT_VOLUME, .75f);
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.TERMINAL_FONT_SIZE)) {
+            PlayerPrefs.SetFloat(PlayerPrefNames.TERMINAL_FONT_SIZE, 15);
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.HUB_FONT_SIZE)) {
+            PlayerPrefs.SetFloat(PlayerPrefNames.HUB_FONT_SIZE, 15);
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.DIRECTIONS_FONT_SIZE)) {
+            PlayerPrefs.SetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15);
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.CONSOLE_FONT_SIZE)) {
+            PlayerPrefs.SetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.CODE_FONT_SIZE)) {
+            PlayerPrefs.SetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.TERMINAL_PLAIN_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.TERMINAL_PLAIN_COLOR, "#FFFFFF");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.TERMINAL_COMMAND_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.TERMINAL_COMMAND_COLOR, "#6495ED");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.TERMINAL_CARET_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.TERMINAL_CARET_COLOR, "#FF0000");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.TERMINAL_UNLOCKED_FILE_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.TERMINAL_UNLOCKED_FILE_COLOR, "#FFFFFF");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.TERMINAL_LOCKED_FILE_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.TERMINAL_LOCKED_FILE_COLOR, "#8B0000");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.TERMINAL_UNLOCKED_DIRECTORY_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.TERMINAL_UNLOCKED_DIRECTORY_COLOR, "#9400D3");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.TERMINAL_LOCKED_DIRECTORY_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.TERMINAL_LOCKED_DIRECTORY_COLOR, "#770737");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.CODE_PLAIN_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.CODE_PLAIN_COLOR, "#FFFFFF");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.CODE_KEYWORD_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.CODE_KEYWORD_COLOR, "#DC143C");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.CODE_FUNCTION_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.CODE_FUNCTION_COLOR, "#9400D3");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.CODE_STRING_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.CODE_STRING_COLOR, "#008000");
+        }
+        if(!PlayerPrefs.HasKey(PlayerPrefNames.CODE_CARET_COLOR)) {
+            PlayerPrefs.SetString(PlayerPrefNames.CODE_CARET_COLOR, "#0000FF");
+        }
     }
 }

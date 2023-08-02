@@ -27,13 +27,13 @@ public class Terminal : MonoBehaviour
 
     // Text colors
     public string commandColor = "#6495ED"; // cornflower blue
-    public string puzzleColor = "#FFD700"; // gold
     public string errorColor = "#DC143C"; // crimson
     public string successColor = "#50C878"; // emerald green
     public string plainTextColor = "#FFFFFF"; // white
     public string directoryColor = "#9400D3"; // Dark Orchid (purple)
     public string lockedFileColor = "#8B0000"; // Dark red
     public string lockedDirectoryColor = "#770737"; // Mulberry (Dark red and purple)
+    public string unlockedFileColor = "#FFFFFF"; // Mulberry (Dark red and purple)
 
     public readonly List<string> commands = new List<string>
     {
@@ -122,6 +122,24 @@ public class Terminal : MonoBehaviour
     private void DisplayText()
     {
         coloredTerminalDisplay.text = string.Join("\n", terminalColoredText);
+    }
+
+    private void ColorizeAllLines()
+    {
+        int oldTerminalLineIndex = terminalLineIndex;
+
+        for(int rowIndex = 0; rowIndex < terminalInput.Count; rowIndex++)
+        {
+
+            if(rowIndex != oldTerminalLineIndex)
+            {
+                terminalLineIndex = rowIndex;
+                ColorizeCurrentLine(false);
+            }
+        }
+
+        terminalLineIndex = oldTerminalLineIndex;
+        ColorizeCurrentLine(true);
     }
 
     /// <summary>
@@ -520,7 +538,7 @@ public class Terminal : MonoBehaviour
             // Otherwise, the file is unlocked
             else
             {
-                PrintLineToTerminal(fileData.fileName+".txt", false);
+                PrintLineToTerminal($"<color={unlockedFileColor}>{fileData.fileName}.txt</color>", false);
             }
 
         }
@@ -730,6 +748,7 @@ public class Terminal : MonoBehaviour
         SetFontSize();
         gameObject.SetActive(true);
         GameManager.terminalUI.SetActive(true);
+        SetColors();
     }
 
     /// <summary>
@@ -750,6 +769,18 @@ public class Terminal : MonoBehaviour
 
     private void SetFontSize()
     {
-        coloredTerminalDisplay.fontSize = PlayerPrefs.GetFloat("TerminalFontSize", 15);
+        coloredTerminalDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.TERMINAL_FONT_SIZE, 15);
+    }
+
+    private void SetColors()
+    {
+        commandColor = PlayerPrefs.GetString(PlayerPrefNames.TERMINAL_COMMAND_COLOR);
+        plainTextColor = PlayerPrefs.GetString(PlayerPrefNames.TERMINAL_PLAIN_COLOR); 
+        directoryColor = PlayerPrefs.GetString(PlayerPrefNames.TERMINAL_UNLOCKED_DIRECTORY_COLOR);
+        unlockedFileColor = PlayerPrefs.GetString(PlayerPrefNames.TERMINAL_UNLOCKED_FILE_COLOR);
+        lockedFileColor = PlayerPrefs.GetString(PlayerPrefNames.TERMINAL_LOCKED_FILE_COLOR);
+        lockedDirectoryColor = PlayerPrefs.GetString(PlayerPrefNames.TERMINAL_LOCKED_DIRECTORY_COLOR);
+
+        ColorizeAllLines();
     }
 }
