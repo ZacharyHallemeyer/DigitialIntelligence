@@ -1,0 +1,23 @@
+# This is a python comment, whatever text is after a # character will not 
+# be executed as python code
+# This is helpful for writing what code is doing
+
+# This is a function declaration (we will talk about this later)
+def main():
+	# This is a variable declaration and assignment
+	# After this line, the variable called numberVariable will hold the value 5
+	numberVariable = 5
+	print(numberVariable)
+
+	# Set the numberVariable value to -5 in the same fashion as above
+	
+	print(numberVariable)
+
+	# This is a return statment and it is used inside functions
+	# We will talk about this more later
+	# The important thing to know if that value that is returned must be 
+	# what the puzzle is testing for
+	return numberVariable
+
+print(main())
+ 

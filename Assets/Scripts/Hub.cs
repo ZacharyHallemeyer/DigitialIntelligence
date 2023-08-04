@@ -28,6 +28,7 @@ public class Hub : MonoBehaviour
     {
         settingsContainer.SetActive(false);
         JsonHubObject hubInfo = null;
+
         // Get hub information list
         TextAsset jsonData = Resources.Load<TextAsset>("JsonData/HubInfoList");
         string data = jsonData.text;

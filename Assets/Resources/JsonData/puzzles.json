@@ -57,8 +57,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "# This is a python comment, whatever text is after a # character will not \n# be executed as python code\n# This is helpful for writing what code is doing\n\n# This is a function declaration (we will talk about this later)\ndef main():\n\t# This is a variable declaration and assignment\n\t# After this line, the variable called numberVariable will hold the value 5\n\tnumberVariable = 5\n\tprint(numberVariable)\n\t\n\t# Set the numberVariable value to -5 in the same fashion as above\n\n\tprint(numberVariable)\n\n\t# This is a return statment and it is used inside functions\n\t# We will talk about this more later\n\t# The important thing to know if that value that is returned must be \n\t# what the puzzle is testing for\n\treturn numberVariable\n\t\n\nmain()",
-        "directions": "Directions:\n\nVariables are like boxes that you can place items in. Each variable can be named a different name and can store any values. When we say \"Variables are like boxes that you can place items in,\" we're drawing a metaphor to help understand the concept of variables in programming.\n\nIn real life, you might use a box to store things like books, clothes, or toys. You might even label these boxes so you know what's inside them without having to look. This way, if you need a book, you can just go to the box labeled \"books\" and grab what you need.\n\nIn programming, variables work in a similar way. A variable is like a box where you can store different kinds of information, which in programming terms, we call data. This could be a number, a word (which we call a \"string\"), a list of items, and so on.\n\nFor this puzzle, you will need to set a variable to a new value by following directions in the code.",
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableOneStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableOneDirections",
         "puzzleName": "VariableOne",
         "puzzleIndex": 0
       },
@@ -74,8 +74,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "# This function has a variable being passed into the function\n# The variable `parameter` will store whatever value is being passed into the function\n# For instance, if the function is being called like `main(5)`, \n# the variable `parameter` will hold 5\ndef main(parameter):\n\t# Assign the value of parameter to a new variable called `numberVariable`\n\t\n\n\treturn numberVariable\n\n\nprint(main(5))\nprint(main(7))",
-        "directions": "Directions:\nParameters are utilized within functions. These are variables or values that are fed into a function, to be subsequently employed within that function. Here's an example:\n\ndef main(variable):  # 'variable' is the parameter\n\tprint(variable)\n\nmain(5)  # Here, '5' is the argument passed to the function\nmain(10)  # Here, '10' is the argument passed to the function\n\nIn this case, '5' and '10' are the arguments we're passing to our function main, and variable is the parameter that receives these arguments.\n\n5 and 10 will be printed after this code runs",
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableTwoStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableTwoDirections",
         "puzzleName": "VariableTwo",
         "puzzleIndex": 1
       },
@@ -95,8 +95,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "def main(parameter):\n\t# Create a variable called `numberVariable` \n\t# Set `numberVariable` to the value in `parameter`\n\n\tprint(numberVariable)\n\n\t# Add the value in `parameter` to `numberVariable`\n\n\tprint(numberVariable)\n\n\t# Multiply the value in `numberVariable` by 5\n\t\n\tprint(numberVariable)\n\n\t# Divide the value in `numberVariable` by 2\n\t\n\tprint(numberVariable)\t\n\n\treturn numberVariable\n\n\nmain(10)\nmain(20)\nmain(-5)",
-        "directions": "Directions:\nThere are many things that you can do with variables. One of the main ways to use variables are to perform mathematical operations on the variables\n\nOperations:\n\t• + \n\t  ○ + will add two values, for instance `1 + 1` will result in two and `variableOne + variableTwo` will result in the sum of the values in variableOne and variableTwo\n\t• - \n\t  ○ - will add subtract two values, for instance `1 - 1` will result in zero and `variableOne - variableTwo` will result in the difference of the values in variableOne and variableTwo\n\t• *\n\t  ○ * will add multiply two values, for instance `1 * 1` will result in one and `variableOne * variableTwo` will result in the product of the values in variableOne and variableTwo\n\t• /\n\t  ○ / will add divide two values, for instance `1 / 1` will result in two and `variableOne / variableTwo` will result in the quotient of the values in variableOne and variableTwo\n\nExamples:\n\n1.\nnumberVariable = 5\nnumberVariable = numberVariable + 5\nprint(numberVariable) # This will print `10`\n\n2.\nnumberVariable = 5\nnumberVariable -= 5\nprint(numberVariable) # This will print `0`\n\n\nFor this puzzle, Follow the directions in the code. You will need to perform mathematical operations on a variable called `numberVariables`",
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableThreeStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableThreeDirections",
         "puzzleName": "VariableThree",
         "puzzleIndex": 2
       },
@@ -108,8 +108,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "def main():\n\thelloVariable = \"Hello\"\n\tworldVariable = \" World\"\n\n\tprint(helloVariable)\n\tprint(worldVariable)\n\t\n\t# Create a new variable called `helloWorld` and set it to \"\"  \n\t# which is an empty string\n\thelloWorld = \"\"\n\n\t# Set the variable `helloWorld` to the variables \n\t# helloVariable and worldVariable with `+`\n\n\t# The value in `helloWorld` should now be \"Hello World\"\n\t\n\tprint(helloWorld)\n\n\treturn helloWorld\n\nmain()",
-        "directions": "Directions:\nVariables can also hold a datatype known as strings. Strings are text that the computer can hold and use. For instance, a variable can hold the sentence: \"Hello World!\" as a string\n\nExamples of Strings:\n\n1.\nstringVariable = \"Hello World!\"\nprint(stringVariable) # This will print `HelloWorld`\n\nStrings can be modified and manipulated with python code. A basic way to do this is to add two string with `+` which is called concatenation\n\nExamples of concatenation\n1.\nfirstName = \"John\"\nlastName = \"Doe\"\nprint(firstName + lastName) # Prints `JohnDoe`\n\nFor this puzzle, you will have to follow the directions in the code. You will need to concatenate two strings and return the concatenation",
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableFourStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableFourDirections",
         "puzzleName": "VariableFour",
         "puzzleIndex": 3
       },
@@ -121,13 +121,16 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "def main():\n\tlistOne = [1,2,3,4,5]\n\tlistTwo = [6,7,8,9,10]\n\t\n\tprint(listOne)\n\tprint(listTwo)\n\n\t# Combine the first and second list and set it to a new variable \n\t# called `listThree`\n\n\tprint(listThree) # This should print [1,2,3,4,5,6,7,8,9,10]\n\n\treturn listThree\n\nmain()",
-        "directions": "Directions:\nVariables can also hold a datatype known as lists. Lists are collections of items that are ordered and changeable. For instance, a variable can hold a list of numbers: `[1, 2, 3, 4, 5]`.\n\nExamples of Lists:\n\n1.\nlistVariable = [1, 2, 3, 4, 5]\nprint(listVariable) # This will print `[1, 2, 3, 4, 5]`\n\nLists can be modified and manipulated with Python code. A basic way to do this is to add two lists with `+`, which combines the lists into one.\n\nExamples of list combination:\n\n1.\nfirstList = [1, 2, 3]\nsecondList = [4, 5, 6]\nprint(firstList + secondList) # Prints `[1, 2, 3, 4, 5, 6]`\n\nFor this puzzle, you will have to follow the directions in the code. You will need to combine two lists and return the combined list.",
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableFiveStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableFiveDirections",
         "puzzleName": "VariableFive",
         "puzzleIndex": 4
       }
     ]
   },
+
+
+
   {
     "puzzleName": "Conditionals",
     "index": 2,
@@ -148,8 +151,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "def main(parameterNumber):\n\ttestingNumber = 5\n\t\n\t# Check if the `parameterNumber` is less than or equal to `testingNumber`\n\t# Store the result in `booleanResult`\n\t\n\n\t# Return the boolean result\n\treturn booleanResult",
-        "directions": "Directions:\n\nConditionals are like instructions for a computer to make decisions. They allow you to tell the computer, \"If something is true, do one thing. Otherwise, do something else.\"\n\nConditionals are either true or false. In python, there are Booleans (written as bool) which can hold either True or False. For example\n\ntrueBool = True\nfalseBool = False\n\nBooleans can be assigned directly or by using comparison operators. The available comparison operators are listed below\n\t• Equal to: ==\n\t\t○ 1 == 1 # True\n\t\t○ 1 == 2 # False\n\t• Not equal to: !=\n\t\t○ \"Hello\" != \"Hello\" # False\n\t\t○ \"Hello\" != \"World\" # True\n\t• Greater than: >\n\t\t○ 2 > 1 # True\n\t\t○ 1 > 1 # False\n\t• Less than: <\n\t\t○ 1 < 2 # True\n\t\t○ 1 < 1 # False\n\t• Greater than or equal to: >=\n\t\t○ 1 <= 1 # True\n\t\t○ 1 <= 3 # True\n\t• Less than or equal to: <=\n\t\t○ 1 <= 1 # True\n\t\t○ 1 <= 2 # True\n\nWith comparison operators, we can compute our own boolean variables as seen below\n\nbooleanVariable = 1 < 2 # True\nbooleanVariable = 2 < 1 # False\n\nFor the puzzle, You need to check if the number passed into the function `main` is less than or equal to the variable `testingNumber` and return the calculated value",
+        "startingCode": "",
+        "directions": "",
         "puzzleName": "ConditionalsOne",
         "puzzleIndex": 1
       },
@@ -169,8 +172,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "def main(parameterNumber):\n\t# Use an if statement to check if parameterNumber is greater than 5\n\t# If parameterNumber is greater than 5,\n\t# then return \"Greater than 5\"\n\n\t# Otherwise, return \"Less than or equal to 5\"\n\n\n# Call the main function with different arguments and print the results\nprint(main(5))\nprint(main(6))\nprint(main(100))",
-        "directions": "Directions:\n\nIf statements allow a computer to execute code when only a conditional evaluates to True. The basic structure of an if statement is as follows\n\nif(condition) :\n\t# This code runs if condition is True\nelse:\n\t# This code runs if conditions is False",
+        "startingCode": "",
+        "directions": "",
         "puzzleName": "ConditionalsTwo",
         "puzzleIndex": 2
       },
@@ -202,8 +205,8 @@
           }
         ],
         "hiddenTestCases": [],
-        "startingCode": "def main(parameterNumber):\n\n\t# Check if `parameterNumber` is greater than 100\n\t\t# If so, return \"Greater than 100\"\n\t# Otherwise, check if `parameterNumber` is greater than 50 \n\t\t# If so, return \"Greater than 50\"\n\t# Otherwise, check if `parameterNumber` is greater than 25\n\t\t# If so, return \"Greater than 25\"\n\t# Otherwise\t\n\t\t# return \"Less than 25\"",
-        "directions": "Directions:\n\nThere are also if-else statements (elif). The if-else statements are used to check multiple conditions in a sequence. The structure is as follows\n\nif(conditionOne):\n\t# This code runs if conditionOne is True\nelif(conditionTwo):\n\t# This code runs if conditionOne is False and conditionTwo is True\nelse:\n\t# This code runs if conditionOne and conditionTwo are False",
+        "startingCode": "",
+        "directions": "",
         "puzzleName": "ConditionalsThree",
         "puzzleIndex": 3
       },

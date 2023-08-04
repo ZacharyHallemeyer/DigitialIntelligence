@@ -139,7 +139,7 @@ public class Terminal : MonoBehaviour
         }
 
         terminalLineIndex = oldTerminalLineIndex;
-        ColorizeCurrentLine(true);
+        ColorizeCurrentLine(false);
     }
 
     /// <summary>
@@ -756,7 +756,6 @@ public class Terminal : MonoBehaviour
     /// </summary>
     public void HideTerminal()
     {
-        this.enabled = false;
         GameManager.terminalUI.SetActive(false);
     }
 
@@ -781,6 +780,6 @@ public class Terminal : MonoBehaviour
         lockedFileColor = PlayerPrefs.GetString(PlayerPrefNames.TERMINAL_LOCKED_FILE_COLOR);
         lockedDirectoryColor = PlayerPrefs.GetString(PlayerPrefNames.TERMINAL_LOCKED_DIRECTORY_COLOR);
 
-        ColorizeAllLines();
+        //ColorizeAllLines();
     }
 }

@@ -169,8 +169,8 @@ public class Puzzle : MonoBehaviour
         coloredCodeDisplay.text = "";
 
         // Set text
-        SetFontSize();
         SetPuzzleDisplay();
+        SetFontSize();
     }
 
 
@@ -1447,6 +1447,7 @@ public class Puzzle : MonoBehaviour
         widthDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         emuConsole.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
+        SetColorSize();
     }
 
     private void SetColorSize()
@@ -1461,7 +1462,6 @@ public class Puzzle : MonoBehaviour
     private void ColorizeAllLines()
     {
         int oldCaretY = caretPosY;
-        int oldCaretX = caretPosX;
 
         for(int rowIndex = 0; rowIndex < coloredText.Count; rowIndex++)
         {
@@ -1474,6 +1474,7 @@ public class Puzzle : MonoBehaviour
 
         caretPosY = oldCaretY;
         ColorizeCurrentLine(true);
+        DisplayText();
     }
 
 }

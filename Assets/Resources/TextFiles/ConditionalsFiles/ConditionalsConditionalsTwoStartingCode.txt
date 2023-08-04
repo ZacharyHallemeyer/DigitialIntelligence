@@ -1,0 +1,12 @@
+def main(parameterNumber):
+	# Use an if statement to check if parameterNumber is greater than 5
+	# If parameterNumber is greater than 5,
+	# then return "Greater than 5"
+
+	# Otherwise, return "Less than or equal to 5"
+
+
+# Call the main function with different arguments and print the results
+print(main(5))
+print(main(6))
+print(main(100))

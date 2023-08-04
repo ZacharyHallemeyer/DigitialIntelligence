@@ -1,0 +1,15 @@
+def main():
+	listOne = [1,2,3,4,5]
+	listTwo = [6,7,8,9,10]
+
+	print(listOne)
+	print(listTwo)
+
+	# Combine the first and second list and set it to a new variable 
+	# called `listThree`
+
+	print(listThree) # This should print [1,2,3,4,5,6,7,8,9,10]
+
+	return listThree
+
+main()
