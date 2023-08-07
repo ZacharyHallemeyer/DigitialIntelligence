@@ -3,5 +3,7 @@ def main(list):
 
 	return sortedList
 
-print(main([1,5,4,3,2])) # should print [1,2,3,4,5] if list is sorted 
-print(main([5,1,2,3,4])) # should print [1,2,3,4,5] if list is sorted 
+# should print [1,2,3,4,5] if list is sorted 
+print(main([1,5,4,3,2])) 
+# should print [1,2,3,4,5] if list is sorted 
+print(main([5,1,2,3,4])) 

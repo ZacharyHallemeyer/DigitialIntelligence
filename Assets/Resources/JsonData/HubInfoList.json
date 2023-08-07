@@ -10,8 +10,13 @@
     "notesPath": "TextFiles/GreekMythsFiles/GreekMythsNotes"
   },
   {
+    "name": "Conditionals",
+    "storyPath": "TextFiles/ConditionalsFiles/ConditionalsStory",
+    "notesPath": "TextFiles/ConditionalsFiles/ConditionalsNotes"
+  },
+  {
     "name": "Variables",
-    "storyPath": "Assets/Resources/TextFiles/VariablesStory.txt",
-    "notesPath": "Assets/Resources/TextFiles/VariablesNotes.txt"
+    "storyPath": "TextFiles/VariablesFiles/VariablesStory",
+    "notesPath": "TextFiles/VariablesFiles/VariablesNotes"
   }
 ]

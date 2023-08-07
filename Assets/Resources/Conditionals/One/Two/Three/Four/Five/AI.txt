@@ -1,0 +1,1 @@
+By using conditionals, you can create simple forms of artificial intelligence (AI) in your programs, where the code adapts its behavior based on the provided input.

@@ -633,7 +633,6 @@ public class Terminal : MonoBehaviour
         foreach(GameObject puzzleObject in GameManager.puzzles)
         {
             Puzzle puzzle = puzzleObject.GetComponent<Puzzle>();
-            Debug.Log(puzzle.puzzleName);
             
             if(puzzle.puzzleName == argument)
             {
@@ -644,8 +643,6 @@ public class Terminal : MonoBehaviour
                     {
                         puzzleFound = true;
                         // show puzzle and hide terminal
-                        //puzzleObject.SetActive(true);
-                        //gameObject.SetActive(false);
                         puzzle.ShowPuzzle();
                         HideTerminal();
                     }

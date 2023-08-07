@@ -1,0 +1,10 @@
+def main(grade):
+
+	return "F"
+
+print(main(100))
+print(main(90))
+print(main(70))
+print(main(50))
+
+

@@ -1,0 +1,86 @@
+﻿{
+  "dirName": "",
+  "path": "Variables/",
+  "unlocked": true,
+  "files": [],
+  "directories": [
+    {
+      "dirName": "VariableOne",
+      "path": "Variables/VariableOne",
+      "unlocked": false,
+      "files": [
+        {
+          "fileName": "Container",
+          "path": "Variables/VariableOne/VariableOne",
+          "question": "_",
+          "unlockKeyword": "_",
+          "unlocked": false
+        }
+      ],
+      "directories": [
+        {
+          "dirName": "VariableTwo",
+          "path": "Variables/VariableOne/VariableTwo",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "Dynamic",
+              "path": "Variables/VariableOne/VariableTwo/Dynamic",
+              "question": "_",
+              "unlockKeyword": "_",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+            {
+              "dirName": "VariableThree",
+              "path": "Variables/VariableOne/VariableTwo/VariableThree",
+              "unlocked": false,
+              "files": [
+                {
+                  "fileName": "Naming",
+                  "path": "Variables/VariableOne/VariableTwo/VariableThree/Naming",
+                  "question": "_",
+                  "unlockKeyword": "_",
+                  "unlocked": false
+                }
+              ],
+              "directories": [
+                {
+                  "dirName": "VariableFour",
+                  "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour",
+                  "unlocked": false,
+                  "files": [
+                    {
+                      "fileName": "Scope",
+                      "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour/Scope",
+                      "question": "_",
+                      "unlockKeyword": "_",
+                      "unlocked": false
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "dirName": "VariableFive",
+                      "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour/VariableFive",
+                      "unlocked": false,
+                      "files": [
+                        {
+                          "fileName": "Interchange",
+                          "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour/VariableFive/Interchange",
+                          "question": "_",
+                          "unlockKeyword": "_",
+                          "unlocked": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

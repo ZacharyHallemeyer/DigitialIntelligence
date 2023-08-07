@@ -27,6 +27,8 @@ public class MainMenu : MonoBehaviour
     public GameObject startContainer;
     public GameObject aboutContainer;
     public GameObject settingsContainer;
+    public GameObject sliderContainer;
+    public GameObject colorContainer;
     public List<GameObject> levelMenuUI;
 
 
@@ -91,6 +93,18 @@ public class MainMenu : MonoBehaviour
         startContainer.SetActive(true);
         aboutContainer.SetActive(false);
         settingsContainer.SetActive(false);
+    }
+
+    public void ColorButtonClick()
+    {
+        sliderContainer.SetActive(false);
+        colorContainer.SetActive(true);
+    }
+
+    public void ColorBackButtonClick()
+    {
+        colorContainer.SetActive(false);
+        sliderContainer.SetActive(true);
     }
 
     public void StartLevel(int levelIndex, string levelName)
