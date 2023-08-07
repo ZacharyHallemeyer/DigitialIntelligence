@@ -13,13 +13,13 @@
   ],
   "directories": [
     {
-      "dirName": "Chaos",
-      "path": "Greek Myths/Chaos",
+      "dirName": "Choas",
+      "path": "Greek Myths/Choas",
       "unlocked": false,
       "files": [
         {
           "fileName": "Prometheus",
-          "path": "Greek Myths/Chaos/Prometheus",
+          "path": "Greek Myths/Choas/Prometheus",
           "question": "Who is the earth in Greek mythology",
           "unlockKeyword": "gaia",
           "unlocked": false
@@ -28,12 +28,12 @@
       "directories": [
         {
           "dirName": "Fire",
-          "path": "Greek Myths/Chaos/Fire",
+          "path": "Greek Myths/Choas/Fire",
           "unlocked": false,
           "files": [
             {
               "fileName": "Persephone",
-              "path": "Greek Myths/Chaos/Fire/Persephone",
+              "path": "Greek Myths/Choas/Fire/Persephone",
               "question": "What did Prometheus steal",
               "unlockKeyword": "fire",
               "unlocked": false
@@ -42,12 +42,12 @@
           "directories": [
             {
               "dirName": "Hades",
-              "path": "Greek Myths/Chaos/Fire/Hades",
+              "path": "Greek Myths/Choas/Fire/Hades",
               "unlocked": false,
               "files": [
                 {
                   "fileName": "Theseus",
-                  "path": "Greek Myths/Chaos/Fire/Hades/Theseus",
+                  "path": "Greek Myths/Choas/Fire/Hades/Theseus",
                   "question": "Who is Persephone's mother",
                   "unlockKeyword": "Demeter",
                   "unlocked": false
@@ -56,12 +56,12 @@
               "directories": [
                 {
                   "dirName": "Minotaur",
-                  "path": "Greek Myths/Chaos/Fire/Hades/Minotaur",
+                  "path": "Greek Myths/Choas/Fire/Hades/Minotaur",
                   "unlocked": false,
                   "files": [
                     {
                       "fileName": "Pandora",
-                      "path": "Greek Myths/Chaos/Fire/Hades/Minotaur/Pandora",
+                      "path": "Greek Myths/Choas/Fire/Hades/Minotaur/Pandora",
                       "question": "The Minotaur is half-bull and half-__",
                       "unlockKeyword": "human",
                       "unlocked": false

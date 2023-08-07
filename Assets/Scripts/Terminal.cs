@@ -288,6 +288,10 @@ public class Terminal : MonoBehaviour
                 HandleExtractCommand(line);
                 break;
 
+            case "devUnlock":
+                HandleDevUnlock(line);
+                break;
+
             case "":
                 break;
 
@@ -494,6 +498,7 @@ public class Terminal : MonoBehaviour
                 // Check if the file is unlocked 
                 if(file.unlocked)
                 {
+                    Debug.Log(file.path);
                     string fileContent = Resources.Load<TextAsset>(file.path).text;
                     PrintLineToTerminal(fileContent, false);
                 }
@@ -655,6 +660,20 @@ public class Terminal : MonoBehaviour
             AudioManager.instance.PlayErrorSoundEffect();
             PrintLineToTerminal($"<color={errorColor}>Directory not found in current directory</color>", false);
         }
+    }
+
+    private void HandleDevUnlock(string line)
+    {
+        // Check if syntax is incorrect
+        if (!CheckCommandSyntax(line, 1))
+        {
+            return;
+        }
+
+        // Get argument after command
+        string argument = line.Split(' ')[1];
+
+        GameManager.instance.PuzzleSolved(argument);
     }
 
     /// <summary>

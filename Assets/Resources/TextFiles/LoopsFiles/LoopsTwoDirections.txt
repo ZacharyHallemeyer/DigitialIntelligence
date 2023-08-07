@@ -1,0 +1,21 @@
+Directions:
+A while loop is similar to a for loop as it allows a block of code to be repeated. However, a while loop runs only when a condition is meet. 
+For instance, the below while loop will run forever as the condition is always true
+
+while(True):
+	print("I will never stop")
+
+and the while loop below will never run
+
+while(False):
+	print("I will never run")
+
+While loops run as long as the condition results in true. An example of this is below where the while loop runs until index is greater than the limit
+
+count = 1
+limit = 10
+while(count <= limit):
+	print(count) # This will print 1 through 10
+	count += 1
+
+For this puzzle, the main function will accept a parameter called `searchValue` and has a list called `numberList`. You will need to check if `searchValue` is an element in the `numberList`. If the `searchValue` exists in `numberList`, you need to return the index of the `searchValue`. If `searchValue` does not exist in `numberList`, you need to return -1

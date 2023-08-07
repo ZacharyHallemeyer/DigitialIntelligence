@@ -32,7 +32,7 @@
                 {
                   "fileName": "elif",
                   "path": "Conditionals/One/Two/Three/elif",
-                  "question": "Does the "else" statement require a condition to be specified? (Yes or No)",
+                  "question": "Does the \"else\" statement require a condition to be specified? (Yes or No)",
                   "unlockKeyword": "No",
                   "unlocked": false
                 }
@@ -46,7 +46,7 @@
                     {
                       "fileName": "not",
                       "path": "Conditionals/One/Two/Three/Four/not",
-                      "question": "Does the "elif" statement require a condition to be specified? (Yes or No)",
+                      "question": "Does the \"elif\" statement require a condition to be specified? (Yes or No)",
                       "unlockKeyword": "Yes",
                       "unlocked": false
                     }

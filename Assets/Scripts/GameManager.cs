@@ -226,6 +226,7 @@ public class GameManager : MonoBehaviour
         // Assign current directory to root and set hasParent to false as it does not have a parent
         currentDirectory = rootDir;
         currentDirectory.hasParent = false;
+        PrintDirectories(rootDir, "");
     }
 
     /// <summary>
@@ -256,6 +257,7 @@ public class GameManager : MonoBehaviour
         foreach(FileData fileData in dirData.files)
         {
             output += "\n\t" + indent + fileData.fileName;
+            output += "\n\t" + indent + fileData.path;
         }
 
         Debug.Log(output);

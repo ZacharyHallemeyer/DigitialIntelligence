@@ -1,0 +1,6 @@
+def main(length):
+
+	squareString = ""
+
+
+	return squareString
