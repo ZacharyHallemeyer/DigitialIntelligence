@@ -12,8 +12,8 @@
         {
           "fileName": "Container",
           "path": "Variables/VariableOne/VariableOne",
-          "question": "_",
-          "unlockKeyword": "_",
+          "question": "What does a variable hold? (one word)",
+          "unlockKeyword": "value",
           "unlocked": false
         }
       ],
@@ -26,8 +26,8 @@
             {
               "fileName": "Dynamic",
               "path": "Variables/VariableOne/VariableTwo/Dynamic",
-              "question": "_",
-              "unlockKeyword": "_",
+              "question": "What can a parameter be thought as? (one word)",
+              "unlockKeyword": "variable",
               "unlocked": false
             }
           ],
@@ -40,8 +40,8 @@
                 {
                   "fileName": "Naming",
                   "path": "Variables/VariableOne/VariableTwo/VariableThree/Naming",
-                  "question": "_",
-                  "unlockKeyword": "_",
+                  "question": "What is the assignment operator for subtracting a value from a variable?",
+                  "unlockKeyword": "-=",
                   "unlocked": false
                 }
               ],
@@ -54,8 +54,8 @@
                     {
                       "fileName": "Scope",
                       "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour/Scope",
-                      "question": "_",
-                      "unlockKeyword": "_",
+                      "question": "Can you concatenate two strings together? (Yes or No)",
+                      "unlockKeyword": "Yes",
                       "unlocked": false
                     }
                   ],
@@ -68,8 +68,8 @@
                         {
                           "fileName": "Interchange",
                           "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour/VariableFive/Interchange",
-                          "question": "_",
-                          "unlockKeyword": "_",
+                          "question": "Can you concatenate two lists together? (Yes or No)",
+                          "unlockKeyword": "Yes",
                           "unlocked": false
                         }
                       ]

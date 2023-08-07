@@ -6,4 +6,6 @@ In real life, you might use a box to store things like books, clothes, or toys. 
 
 In programming, variables work in a similar way. A variable is like a box where you can store different kinds of information, which in programming terms, we call data. This could be a number, a word (which we call a "string"), a list of items, and so on.
 
+More specifically, A VARIABLE HOLDS VALUE
+
 For this puzzle, you will need to set a variable to a new value by following directions in the code.

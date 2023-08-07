@@ -18,8 +18,8 @@
             {
               "fileName": "Light",
               "path": "Conditionals/One/Two/Light",
-              "question": "_",
-              "unlockKeyword": "_",
+              "question": "What is the comparison operator for equality",
+              "unlockKeyword": "==",
               "unlocked": false
             }
           ],
@@ -32,8 +32,8 @@
                 {
                   "fileName": "elif",
                   "path": "Conditionals/One/Two/Three/elif",
-                  "question": "_",
-                  "unlockKeyword": "_",
+                  "question": "Does the "else" statement require a condition to be specified? (Yes or No)",
+                  "unlockKeyword": "No",
                   "unlocked": false
                 }
               ],
@@ -46,8 +46,8 @@
                     {
                       "fileName": "not",
                       "path": "Conditionals/One/Two/Three/Four/not",
-                      "question": "_",
-                      "unlockKeyword": "_",
+                      "question": "Does the "elif" statement require a condition to be specified? (Yes or No)",
+                      "unlockKeyword": "Yes",
                       "unlocked": false
                     }
                   ],
@@ -60,8 +60,8 @@
                         {
                           "fileName": "AI",
                           "path": "Conditionals/One/Two/Three/Four/Five/AI",
-                          "question": "_",
-                          "unlockKeyword": "_",
+                          "question": "Can you combine multiple logical operators in a single condition? (Yes or No)",
+                          "unlockKeyword": "Yes",
                           "unlocked": false
                         }
                       ]
