@@ -52,3 +52,5 @@ For this puzzle, if the parameter is 5 then you should have an output that looks
 and look like the below when it is stored/created
 
 *****\n*****\n*****\n*****\n*****\n
+
+Therefore, you should have a new line character (\n) after each row of the square

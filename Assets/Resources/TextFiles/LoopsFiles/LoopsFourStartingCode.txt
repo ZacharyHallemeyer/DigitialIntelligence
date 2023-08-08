@@ -1,7 +1,7 @@
 def main(base, exponent):
-		result = 0
+		result = 1
 
-		# Calculate the exponentiation of the base and the exponent
+		# Calculate the exponentiation of the base and the exponent with a while or for loop
 
 		return result
 

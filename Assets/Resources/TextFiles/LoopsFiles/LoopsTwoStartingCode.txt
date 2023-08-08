@@ -1,7 +1,8 @@
 def main(searchValue):
 	numberList = [1,2,3,4,5]
+	# use len(numberList) to get length of list and store it in a variable
 
-	# Loop through numberList
+	# Loop through numberList with a while loop 
 		# Check if searchValue is in numberList
 			# return index of searchValue
 	

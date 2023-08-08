@@ -143,7 +143,7 @@ public class Puzzle : MonoBehaviour
     public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string clueImagePath, string startingCode, string directions, string puzzleType, string unlockKeyword, string puzzleName, int puzzleIndex)
     {
         this.testCases          = new List<TestCase>(testCases);
-        this.hiddenTestCases    = new List<TestCase>(testCases);
+        this.hiddenTestCases    = new List<TestCase>(hiddenTestCases);
         this.startingCode       = startingCode;
         this.directions         = directions;
         this.puzzleName         = puzzleName;
@@ -1372,6 +1372,8 @@ public class Puzzle : MonoBehaviour
         {
             string input = hiddenTestCases[testIndex].problem;
             string ans = hiddenTestCases[testIndex].answer;
+
+            Debug.Log("input: " + input + ", ans: " + ans);
 
             // Append test case to end of python file and convert the result to a string
             await RunPythonCodeWithTimeout(pythonCode + "\nstr(main(" + input + "))");

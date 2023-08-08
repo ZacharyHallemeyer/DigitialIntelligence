@@ -258,8 +258,6 @@ public class GameManager : MonoBehaviour
             output += "\n\t" + indent + fileData.path;
         }
 
-        Debug.Log(output);
-
         foreach(DirectoryData dirDataInner in dirData.directories)
         {
             PrintDirectories(dirDataInner, indent + "\t");
