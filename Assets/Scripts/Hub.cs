@@ -16,7 +16,6 @@ public class Hub : MonoBehaviour
     public GameObject sliderContainer;
     public GameObject colorContainer;
 
-
     private string story;
     private string notes;
 

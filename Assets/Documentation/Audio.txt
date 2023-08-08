@@ -1,0 +1,23 @@
+Audio Manager
+	• This script is created in the main menu and is destroyed only when the game ends
+	• When the script is created, it initializes music and sound effects
+	• The script loops through music randomly, so there is always music playing
+	• There is a function to play each sound effect
+
+How to add new music and sound effects
+	• Find the game object called 'AudioManager' 
+	• In the editor, there are two lists --> soundsMusic and soundsSoundEffects
+	• To add music
+		○ Drag and drop audio file into Audio folder
+		○ Create a new element in soundsMusic in the unity editor
+		○ Drag and drop audio file from Audio folder into field called 'clip'
+		○ Set volume to 1 and pitch to 1
+		○ Now the music will be played randomly during the game
+	• To add sound effects
+		○ Drag and drop audio file into Audio folder
+		○ Create a new element in soundsMusic in the unity editor
+		○ Drag and drop audio file from Audio folder into field called 'clip'
+		○ Set volume to 1 and pitch to 1
+		○ Create a funciton in audio manager called something along the lines of 'PlayErrorSoundEffect'
+			◘ so if the sound is for when the time runs out call the function something along the lines of 'PlayTimeRunOutSoundEffect'
+			◘ Look to the other functions to see the syntax

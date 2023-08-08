@@ -15,9 +15,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static int levelIndex;
-    public static string folderName;
     public static string levelName;
-    public static string startingDirectoryPath;
     public static int numRemainingLockedFiles;
 
     // Puzzles

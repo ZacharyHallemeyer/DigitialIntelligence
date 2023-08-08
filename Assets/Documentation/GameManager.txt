@@ -1,0 +1,11 @@
+When is GameManager created?
+	• GameManager is created when the scene 'Level' is loaded
+
+What does GameManager rely on?
+	• levelIndex is a static variable and needs to be set before the 'Level' scene is loaded
+	• levelName is a static variable and needs to be set before the 'Level' scene is loaded
+
+What does the GameManager do?
+	• Creates terminal, hub, puzzles, and file system
+	• Handles puzzles being solved
+	• Handles game start and game end

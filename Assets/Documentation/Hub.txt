@@ -1,0 +1,10 @@
+When is Hub created?
+	• Hub is created when the GameManager creates it (inside the Level scene)
+
+What does Hub rely on?
+	• It relys on the level name being sent into its Initialize function
+
+What does the Hub do?
+	• It gets the notes and story text and displays it
+	• It creates a setting UI
+	• It allows for movement between settings, hub, and terminal

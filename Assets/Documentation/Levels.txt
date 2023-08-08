@@ -1,0 +1,29 @@
+How to add levels
+	1. Create a folder inside the resources folder called whatever your level is
+		• This folder will be the level's root folder
+		• Create as many directories and files that you want
+		• The directories need to be called the same as the puzzles you add
+		• The files can be named anything (but need to be a .txt file)
+		• The directories and files will be accessible in the terminal of the level
+		
+		• The files should have text inside them 
+	2. In Resources/JsonData folder, add a json file called your level name
+		• This json file will have the file system architecture of your level
+		• Look to other files to see an example
+		• Basically, you need to have a file path for each directory and file in your level in this json
+	3. Create a new folder in Resources/TextFiles called anything you would like (my naming scheme -> level name + "Files")
+		• This folder will contain the story and notes for your level as well as the starting code and directions for each puzzle
+		• My naming scheme for story -> levelName + "Story"
+			○ This file will contain the text for displaying story to the hub
+		• My naming scheme for notes -> levelName + "Notes"
+			○ This file will contain the text for displaying notes to the hub
+		• My naming scheme for puzzle starting code -> puzzle name + "StartingCode"
+			○ This file will contain the text for the starting code of a puzzle
+		• My naming scheme for puzzle directions -> puzzle name + "Directions"
+			○ This file will contain the text for the directions of a puzzle
+	4. Add the relative path to story and hub in the file Resources/JsonData/HubInfoList.json
+	5. Create a new puzzle object in the json Resources/JsonData/puzzles.json
+		• This new puzzle object will contain puzzle names and relative paths to starting code and directions
+		• It will also include test cases
+			○ "problem" <- The parameter to be sent into the main function
+			○ "answer"  <- The correct return value expected
