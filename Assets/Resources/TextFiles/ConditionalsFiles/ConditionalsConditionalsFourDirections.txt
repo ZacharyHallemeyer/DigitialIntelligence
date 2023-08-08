@@ -1,0 +1,19 @@
+Directions:
+
+If statements can get pretty complex when checking for multiple conditions. Fortunately, we can expand out conditionals to simplify our if-statements.
+
+We can do this by using logical operators. Logical operators allow us to combine, negate, or modify boolean expressions. The available logical operators are listed below:
+
+    • AND: and
+        ○ True and True # Evaluates to True 
+        ○ True and False # Evaluates to False
+        ○ False and False # Evaluates to False
+    • OR: or
+        ○ True or True # Evaluates to True
+        ○ True or False # Evaluates to True
+        ○ False or False # Evaluates to False
+    • NOT: not
+        ○ not False # Evaluates to True
+        ○ not True # Evaluates to False
+        ○ True and not False # Evaluates to True 
+        ○ not True and False # Evaluates to False

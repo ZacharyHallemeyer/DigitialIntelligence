@@ -1,0 +1,54 @@
+Directions:
+
+For this puzzle, you will need to print a square of '*' characters. To do this, the dimensions of the squares will be determined by the parameter called `length`.
+
+In order to do this, you will need to use a new line character which is '\n' which will print a new line in the console. This is shown below
+
+CODE
+-----------------------------------------------------------------
+
+print("Hello\nThis is a new line\n\nThis is a new line")
+
+-----------------------------------------------------------------
+
+OUTPUT
+-----------------------------------------------------------------
+Hello
+This is a new line
+
+This is a new line
+-----------------------------------------------------------------
+
+You will also need to use something called a nested loop. A nested a loop is just a loop within a loop as shown below
+
+CODE
+-----------------------------------------------------------------
+for indexOuter in range(3):
+	for indexInner in range(3):
+		print(str(indexOuter) + ", " + str(indexInner))
+-----------------------------------------------------------------
+
+OUTPUT
+-----------------------------------------------------------------
+0, 0
+0, 1
+0, 2
+1, 0
+1, 1
+1, 2
+2, 0
+2, 1
+2, 2
+-----------------------------------------------------------------
+
+For this puzzle, if the parameter is 5 then you should have an output that looks like the below when printed
+
+*****
+*****
+*****
+*****
+*****
+
+and look like the below when it is stored/created
+
+*****\n*****\n*****\n*****\n*****\n

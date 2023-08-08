@@ -1,0 +1,457 @@
+﻿[
+  {
+    "puzzleName": "Tutorial",
+    "index": 0,
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": ""
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleOneStartingCode",
+        "directions": "TextFiles/TutorialFiles/TutorialPuzzleOneDirections",
+        "puzzleName": "LevelOne",
+        "puzzleIndex": 0
+      },
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "Printing from a function!"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleTwoStartingCode",
+        "directions": "TextFiles/TutorialFiles/TutorialPuzzleTwoDirections",
+        "puzzleName": "LevelTwo",
+        "puzzleIndex": 1
+      },
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "Hi"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleThreeStartingCode",
+        "directions": "TextFiles/TutorialFiles/TutorialPuzzleThreeDirections",
+        "puzzleName": "LevelThree",
+        "puzzleIndex": 2
+      }
+    ]
+  },
+
+  {
+    "puzzleName": "Variables",
+    "index": 1,
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "-5"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableOneStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableOneDirections",
+        "puzzleName": "VariableOne",
+        "puzzleIndex": 0
+      },
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "5"
+          },
+          {
+            "problem": "10",
+            "answer": "10"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableTwoStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableTwoDirections",
+        "puzzleName": "VariableTwo",
+        "puzzleIndex": 1
+      },
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "25"
+          },
+          {
+            "problem": "10",
+            "answer": "50"
+          },
+          {
+            "problem": "-5",
+            "answer": "-25"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableThreeStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableThreeDirections",
+        "puzzleName": "VariableThree",
+        "puzzleIndex": 2
+      },
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "Hello World"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableFourStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableFourDirections",
+        "puzzleName": "VariableFour",
+        "puzzleIndex": 3
+      },
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/VariablesFiles/VariablesVariableFiveStartingCode",
+        "directions": "TextFiles/VariablesFiles/VariablesVariableFiveDirections",
+        "puzzleName": "VariableFive",
+        "puzzleIndex": 4
+      }
+    ]
+  },
+
+
+
+  {
+    "puzzleName": "Conditionals",
+    "index": 2,
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "True"
+          },
+          {
+            "problem": "6",
+            "answer": "False"
+          },
+          {
+            "problem": "-5",
+            "answer": "True"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsOneStartingCode",
+        "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsOneDirections",
+        "puzzleName": "One",
+        "puzzleIndex": 1
+      },
+      {
+        "testCases": [
+          {
+            "problem": "6",
+            "answer": "Greater than 5"
+          },
+          {
+            "problem": "5",
+            "answer": "Less than or equal to 5"
+          },
+          {
+            "problem": "-5",
+            "answer": "Less than or equal to 5"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsTwoStartingCode",
+        "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsTwoDirections",
+        "puzzleName": "Two",
+        "puzzleIndex": 2
+      },
+      {
+        "testCases": [
+          {
+            "problem": "120",
+            "answer": "Greater than 100"
+          },
+          {
+            "problem": "100",
+            "answer": "Greater than 50"
+          },
+          {
+            "problem": "51",
+            "answer": "Greater than 50"
+          },
+          {
+            "problem": "50",
+            "answer": "Greater than 25"
+          },
+          {
+            "problem": "25",
+            "answer": "Less than 25"
+          },
+          {
+            "problem": "20",
+            "answer": "Less than 25"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsThreeStartingCode",
+        "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsThreeDirections",
+        "puzzleName": "Three",
+        "puzzleIndex": 3
+      },
+      {
+        "testCases": [
+          {
+            "problem": "0",
+            "answer": "Between 0 and 10"
+          },
+          {
+            "problem": "5",
+            "answer": "Between 0 and 10"
+          },
+          {
+            "problem": "10",
+            "answer": "Between 0 and 10"
+          },
+          {
+            "problem": "11",
+            "answer": "Between 11 and 20"
+          },
+          {
+            "problem": "15",
+            "answer": "Between 11 and 20"
+          },
+          {
+            "problem": "20",
+            "answer": "Between 11 and 20"
+          },
+          {
+            "problem": "21",
+            "answer": "Between 21 and 30"
+          },
+          {
+            "problem": "25",
+            "answer": "Between 21 and 30"
+          },
+          {
+            "problem": "30",
+            "answer": "Between 21 and 30"
+          },
+          {
+            "problem": "-1",
+            "answer": "Not between 0 and 30"
+          },
+          {
+            "problem": "31",
+            "answer": "Not between 0 and 30"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsFourStartingCode",
+        "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsFourDirections",
+        "puzzleName": "Four",
+        "puzzleIndex": 4
+      },
+      {
+        "testCases": [
+          {
+            "problem": "100",
+            "answer": "A"
+          },
+          {
+            "problem": "90",
+            "answer": "A"
+          },
+          {
+            "problem": "89",
+            "answer": "B"
+          },
+          {
+            "problem": "80",
+            "answer": "B"
+          },
+          {
+            "problem": "79",
+            "answer": "C"
+          },
+          {
+            "problem": "70",
+            "answer": "C"
+          },
+          {
+            "problem": "69",
+            "answer": "D"
+          },
+          {
+            "problem": "60",
+            "answer": "D"
+          },
+          {
+            "problem": "59",
+            "answer": "F"
+          },
+          {
+            "problem": "20",
+            "answer": "F"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsFiveStartingCode",
+        "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsFiveDirections",
+        "puzzleName": "Five",
+        "puzzleIndex": 5
+      }
+    ]
+  },
+
+
+  {
+    "puzzleName": "Greek Myths",
+    "index": 3,
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 20, 15, 3]",
+            "answer": "[1, 2, 3, 15, 20]"
+          },
+          {
+            "problem": "[1, 5, 4, 3, 2]",
+            "answer": "[1, 2, 3, 4, 5]"
+          },
+          {
+            "problem": "[12, 5, 9, 3, 18, 1, 10, 15, 7, 2, 14, 20, 6, 8, 19, 11, 17, 4, 16, 13]",
+            "answer": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[2, 4, 40, 30, 6]",
+            "answer": "[2, 4, 6, 30, 40]"
+          },
+          {
+            "problem": "[2, 10, 8, 6, 4]",
+            "answer": "[2, 4, 6, 8, 10]"
+          },
+          {
+            "problem": "[48, 20, 36, 12, 72, 4, 40, 60, 28, 8, 56, 80, 24, 32, 76, 44, 68, 16, 64, 52]",
+            "answer": "[4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80]"
+          }
+        ],
+        "startingCode": "TextFiles/GreekMythsFiles/GreekMythsChaosStartingCode",
+        "directions": "TextFiles/GreekMythsFiles/GreekMythsChaosDirections",
+        "puzzleName": "Chaos",
+        "puzzleIndex": 1
+      },
+      {
+        "testCases": [
+          {
+            "problem": "\"czggj\"",
+            "answer": "hello"
+          },
+          {
+            "problem": "\"kizphjijpgomvhdxmjnxjkdxndgdxjqjgxvijxjidjndn\"",
+            "answer": "pneumonoultramicroscopicsilicovolcanoconiosis"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "\"czggjczggj\"",
+            "answer": "hellohello"
+          },
+          {
+            "problem": "\"kizphjijpgomvhdxmjnxjkdxndgdxjqjgxvijxjidjndnkizphjijpgomvhdxmjnxjkdxndgdxjqjgxvijxjidjndn\"",
+            "answer": "pneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosis"
+          }
+        ],
+        "startingCode": "TextFiles/GreekMythsFiles/GreekMythsFireStartingCode",
+        "directions": "TextFiles/GreekMythsFiles/GreekMythsFireDirections",
+        "puzzleName": "Fire",
+        "puzzleIndex": 2
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1,3,2]",
+            "answer": "-1"
+          },
+          {
+            "problem": "[1,5,4,3,2]",
+            "answer": "-1"
+          },
+          {
+            "problem": "[1,3,4,5,6]",
+            "answer": "2"
+          },
+          {
+            "problem": "[1,3,4,5,2,7]",
+            "answer": "6"
+          },
+          {
+            "problem": "[1,2,4,3,5,6,8,9,10]",
+            "answer": "-1"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[1,3,2,4]",
+            "answer": "-1"
+          },
+          {
+            "problem": "[1,3,4,5,2,6,8]",
+            "answer": "7"
+          }
+        ],
+        "startingCode": "TextFiles/GreekMythsFiles/GreekMythsHadesStartingCode",
+        "directions": "TextFiles/GreekMythsFiles/GreekMythsHadesDirections",
+        "puzzleName": "Hades",
+        "puzzleIndex": 10
+      },
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "5"
+          },
+          {
+            "problem": "10",
+            "answer": "55"
+          },
+          {
+            "problem": "7",
+            "answer": "13"
+          },
+          {
+            "problem": "0",
+            "answer": "0"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "6",
+            "answer": "8"
+          },
+          {
+            "problem": "9",
+            "answer": "34"
+          }
+        ],
+        "startingCode": "TextFiles/GreekMythsFiles/GreekMythsHadesStartingCode",
+        "directions": "TextFiles/GreekMythsFiles/GreekMythsHadesDirections",
+        "puzzleName": "Minotaur",
+        "puzzleIndex": 4
+      }
+    ]
+  }
+]

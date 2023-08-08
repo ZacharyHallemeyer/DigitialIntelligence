@@ -1,0 +1,15 @@
+def main(searchValue):
+	numberList = [1,2,3,4,5]
+
+	# Loop through numberList
+		# Check if searchValue is in numberList
+			# return index of searchValue
+	
+	# Return -1 if searchValue is not found
+	return -1
+
+print(main(5))
+print(main(3))
+print(main(1))
+print(main(6))
+print(main(-1))

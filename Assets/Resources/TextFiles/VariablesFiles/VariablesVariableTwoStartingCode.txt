@@ -1,0 +1,13 @@
+# This function has a variable being passed into the function
+# The variable `parameter` will store whatever value is being passed into the function
+# For instance, if the function is being called like `main(5)`
+# the variable `parameter` will hold 5
+def main(parameter):
+	# Assign the value of parameter to a new variable called `numberVariable`
+
+
+	return numberVariable
+
+
+print(main(5))
+print(main(7))

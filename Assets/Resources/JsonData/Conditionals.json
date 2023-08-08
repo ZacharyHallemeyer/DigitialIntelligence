@@ -1,0 +1,78 @@
+﻿{
+  "dirName": "",
+  "path": "Conditionals/",
+  "unlocked": true,
+  "files": [],
+  "directories": [
+    {
+      "dirName": "One",
+      "path": "Conditionals/Chain",
+      "unlocked": false,
+      "files": [],
+      "directories": [
+        {
+          "dirName": "Two",
+          "path": "Conditionals/One/Two",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "Light",
+              "path": "Conditionals/One/Two/Light",
+              "question": "What is the comparison operator for equality",
+              "unlockKeyword": "==",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+            {
+              "dirName": "Three",
+              "path": "Conditionals/One/Two/Three",
+              "unlocked": false,
+              "files": [
+                {
+                  "fileName": "elif",
+                  "path": "Conditionals/One/Two/Three/elif",
+                  "question": "Does the \"else\" statement require a condition to be specified? (Yes or No)",
+                  "unlockKeyword": "No",
+                  "unlocked": false
+                }
+              ],
+              "directories": [
+                {
+                  "dirName": "Four",
+                  "path": "Conditionals/One/Two/Three/Four",
+                  "unlocked": false,
+                  "files": [
+                    {
+                      "fileName": "not",
+                      "path": "Conditionals/One/Two/Three/Four/not",
+                      "question": "Does the \"elif\" statement require a condition to be specified? (Yes or No)",
+                      "unlockKeyword": "Yes",
+                      "unlocked": false
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "dirName": "Five",
+                      "path": "Conditionals/One/Two/Three/Four/Five",
+                      "unlocked": false,
+                      "files": [
+                        {
+                          "fileName": "AI",
+                          "path": "Conditionals/One/Two/Three/Four/Five/AI",
+                          "question": "Can you combine multiple logical operators in a single condition? (Yes or No)",
+                          "unlockKeyword": "Yes",
+                          "unlocked": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

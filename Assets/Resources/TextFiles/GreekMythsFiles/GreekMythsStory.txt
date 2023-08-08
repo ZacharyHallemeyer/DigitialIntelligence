@@ -1,0 +1,11 @@
+<color=#8B0000>  Greek Myths </color>
+
+  Your journey begins within the labyrinthine depths of our terminal interface, where files and directories guard the secrets of the gods. Each challenge will require your coding prowess, a fusion of logic and creativity, to navigate through the enigmatic passages and bring forth the ancient tales.
+
+  As you traverse through directories with commands of "cd," "ls," and "cat," you shall encounter the iconic characters and stories that have shaped the fabric of Greek mythology. From the divine birth of Gaia and Uranus to the daring exploits of Prometheus, the daring adventures of Theseus, and the mysteries of Persephone in the Underworld – they all await your exploration.
+
+  Remember, young coder, that every puzzle you solve unlocks a fragment of these age-old legends. Take heed of the lessons within, as wisdom and wit are your allies on this quest. Be persistent in the face of challenges, for with each step, you draw closer to unraveling the mysteries of the mythical past.
+
+  Embrace the power of your keystrokes and the prowess of your mind, for here, in the realm of the ancient Greeks, you hold the key to the very fabric of the past. The path is set, the code awaits, and the stories yearn to be retold.
+
+  May the gods of coding be with you as you venture forth into this realm of wonder and myth!

@@ -1,0 +1,1 @@
+Variables are not fixed in size or content. They can hold various types of data, such as numbers, text, or even complex data structures like lists and dictionaries.

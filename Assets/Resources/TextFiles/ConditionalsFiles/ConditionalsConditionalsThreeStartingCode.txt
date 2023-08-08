@@ -1,0 +1,15 @@
+def main(parameterNumber):
+
+	# Check if `parameterNumber` is greater than 100
+		# If so, return "Greater than 100"
+	# Otherwise, check if `parameterNumber` is greater than 50 
+		# If so, return "Greater than 50"
+	# Otherwise, check if `parameterNumber` is greater than 25
+		# If so, return "Greater than 25"
+	# Otherwise
+		# return "Less than 25"
+
+print(main(0))
+print(main(101))
+print(main(100))
+print(main(25))

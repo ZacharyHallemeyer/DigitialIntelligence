@@ -1,0 +1,13 @@
+def main(parameterNumber):
+	testingNumber = 5
+	
+	# Check if the `parameterNumber` is less than or equal to `testingNumber`
+	# Store the result in `booleanResult`
+
+
+	# Return the boolean result
+	return booleanResult
+
+print(main(3))
+print(main(5))
+print(main(6))

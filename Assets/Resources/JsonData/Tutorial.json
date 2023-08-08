@@ -1,0 +1,70 @@
+﻿{
+  "dirName": "",
+  "path": "Tutorial/",
+  "unlocked": true,
+  "files": [
+    {
+      "fileName": "InformationFile",
+      "path": "Tutorial/InformationFile",
+      "question": "",
+      "unlockKeyword": "",
+      "unlocked": true
+    },
+    {
+      "fileName": "InformationDirectory",
+      "path": "Tutorial/InformationDirectory",
+      "question": "What is 2 + 2",
+      "unlockKeyword": "4",
+      "unlocked": false
+    }
+  ],
+  "directories": [
+    {
+      "dirName": "LevelOne",
+      "path": "Tutorial/LevelOne",
+      "unlocked": false,
+      "files": [
+        {
+          "fileName": "InformationLevelOne",
+          "path": "Tutorial/LevelOne/InformationLevelOne",
+          "question": "What is the command to move into a directory",
+          "unlockKeyword": "cd",
+          "unlocked": false
+        }
+      ],
+      "directories": [
+        {
+          "dirName": "LevelTwo",
+          "path": "Tutorial/LevelOne/LevelTwo",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "InformationLevelTwo",
+              "path": "Tutorial/LevelOne/LevelTwo/InformationLevelTwo",
+              "question": "What button do you press to exit out of the puzzle and back to the terminal",
+              "unlockKeyword": "exit",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+            {
+              "dirName": "LevelThree",
+              "path": "Tutorial/LevelOne/LevelTwo/LevelThree",
+              "unlocked": false,
+              "files": [
+                {
+                  "fileName": "InformationLevelThree",
+                  "path": "Tutorial/LevelOne/LevelTwo/LevelThree/InformationLevelThree",
+                  "question": "What do you need to a return at the end of the function main?",
+                  "unlockKeyword": "value",
+                  "unlocked": false
+                }
+              ],
+              "directories": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

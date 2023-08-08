@@ -1,0 +1,1 @@
+Giving your variables descriptive names can make your code easier to read and understand. For instance, instead of using x or y, you could use age, name, or total_score

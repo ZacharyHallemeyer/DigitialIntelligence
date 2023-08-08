@@ -1,0 +1,7 @@
+def main(number):
+
+	# Add fibonacci sequence code here
+	
+	return 0 # Remember to return the calculated value
+
+print(main(10))

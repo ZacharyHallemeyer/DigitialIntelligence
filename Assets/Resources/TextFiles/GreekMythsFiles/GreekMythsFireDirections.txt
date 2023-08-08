@@ -1,0 +1,20 @@
+Directions:
+Decrypting a secret message is your mission! Follow these steps:
+1. Examine the encrypted string, character by character.
+2. Replace each character with the one that is 5 places up in the alphabet.
+   - For example, 'a' becomes 'f', and 'z' becomes 'e'.
+3. Continue this process until you've replaced all characters.
+4. The resulting string is your decrypted message.
+5. Remember to return the decrypted string as the final output of your function.
+
+Example:
+Decrypt 'czggj' using the steps above:
+   - 'c' becomes 'h'
+   - 'z' becomes 'e'
+   - 'g' becomes 'l'
+   - 'g' becomes 'l'
+   - 'j' becomes 'o'
+
+So, 'czggj' decrypts to 'hello'.
+
+Now it's your turn! Write a function to decrypt the given encrypted string, following these steps. Good luck!

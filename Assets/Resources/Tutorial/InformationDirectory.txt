@@ -1,0 +1,8 @@
+You just unlocked your first file!
+
+Now that you know how to unlock files. Let's move onto unlock directories!
+
+To unlock a directory simply input the command `solve` with the directory name. For instance if you want to unlock a directory named LockedDir, you would input the below command
+	• solve LockedDir
+ 
+The `solve` commands brings you to a coding puzzle which you will need to solve to unlock the puzzle.

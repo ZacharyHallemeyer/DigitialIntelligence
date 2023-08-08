@@ -1,0 +1,11 @@
+Directions:
+
+Variables are like boxes that you can place items in. Each variable can be named a different name and can store any values. When we say "Variables are like boxes that you can place items in," we're drawing a metaphor to help understand the concept of variables in programming.
+
+In real life, you might use a box to store things like books, clothes, or toys. You might even label these boxes so you know what's inside them without having to look. This way, if you need a book, you can just go to the box labeled "books" and grab what you need.
+
+In programming, variables work in a similar way. A variable is like a box where you can store different kinds of information, which in programming terms, we call data. This could be a number, a word (which we call a "string"), a list of items, and so on.
+
+More specifically, A VARIABLE HOLDS VALUE
+
+For this puzzle, you will need to set a variable to a new value by following directions in the code.

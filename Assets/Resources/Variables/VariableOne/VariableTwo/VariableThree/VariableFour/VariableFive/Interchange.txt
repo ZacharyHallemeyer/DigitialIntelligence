@@ -1,0 +1,1 @@
+Variables are essential for passing data between different parts of your code. They enable communication and cooperation among various functions and components in your program.

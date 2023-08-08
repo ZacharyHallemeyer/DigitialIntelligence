@@ -1,0 +1,22 @@
+﻿[
+  {
+    "name": "Tutorial",
+    "storyPath": "TextFiles/TutorialFiles/TutorialStory",
+    "notesPath": "TextFiles/TutorialFiles/TutorialNotes"
+  },
+  {
+    "name": "Greek Myths",
+    "storyPath": "TextFiles/GreekMythsFiles/GreekMythsStory",
+    "notesPath": "TextFiles/GreekMythsFiles/GreekMythsNotes"
+  },
+  {
+    "name": "Conditionals",
+    "storyPath": "TextFiles/ConditionalsFiles/ConditionalsStory",
+    "notesPath": "TextFiles/ConditionalsFiles/ConditionalsNotes"
+  },
+  {
+    "name": "Variables",
+    "storyPath": "TextFiles/VariablesFiles/VariablesStory",
+    "notesPath": "TextFiles/VariablesFiles/VariablesNotes"
+  }
+]

@@ -1,0 +1,23 @@
+def main(parameter):
+	# Create a variable called `numberVariable` 
+	# Set `numberVariable` to the value in `parameter`
+
+	print(numberVariable)
+
+	# Add the value in `parameter` to `numberVariable`
+
+	print(numberVariable)
+
+	# Multiply the value in `numberVariable` by 5
+
+	print(numberVariable)
+
+	# Divide the value in `numberVariable` by 2
+
+	print(numberVariable)
+
+	return numberVariable
+
+main(10)
+main(20)
+main(-5)

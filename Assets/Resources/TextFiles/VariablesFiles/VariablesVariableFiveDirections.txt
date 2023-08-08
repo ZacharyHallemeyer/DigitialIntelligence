@@ -1,0 +1,17 @@
+Directions:
+Variables can also hold a datatype known as lists. Lists are collections of items that are ordered and changeable. For instance, a variable can hold a list of numbers: [1, 2, 3, 4, 5].
+
+Examples of Lists:
+
+listVariable = [1, 2, 3, 4, 5]
+print(listVariable) # This will print [1, 2, 3, 4, 5]
+
+Lists can be modified and manipulated with Python code. A basic way to do this is to add two lists with +, which combines the lists into one.
+
+Examples of list combination:
+
+firstList = [1, 2, 3]
+secondList = [4, 5, 6]
+print(firstList + secondList) # Prints [1, 2, 3, 4, 5, 6]
+
+For this puzzle, you will have to follow the directions in the code. You will need to combine two lists and return the combined list.
