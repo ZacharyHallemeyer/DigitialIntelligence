@@ -1,74 +1,74 @@
 ﻿{
   "dirName": "",
-  "path": "Variables/",
+  "path": "Loops/",
   "unlocked": true,
   "files": [],
   "directories": [
     {
-      "dirName": "VariableOne",
-      "path": "Variables/VariableOne",
+      "dirName": "One",
+      "path": "Loops/One",
       "unlocked": false,
       "files": [
         {
-          "fileName": "Container",
-          "path": "Variables/VariableOne/VariableOne",
-          "question": "What does a variable hold? (one word)",
-          "unlockKeyword": "value",
+          "fileName": "Infinity",
+          "path": "Loops/One/Infinity",
+          "question": "What type of loop is used to iterate over sequences like lists or strings? (one word response)",
+          "unlockKeyword": "for",
           "unlocked": false
         }
       ],
       "directories": [
         {
-          "dirName": "VariableTwo",
-          "path": "Variables/VariableOne/VariableTwo",
+          "dirName": "Two",
+          "path": "Loops/One/Two",
           "unlocked": false,
           "files": [
             {
-              "fileName": "Dynamic",
-              "path": "Variables/VariableOne/VariableTwo/Dynamic",
-              "question": "What can a parameter be thought as? (one word)",
-              "unlockKeyword": "variable",
+              "fileName": "Range",
+              "path": "Loops/One/Two/Range",
+              "question": "What's the keyword to define a block of code that repeats while a condition is true? (one word response)",
+              "unlockKeyword": "while",
               "unlocked": false
             }
           ],
           "directories": [
             {
-              "dirName": "VariableThree",
-              "path": "Variables/VariableOne/VariableTwo/VariableThree",
+              "dirName": "Three",
+              "path": "Loops/One/Two/Three",
               "unlocked": false,
               "files": [
                 {
-                  "fileName": "Naming",
-                  "path": "Variables/VariableOne/VariableTwo/VariableThree/Naming",
-                  "question": "What is the assignment operator for subtracting a value from a variable?",
-                  "unlockKeyword": "-=",
+                  "fileName": "Debug",
+                  "path": "Loops/One/Two/Three/Debug",
+                  "question": "Can for loops do everything a while loop can? (Yes or No)",
+                  "unlockKeyword": "No",
                   "unlocked": false
                 }
               ],
               "directories": [
                 {
-                  "dirName": "VariableFour",
-                  "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour",
+                  "dirName": "Four",
+                  "path": "Loops/One/Two/Three/Four",
                   "unlocked": false,
                   "files": [
                     {
-                      "fileName": "Scope",
-                      "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour/Scope",
-                      "question": "Can you concatenate two strings together? (Yes or No)",
-                      "unlockKeyword": "Yes",
+                      "fileName": "ForVsWhile",
+                      "path": "Loops/One/Two/Three/Four/ForVsWhile",
+                      "question": "Do while loops execute their block of code at least once? (Yes or No)",
+                      "unlockKeyword": "No",
                       "unlocked": false
                     }
                   ],
                   "directories": [
                     {
-                      "dirName": "VariableFive",
-                      "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour/VariableFive",
+                      "dirName": "Five",
+                      "path": "Loops/One/Two/Three/Four/Five",
                       "unlocked": false,
                       "files": [
                         {
-                          "fileName": "Interchange",
-                          "path": "Variables/VariableOne/VariableTwo/VariableThree/VariableFour/VariableFive/Interchange",
-                          "question": "Can you concatenate two lists together? (Yes or No)",
+                          "fileName": "IfVsWhile",
+                          "path": "Loops/One/Two/Three/Four/Five/IfVsWhile",
+                          "question": "Can you use an if statement inside a loop? (Yes or No)",
                           "unlockKeyword": "Yes",
                           "unlocked": false
                         }

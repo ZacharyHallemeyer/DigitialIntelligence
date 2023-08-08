@@ -531,21 +531,38 @@ public class Terminal : MonoBehaviour
         {
             return;
         }
+        
+        if(GameManager.currentDirectory.files.Count > 0)
+        {
+            PrintLineToTerminal($"<color={plainTextColor}>Files</color>", false);
+            PrintLineToTerminal($"<color={plainTextColor}>====================================</color>", false);
+        }
 
         // Print files of current directory
-        foreach(FileData fileData in GameManager.currentDirectory.files)
+        foreach (FileData fileData in GameManager.currentDirectory.files)
         {
             // Check if file is locked
             if(!fileData.unlocked)
             {
-                PrintLineToTerminal($"<color={lockedFileColor}>{fileData.fileName}.txt</color>", false);
+                PrintLineToTerminal($"<color={lockedFileColor}>{fileData.fileName}.txt: Locked(use hint {fileData.fileName} and unlock {fileData.fileName} commands)</color>", false);
             }
             // Otherwise, the file is unlocked
             else
             {
-                PrintLineToTerminal($"<color={unlockedFileColor}>{fileData.fileName}.txt</color>", false);
+                PrintLineToTerminal($"<color={unlockedFileColor}>{fileData.fileName}.txt: Unlocked (use cat {fileData.fileName} command)</color>", false);
             }
 
+        }
+
+        if (GameManager.currentDirectory.files.Count > 0)
+        {
+            PrintLineToTerminal($"<color={plainTextColor}>====================================\n\n</color>", false);
+        }
+
+        if(GameManager.currentDirectory.directories.Count > 0)
+        {
+            PrintLineToTerminal($"<color={plainTextColor}>Directories</color>", false);
+            PrintLineToTerminal($"<color={plainTextColor}>====================================</color>", false);
         }
 
         // Print child directories of current directory
@@ -557,13 +574,18 @@ public class Terminal : MonoBehaviour
             // Check if directory is locked
             if(!dirData.unlocked)
             {
-                PrintLineToTerminal($"<color={lockedDirectoryColor}>{dirName}</color>", false);
+                PrintLineToTerminal($"<color={lockedDirectoryColor}>{dirName}: Locked (use solve {dirName} to unlock directory)</color>", false);
             }
             // Otherwise, the directory is unlocked
             else
             {
-                PrintLineToTerminal($"<color={directoryColor}>{dirName}</color>", false);
+                PrintLineToTerminal($"<color={directoryColor}>{dirName}: Unlocked (use cd {dirName} to move into directory)</color>", false);
             }
+        }
+
+        if (GameManager.currentDirectory.directories.Count > 0)
+        {
+            PrintLineToTerminal($"<color={plainTextColor}>====================================</color>", false);
         }
     }
 

@@ -15,6 +15,11 @@
     "notesPath": "TextFiles/ConditionalsFiles/ConditionalsNotes"
   },
   {
+    "name": "Loops",
+    "storyPath": "TextFiles/LoopsFiles/loopsStory",
+    "notesPath": "TextFiles/LoopsFiles/loopsNotes"
+  },
+  {
     "name": "Variables",
     "storyPath": "TextFiles/VariablesFiles/VariablesStory",
     "notesPath": "TextFiles/VariablesFiles/VariablesNotes"

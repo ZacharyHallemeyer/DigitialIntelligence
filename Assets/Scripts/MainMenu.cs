@@ -95,12 +95,18 @@ public class MainMenu : MonoBehaviour
         settingsContainer.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets color container to active and slider container to inactive
+    /// </summary>
     public void ColorButtonClick()
     {
         sliderContainer.SetActive(false);
         colorContainer.SetActive(true);
     }
 
+    /// <summary>
+    /// Sets color container to inactive and slider container to active
+    /// </summary>
     public void ColorBackButtonClick()
     {
         colorContainer.SetActive(false);
@@ -132,6 +138,9 @@ public class MainMenu : MonoBehaviour
 
     // ============================== NAVIGATION ============================== //
 
+    /// <summary>
+    /// Hides main menu UI and shows level section
+    /// </summary>
     public void MoveToLevelScreen()
     {
         // Hide Main Menu screen
@@ -143,6 +152,11 @@ public class MainMenu : MonoBehaviour
 
     // ============================== DATA ============================== //
 
+    /// <summary>
+    /// Creates a section for levels
+    /// A button is created for every level in the puzzle.json file 
+    /// THe button contains both puzzle index and puzzle name
+    /// </summary>
     private void CreateLevelMenu()
     {
         GridLayoutGroup gridLayoutGroup = levelScrollRect.content.GetComponent<GridLayoutGroup>();

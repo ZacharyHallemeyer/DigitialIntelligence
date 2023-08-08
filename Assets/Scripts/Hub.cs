@@ -124,12 +124,18 @@ public class Hub : MonoBehaviour
         ShowHub();
     }
 
+    /// <summary>
+    /// Sets color container to active and slider container to inactive 
+    /// </summary>
     public void ColorButtonClick()
     {
         colorContainer.SetActive(true);
         sliderContainer.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets slider container to active and color container to inactive 
+    /// </summary>
     public void ColorBackButtonClick()
     {
         sliderContainer.SetActive(true);
@@ -148,17 +154,26 @@ public class Hub : MonoBehaviour
         HideHub();
     }
 
+    /// <summary>
+    /// Sets hub object to active
+    /// </summary>
     public void ShowHub()
     {
         SetFontSize();   
         gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Sets hub object to inactive
+    /// </summary>
     public void HideHub()
     {
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets the font size for story/notes
+    /// </summary>
     private void SetFontSize()
     {
         infoText.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.HUB_FONT_SIZE, 15);

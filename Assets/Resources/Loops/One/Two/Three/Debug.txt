@@ -1,0 +1,1 @@
+Adding print statements inside loops helps you trace their progress and see how your program behaves as it loops. It's like leaving breadcrumbs in a magical forest

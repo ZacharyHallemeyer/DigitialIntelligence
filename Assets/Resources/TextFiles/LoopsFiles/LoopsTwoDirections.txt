@@ -19,3 +19,5 @@ while(count <= limit):
 	count += 1
 
 For this puzzle, the main function will accept a parameter called `searchValue` and has a list called `numberList`. You will need to check if `searchValue` is an element in the `numberList`. If the `searchValue` exists in `numberList`, you need to return the index of the `searchValue`. If `searchValue` does not exist in `numberList`, you need to return -1
+
+To get the length of a list use the function len(), so if we do len(numberList) we get 5.

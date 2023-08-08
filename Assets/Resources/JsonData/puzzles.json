@@ -317,8 +317,150 @@
 
 
   {
-    "puzzleName": "Greek Myths",
+    "puzzleName": "Loops",
     "index": 3,
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "0",
+            "answer": "0"
+          },
+          {
+            "problem": "1",
+            "answer": "0"
+          },
+          {
+            "problem": 2,
+            "answer": 1
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": 20,
+            "answer": 190
+          }
+        ],
+        "startingCode": "TextFiles/LoopsFiles/LoopsOneStartingCode",
+        "directions": "TextFiles/LoopsFiles/LoopsOneDirections",
+        "puzzleName": "One",
+        "puzzleIndex": 0
+      },
+      {
+        "testCases": [
+          {
+            "problem": 5,
+            "answer": 4
+          },
+          {
+            "problem": 6,
+            "answer": -1
+          },
+          {
+            "problem": 1,
+            "answer": 0
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": 57,
+            "answer": -1
+          }
+        ],
+        "startingCode": "TextFiles/LoopsFiles/LoopsTwoStartingCode",
+        "directions": "TextFiles/LoopsFiles/LoopsTwoDirections",
+        "puzzleName": "Two",
+        "puzzleIndex": 1
+      },
+      {
+        "testCases": [
+          {
+            "problem": 0,
+            "answer": 1
+          },
+          {
+            "problem": 1,
+            "answer": 1
+          },
+          {
+            "problem": 3,
+            "answer": 6
+          },
+          {
+            "problem": 4,
+            "answer": 24
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": 5,
+            "answer": 120
+          }
+        ],
+        "startingCode": "TextFiles/LoopsFiles/LoopsThreeStartingCode",
+        "directions": "TextFiles/LoopsFiles/LoopsThreeDirections",
+        "puzzleName": "Three",
+        "puzzleIndex": 2
+      },
+      {
+        "testCases": [
+          {
+            "problem": "2, 10",
+            "answer": "1024"
+          },
+          {
+            "problem": "5, 5",
+            "answer": "3125"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "1, 1",
+            "answer": "1"
+          },
+          {
+            "problem": "5, 6",
+            "answer": "15625"
+          }
+        ],
+        "startingCode": "TextFiles/LoopsFiles/LoopsFourStartingCode",
+        "directions": "TextFiles/LoopsFiles/LoopsFourDirections",
+        "puzzleName": "Four",
+        "puzzleIndex": 3
+      },
+      {
+        "testCases": [
+          {
+            "problem": "1",
+            "answer": "*"
+          },
+          {
+            "problem": "5",
+            "answer": "*****\n*****\n*****\n*****\n*****\n"
+          },
+          {
+            "problem": "6",
+            "answer": "******\n******\n******\n******\n******\n"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "10",
+            "answer": "**********\n**********\n**********\n**********\n**********\n**********\n**********\n**********\n**********\n**********\n"
+          }
+        ],
+        "startingCode": "TextFiles/LoopsFiles/LoopsFiveStartingCode",
+        "directions": "TextFiles/LoopsFiles/LoopsFiveDirections",
+        "puzzleName": "Five",
+        "puzzleIndex": 4
+      }
+    ]
+  },
+
+
+  {
+    "puzzleName": "Greek Myths",
+    "index": 4,
     "puzzles": [
       {
         "testCases": [

@@ -85,41 +85,44 @@ public class Settings : MonoBehaviour
         audioManager.SetSoundEffectVolume();
     }
 
-    // Sets sound effects volume and preferences to value in sound effects slider
+    // Sets the player pref for hub font size
     public virtual void SetHubFontSize()
     {
         PlayerPrefs.SetFloat("HubFontSize", hubFSSlider.value);
     }
 
-    // Sets sound effects volume and preferences to value in sound effects slider
+    // Sets the player pref for terminal font size
     public virtual void SetTerminalFontSize()
     {
         PlayerPrefs.SetFloat("TerminalFontSize", terminalFSSlider.value);
     }
 
-    // Sets sound effects volume and preferences to value in sound effects slider
+    // Sets the player pref for console font size
     public virtual void SetConsoleFontSize()
     {
         PlayerPrefs.SetFloat("PuzzleConsoleFontSize", consoleFSSlider.value);
     }
 
-    // Sets sound effects volume and preferences to value in sound effects slider
+    // Sets the player pref for directions font size
     public virtual void SetDirectionsFontSize()
     {
         PlayerPrefs.SetFloat("PuzzleDirectionsFontSize", directionFSSlider.value);
     }
 
-    // Sets sound effects volume and preferences to value in sound effects slider
+    // Sets the player pref for code font size
     public virtual void SetCodeFontSize()
     {
         PlayerPrefs.SetFloat("PuzzleCodeFontSize", codeFSSlider.value);
     }
 
+    // Calls SetHexColor
     public virtual void SetColors()
     {
         SetHexColor();
     }
 
+    // Sets the player pref for colors for terminal and puzzle
+    // It is called when a hex field input field is exitted
     public virtual void SetHexColor()
     {
         if(IsHexCode(terminalPlainColorInput.text))
@@ -255,7 +258,8 @@ public class Settings : MonoBehaviour
         }
 
     }
-
+    
+    // Check if a inputted hex code is a valid hex code
     public static bool IsHexCode(string input)
     {
         // Regular expression pattern for hex code (#RRGGBB or #AARRGGBB)
@@ -265,6 +269,7 @@ public class Settings : MonoBehaviour
         return Regex.IsMatch(input, pattern);
     }
 
+    // Converts hex code string to a Color data type
     public static Color HexToColor(string hex)
     {
         Color color = Color.black;
