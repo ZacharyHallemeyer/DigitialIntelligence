@@ -384,14 +384,12 @@ public class Puzzle : MonoBehaviour
             caretPosX--;
         }
         // Otherwise
-        //else if (caretPosX <= 0)
-        else 
+        else  if (caretPosY - 1 >= 0)
         {
             // Move to the end up the current line if the current line is not the first line
-            if(caretPosY != 0)
-                caretPosX = inputText[caretPosY - 1].Length;
-            // Move to line up
-            HandleUpArrow();
+            RemoveCaretFromLine(caretPosY);
+            caretPosY--;
+            caretPosX = inputText[caretPosY].Length - 1;
         }
 
         ColorizeCurrentLine(true);
@@ -423,19 +421,29 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     private void HandleCtrlLeftArrow()
     {
-        // Check if moving leff will be out of bounds
-        if (caretPosX <= 0)
+        // Check if moving left will be out of bounds
+        if (caretPosX - 1 < 0)
         {
             HandleLeftArrow();
             return;
         }
-        
+
         // Find next space to the left and move to it
+        int oldPos = caretPosX;
         caretPosX = inputText[caretPosY].LastIndexOf(' ', caretPosX - 1);
 
-        // If there is no space found to the left, move to start of line
+        // If there is no space found to the left
         if (caretPosX == -1)
-            caretPosX = 0;
+        {
+            // move to next tab on left 
+            caretPosX = inputText[caretPosY].LastIndexOf('\t', oldPos - 1);
+
+            // If there is no tab found to the left, move to start of line
+            if (caretPosX == -1)
+            {
+                caretPosX = 0;
+            }
+        }
 
         ColorizeCurrentLine(true);
         DisplayText();
@@ -466,19 +474,25 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     private void HandleRightArrow()
     {
+        Debug.Log(inputText[caretPosY].Length + ": |" + inputText[caretPosY] + "|");
+
         // Check if moving right will be within range
-        if (caretPosX + 1 <= inputText[caretPosY].Length)
+        if (caretPosX + 1 < inputText[caretPosY].Length)
         {
             // Move right
             caretPosX++;
         }
-        // Otherwise
-        //else if (caretPosX + 1 >= inputText[caretPosY].Length)
-        else
+        else if (caretPosY == inputText.Count - 1)
         {
-            // Move to line down
-            HandleDownArrow();
-            return;
+            caretPosX = inputText[caretPosY].Length;
+        }
+        // Otherwise, Move to line down if there is a line to move to
+        else if (caretPosY + 1 <  inputText.Count)
+        {
+            // Move to the next line and set caret to the start of the line
+            RemoveCaretFromLine(caretPosY);
+            caretPosY++;
+            caretPosX = 0;
         }
 
         ColorizeCurrentLine(true);
@@ -513,20 +527,27 @@ public class Puzzle : MonoBehaviour
         if (caretPosX + 1 >= inputText[caretPosY].Length)
         {
             // Move to next line
-            HandleDownArrow();
+            HandleRightArrow();
             return;
         }
-        
+
         // Find next space
-        int nextSpace = inputText[caretPosY].IndexOf(' ', caretPosX+1);
+        int oldPos = caretPosX;
+        caretPosX = inputText[caretPosY].IndexOf(' ', caretPosX+1);
 
         // If there is no space found, move to the end of line
-        if (nextSpace == -1 || nextSpace == caretPosX)
-            caretPosX = inputText[caretPosY].Length;
-        // Otherwise, move to space
-        else
-            caretPosX = nextSpace;
-            
+        if (caretPosX == -1)
+        {
+            // move to next tab on right 
+            caretPosX = inputText[caretPosY].IndexOf('\t', oldPos + 1);
+
+            // If there is no tab found to the right, move to end of line
+            if (caretPosX == -1)
+            {
+                caretPosX = inputText[caretPosY].Length - 1;
+            }
+
+        }
 
         ColorizeCurrentLine(true);
         DisplayText();
@@ -876,6 +897,7 @@ public class Puzzle : MonoBehaviour
     {
         // Insert character at caret and increment caret X position
         inputText[caretPosY] = inputText[caretPosY].Insert(caretPosX, character.ToString());
+
         caretPosX++;
         ColorizeCurrentLine(true);
         DisplayText();
