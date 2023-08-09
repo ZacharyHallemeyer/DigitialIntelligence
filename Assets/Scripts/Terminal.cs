@@ -613,6 +613,8 @@ public class Terminal : MonoBehaviour
                 {
                     // Move to new directory
                     GameManager.currentDirectory = dirData;
+                    AudioManager.instance.PlaySuccessSoundEffect();
+                    PrintLineToTerminal($"<color={successColor}>Successfully moved into directory {dirData.dirName}</color>", false);
                 }
                 else
                 {
