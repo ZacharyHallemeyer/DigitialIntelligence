@@ -84,6 +84,8 @@ public class Terminal : MonoBehaviour
     {
         if(Input.anyKeyDown)
         {
+
+
             // Check if input is down arrow
             if(Input.GetKeyDown(KeyCode.DownArrow))
             {

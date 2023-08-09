@@ -87,11 +87,11 @@ public class Puzzle : MonoBehaviour
     // UI Components
         // Containers
     public GameObject directionsContainer;
-    public GameObject clueContainer;
     public RectTransform viewport;
 
     // Transforms
     public RectTransform lineNumberRect;
+    public RectTransform coloredCodeRect;
         // Text Components
     public TMP_Text coloredCodeDisplay; // This text component displays the colored text
     public TMP_Text lineNumDisplay;
@@ -180,6 +180,15 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // Check for change in input field scroll position
+        Vector2 newInputPosition = coloredCodeRect.anchoredPosition;
+        if (lastInputPosition != newInputPosition)
+        {
+            // Update last input position and trigger scroll event
+            lastInputPosition = newInputPosition;
+            OnScroll(newInputPosition);
+        }
+
         if (Input.anyKey)
         {
             // Check if input is down arrow
@@ -264,6 +273,16 @@ public class Puzzle : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// OnScroll is called when the input field is scrolled.
+    /// It updates the position of the line numbers to match the scroll position.
+    /// </summary>
+    /// <param name="scrollPosition">The new scroll position.</param>
+    private void OnScroll(Vector2 scrollPosition)
+    {
+        lineNumberRect.anchoredPosition = new Vector2(scrollPosition.x, scrollPosition.y - 150);
     }
 
     // ========================= Python Emulator ========================= //
@@ -1166,6 +1185,10 @@ public class Puzzle : MonoBehaviour
         float caretWidth = widthDisplay.preferredWidth;
         float caretHeight = lineHeight * caretPosY;
 
+
+        Debug.Log("viewport: " + viewportWidth + ", " + viewportHeight);
+        Debug.Log("display: " + displayPositionX + ", " + displayPositionY);
+        return;
 
         // Check if caret is in viewport in y axis
         if (displayPositionY <= caretHeight && (displayPositionY + viewportHeight - caretHeight) >= caretHeight)
