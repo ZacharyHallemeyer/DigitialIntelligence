@@ -1,6 +1,10 @@
 def main(length):
 
 	squareString = ""
+	
+	# Use a nested loop (a loop inside of a loop)
+	
+		# Add a new line character ("\n") after each row 
 
 
 	return squareString

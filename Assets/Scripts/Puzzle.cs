@@ -557,9 +557,12 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     private void HandleReturn()
     {
+        // Get indent of current line
+        string indent = GetIndent(inputText[caretPosY]);
+
         // Add new lines
-        inputText.Insert(caretPosY + 1, "");
-        coloredText.Insert(caretPosY + 1, "");
+        inputText.Insert(caretPosY + 1, indent);
+        coloredText.Insert(caretPosY + 1, indent);
 
         ColorizeCurrentLine(false);
         DisplayText();
@@ -576,7 +579,7 @@ public class Puzzle : MonoBehaviour
 
         // Set caret position
         caretPosY++;
-        caretPosX = 0;
+        caretPosX = 0 + indent.Length;
 
         ColorizeCurrentLine(true);
         DisplayText();
@@ -1477,6 +1480,30 @@ public class Puzzle : MonoBehaviour
         caretPosY = oldCaretY;
         ColorizeCurrentLine(true);
         DisplayText();
+    }
+
+    private string GetIndent(string line)
+    {
+        string indent = "";
+        int index = 0;
+        bool indentEnded = false;
+
+        while( index < line.Length && !indentEnded)
+        {
+            // Check if current char is tab
+            if (line[index] == '\t' )
+            {
+                indent += '\t';
+            }
+            else
+            {
+                indentEnded = true;
+            }
+
+            index++;
+        }
+
+        return indent;
     }
 
 }

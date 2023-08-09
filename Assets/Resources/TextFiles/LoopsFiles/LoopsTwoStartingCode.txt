@@ -1,5 +1,12 @@
 def main(searchValue):
 	numberList = [1,2,3,4,5]
+	
+	print(numberList[0])
+	print(numberList[1])
+	print(numberList[2])
+	print(numberList[3])
+	print(numberList[4])
+	
 	# use len(numberList) to get length of list and store it in a variable
 
 	# Loop through numberList with a while loop 
