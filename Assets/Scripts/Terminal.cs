@@ -686,6 +686,7 @@ public class Terminal : MonoBehaviour
         }
     }
 
+    // Unlocks directories (for dev purposes)
     private void HandleDevUnlock(string line)
     {
         // Check if syntax is incorrect
@@ -796,7 +797,7 @@ public class Terminal : MonoBehaviour
     /// </summary>
     public void HideTerminal()
     {
-        GameManager.terminalUI.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void GoToHub()
