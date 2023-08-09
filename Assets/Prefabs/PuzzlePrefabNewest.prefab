@@ -291,6 +291,7 @@ MonoBehaviour:
   viewport: {fileID: 1566224766320966152}
   lineNumberRect: {fileID: 118615744745817177}
   coloredCodeDisplay: {fileID: 3492477017586277857}
+  lineNumDisplay: {fileID: 118615744276895097}
   emuConsole: {fileID: 118615744768775421}
   directionsDisplay: {fileID: 118615743996305039}
   widthDisplay: {fileID: 4352416677820011909}
@@ -306,19 +307,21 @@ MonoBehaviour:
   recolorAllText: 0
   lineMarginY: 0
   pythonFunctions: []
-  functionColor: '#00FFFF'
   inputText: []
   coloredText: []
   caretPosX: 0
   caretPosY: 0
   processingInput: 0
   initialProcessingDelay: 0.25
-  processingDelay: 0.1
-  caret: <color=#0000FF>|</color>
   lineHeight: 0
   scrollPadding: 0
+  processingDelay: 0.1
   pythonOutput: 
   unsolvedImagePath: PuzzleImages/Unsolved
+  caret: <color=#0000FF>|</color>
+  keywordColor: 
+  functionColor: '#00FFFF'
+  stringColor: 
 --- !u!1 &118615744006888454
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000052452087, y: 0.0001844044}
+  m_AnchoredPosition: {x: 0.0000052452087, y: 0.00037860344}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &118615744170898234
@@ -3459,7 +3462,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 118615745147699825}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99941856
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5005,7 +5008,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7646118582941216101}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.6784566
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

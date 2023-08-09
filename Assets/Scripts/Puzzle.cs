@@ -94,6 +94,7 @@ public class Puzzle : MonoBehaviour
     public RectTransform lineNumberRect;
         // Text Components
     public TMP_Text coloredCodeDisplay; // This text component displays the colored text
+    public TMP_Text lineNumDisplay;
     public TMP_Text emuConsole;
     public TMP_Text directionsDisplay;
     public TMP_Text widthDisplay;
@@ -474,14 +475,13 @@ public class Puzzle : MonoBehaviour
     /// </summary>
     private void HandleRightArrow()
     {
-        Debug.Log(inputText[caretPosY].Length + ": |" + inputText[caretPosY] + "|");
-
         // Check if moving right will be within range
         if (caretPosX + 1 < inputText[caretPosY].Length)
         {
             // Move right
             caretPosX++;
         }
+        // Fixes weird but where the last line has one less of a length than it should have
         else if (caretPosY == inputText.Count - 1)
         {
             caretPosX = inputText[caretPosY].Length;
@@ -1472,8 +1472,9 @@ public class Puzzle : MonoBehaviour
     {
         directionsDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15);
         widthDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
-        coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         emuConsole.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
+        coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        lineNumDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         SetColorSize();
     }
 
