@@ -88,6 +88,7 @@ public class Puzzle : MonoBehaviour
         // Containers
     public GameObject directionsContainer;
     public RectTransform viewport;
+    public ScrollRect coloredScrollRect;
 
     // Transforms
     public RectTransform lineNumberRect;
@@ -272,6 +273,9 @@ public class Puzzle : MonoBehaviour
                     HandleTextInput(inputChar);
                 }
             }
+
+            
+
         }
     }
 
@@ -282,7 +286,7 @@ public class Puzzle : MonoBehaviour
     /// <param name="scrollPosition">The new scroll position.</param>
     private void OnScroll(Vector2 scrollPosition)
     {
-        lineNumberRect.anchoredPosition = new Vector2(scrollPosition.x, scrollPosition.y - 150);
+        lineNumberRect.anchoredPosition = new Vector2(lineNumberRect.anchoredPosition.x, scrollPosition.y - 150);
     }
 
     // ========================= Python Emulator ========================= //
@@ -1171,60 +1175,7 @@ public class Puzzle : MonoBehaviour
     {
         // Set text component to text in coloredText
         coloredCodeDisplay.text = string.Join("\n", coloredText);
-        AdjustViewport();
-    }
-
-    private void AdjustViewport()
-    {
-        // Adjust the scroll view to show the bottom of the text
-        float viewportHeight = viewport.rect.height;
-        float viewportWidth = viewport.rect.width;
-        float displayPositionY = coloredCodeDisplay.rectTransform.anchoredPosition.y;
-        float displayPositionX = coloredCodeDisplay.rectTransform.anchoredPosition.x;
-
-        float caretWidth = widthDisplay.preferredWidth;
-        float caretHeight = lineHeight * caretPosY;
-
-
-        Debug.Log("viewport: " + viewportWidth + ", " + viewportHeight);
-        Debug.Log("display: " + displayPositionX + ", " + displayPositionY);
-        return;
-
-        // Check if caret is in viewport in y axis
-        if (displayPositionY <= caretHeight && (displayPositionY + viewportHeight - caretHeight) >= caretHeight)
-        {
-        }
-        // Otherwise, adjust viewport to show caret
-        else
-        {
-            coloredCodeDisplay.rectTransform.anchoredPosition = new Vector2(coloredCodeDisplay.rectTransform.anchoredPosition.x, caretHeight);
-        }
-
-        return;
-
-        // Check if caret is in viewport in x axis
-        widthDisplay.text = coloredText[caretPosY].Substring(0, coloredText[caretPosY].IndexOf(caret));
-
-        if (caretWidth <= viewportWidth && displayPositionX <= caretWidth)
-        {
-            Debug.Log("Shown X");
-        }
-        else
-        {
-            coloredCodeDisplay.rectTransform.anchoredPosition = new Vector2(caretWidth, coloredCodeDisplay.rectTransform.anchoredPosition.y);
-            Debug.Log("Hidden X");
-        }
-
-
-
-        return;
-
-        // Check if the content height exceeds the viewport height
-        Debug.Log("Height: " + coloredCodeDisplay.preferredHeight + ", viewport: " + viewportHeight + ", Anchored Position: " + displayPositionY);
-        if (coloredCodeDisplay.preferredHeight >= viewportHeight - scrollPadding)
-        {
-            coloredCodeDisplay.rectTransform.anchoredPosition = new Vector2(0, coloredCodeDisplay.preferredHeight - viewportHeight + scrollPadding);
-        }
+        GetCaretXPosition();
     }
 
     /// <summary>
@@ -1367,7 +1318,8 @@ public class Puzzle : MonoBehaviour
             ColorizeCurrentLine(false);
             caretPosY++;
         }
-        caretPosY--;
+        //caretPosY--;
+        caretPosY = 0;
         ColorizeCurrentLine(true);
         DisplayText();
 
@@ -1552,4 +1504,96 @@ public class Puzzle : MonoBehaviour
         return indent;
     }
 
+    private void GetCaretXPosition()
+    {
+        float positionX = 0;
+
+
+        string[] lines = coloredCodeDisplay.text.Split('\n');
+        string line = lines[caretPosY + 1];
+        TMP_TextInfo textInfo = coloredCodeDisplay.textInfo;
+        TMP_LineInfo lineInfo = textInfo.lineInfo[caretPosY];
+
+        int index = lineInfo.firstCharacterIndex;
+        int caretIndex = caretPosX + index;
+
+        TMP_CharacterInfo caretInfo = textInfo.characterInfo[caretIndex];
+        float charXPosition = caretInfo.bottomLeft.x;
+
+        Vector3 worldPosition = coloredCodeDisplay.transform.TransformPoint(caretInfo.bottomLeft);
+
+
+        float longestLine = GetLongestLineWidth(coloredCodeDisplay);
+        float height = coloredCodeDisplay.textInfo.lineCount * lineHeight;
+
+
+        // Normalized caret x position for a given line
+        float characterWidth = lineInfo.width / inputText[caretPosY].Length;
+        float normalizedX = Normalize(characterWidth * caretPosX, 0, lineInfo.width);
+
+        // Normalized caret x position for entire text box
+        //normalizedX = Normalize(characterWidth * caretPosX, 0, longestLine);
+        float caretXPos = GetCaretX();
+        if(caretXPos >= 840)
+        {
+            //normalizedX = Normalize(GetCaretX(), 0, longestLine);
+            normalizedX = Normalize(GetCaretX(), 0, lineInfo.width);
+
+            if( normalizedX < .25)
+            {
+                normalizedX = 0;
+            }
+            coloredScrollRect.horizontalNormalizedPosition = normalizedX;
+        }
+        else
+        {
+            coloredScrollRect.horizontalNormalizedPosition = 0;
+        }
+        
+
+        //coloredScrollRect.verticalNormalizedPosition = 0f;
+    }
+
+    public float Normalize(float value, float min, float max)
+    {
+        if (max == min || value == max)
+        {
+            // Avoid division by zero.
+            // Return 0 (or another default value) or handle this scenario differently depending on the context.
+            return 0;
+        }
+
+        if(((value - min) / (max - min)) > .95)
+        {
+            return 1;
+        }
+
+        return (value - min) / (max - min);
+    }
+
+    private float GetCaretX()
+    {
+        widthDisplay.text = inputText[caretPosY].Substring(0, caretPosX);
+
+        return widthDisplay.preferredWidth;
+    }
+
+    float GetLongestLineWidth(TMP_Text textComponent)
+    {
+        // Ensure the text info is updated
+        textComponent.ForceMeshUpdate();
+
+        float longestWidth = 0;
+        TMP_TextInfo textInfo = coloredCodeDisplay.textInfo;
+
+        for(int index = 0; index < textInfo.lineCount; index++)
+        {
+            TMP_LineInfo lineInfo = textInfo.lineInfo[index];
+
+            if (lineInfo.width > longestWidth)
+                longestWidth = lineInfo.width;
+        }
+
+        return longestWidth;
+    }
 }
