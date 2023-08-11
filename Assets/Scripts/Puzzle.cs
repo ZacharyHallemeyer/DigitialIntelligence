@@ -93,6 +93,7 @@ public class Puzzle : MonoBehaviour
     // Transforms
     public RectTransform lineNumberRect;
     public RectTransform coloredCodeRect;
+    public RectTransform codeScrollRect;
         // Text Components
     public TMP_Text coloredCodeDisplay; // This text component displays the colored text
     public TMP_Text lineNumDisplay;
@@ -125,6 +126,11 @@ public class Puzzle : MonoBehaviour
     public int caretPosX = 0;
     public int caretPosY = 0;
 
+    public float codeFieldWidth;
+    public float codeFieldHeight;
+    public float verticalViewTop;
+    public float verticalViewBottom;
+
     public bool processingInput = false;
     public float initialProcessingDelay = .05f;
     public float lineHeight;
@@ -141,6 +147,9 @@ public class Puzzle : MonoBehaviour
     public string keywordColor;
     public string functionColor = "#00FFFF";
     public string stringColor;
+
+    public float verticalBuffer = 230;
+    public int lineHeightScaler = 1;
 
     public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string clueImagePath, string startingCode, string directions, string puzzleType, string unlockKeyword, string puzzleName, int puzzleIndex)
     {
@@ -166,9 +175,11 @@ public class Puzzle : MonoBehaviour
 
         inputText.Add("");
 
-        coloredCodeDisplay.text = "aa";
-        lineHeight = coloredCodeDisplay.preferredHeight;
-        coloredCodeDisplay.text = "";
+
+        codeFieldWidth = codeScrollRect.rect.width;
+        codeFieldHeight = codeScrollRect.rect.height - verticalBuffer;
+        verticalViewTop = 0;
+        verticalViewBottom = codeFieldHeight;
 
         // Set text
         SetPuzzleDisplay();
@@ -277,7 +288,9 @@ public class Puzzle : MonoBehaviour
             
 
         }
+        //coloredScrollRect.verticalNormalizedPosition = normalizedPos;
     }
+    public float normalizedPos = 0;
 
     /// <summary>
     /// OnScroll is called when the input field is scrolled.
@@ -414,6 +427,8 @@ public class Puzzle : MonoBehaviour
             RemoveCaretFromLine(caretPosY);
             caretPosY--;
             caretPosX = inputText[caretPosY].Length - 1;
+            if (caretPosX < 0)
+                caretPosX = 0;
         }
 
         ColorizeCurrentLine(true);
@@ -499,16 +514,19 @@ public class Puzzle : MonoBehaviour
     private void HandleRightArrow()
     {
         // Check if moving right will be within range
-        if (caretPosX + 1 < inputText[caretPosY].Length)
+        if (caretPosX + 1 <= inputText[caretPosY].Length)
         {
             // Move right
             caretPosX++;
         }
+        /*
         // Fixes weird but where the last line has one less of a length than it should have
         else if (caretPosY == inputText.Count - 1)
         {
+            Debug.Log("Right, but bottom line");
             caretPosX = inputText[caretPosY].Length;
         }
+        */
         // Otherwise, Move to line down if there is a line to move to
         else if (caretPosY + 1 <  inputText.Count)
         {
@@ -1175,7 +1193,7 @@ public class Puzzle : MonoBehaviour
     {
         // Set text component to text in coloredText
         coloredCodeDisplay.text = string.Join("\n", coloredText);
-        GetCaretXPosition();
+        FollowCaret();
     }
 
     /// <summary>
@@ -1312,12 +1330,17 @@ public class Puzzle : MonoBehaviour
         caretPosY = 0;
         caretPosX = 0;
 
-        foreach(string line in inputText)
+        for(int index = 0; index < inputText.Count; index++)
         {
+            string line = inputText[index].Replace("\n", "");
+            line = line.Replace("\r", "");
+            Debug.Log("|" + line + "|");
+            inputText[index] = line;
             coloredText.Add(line);
             ColorizeCurrentLine(false);
             caretPosY++;
         }
+
         //caretPosY--;
         caretPosY = 0;
         ColorizeCurrentLine(true);
@@ -1504,10 +1527,12 @@ public class Puzzle : MonoBehaviour
         return indent;
     }
 
-    private void GetCaretXPosition()
+    /// <summary>
+    /// Adjusts the scroll view to follow the caret when caret is out of viewport
+    /// </summary>
+    private void FollowCaret()
     {
-        float positionX = 0;
-
+        coloredCodeDisplay.ForceMeshUpdate();
 
         string[] lines = coloredCodeDisplay.text.Split('\n');
         string line = lines[caretPosY + 1];
@@ -1515,28 +1540,17 @@ public class Puzzle : MonoBehaviour
         TMP_LineInfo lineInfo = textInfo.lineInfo[caretPosY];
 
         int index = lineInfo.firstCharacterIndex;
-        int caretIndex = caretPosX + index;
 
-        TMP_CharacterInfo caretInfo = textInfo.characterInfo[caretIndex];
-        float charXPosition = caretInfo.bottomLeft.x;
-
-        Vector3 worldPosition = coloredCodeDisplay.transform.TransformPoint(caretInfo.bottomLeft);
-
-
-        float longestLine = GetLongestLineWidth(coloredCodeDisplay);
-        float height = coloredCodeDisplay.textInfo.lineCount * lineHeight;
-
+        // Handle follow horizontally
 
         // Normalized caret x position for a given line
         float characterWidth = lineInfo.width / inputText[caretPosY].Length;
         float normalizedX = Normalize(characterWidth * caretPosX, 0, lineInfo.width);
 
         // Normalized caret x position for entire text box
-        //normalizedX = Normalize(characterWidth * caretPosX, 0, longestLine);
         float caretXPos = GetCaretX();
         if(caretXPos >= 840)
         {
-            //normalizedX = Normalize(GetCaretX(), 0, longestLine);
             normalizedX = Normalize(GetCaretX(), 0, lineInfo.width);
 
             if( normalizedX < .25)
@@ -1549,9 +1563,25 @@ public class Puzzle : MonoBehaviour
         {
             coloredScrollRect.horizontalNormalizedPosition = 0;
         }
-        
 
-        //coloredScrollRect.verticalNormalizedPosition = 0f;
+
+        // Handle follow vertically
+        lineHeight = lineInfo.lineHeight;
+        float totalHeight = coloredCodeDisplay.textInfo.lineCount * lineHeight;
+        float caretHeight = caretPosY * lineHeight;
+
+        if(caretHeight < verticalViewTop)
+        {
+            verticalViewTop -= lineHeight;
+            verticalViewBottom -= lineHeight;
+            coloredScrollRect.verticalNormalizedPosition = 1 - Normalize(caretHeight, 0, totalHeight + lineHeight);
+        }
+        else if (caretHeight > verticalViewBottom)
+        {
+            verticalViewTop += lineHeight;
+            verticalViewBottom += lineHeight;
+            coloredScrollRect.verticalNormalizedPosition = 1 - Normalize(caretHeight, 0, totalHeight + lineHeight);
+        }
     }
 
     public float Normalize(float value, float min, float max)
