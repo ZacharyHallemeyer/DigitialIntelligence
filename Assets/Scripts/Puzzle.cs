@@ -125,6 +125,7 @@ public class Puzzle : MonoBehaviour
 
     public int caretPosX = 0;
     public int caretPosY = 0;
+    public int numOfLines = 0;
 
     public float codeFieldWidth;
     public float codeFieldHeight;
@@ -643,6 +644,7 @@ public class Puzzle : MonoBehaviour
         caretPosY++;
         caretPosX = 0 + indent.Length;
 
+        AddLineNumber();
         ColorizeCurrentLine(true);
         DisplayText();
     }
@@ -725,6 +727,7 @@ public class Puzzle : MonoBehaviour
         // Check if this backspace is at the beginning of a line that is not the first line 
         if (caretPosX < 0)
         {
+            RemoveLineNumber();
             // Set caret x position to 0
             caretPosX = 0;
             // Check if current line is not the first line
@@ -1339,12 +1342,14 @@ public class Puzzle : MonoBehaviour
             coloredText.Add(line);
             ColorizeCurrentLine(false);
             caretPosY++;
+            numOfLines++;
         }
 
         //caretPosY--;
         caretPosY = 0;
         ColorizeCurrentLine(true);
         DisplayText();
+        SetLineNumbers();
 
         // Set directions text
         directionsDisplay.text = "\n" + Resources.Load<TextAsset>(directions).text;
@@ -1608,7 +1613,7 @@ public class Puzzle : MonoBehaviour
         return widthDisplay.preferredWidth;
     }
 
-    float GetLongestLineWidth(TMP_Text textComponent)
+    private float GetLongestLineWidth(TMP_Text textComponent)
     {
         // Ensure the text info is updated
         textComponent.ForceMeshUpdate();
@@ -1625,5 +1630,34 @@ public class Puzzle : MonoBehaviour
         }
 
         return longestWidth;
+    }
+
+    private void AddLineNumber()
+    {
+        numOfLines++;
+        SetLineNumbers();
+    }
+
+    private void RemoveLineNumber()
+    {
+        numOfLines--;
+        if(numOfLines < 1)
+        {
+            numOfLines = 1;
+        }
+
+        SetLineNumbers();
+    }
+
+    private void SetLineNumbers()
+    {
+        string lineNumberString = "\n";
+
+        for( int count = 1; count <= numOfLines; count++ )
+        {
+            lineNumberString += $"{count}\n";
+        }
+
+        lineNumDisplay.text = lineNumberString;
     }
 }
