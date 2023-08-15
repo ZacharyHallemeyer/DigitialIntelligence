@@ -1,0 +1,3 @@
+Directions:
+
+For this puzzle, retrieve the element from the list that's located at the given index.

@@ -1,0 +1,1 @@
+Lists can contain any type of element, including other lists. This means you can have lists inside of lists, creating a multi-dimensional structure. For instance, a 2D matrix can be represented using a list of lists.

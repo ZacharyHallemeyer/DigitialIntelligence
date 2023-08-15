@@ -1,0 +1,3 @@
+Directions:
+
+For this puzzle, you will need to retrieve the first element from the list passed into the function.

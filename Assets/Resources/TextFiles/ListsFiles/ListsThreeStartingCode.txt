@@ -1,0 +1,8 @@
+def main(lst):
+	result = None
+	# Return a reversed version of the list
+
+	return result
+
+print(main([3, 2, 1]))   # Should print [3, 2, 1]
+print(main(["apple", "banana", "cherry"]))   # Should print ["cherry", "banana", "apple"]

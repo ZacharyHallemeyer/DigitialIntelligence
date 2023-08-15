@@ -1,0 +1,8 @@
+def main(lst1, lst2):
+	result = []
+	# Concatenate the two lists together
+
+	return result
+
+print(main([1, 2], [3, 4]))   # Should print [1, 2, 3, 4]
+print(main(["apple", "banana"], ["cherry", "date"]))   # Should print ["apple", "banana", "cherry", "date"]

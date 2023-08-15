@@ -1,0 +1,8 @@
+def main(lst):
+	value = None
+	# Find the first element of the given list
+
+	return value
+	
+print(main([1, 2, 3]))   # Should print 1
+print(main(["apple", "banana", "cherry"]))   # Should print "apple"

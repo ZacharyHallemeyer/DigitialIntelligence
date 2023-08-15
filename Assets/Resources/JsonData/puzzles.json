@@ -592,7 +592,7 @@
         ],
         "hiddenTestCases": [
           {
-            "problem": " \"zach is cool\", \"_\"",
+            "problem": "\"zach is cool\", \"_\"",
             "answer": "zach_is_cool"
           }
         ],
@@ -605,11 +605,137 @@
   },
 
 
+  {
+    "puzzleName": "Lists",
+    "index": "5",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3]",
+            "answer": "1"
+          },
+          {
+            "problem": "[\"apple\", \"banana\", \"cherry\"]",
+            "answer": "apple"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[4,5,6]",
+            "answer": "4"
+          }
+        ],
+        "startingCode": "TextFiles/ListsFiles/ListsOneStartingCode",
+        "directions": "TextFiles/ListsFiles/ListsOneDirections",
+        "puzzleName": "One",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3], 2",
+            "answer": "True"
+          },
+          {
+            "problem": "[\"apple\", \"banana\", \"cherry\"], \"grape\"",
+            "answer": "False"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[5,6,7], 6",
+            "answer": "True"
+          },
+          {
+            "problem": "[5,6,7], 8",
+            "answer": "False"
+          }
+        ],
+        "startingCode": "TextFiles/ListsFiles/ListsTwoStartingCode",
+        "directions": "TextFiles/ListsFiles/ListsTwoDirections",
+        "puzzleName": "Two",
+        "puzzleIndex": "1"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3]",
+            "answer": "[3, 2, 1]"
+          },
+          {
+            "problem": "[\"apple\", \"banana\", \"cherry\"]",
+            "answer": "[\"cherry\", \"banana\", \"apple\"]"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[5, 6 ,7]",
+            "answer": "[7, 6, 5]"
+          },
+          {
+            "problem": "[8, 9]",
+            "answer": "[9, 8]"
+          }
+        ],
+        "startingCode": "TextFiles/ListsFiles/ListsThreeStartingCode",
+        "directions": "TextFiles/ListsFiles/ListsThreeDirections",
+        "puzzleName": "Three",
+        "puzzleIndex": "2"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2], [3, 4]",
+            "answer": "[1, 2, 3, 4]"
+          },
+          {
+            "problem": "[\"apple\", \"banana\"], [\"cherry\", \"date\"]",
+            "answer": "[\"apple\", \"banana\", \"cherry\", \"date\"]"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[3, 4], [1, 2]",
+            "answer": "[3, 4, 1, 2]"
+          }
+        ],
+        "startingCode": "TextFiles/ListsFiles/ListsFourStartingCode",
+        "directions": "TextFiles/ListsFiles/ListsFourDirections",
+        "puzzleName": "Four",
+        "puzzleIndex": "3"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3], 1",
+            "answer": "2"
+          },
+          {
+            "problem": "[\"apple\", \"banana\", \"cherry\"], 2",
+            "answer": "cherry"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[1, 2, 3], 2",
+            "answer": "3"
+          }
+        ],
+        "startingCode": "TextFiles/ListsFiles/ListsFiveStartingCode",
+        "directions": "TextFiles/ListsFiles/ListsFiveDirections",
+        "puzzleName": "Five",
+        "puzzleIndex": "4"
+      }
+    ]
+  },
+
+
 
 
   {
     "puzzleName": "Greek Myths",
-    "index": "5",
+    "index": "6",
     "puzzles": [
       {
         "testCases": [

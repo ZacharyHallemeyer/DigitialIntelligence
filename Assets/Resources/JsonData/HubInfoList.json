@@ -25,6 +25,11 @@
     "notesPath": "TextFiles/StringsFiles/StringsNotes"
   },
   {
+    "name": "Lists",
+    "storyPath": "TextFiles/ListsFiles/ListsStory",
+    "notesPath": "TextFiles/ListsFiles/ListsNotes"
+  },
+  {
     "name": "Variables",
     "storyPath": "TextFiles/VariablesFiles/VariablesStory",
     "notesPath": "TextFiles/VariablesFiles/VariablesNotes"

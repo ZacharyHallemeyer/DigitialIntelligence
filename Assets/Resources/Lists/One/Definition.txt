@@ -1,0 +1,1 @@
+Lists in Python are used to store multiple items in a single variable. They are one of Python's built-in mutable sequence types and are created by placing a comma-separated sequence of items inside square brackets [].
