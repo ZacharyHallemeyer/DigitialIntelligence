@@ -376,6 +376,12 @@ public class Terminal : MonoBehaviour
             AudioManager.instance.PlayErrorSoundEffect();
             PrintLineToTerminal($"<color={errorColor}>The file {argument} does not exist</color>", false);
         }
+        else
+        {
+            terminalInput[terminalLineIndex] = $"unlock {argument} ";
+            ColorizeCurrentLine(true);
+            DisplayText();
+        }
     }
 
     /// <summary>

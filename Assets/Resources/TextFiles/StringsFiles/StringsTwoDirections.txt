@@ -1,0 +1,3 @@
+Directions:
+
+For this puzzle, retrieve every other character from the string `s` starting from the first character.

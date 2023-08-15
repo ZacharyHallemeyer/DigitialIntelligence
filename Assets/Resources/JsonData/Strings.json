@@ -1,0 +1,86 @@
+﻿{
+  "dirName": "",
+  "path": "Strings/",
+  "unlocked": true,
+  "files": [],
+  "directories": [
+    {
+      "dirName": "One",
+      "path": "Strings/One",
+      "unlocked": false,
+      "files": [
+        {
+          "fileName": "Definition",
+          "path": "Strings/One/Definition",
+          "question": "What term is used in programming to refer to a named storage location that can hold different values? (one word)",
+          "unlockKeyword": "variable",
+          "unlocked": false
+        }
+      ],
+      "directories": [
+        {
+          "dirName": "Two",
+          "path": "Strings/One/Two",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "Immutability",
+              "path": "Strings/One/Two/Immutability",
+              "question": "What is a sequence of characters, enclosed in quotes, called in programming? (one word)",
+              "unlockKeyword": "string",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+            {
+              "dirName": "Three",
+              "path": "Strings/One/Two/Three",
+              "unlocked": false,
+              "files": [
+                {
+                  "fileName": "Indexing",
+                  "path": "Strings/One/Two/Three/Indexing",
+                  "question": "Once a string is created, can it be directly modified? (Yes or No)",
+                  "unlockKeyword": "No",
+                  "unlocked": false
+                }
+              ],
+              "directories": [
+                {
+                  "dirName": "Four",
+                  "path": "Strings/One/Two/Three/Four",
+                  "unlocked": false,
+                  "files": [
+                    {
+                      "fileName": "Concatenation",
+                      "path": "Strings/One/Two/Three/Four/Concatenation",
+                      "question": "What term is used to describe extracting a range of characters from a string? (one word)",
+                      "unlockKeyword": "slicing",
+                      "unlocked": false
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "dirName": "Five",
+                      "path": "Strings/One/Two/Three/Four/Five",
+                      "unlocked": false,
+                      "files": [
+                        {
+                          "fileName": "Escape",
+                          "path": "Strings/One/Two/Three/Four/Five/Escape",
+                          "question": "Which operator is used to join two strings together? (One symbol)",
+                          "unlockKeyword": "+",
+                          "unlocked": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

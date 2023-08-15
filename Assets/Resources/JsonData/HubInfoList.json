@@ -20,6 +20,11 @@
     "notesPath": "TextFiles/LoopsFiles/loopsNotes"
   },
   {
+    "name": "Strings",
+    "storyPath": "TextFiles/StringsFiles/StringsStory",
+    "notesPath": "TextFiles/StringsFiles/StringsNotes"
+  },
+  {
     "name": "Variables",
     "storyPath": "TextFiles/VariablesFiles/VariablesStory",
     "notesPath": "TextFiles/VariablesFiles/VariablesNotes"

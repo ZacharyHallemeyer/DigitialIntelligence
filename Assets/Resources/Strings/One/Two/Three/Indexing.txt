@@ -1,0 +1,5 @@
+Concept: 
+Each character in a string has a unique position called its index. Indexing starts at 0 for the first character. Using indices, we can retrieve specific characters from a string. Additionally, "slicing" allows us to extract a range or "slice" of characters from a string.
+
+Example: 
+In the string planet = "Earth", the letter E has an index of 0, and a has an index of 1. Using slicing, planet[1:4] would give the substring "art".

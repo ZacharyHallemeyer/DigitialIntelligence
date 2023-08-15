@@ -1332,12 +1332,12 @@ public class Puzzle : MonoBehaviour
 
         caretPosY = 0;
         caretPosX = 0;
+        numOfLines = 0;
 
         for(int index = 0; index < inputText.Count; index++)
         {
             string line = inputText[index].Replace("\n", "");
             line = line.Replace("\r", "");
-            Debug.Log("|" + line + "|");
             inputText[index] = line;
             coloredText.Add(line);
             ColorizeCurrentLine(false);
@@ -1345,7 +1345,6 @@ public class Puzzle : MonoBehaviour
             numOfLines++;
         }
 
-        //caretPosY--;
         caretPosY = 0;
         ColorizeCurrentLine(true);
         DisplayText();
@@ -1400,8 +1399,6 @@ public class Puzzle : MonoBehaviour
         {
             string input = hiddenTestCases[testIndex].problem;
             string ans = hiddenTestCases[testIndex].answer;
-
-            Debug.Log("input: " + input + ", ans: " + ans);
 
             // Append test case to end of python file and convert the result to a string
             await RunPythonCodeWithTimeout(pythonCode + "\nstr(main(" + input + "))");

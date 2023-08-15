@@ -1,0 +1,21 @@
+Directions:
+
+For this puzzle, you will need to reverse the input string `s` and return the reversed string. A good method would be to use a for or while loop.
+
+When you use a loop, you can move from character to character in a string with indexes
+
+Code
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+myString = "Hello!"
+for index in range(len(myString)):
+	print(myString[index])
+
+Output
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+H
+e
+l
+l
+o
+!z

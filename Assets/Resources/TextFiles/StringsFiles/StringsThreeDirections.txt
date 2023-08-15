@@ -1,0 +1,4 @@
+Directions:
+
+For this puzzle, you need to count the number of vowels (a, e, i, o, u) in the string `s`.
+
