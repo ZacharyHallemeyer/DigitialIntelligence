@@ -670,7 +670,9 @@ public class Terminal : MonoBehaviour
         foreach(GameObject puzzleObject in GameManager.puzzles)
         {
             Puzzle puzzle = puzzleObject.GetComponent<Puzzle>();
-            
+
+            Debug.Log(puzzle.puzzleName + ", " + argument);
+            Debug.Log(puzzle.puzzleName == argument);
             if(puzzle.puzzleName == argument)
             {
                 // Check if puzzle is in directory
