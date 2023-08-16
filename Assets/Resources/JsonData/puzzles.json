@@ -733,9 +733,70 @@
 
 
 
+
+  {
+    "puzzleName": "Functions",
+    "index": "6",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "1, 5",
+            "answer": "6"
+          },
+          {
+            "problem": "1, 6",
+            "answer": "7"
+          },
+          {
+            "problem": "10, 10",
+            "answer": "20"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "20, 20",
+            "answer": "40"
+          }
+        ],
+        "startingCode": "TextFiles/FunctionsFiles/FunctionsOneStartingCode",
+        "directions": "TextFiles/FunctionsFiles/FunctionsOneDirections",
+        "puzzleName": "One",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3, 4, 5]",
+            "answer": "5"
+          },
+          {
+            "problem": "[1, 2, 3, 40, 5]",
+            "answer": "40"
+          },
+          {
+            "problem": "[1, 2, 39, 40, 5]",
+            "answer": "40"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[100, 1, 2, 3, 4]",
+            "answer": "100"
+          }
+        ],
+        "startingCode": "TextFiles/FunctionsFiles/FunctionsTwoStartingCode",
+        "directions": "TextFiles/FunctionsFiles/FunctionsTwoDirections",
+        "puzzleName": "Two",
+        "puzzleIndex": "1"
+      }
+    ]
+  },
+
+
   {
     "puzzleName": "Greek Myths",
-    "index": "6",
+    "index": "7",
     "puzzles": [
       {
         "testCases": [

@@ -1,0 +1,14 @@
+def main(numOne, numTwo):
+
+	return sum(numOne, numTwo)	
+
+def sum(numOne, numTwo):
+
+	# Calculate sum of numOne and numTwo
+
+	# return sum
+
+
+print(main(1, 5))
+print(main(1, 6))
+print(main(10, 10))

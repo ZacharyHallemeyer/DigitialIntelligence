@@ -1,0 +1,10 @@
+Functions are like workers. They preform a specified task when they are called to do so. You have already been using functions as each puzzle uses a main function and returns a value at the end of the function. 
+
+This is the basics of a function. A function has code that will be run each time it is run. It can return a value or it can return nothing. This basic syntax is as follows
+
+def myFunction():
+	
+	# Code here
+
+	# return here
+

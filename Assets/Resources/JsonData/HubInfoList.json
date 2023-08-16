@@ -30,6 +30,11 @@
     "notesPath": "TextFiles/ListsFiles/ListsNotes"
   },
   {
+    "name": "Functions",
+    "storyPath": "TextFiles/FunctionsFiles/FunctionsStory",
+    "notesPath": "TextFiles/FunctionsFiles/FunctionsNotes"
+  },
+  {
     "name": "Variables",
     "storyPath": "TextFiles/VariablesFiles/VariablesStory",
     "notesPath": "TextFiles/VariablesFiles/VariablesNotes"
