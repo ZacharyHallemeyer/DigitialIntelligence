@@ -527,11 +527,6 @@ public class Terminal : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Handles the ls command. 
-    /// Prints contents of pythonNotes
-    /// </summary>
-    /// <param name="line">command line</param>
     private void HandleLsCommand(string line)
     {
         // Check if syntax is incorrect
@@ -671,8 +666,6 @@ public class Terminal : MonoBehaviour
         {
             Puzzle puzzle = puzzleObject.GetComponent<Puzzle>();
 
-            Debug.Log(puzzle.puzzleName + ", " + argument);
-            Debug.Log(puzzle.puzzleName == argument);
             if(puzzle.puzzleName == argument)
             {
                 // Check if puzzle is in directory
