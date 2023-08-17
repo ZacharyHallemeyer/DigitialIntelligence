@@ -16,20 +16,27 @@ using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 
+
 public class Sandbox : MonoBehaviour
 {
     public ScrollRect coloredScrollRect;
+    public ScrollRect fileScrollRect;
 
     public RectTransform lineNumberRect;
     public RectTransform coloredCodeRect;
     public RectTransform codeScrollRect;
 
+    // Input fields
+    public TMP_InputField fileNameInput;
+
     // Text Components
     public TMP_Text coloredCodeDisplay; // This text component displays the colored text
     public TMP_Text lineNumDisplay;
     public TMP_Text emuConsole;
-    public TMP_Text fileDisplay;
     public TMP_Text widthDisplay;
+
+    // Prefabs
+    public GameObject filePrefab;
 
 
     // Emulator variables
@@ -72,6 +79,11 @@ public class Sandbox : MonoBehaviour
     public float verticalBuffer = 230;
     public int lineHeightScaler = 1;
 
+    // Files
+    public string fileDirectory = "SandboxFiles/";
+    public string currentFileName;
+    private List<GameObject> fileButtonObjects;
+
     public void Start()
     {
         Initialize();
@@ -97,6 +109,17 @@ public class Sandbox : MonoBehaviour
         codeFieldHeight = codeScrollRect.rect.height - verticalBuffer;
         verticalViewTop = 0;
         verticalViewBottom = codeFieldHeight;
+
+        fileDirectory = Path.Combine(Application.dataPath, fileDirectory);
+
+        // Create file directory if it does not exist
+        if( !Directory.Exists(fileDirectory) )
+        {
+            Directory.CreateDirectory(fileDirectory);
+        }
+
+        fileButtonObjects = new List<GameObject>();
+        DisplaySavedFiles();
     }
 
     /// <summary>
@@ -1231,8 +1254,163 @@ public class Sandbox : MonoBehaviour
         emuConsole.ForceMeshUpdate(true);
     }
 
+    // ================================== Files ================================== 
+
+    private void DisplaySavedFiles()
+    {
+        List<string> fileNames = GetSavedFileList();
+
+        // Remove old buttons
+        for( int index = 0; index < fileButtonObjects.Count; index++)
+        {
+            Destroy(fileButtonObjects[index]);
+        }
+
+        fileButtonObjects = new List<GameObject>();
+
+        // Make a button for each file
+        GridLayoutGroup gridLayoutGroup = fileScrollRect.content.GetComponent<GridLayoutGroup>();
+
+        float originalCellSizeY = gridLayoutGroup.cellSize.y;
+        float spacingY = gridLayoutGroup.spacing.y;
+
+        int count = 0;
+        foreach( string fileName in fileNames )
+        {
+            GameObject newFileButton = Instantiate(filePrefab, fileScrollRect.content);
+
+            FileButton fileButtonComponent = newFileButton.GetComponent<FileButton>();
+
+            fileButtonComponent.fileName = fileName;
+            fileButtonComponent.SetText();
+
+            // Adjust scroll view
+            LayoutRebuilder.ForceRebuildLayoutImmediate(fileScrollRect.content);
+
+            // Update currentYPosition
+            float currentYPosition = (originalCellSizeY + spacingY) * (fileNames.Count + count);
+
+            // Adjust position
+            RectTransform rectTransform = newFileButton.GetComponent<RectTransform>();
+            Vector2 newPosition = rectTransform.anchoredPosition;
+            newPosition.y = -currentYPosition;
+            rectTransform.anchoredPosition = newPosition;
+
+            // Add event listener
+            newFileButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                OpenFile(fileName);
+            });
+
+            count++;
+            fileButtonObjects.Add(newFileButton);
+        }
+    }
+
+
+    private List<string> GetSavedFileList()
+    {
+        string[] filePathsBase = Directory.GetFiles(fileDirectory);
+        List<string> fileNames = new List<string>();
+        
+        // Loop through files and get only the name of the file
+        for( int fileIndex = 0; fileIndex < filePathsBase.Length; fileIndex++ )
+        {
+            string[] splitFilePath = filePathsBase[fileIndex].Split("/");
+            string fileName = splitFilePath[splitFilePath.Length - 1];
+
+            // Add file name to file list if it not a meta file
+            if(!fileName.EndsWith(".meta"))
+            {
+                fileNames.Add(fileName);
+            }
+        }
+
+        return fileNames;
+    }
+
+    public void CreateNewFile()
+    {
+        string fileName = fileDirectory + "file" + UnityEngine.Random.value + ".py";
+
+        File.WriteAllText(fileName, "AHHHHHHHHHH" + UnityEngine.Random.value);
+        DisplaySavedFiles();
+    }
+
+    public void RenameFile()
+    {
+        string currentNamePath = Path.Combine(fileDirectory, currentFileName);
+        string newNamePath = Path.Combine(fileDirectory, fileNameInput.text);
+
+        // Add .py to file name if not included already
+        if(!newNamePath.EndsWith(".py"))
+        {
+            newNamePath += ".py";
+        }
+
+
+        File.Move(currentNamePath, newNamePath);
+
+        currentFileName = fileNameInput.text;
+
+        DisplaySavedFiles();
+    }
+
+    public void SaveFile()
+    {
+        if (currentFileName == null) return;
+
+        string text = string.Join('\n', inputText);
+        string path = Path.Combine(fileDirectory, currentFileName);
+
+        File.WriteAllText(path, text);
+    }
+
+    private void OpenFile(string fileName)
+    {
+        string fileContent = File.ReadAllText(Path.Combine(fileDirectory, fileName));
+        currentFileName = fileName;
+        fileNameInput.text = currentFileName;
+
+
+        inputText = fileContent.Split('\n').ToList();
+        coloredText = new List<string>();
+
+        caretPosX = 0;
+        caretPosY = 0;
+        numOfLines = 0;
+
+        for (int index = 0; index < inputText.Count; index++)
+        {
+            string line = inputText[index].Replace("\n", "");
+            line = line.Replace("\r", "");
+            inputText[index] = line;
+            coloredText.Add(line);
+            ColorizeCurrentLine(false);
+            caretPosY++;
+            numOfLines++;
+        }
+
+        caretPosY = 0;
+        ColorizeCurrentLine(true);
+        DisplayText();
+        SetLineNumbers();
+    }
+
+    // Disable sandbox input while renaming
+    public void RenameInputFieldSelected()
+    {
+        enabled = false;
+    }
+
+    // Enable sandbox input after renaming
+    public void RenameInputFieldEnded()
+    {
+        enabled = true;
+    }
+
     // ================================== Navigation ================================== 
-    
+
     public void MoveToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
@@ -1249,7 +1427,7 @@ public class Sandbox : MonoBehaviour
 
     private void SetFontSize()
     {
-        fileDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15);
+        //fileDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15);
         widthDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         emuConsole.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
         coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
