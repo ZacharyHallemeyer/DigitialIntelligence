@@ -1397,6 +1397,15 @@ public class Sandbox : MonoBehaviour
         SetLineNumbers();
     }
 
+    public void DeleteFile()
+    {
+        string path = Path.Combine(fileDirectory, currentFileName);
+
+        File.Delete(path);
+
+        DisplaySavedFiles();
+    }
+
     // Disable sandbox input while renaming
     public void RenameInputFieldSelected()
     {
