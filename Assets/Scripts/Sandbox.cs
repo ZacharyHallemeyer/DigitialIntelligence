@@ -120,6 +120,10 @@ public class Sandbox : MonoBehaviour
 
         fileButtonObjects = new List<GameObject>();
         DisplaySavedFiles();
+
+        // Turn off input until user creates/opens a file
+        DisableInput();
+
     }
 
     /// <summary>
@@ -1307,7 +1311,6 @@ public class Sandbox : MonoBehaviour
         }
     }
 
-
     private List<string> GetSavedFileList()
     {
         string[] filePathsBase = Directory.GetFiles(fileDirectory);
@@ -1331,34 +1334,53 @@ public class Sandbox : MonoBehaviour
 
     public void CreateNewFile()
     {
-        string fileName = fileDirectory + "file" + UnityEngine.Random.value + ".py";
+        enabled = true;
+        string fileName = "NewFile" + UnityEngine.Random.Range(0, 1000) + ".py";
+        string path = Path.Combine(fileDirectory, fileName);
 
-        File.WriteAllText(fileName, "AHHHHHHHHHH" + UnityEngine.Random.value);
+        // Check if any file has the same name
+
+        File.WriteAllText(path, "");
         DisplaySavedFiles();
+
+
+        // Set name
+        ClearCodeEditor();
+
+        currentFileName = fileName;
+        fileNameInput.text = currentFileName;
+
+        SaveFile();
     }
 
     public void RenameFile()
     {
         string currentNamePath = Path.Combine(fileDirectory, currentFileName);
         string newNamePath = Path.Combine(fileDirectory, fileNameInput.text);
+        currentFileName = fileNameInput.text;
 
         // Add .py to file name if not included already
-        if(!newNamePath.EndsWith(".py"))
+        if (!newNamePath.EndsWith(".py"))
         {
             newNamePath += ".py";
+            currentFileName +=  ".py";
         }
+
+        // Return out of function if same name
+        if (currentNamePath == newNamePath) return;
 
 
         File.Move(currentNamePath, newNamePath);
 
-        currentFileName = fileNameInput.text;
 
         DisplaySavedFiles();
     }
 
     public void SaveFile()
     {
-        if (currentFileName == null) return;
+        if (currentFileName == "") return;
+
+        Debug.Log("Saving: " + currentFileName);
 
         string text = string.Join('\n', inputText);
         string path = Path.Combine(fileDirectory, currentFileName);
@@ -1368,6 +1390,8 @@ public class Sandbox : MonoBehaviour
 
     private void OpenFile(string fileName)
     {
+        enabled = true;
+
         string fileContent = File.ReadAllText(Path.Combine(fileDirectory, fileName));
         currentFileName = fileName;
         fileNameInput.text = currentFileName;
@@ -1402,6 +1426,10 @@ public class Sandbox : MonoBehaviour
         string path = Path.Combine(fileDirectory, currentFileName);
 
         File.Delete(path);
+        currentFileName = "";
+
+        ClearCodeEditor();
+        DisableInput();
 
         DisplaySavedFiles();
     }
@@ -1622,5 +1650,31 @@ public class Sandbox : MonoBehaviour
         }
 
         lineNumDisplay.text = lineNumberString;
+    }
+
+    private void ClearCodeEditor()
+    {
+        // Set code field to default
+        inputText = new List<string>();
+        coloredText = new List<string>();
+
+        inputText.Add("");
+        coloredText.Add("");
+
+        caretPosX = 0;
+        caretPosY = 0;
+        numOfLines = 1;
+
+        ColorizeCurrentLine(true);
+        DisplayText();
+        SetLineNumbers();
+
+        fileNameInput.text = "";
+    }
+
+    private void DisableInput()
+    {
+        enabled = false;
+        coloredCodeDisplay.text = "\n  <color=#FF0000>Create or Open a file to start coding!</color>";
     }
 }
