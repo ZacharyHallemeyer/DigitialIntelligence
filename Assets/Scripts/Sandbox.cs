@@ -38,6 +38,13 @@ public class Sandbox : MonoBehaviour
     // Prefabs
     public GameObject filePrefab;
 
+    // Pop Up
+    public GameObject popUpContainer;
+    public TMP_Text popUpTitle;
+    public TMP_Text popUpText;
+    private bool deletePopUpActive = false;
+    private bool savePopUpActive = false;
+
 
     // Emulator variables
     public bool isChangingCode = false;
@@ -84,6 +91,7 @@ public class Sandbox : MonoBehaviour
     public string currentFileName;
     private List<GameObject> fileButtonObjects;
 
+
     public void Start()
     {
         Initialize();
@@ -122,7 +130,7 @@ public class Sandbox : MonoBehaviour
         DisplaySavedFiles();
 
         // Turn off input until user creates/opens a file
-        DisableInput();
+        DisableInput(true);
 
     }
 
@@ -1334,7 +1342,6 @@ public class Sandbox : MonoBehaviour
 
     public void CreateNewFile()
     {
-        enabled = true;
         string fileName = "NewFile" + UnityEngine.Random.Range(0, 1000) + ".py";
         string path = Path.Combine(fileDirectory, fileName);
 
@@ -1343,13 +1350,13 @@ public class Sandbox : MonoBehaviour
         File.WriteAllText(path, "");
         DisplaySavedFiles();
 
-
         // Set name
         ClearCodeEditor();
 
         currentFileName = fileName;
         fileNameInput.text = currentFileName;
 
+        EnableInput();
         SaveFile();
     }
 
@@ -1380,8 +1387,6 @@ public class Sandbox : MonoBehaviour
     {
         if (currentFileName == "") return;
 
-        Debug.Log("Saving: " + currentFileName);
-
         string text = string.Join('\n', inputText);
         string path = Path.Combine(fileDirectory, currentFileName);
 
@@ -1390,7 +1395,7 @@ public class Sandbox : MonoBehaviour
 
     private void OpenFile(string fileName)
     {
-        enabled = true;
+        EnableInput();
 
         string fileContent = File.ReadAllText(Path.Combine(fileDirectory, fileName));
         currentFileName = fileName;
@@ -1421,7 +1426,18 @@ public class Sandbox : MonoBehaviour
         SetLineNumbers();
     }
 
-    public void DeleteFile()
+    public void DeleteFileButtonClick()
+    {
+        DisableInput();
+
+        popUpTitle.text = "Delete";
+        popUpText.text = $"Are you sure you want to delete {currentFileName}?";
+
+        deletePopUpActive = true;
+        popUpContainer.SetActive(true);
+    }
+
+    private void DeleteFile()
     {
         string path = Path.Combine(fileDirectory, currentFileName);
 
@@ -1429,9 +1445,32 @@ public class Sandbox : MonoBehaviour
         currentFileName = "";
 
         ClearCodeEditor();
-        DisableInput();
+        DisableInput(true);
 
         DisplaySavedFiles();
+    }
+
+    public void PopUpConfirm()
+    {
+        // Check if delete
+        if (deletePopUpActive)
+        {
+            DeleteFile();
+            popUpContainer.SetActive(false);
+        }
+
+        EnableInput();
+    }
+
+    public void PopUpDecline()
+    {
+        // Check if delete
+        if (deletePopUpActive)
+        {
+            popUpContainer.SetActive(false);
+        }
+
+        EnableInput();
     }
 
     // Disable sandbox input while renaming
@@ -1672,9 +1711,17 @@ public class Sandbox : MonoBehaviour
         fileNameInput.text = "";
     }
 
-    private void DisableInput()
+    private void DisableInput(bool addOpenCreateFileMessage = false)
     {
         enabled = false;
-        coloredCodeDisplay.text = "\n  <color=#FF0000>Create or Open a file to start coding!</color>";
+        if( addOpenCreateFileMessage )
+            coloredCodeDisplay.text = "\n  <color=#FF0000>Create or Open a file to start coding!</color>";
+        fileNameInput.enabled = false;        
+    }
+
+    private void EnableInput()
+    {
+        enabled = true;
+        fileNameInput.enabled = true;
     }
 }
