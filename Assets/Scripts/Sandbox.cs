@@ -1503,6 +1503,21 @@ public class Sandbox : MonoBehaviour
         else if (savePopUpActive)
         {
             SaveFile();
+            if (isCreatingFile)
+            {
+                isCreatingFile = false;
+                CreateNewFile();
+            }
+            else if (isOpeningFile)
+            {
+                isOpeningFile = false;
+                OpenFile(fileToOpen);
+            }
+            else if (isExiting)
+            {
+                isExiting = false;
+                MoveToMainMenu();
+            }
         }
 
         popUpContainer.SetActive(false);
@@ -1527,6 +1542,7 @@ public class Sandbox : MonoBehaviour
             }
             else if (isExiting)
             {
+                isExiting = false;
                 MoveToMainMenu();
             }
         }
