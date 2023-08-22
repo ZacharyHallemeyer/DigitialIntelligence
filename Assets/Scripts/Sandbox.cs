@@ -44,6 +44,11 @@ public class Sandbox : MonoBehaviour
     public TMP_Text popUpText;
     private bool deletePopUpActive = false;
     private bool savePopUpActive = false;
+    private bool fileSaved = true;
+    private bool isOpeningFile = false;
+    private bool isCreatingFile = false;
+    private bool isExiting = false;
+    private string fileToOpen = "";
 
 
     // Emulator variables
@@ -195,11 +200,13 @@ public class Sandbox : MonoBehaviour
             // Check if input is return
             if (Input.GetKeyDown(KeyCode.Return) && !processingInput)
             {
+                fileSaved = false;
                 StartCoroutine(HandleReturnWithDelay());
             }
             // Check if input is backspace
             else if (Input.GetKeyDown(KeyCode.Backspace))
             {
+                fileSaved = false;
                 if (!processingInput)
                 {
                     if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
@@ -215,11 +222,13 @@ public class Sandbox : MonoBehaviour
             // Check if input is tab
             else if (Input.GetKeyDown(KeyCode.Tab) && !processingInput)
             {
+                fileSaved = false;
                 StartCoroutine(HandleTabWithDelay());
             }
             // Check if duplicate (CRTL + D)
             else if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.D) && !processingInput)
             {
+                fileSaved = false;
                 StartCoroutine(HandleDuplicateWithDelay());
             }
             // If not a command and not processing input
@@ -228,12 +237,13 @@ public class Sandbox : MonoBehaviour
                 // Handle text input
                 foreach (char inputChar in Input.inputString)
                 {
-                    HandleTextInput(inputChar);
+                    if (!char.IsControl(inputChar))
+                    {
+                        fileSaved = false;
+                        HandleTextInput(inputChar);
+                    }
                 }
             }
-
-
-
         }
     }
 
@@ -1342,6 +1352,13 @@ public class Sandbox : MonoBehaviour
 
     public void CreateNewFile()
     {
+        if(!fileSaved)
+        {
+            isCreatingFile = true;
+            ShowSavePopUp();
+            return;
+        }
+
         string fileName = "NewFile" + UnityEngine.Random.Range(0, 1000) + ".py";
         string path = Path.Combine(fileDirectory, fileName);
 
@@ -1362,6 +1379,8 @@ public class Sandbox : MonoBehaviour
 
     public void RenameFile()
     {
+
+
         string currentNamePath = Path.Combine(fileDirectory, currentFileName);
         string newNamePath = Path.Combine(fileDirectory, fileNameInput.text);
         currentFileName = fileNameInput.text;
@@ -1387,6 +1406,9 @@ public class Sandbox : MonoBehaviour
     {
         if (currentFileName == "") return;
 
+        Debug.Log("SAVE");
+        fileSaved = true;
+
         string text = string.Join('\n', inputText);
         string path = Path.Combine(fileDirectory, currentFileName);
 
@@ -1395,6 +1417,14 @@ public class Sandbox : MonoBehaviour
 
     private void OpenFile(string fileName)
     {
+        if (!fileSaved)
+        {
+            fileToOpen = fileName;
+            isOpeningFile = true;
+            ShowSavePopUp();
+            return;
+        }
+
         EnableInput();
 
         string fileContent = File.ReadAllText(Path.Combine(fileDirectory, fileName));
@@ -1425,18 +1455,7 @@ public class Sandbox : MonoBehaviour
         DisplayText();
         SetLineNumbers();
     }
-
-    public void DeleteFileButtonClick()
-    {
-        DisableInput();
-
-        popUpTitle.text = "Delete";
-        popUpText.text = $"Are you sure you want to delete {currentFileName}?";
-
-        deletePopUpActive = true;
-        popUpContainer.SetActive(true);
-    }
-
+    
     private void DeleteFile()
     {
         string path = Path.Combine(fileDirectory, currentFileName);
@@ -1450,26 +1469,69 @@ public class Sandbox : MonoBehaviour
         DisplaySavedFiles();
     }
 
+
+    public void ShowDeletePopUp()
+    {
+        DisableInput();
+
+        popUpTitle.text = "Delete";
+        popUpText.text = $"Are you sure you want to delete {currentFileName}?";
+
+        deletePopUpActive = true;
+        popUpContainer.SetActive(true);
+    }
+
+    public void ShowSavePopUp()
+    {
+        DisableInput();
+
+        popUpTitle.text = "Save";
+        popUpText.text = $"{currentFileName} is not saved. Would you like to save?";
+
+        savePopUpActive = true;
+        popUpContainer.SetActive(true);
+    }
+
     public void PopUpConfirm()
     {
         // Check if delete
         if (deletePopUpActive)
         {
             DeleteFile();
-            popUpContainer.SetActive(false);
+        }
+        // Check if save
+        else if (savePopUpActive)
+        {
+            SaveFile();
         }
 
+        popUpContainer.SetActive(false);
         EnableInput();
     }
 
     public void PopUpDecline()
     {
-        // Check if delete
-        if (deletePopUpActive)
+        // Check if save
+        if(savePopUpActive)
         {
-            popUpContainer.SetActive(false);
+            fileSaved = true;
+            if(isCreatingFile)
+            {
+                isCreatingFile = false;
+                CreateNewFile();
+            }
+            else if (isOpeningFile)
+            {
+                isOpeningFile = false;
+                OpenFile(fileToOpen);
+            }
+            else if (isExiting)
+            {
+                MoveToMainMenu();
+            }
         }
 
+        popUpContainer.SetActive(false);
         EnableInput();
     }
 
@@ -1487,7 +1549,20 @@ public class Sandbox : MonoBehaviour
 
     // ================================== Navigation ================================== 
 
-    public void MoveToMainMenu()
+    public void ExitButtonClick()
+    {
+        if(fileSaved)
+        {
+            MoveToMainMenu();
+        }
+        else
+        {
+            isExiting = true;
+            ShowSavePopUp();
+        }
+    }
+
+    private void MoveToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
         SceneManager.UnloadSceneAsync("Sandbox");
