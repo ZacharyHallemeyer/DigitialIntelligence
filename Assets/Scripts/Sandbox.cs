@@ -267,7 +267,9 @@ public class Sandbox : Emulator
 
     public void CreateNewFile()
     {
-        if(!fileSaved)
+        AudioManager.instance.PlayButtonClickSoundEffect();
+
+        if (!fileSaved)
         {
             isCreatingFile = true;
             ShowSavePopUp();
@@ -294,7 +296,7 @@ public class Sandbox : Emulator
 
     public void RenameFile()
     {
-
+        AudioManager.instance.PlayButtonClickSoundEffect();
 
         string currentNamePath = Path.Combine(fileDirectory, currentFileName);
         string newNamePath = Path.Combine(fileDirectory, fileNameInput.text);
@@ -319,6 +321,7 @@ public class Sandbox : Emulator
 
     public void SaveFile()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
         if (currentFileName == "") return;
 
         Debug.Log("SAVE");
@@ -332,6 +335,8 @@ public class Sandbox : Emulator
 
     private void OpenFile(string fileName)
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
+
         if (!fileSaved)
         {
             fileToOpen = fileName;
@@ -409,6 +414,8 @@ public class Sandbox : Emulator
 
     public void PopUpConfirm()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
+
         // Check if delete
         if (deletePopUpActive)
         {
@@ -441,8 +448,10 @@ public class Sandbox : Emulator
 
     public void PopUpDecline()
     {
+        AudioManager.instance.PlayButtonClickSoundEffect();
+
         // Check if save
-        if(savePopUpActive)
+        if (savePopUpActive)
         {
             fileSaved = true;
             if(isCreatingFile)
@@ -482,7 +491,9 @@ public class Sandbox : Emulator
 
     public void ExitButtonClick()
     {
-        if(fileSaved)
+        AudioManager.instance.PlayButtonClickSoundEffect();
+
+        if (fileSaved)
         {
             MoveToMainMenu();
         }
