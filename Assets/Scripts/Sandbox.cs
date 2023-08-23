@@ -39,6 +39,10 @@ public class Sandbox : Emulator
     public string fileDirectory = "SandboxFiles/";
     public string currentFileName;
     private List<GameObject> fileButtonObjects;
+    public ScrollRect fileScrollRect;
+
+    // Input fields
+    public TMP_InputField fileNameInput;
 
 
     public void Start()
@@ -298,6 +302,9 @@ public class Sandbox : Emulator
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
 
+        if (fileNameInput.text == "") return;
+        if (fileNameInput.text == ".py") return;
+
         string currentNamePath = Path.Combine(fileDirectory, currentFileName);
         string newNamePath = Path.Combine(fileDirectory, fileNameInput.text);
         currentFileName = fileNameInput.text;
@@ -388,7 +395,6 @@ public class Sandbox : Emulator
 
         DisplaySavedFiles();
     }
-
 
     public void ShowDeletePopUp()
     {
@@ -513,5 +519,49 @@ public class Sandbox : Emulator
     public void MoveToSettings()
     {
 
+    }
+
+
+    public override void SetFontSize()
+    {
+        widthDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        emuConsole.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
+        coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        lineNumDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        SetColorSize();
+    }
+
+    public override void ClearCodeEditor()
+    {
+        // Set code field to default
+        inputText = new List<string>();
+        coloredText = new List<string>();
+
+        inputText.Add("");
+        coloredText.Add("");
+
+        caretPosX = 0;
+        caretPosY = 0;
+        numOfLines = 1;
+
+        ColorizeCurrentLine(true);
+        DisplayText();
+        SetLineNumbers();
+
+        fileNameInput.text = "";
+    }
+
+    public void DisableInput(bool addOpenCreateFileMessage = false)
+    {
+        enabled = false;
+        if (addOpenCreateFileMessage)
+            coloredCodeDisplay.text = "\n  <color=#FF0000>Create or Open a file to start coding!</color>";
+        fileNameInput.enabled = false;
+    }
+
+    public void EnableInput()
+    {
+        enabled = true;
+        fileNameInput.enabled = true;
     }
 }

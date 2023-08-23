@@ -280,14 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82148db3f6d1ac049b1cc9ff3df7e3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testCases: []
-  hiddenTestCases: []
-  startingCode: 
-  directions: 
-  puzzleName: 
-  puzzleIndex: 0
-  directionsContainer: {fileID: 118615745926866970}
-  viewport: {fileID: 118615744766785650}
   coloredScrollRect: {fileID: 8744479293937121311}
   lineNumberRect: {fileID: 118615744745817177}
   coloredCodeRect: {fileID: 1474165783565637850}
@@ -295,15 +287,7 @@ MonoBehaviour:
   coloredCodeDisplay: {fileID: 3492477017586277857}
   lineNumDisplay: {fileID: 118615744276895097}
   emuConsole: {fileID: 118615744768775421}
-  directionsDisplay: {fileID: 118615743996305039}
   widthDisplay: {fileID: 4352416677820011909}
-  clearConsoleButton: {fileID: 6273729895985099540}
-  runTestsButton: {fileID: 118615744774825117}
-  runButtonImage: {fileID: 118615744695366774}
-  runButton: {fileID: 118615744695366773}
-  runTestsButtonImage: {fileID: 118615744774825104}
-  clearConsoleButtonImage: {fileID: 7373093458091566038}
-  directionsButtonImage: {fileID: 2126093073469388112}
   isChangingCode: 0
   lastInputPosition: {x: 0, y: 0}
   recolorAllText: 0
@@ -324,14 +308,19 @@ MonoBehaviour:
   scrollPadding: 0
   processingDelay: 0.1
   pythonOutput: 
-  unsolvedImagePath: PuzzleImages/Unsolved
   caret: <color=#0000FF>|</color>
   keywordColor: 
   functionColor: '#00FFFF'
   stringColor: 
   verticalBuffer: 230
   lineHeightScaler: 0
-  normalizedPos: 0
+  testCases: []
+  hiddenTestCases: []
+  startingCode: 
+  directions: 
+  puzzleName: 
+  puzzleIndex: 0
+  directionsDisplay: {fileID: 118615743996305039}
 --- !u!1 &118615744006888454
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000052452087, y: 0.00074085523}
+  m_AnchoredPosition: {x: 0.0000052452087, y: 0.001012324}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &118615744170898234
@@ -4948,7 +4937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 28, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &4479568726095678195
@@ -5010,11 +4999,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5625,8 +5614,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 932}
-  m_SizeDelta: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 954}
+  m_SizeDelta: {x: 0, y: 15}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &675784941369624606
 CanvasRenderer:
@@ -5687,11 +5676,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

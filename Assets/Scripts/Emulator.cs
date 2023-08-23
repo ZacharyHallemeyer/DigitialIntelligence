@@ -19,14 +19,10 @@ using UnityEngine.SceneManagement;
 public class Emulator : MonoBehaviour
 {
     public ScrollRect coloredScrollRect;
-    public ScrollRect fileScrollRect;
 
     public RectTransform lineNumberRect;
     public RectTransform coloredCodeRect;
     public RectTransform codeScrollRect;
-
-    // Input fields
-    public TMP_InputField fileNameInput;
 
     // Text Components
     public TMP_Text coloredCodeDisplay; // This text component displays the colored text
@@ -1104,9 +1100,8 @@ public class Emulator : MonoBehaviour
     }
 
 
-    public void SetFontSize()
+    public virtual void SetFontSize()
     {
-        //fileDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15);
         widthDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         emuConsole.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
         coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
@@ -1203,23 +1198,31 @@ public class Emulator : MonoBehaviour
         }
 
 
+
         // Handle follow vertically
         lineHeight = lineInfo.lineHeight;
         float totalHeight = coloredCodeDisplay.textInfo.lineCount * lineHeight;
         float caretHeight = caretPosY * lineHeight;
 
+        coloredScrollRect.verticalNormalizedPosition = 1 - Normalize(caretHeight, 0, totalHeight + lineHeight);
+
+
+        /* OLD SCROLL VIEW CODE....MAY USE EVENTUALLY
         if (caretHeight < verticalViewTop)
         {
             verticalViewTop -= lineHeight;
             verticalViewBottom -= lineHeight;
             coloredScrollRect.verticalNormalizedPosition = 1 - Normalize(caretHeight, 0, totalHeight + lineHeight);
+            Debug.Log("Up: " + coloredScrollRect.verticalNormalizedPosition);
         }
         else if (caretHeight > verticalViewBottom)
         {
             verticalViewTop += lineHeight;
             verticalViewBottom += lineHeight;
             coloredScrollRect.verticalNormalizedPosition = 1 - Normalize(caretHeight, 0, totalHeight + lineHeight);
+            Debug.Log("Down: " + coloredScrollRect.verticalNormalizedPosition);
         }
+        */
     }
 
     public float Normalize(float value, float min, float max)
@@ -1294,7 +1297,7 @@ public class Emulator : MonoBehaviour
         lineNumDisplay.text = lineNumberString;
     }
 
-    public void ClearCodeEditor()
+    public virtual void ClearCodeEditor()
     {
         // Set code field to default
         inputText = new List<string>();
@@ -1310,21 +1313,5 @@ public class Emulator : MonoBehaviour
         ColorizeCurrentLine(true);
         DisplayText();
         SetLineNumbers();
-
-        fileNameInput.text = "";
-    }
-
-    public void DisableInput(bool addOpenCreateFileMessage = false)
-    {
-        enabled = false;
-        if (addOpenCreateFileMessage)
-            coloredCodeDisplay.text = "\n  <color=#FF0000>Create or Open a file to start coding!</color>";
-        fileNameInput.enabled = false;
-    }
-
-    public void EnableInput()
-    {
-        enabled = true;
-        fileNameInput.enabled = true;
     }
 }
