@@ -31,7 +31,6 @@ public class Emulator : MonoBehaviour
     public TMP_Text widthDisplay;
 
     // Emulator variables
-    public bool isChangingCode = false;
     public Vector2 lastInputPosition;
     public bool recolorAllText = false;
     public int lineMarginY = -145;
@@ -68,7 +67,6 @@ public class Emulator : MonoBehaviour
     public string stringColor;
 
     public float verticalBuffer = 230;
-    public int lineHeightScaler = 1;
 
     /// <summary>
     /// OnScroll is called when the input field is scrolled.
@@ -1009,7 +1007,6 @@ public class Emulator : MonoBehaviour
         WriteToEmuConsole("");
     }
 
-
     // ================================== Python ================================== 
 
     /// <summary>
@@ -1167,12 +1164,9 @@ public class Emulator : MonoBehaviour
     {
         coloredCodeDisplay.ForceMeshUpdate();
 
-        string[] lines = coloredCodeDisplay.text.Split('\n');
-        string line = lines[caretPosY + 1];
         TMP_TextInfo textInfo = coloredCodeDisplay.textInfo;
         TMP_LineInfo lineInfo = textInfo.lineInfo[caretPosY];
 
-        int index = lineInfo.firstCharacterIndex;
 
         // Handle follow horizontally
 
@@ -1247,25 +1241,6 @@ public class Emulator : MonoBehaviour
         widthDisplay.text = inputText[caretPosY].Substring(0, caretPosX);
 
         return widthDisplay.preferredWidth;
-    }
-
-    public float GetLongestLineWidth(TMP_Text textComponent)
-    {
-        // Ensure the text info is updated
-        textComponent.ForceMeshUpdate();
-
-        float longestWidth = 0;
-        TMP_TextInfo textInfo = coloredCodeDisplay.textInfo;
-
-        for (int index = 0; index < textInfo.lineCount; index++)
-        {
-            TMP_LineInfo lineInfo = textInfo.lineInfo[index];
-
-            if (lineInfo.width > longestWidth)
-                longestWidth = lineInfo.width;
-        }
-
-        return longestWidth;
     }
 
     public void AddLineNumber()

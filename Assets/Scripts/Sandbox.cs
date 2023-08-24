@@ -19,6 +19,12 @@ using UnityEngine.SceneManagement;
 
 public class Sandbox : Emulator
 {
+    // Containers
+    public GameObject settingsContainer;
+    public GameObject sliderContainer;
+    public GameObject colorContainer;
+
+
     // Prefabs
     public GameObject filePrefab;
 
@@ -34,7 +40,6 @@ public class Sandbox : Emulator
     private bool isExiting = false;
     private string fileToOpen = "";
 
-
     // Files
     public string fileDirectory = "SandboxFiles/";
     public string currentFileName;
@@ -43,7 +48,6 @@ public class Sandbox : Emulator
 
     // Input fields
     public TMP_InputField fileNameInput;
-
 
     public void Start()
     {
@@ -518,9 +522,40 @@ public class Sandbox : Emulator
 
     public void MoveToSettings()
     {
-
+        enabled = false;
+        settingsContainer.SetActive(true);
     }
 
+
+    /// <summary>
+    /// Moves to hub
+    /// </summary>
+    public void BackButtonClick()
+    {
+        AudioManager.instance.PlayButtonClickSoundEffect();
+        settingsContainer.SetActive(false);
+        enabled = true;
+        SetFontSize();
+        SetColorSize();
+    }
+
+    /// <summary>
+    /// Sets color container to active and slider container to inactive 
+    /// </summary>
+    public void ColorButtonClick()
+    {
+        colorContainer.SetActive(true);
+        sliderContainer.SetActive(false);
+    }
+
+    /// <summary>
+    /// Sets slider container to active and color container to inactive 
+    /// </summary>
+    public void ColorBackButtonClick()
+    {
+        sliderContainer.SetActive(true);
+        colorContainer.SetActive(false);
+    }
 
     public override void SetFontSize()
     {

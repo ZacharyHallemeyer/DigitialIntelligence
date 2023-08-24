@@ -30,13 +30,6 @@ public class GameManager : MonoBehaviour
     public static GameObject terminalUI;
     public GameObject terminalObjectPrefab;
 
-    // Timer
-    public static TMP_Text timerText;
-    public static int timeLimitMinutes = 29;
-    private static int currentTimeMinutes;
-    private static int currentTimeSeconds;
-
-
     // File system
     public static DirectoryData directoryRoot;
     public static DirectoryData currentDirectory;
@@ -179,8 +172,6 @@ public class GameManager : MonoBehaviour
     {
         puzzleIndex = 0;
         numRemainingLockedFiles = 0;
-        currentTimeSeconds = 61;
-        currentTimeMinutes = timeLimitMinutes;
         CreatePuzzles();
 
         CreateFileSystem();
@@ -355,52 +346,4 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Lost :(");
     }
 
-    /// <summary>
-    /// Creates a timer and displays it on the game screen.
-    /// </summary>
-    private void CreateTimer()
-    {
-        timerText = GameObject.Find("TimeText").GetComponent<TMP_Text>();
-        StartCoroutine(Timer());
-    }
-
-    /// <summary>
-    /// Coroutine that handles the countdown of the timer.
-    /// </summary>
-    private static IEnumerator Timer()
-    {
-        while(true)
-        {
-            // Decrease time seconds
-            currentTimeSeconds--;
-
-            // Check if a minute has passed
-            if(currentTimeSeconds < 0)
-            {
-                // Check if there are any minutes left
-                if(currentTimeMinutes > 0)
-                {
-                    // Decrease minute count and reset time seconds to 59
-                    currentTimeMinutes--;
-                    currentTimeSeconds = 59;
-                }
-            }
-
-            // Set Display
-            string minutes = currentTimeMinutes < 10 ? "0" + currentTimeMinutes : currentTimeMinutes.ToString();
-            string seconds = currentTimeSeconds < 10 ? "0" + currentTimeSeconds : currentTimeSeconds.ToString();
-
-            timerText.text = minutes + ":" + seconds;
-
-            // Check if time limit has been reached
-            if (currentTimeSeconds <= 0 && currentTimeMinutes <= 0)
-            {
-                // Call GameFailed and return out of function
-                GameFailed();
-                yield break;
-            }
-
-            yield return new WaitForSecondsRealtime(1f);
-        }
-    }
 }

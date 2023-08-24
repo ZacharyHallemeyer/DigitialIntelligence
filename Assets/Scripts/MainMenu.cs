@@ -68,6 +68,7 @@ public class MainMenu : MonoBehaviour
         // Move to sandbox scene
         SceneManager.LoadScene("Sandbox");
         SceneManager.UnloadSceneAsync("MainMenu");
+        AudioManager.instance.PlayButtonClickSoundEffect();
     }
 
     // Go to About Screen
