@@ -391,6 +391,7 @@ public class Sandbox : Emulator
     {
         string path = Path.Combine(fileDirectory, currentFileName);
 
+        fileSaved = true;
         File.Delete(path);
         currentFileName = "";
 
