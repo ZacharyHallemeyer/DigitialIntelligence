@@ -5,11 +5,11 @@ Operations:
 • +
 	○ + will add two values, for instance 1 + 1 will result in two and variableOne + variableTwo will result in the sum of the values in variableOne and variableTwo
 • -
-	○ - will add subtract two values, for instance 1 - 1 will result in zero and variableOne - variableTwo will result in the difference of the values in variableOne and variableTwo
+	○ - will subtract two values, for instance 1 - 1 will result in zero and variableOne - variableTwo will result in the difference of the values in variableOne and variableTwo
 • *
-	○ * will add multiply two values, for instance 1 * 1 will result in one and variableOne * variableTwo will result in the product of the values in variableOne and variableTwo
+	○ * will multiply two values, for instance 1 * 1 will result in one and variableOne * variableTwo will result in the product of the values in variableOne and variableTwo
 • /
-	○ / will add divide two values, for instance 1 / 1 will result in two and variableOne / variableTwo will result in the quotient of the values in variableOne and variableTwo
+	○ / will divide two values, for instance 1 / 1 will result in two and variableOne / variableTwo will result in the quotient of the values in variableOne and variableTwo
 
 Examples:
 

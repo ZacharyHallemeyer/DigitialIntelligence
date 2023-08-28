@@ -329,13 +329,13 @@ public class Puzzle : Emulator
         if(!testFailed)
         {
             //ShowClue();
-            testOutput += $"<color=#00AB66>directory {puzzleName} is now unlocked. Exit to terminal and use command `cd {puzzleName}` to move into the directory</color>";
+            testOutput += $"<color=#00AB66>directory {puzzleName} is now unlocked. \n\nExit to terminal and use command `cd {puzzleName}` to move into the directory</color>";
             AudioManager.instance.PlaySuccessSoundEffect();
             GameManager.instance.PuzzleSolved(this.puzzleName);
         }
         else
         {
-            testOutput += $"<color=#CC0000>directory {puzzleName} is still locked. Edit your code and try again!";
+            testOutput += $"<color=#CC0000>directory {puzzleName} is still locked. \n\nEdit your code and try again!";
             AudioManager.instance.PlayErrorSoundEffect();
         }
 
@@ -375,6 +375,16 @@ public class Puzzle : Emulator
     {
         SetFontSize();
         gameObject.SetActive(true);
+    }
+
+    public override void SetFontSize()
+    {
+        emuConsole.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
+        directionsDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15);
+        widthDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        lineNumDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
+        SetColorSize();
     }
 
 }

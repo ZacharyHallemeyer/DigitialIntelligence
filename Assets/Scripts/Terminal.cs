@@ -25,6 +25,8 @@ public class Terminal : MonoBehaviour
 
     public int oldCommandIndex = 0;
 
+    public int caretPositionX = 0;
+
     // Text colors
     public string commandColor = "#6495ED"; // cornflower blue
     public string errorColor = "#DC143C"; // crimson
@@ -63,9 +65,11 @@ public class Terminal : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
+        SetColors();
         terminalInput = new List<string>();
         terminalColoredText = new List<string>();
         terminalLineIndex = 0;
+        caretPositionX = 0;
 
         terminalInput.Add("");
         terminalColoredText.Add("");
@@ -95,6 +99,16 @@ public class Terminal : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 HandleUpArrow();
+            }            
+            // Check if input is left arrow
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                HandleLeftArrow();
+            }            
+            // Check if input is right arrow
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                HandleRightArrow();
             }
             // Check if input is return
             if ( Input.GetKeyDown(KeyCode.Return))
@@ -110,7 +124,15 @@ public class Terminal : MonoBehaviour
             {
                 foreach(char inputChar in Input.inputString)
                 {
-                    terminalInput[terminalLineIndex] += inputChar;
+                    if(caretPositionX >= terminalInput[terminalLineIndex].Length)
+                    {
+                        terminalInput[terminalLineIndex] += inputChar;
+                    }
+                    else
+                    {
+                        terminalInput[terminalLineIndex] = terminalInput[terminalLineIndex].Insert(caretPositionX, inputChar.ToString());
+                    }
+                    caretPositionX++;
                     ColorizeCurrentLine();
                 }
             }
@@ -123,7 +145,9 @@ public class Terminal : MonoBehaviour
     /// </summary>
     private void DisplayText()
     {
-        coloredTerminalDisplay.text = string.Join("\n", terminalColoredText);
+        coloredTerminalDisplay.text = $"<color={plainTextColor}>";
+        coloredTerminalDisplay.text += string.Join("\n", terminalColoredText);
+        coloredTerminalDisplay.text += "</color>";
     }
 
     private void ColorizeAllLines()
@@ -151,6 +175,7 @@ public class Terminal : MonoBehaviour
     {
         string line = terminalInput[terminalLineIndex];
         string[] words = Regex.Split(line, @"(?<= )");
+        int coloredCaretIndex = caretPositionX;
 
         if (words.Length <= 0)
         {
@@ -161,15 +186,17 @@ public class Terminal : MonoBehaviour
 
         if(caretIncluded)
         {
-            coloredLine = " " + GameManager.currentDirectory.path + " > ";
+            coloredLine = $" {GameManager.currentDirectory.path}> ";
+            coloredCaretIndex += coloredLine.Length;
         }
 
-        foreach(string word in words)
+        foreach (string word in words)
         {
             string trimmedWord = word.Trim();
             if(commands.Contains(trimmedWord))
             {
                 coloredLine += $"<color={commandColor}>{word}</color>";
+                coloredCaretIndex += $"<color={commandColor}></color>".Length;
             }
             else
             {
@@ -177,7 +204,17 @@ public class Terminal : MonoBehaviour
             }
         }
 
-        terminalColoredText[terminalLineIndex] = coloredLine + caret;
+        //terminalColoredText[terminalLineIndex] = coloredLine + caret;
+        
+        terminalColoredText[terminalLineIndex] = coloredLine;
+        if(terminalColoredText[terminalLineIndex].Length <= coloredCaretIndex)
+        {
+            terminalColoredText[terminalLineIndex] += caret;
+        }
+        else
+        {
+            terminalColoredText[terminalLineIndex] = terminalColoredText[terminalLineIndex].Insert(coloredCaretIndex, caret);
+        }
     }
 
     /// <summary>
@@ -194,11 +231,14 @@ public class Terminal : MonoBehaviour
 
         // Add a new line to input and colored text lists 
         terminalInput.Add("");
-        terminalColoredText.Add(" " + GameManager.currentDirectory.path + " > " + caret);
+        terminalColoredText.Add($"{caret}");
         terminalLineIndex++;
+        caretPositionX = 0;
+        
+        ColorizeCurrentLine();
+
 
         // Adjust the scroll view to show the bottom of the text
-        float contentHeight = coloredTerminalDisplay.rectTransform.rect.height;
         float viewportHeight = viewport.rect.height;
 
         // Check if the content height exceeds the viewport height
@@ -206,6 +246,7 @@ public class Terminal : MonoBehaviour
         {
             textRect.anchoredPosition = new Vector2(0, coloredTerminalDisplay.preferredHeight - viewportHeight + scrollPadding);
         }
+
 
 
         // Handle command
@@ -225,10 +266,12 @@ public class Terminal : MonoBehaviour
         if(line.Length < 1)
         {
             terminalInput[terminalLineIndex] = "";
+            caretPositionX = 0;
         }
         else
         {
             terminalInput[terminalLineIndex] = line.Substring(0, line.Length - 1);
+            caretPositionX--;
         }
         ColorizeCurrentLine();
     }
@@ -537,8 +580,8 @@ public class Terminal : MonoBehaviour
         
         if(GameManager.currentDirectory.files.Count > 0)
         {
-            PrintLineToTerminal($"<color={plainTextColor}>Files</color>", false);
-            PrintLineToTerminal($"<color={plainTextColor}>====================================</color>", false);
+            PrintLineToTerminal("Files", false);
+            PrintLineToTerminal("====================================", false);
         }
 
         // Print files of current directory
@@ -559,13 +602,13 @@ public class Terminal : MonoBehaviour
 
         if (GameManager.currentDirectory.files.Count > 0)
         {
-            PrintLineToTerminal($"<color={plainTextColor}>====================================\n\n</color>", false);
+            PrintLineToTerminal($"====================================\n\n", false);
         }
 
         if(GameManager.currentDirectory.directories.Count > 0)
         {
-            PrintLineToTerminal($"<color={plainTextColor}>Directories</color>", false);
-            PrintLineToTerminal($"<color={plainTextColor}>====================================</color>", false);
+            PrintLineToTerminal($"Directories", false);
+            PrintLineToTerminal($"====================================", false);
         }
 
         // Print child directories of current directory
@@ -588,7 +631,7 @@ public class Terminal : MonoBehaviour
 
         if (GameManager.currentDirectory.directories.Count > 0)
         {
-            PrintLineToTerminal($"<color={plainTextColor}>====================================</color>", false);
+            PrintLineToTerminal($"====================================", false);
         }
     }
 
@@ -737,6 +780,24 @@ public class Terminal : MonoBehaviour
             terminalInput[terminalLineIndex] = oldCommands[oldCommandIndex];
             ColorizeCurrentLine();
             DisplayText();
+        }
+    }
+
+    private void HandleLeftArrow()
+    {
+        if(caretPositionX > 0)
+        {
+            caretPositionX--;
+            ColorizeCurrentLine();
+        }
+    }
+
+    private void HandleRightArrow()
+    {
+        if(caretPositionX < terminalColoredText[terminalLineIndex].Length)
+        {
+            caretPositionX++;
+            ColorizeCurrentLine();
         }
     }
 
