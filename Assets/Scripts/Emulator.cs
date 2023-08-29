@@ -744,7 +744,13 @@ public class Emulator : MonoBehaviour
 
         string coloredTextString = "";
         // Split current line by spaces into an array
-        string[] words = coloredText[caretPosY].Split(' ');
+        // Split the line based on multiple delimiters
+        string pattern = @"(\s|\(|\)|,|;)";
+        //string pattern = @"(\s|[+\-*/%&|\^~=<>()\[\]{}:,;@'#""\.\*]|==|!=|<=|>=|<<|>>|and\b|or\b|not\b)";
+
+        string[] words = Regex.Split(coloredText[caretPosY], pattern);
+
+        //string[] words = coloredText[caretPosY].Split(' ');
 
         // Define colors for comments and strings
         string commentColor = "#808080"; // Grey
@@ -787,7 +793,7 @@ public class Emulator : MonoBehaviour
                 isString = true;
                 // Insert starting color tag at quotation marks
                 int startStringIndex = word.IndexOf('\'') != -1 ? word.IndexOf('\'') : word.IndexOf('\"');
-                coloredTextString += $"{word.Substring(0, startStringIndex)}<color={stringColor}>{word.Substring(startStringIndex)} ";
+                coloredTextString += $"{word.Substring(0, startStringIndex)}<color={stringColor}>{word.Substring(startStringIndex)}";
                 wordAdded = true;
             }
             // Check if line is not a comment, is a string, and contains a quotation mark
@@ -797,7 +803,7 @@ public class Emulator : MonoBehaviour
                 isString = false;
                 // Close string color tag
                 int endStringIndex = word.IndexOf('\'') != -1 ? word.IndexOf('\'') : word.IndexOf('\"');
-                coloredTextString += $"{word.Substring(0, endStringIndex + 1)}</color>{word.Substring(endStringIndex + 1)} ";
+                coloredTextString += $"{word.Substring(0, endStringIndex + 1)}</color>{word.Substring(endStringIndex + 1)}";
                 wordAdded = true;
             }
             // Check if line is a comment
@@ -806,7 +812,7 @@ public class Emulator : MonoBehaviour
                 // This is a comment, so color it grey
                 isComment = true;
                 int startCommentIndex = wordNoCaret.IndexOf("#");
-                wordNoCaret = $"{wordNoCaret.Substring(0, startCommentIndex)}<color={commentColor}>{wordNoCaret.Substring(startCommentIndex)} ";
+                wordNoCaret = $"{wordNoCaret.Substring(0, startCommentIndex)}<color={commentColor}>{wordNoCaret.Substring(startCommentIndex)}";
 
                 // Check if caret out of word on the left
                 if (caretIndex != -1 && caretIndex < startCommentIndex)
@@ -883,7 +889,7 @@ public class Emulator : MonoBehaviour
             // If the word was not added, add the word without color tags
             if (!wordAdded)
             {
-                coloredTextString += word + " ";
+                coloredTextString += word + "";
             }
         }
 
@@ -915,7 +921,7 @@ public class Emulator : MonoBehaviour
         int keywordStart = text.IndexOf(keyword);
         int keywordEnd = keywordStart + keyword.Length - 1;
         // set color tags around the keyword
-        text = $"{ text.Substring(0, keywordStart) }<color={hexColor}>{text.Substring(keywordStart, keyword.Length)}</color>{text.Substring(keywordEnd + 1)} ";
+        text = $"{ text.Substring(0, keywordStart) }<color={hexColor}>{text.Substring(keywordStart, keyword.Length)}</color>{text.Substring(keywordEnd + 1)}";
 
         // Check if caret in word
         if (keywordStart <= caretIndex && keywordEnd >= caretIndex)
@@ -950,7 +956,7 @@ public class Emulator : MonoBehaviour
         int keywordStart = text.IndexOf(keyword);
         int keywordEnd = keywordStart + keyword.Length - 1;
         // Set color tags around keyword
-        text = $"{ text.Substring(0, keywordStart) }<color={hexColor}>{text.Substring(keywordStart, keyword.Length)}</color>{text.Substring(keywordEnd + 1)} ";
+        text = $"{ text.Substring(0, keywordStart) }<color={hexColor}>{text.Substring(keywordStart, keyword.Length)}</color>{text.Substring(keywordEnd + 1)}";
 
         return text;
     }

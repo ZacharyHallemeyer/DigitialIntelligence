@@ -456,7 +456,7 @@ public class Terminal : MonoBehaviour
                 {
                     AudioManager.instance.PlaySuccessSoundEffect();
                     file.unlocked = true;
-                    GameManager.numRemainingLockedFiles--;
+                    GameManager.instance.FileUnlocked();
                     PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
                 }
                 // Otherwise, print error message

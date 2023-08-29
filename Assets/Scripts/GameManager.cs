@@ -197,6 +197,18 @@ public class GameManager : MonoBehaviour
         terminalObject.SetActive(false);
     }
 
+    public void FileUnlocked()
+    {
+        numRemainingLockedFiles--;
+
+        if(numRemainingLockedFiles <= 0)
+        {
+            // Level Completed!
+
+
+        }
+    }
+
     // ========================= Data Manipulation ========================= //
 
     /// <summary>
@@ -327,8 +339,15 @@ public class GameManager : MonoBehaviour
 
     // ========================= Game Management ========================= //
 
+    private void LevelCompleted()
+    {
+
+    }
+
     public static void GameWon()
     {
+
+        /*
         // Loop through puzzle UI and remove
         foreach(GameObject puzzle in puzzles)
         {
@@ -336,6 +355,8 @@ public class GameManager : MonoBehaviour
         }
         // Remove terminal
         Destroy(terminalObject);
+
+        */
 
         Debug.Log("You won!!!!!");
     }

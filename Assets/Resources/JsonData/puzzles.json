@@ -2,6 +2,7 @@
   {
     "puzzleName": "Tutorial",
     "index": "0",
+    "completed": false,
     "puzzles": [
       {
         "testCases": [
@@ -14,7 +15,8 @@
         "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleOneStartingCode",
         "directions": "TextFiles/TutorialFiles/TutorialPuzzleOneDirections",
         "puzzleName": "LevelOne",
-        "puzzleIndex": "0"
+        "puzzleIndex": "0",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -27,7 +29,8 @@
         "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleTwoStartingCode",
         "directions": "TextFiles/TutorialFiles/TutorialPuzzleTwoDirections",
         "puzzleName": "LevelTwo",
-        "puzzleIndex": "1"
+        "puzzleIndex": "1",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -40,13 +43,15 @@
         "startingCode": "TextFiles/TutorialFiles/TutorialPuzzleThreeStartingCode",
         "directions": "TextFiles/TutorialFiles/TutorialPuzzleThreeDirections",
         "puzzleName": "LevelThree",
-        "puzzleIndex": "2"
+        "puzzleIndex": "2",
+        "oldCode": ""
       }
     ]
   },
   {
     "puzzleName": "Variables",
     "index": "1",
+    "completed": false,
     "puzzles": [
       {
         "testCases": [
@@ -59,7 +64,8 @@
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableOneStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableOneDirections",
         "puzzleName": "VariableOne",
-        "puzzleIndex": "0"
+        "puzzleIndex": "0",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -76,7 +82,8 @@
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableTwoStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableTwoDirections",
         "puzzleName": "VariableTwo",
-        "puzzleIndex": "1"
+        "puzzleIndex": "1",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -97,7 +104,8 @@
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableThreeStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableThreeDirections",
         "puzzleName": "VariableThree",
-        "puzzleIndex": "2"
+        "puzzleIndex": "2",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -110,7 +118,8 @@
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableFourStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableFourDirections",
         "puzzleName": "VariableFour",
-        "puzzleIndex": "3"
+        "puzzleIndex": "3",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -123,7 +132,8 @@
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableFiveStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableFiveDirections",
         "puzzleName": "VariableFive",
-        "puzzleIndex": "4"
+        "puzzleIndex": "4",
+        "oldCode": ""
       }
     ]
   },
@@ -133,6 +143,7 @@
   {
     "puzzleName": "Conditionals",
     "index": "2",
+    "completed": false,
     "puzzles": [
       {
         "testCases": [
@@ -153,7 +164,8 @@
         "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsOneStartingCode",
         "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsOneDirections",
         "puzzleName": "One",
-        "puzzleIndex": "1"
+        "puzzleIndex": "1",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -174,7 +186,8 @@
         "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsTwoStartingCode",
         "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsTwoDirections",
         "puzzleName": "Two",
-        "puzzleIndex": "2"
+        "puzzleIndex": "2",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -207,7 +220,8 @@
         "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsThreeStartingCode",
         "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsThreeDirections",
         "puzzleName": "Three",
-        "puzzleIndex": "3"
+        "puzzleIndex": "3",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -260,7 +274,8 @@
         "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsFourStartingCode",
         "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsFourDirections",
         "puzzleName": "Four",
-        "puzzleIndex": "4"
+        "puzzleIndex": "4",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -309,7 +324,8 @@
         "startingCode": "TextFiles/ConditionalsFiles/ConditionalsConditionalsFiveStartingCode",
         "directions": "TextFiles/ConditionalsFiles/ConditionalsConditionalsFiveDirections",
         "puzzleName": "Five",
-        "puzzleIndex": "5"
+        "puzzleIndex": "5",
+        "oldCode": ""
       }
     ]
   },
@@ -319,6 +335,7 @@
   {
     "puzzleName": "Loops",
     "index": "3",
+    "completed": false,
     "puzzles": [
       {
         "testCases": [
@@ -344,7 +361,8 @@
         "startingCode": "TextFiles/LoopsFiles/LoopsOneStartingCode",
         "directions": "TextFiles/LoopsFiles/LoopsOneDirections",
         "puzzleName": "One",
-        "puzzleIndex": "0"
+        "puzzleIndex": "0",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -370,7 +388,8 @@
         "startingCode": "TextFiles/LoopsFiles/LoopsTwoStartingCode",
         "directions": "TextFiles/LoopsFiles/LoopsTwoDirections",
         "puzzleName": "Two",
-        "puzzleIndex": "1"
+        "puzzleIndex": "1",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -400,7 +419,8 @@
         "startingCode": "TextFiles/LoopsFiles/LoopsThreeStartingCode",
         "directions": "TextFiles/LoopsFiles/LoopsThreeDirections",
         "puzzleName": "Three",
-        "puzzleIndex": "2"
+        "puzzleIndex": "2",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -426,7 +446,8 @@
         "startingCode": "TextFiles/LoopsFiles/LoopsFourStartingCode",
         "directions": "TextFiles/LoopsFiles/LoopsFourDirections",
         "puzzleName": "Four",
-        "puzzleIndex": "3"
+        "puzzleIndex": "3",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -452,7 +473,8 @@
         "startingCode": "TextFiles/LoopsFiles/LoopsFiveStartingCode",
         "directions": "TextFiles/LoopsFiles/LoopsFiveDirections",
         "puzzleName": "Five",
-        "puzzleIndex": "4"
+        "puzzleIndex": "4",
+        "oldCode": ""
       }
     ]
   },
@@ -462,6 +484,7 @@
   {
     "puzzleName": "Strings",
     "index": "4",
+    "completed": false,
     "puzzles": [
       {
         "testCases": [
@@ -487,7 +510,8 @@
         "startingCode": "TextFiles/StringsFiles/StringsOneStartingCode",
         "directions": "TextFiles/StringsFiles/StringsOneDirections",
         "puzzleName": "One",
-        "puzzleIndex": "0"
+        "puzzleIndex": "0",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -513,7 +537,8 @@
         "startingCode": "TextFiles/StringsFiles/StringsTwoStartingCode",
         "directions": "TextFiles/StringsFiles/StringsTwoDirections",
         "puzzleName": "Two",
-        "puzzleIndex": "1"
+        "puzzleIndex": "1",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -543,7 +568,8 @@
         "startingCode": "TextFiles/StringsFiles/StringsThreeStartingCode",
         "directions": "TextFiles/StringsFiles/StringsThreeDirections",
         "puzzleName": "Three",
-        "puzzleIndex": "2"
+        "puzzleIndex": "2",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -573,7 +599,8 @@
         "startingCode": "TextFiles/StringsFiles/StringsFourStartingCode",
         "directions": "TextFiles/StringsFiles/StringsFourDirections",
         "puzzleName": "Four",
-        "puzzleIndex": "3"
+        "puzzleIndex": "3",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -599,7 +626,8 @@
         "startingCode": "TextFiles/StringsFiles/StringsFiveStartingCode",
         "directions": "TextFiles/StringsFiles/StringsFiveDirections",
         "puzzleName": "Five",
-        "puzzleIndex": "4"
+        "puzzleIndex": "4",
+        "oldCode": ""
       }
     ]
   },
@@ -608,6 +636,7 @@
   {
     "puzzleName": "Lists",
     "index": "5",
+    "completed": false,
     "puzzles": [
       {
         "testCases": [
@@ -629,7 +658,8 @@
         "startingCode": "TextFiles/ListsFiles/ListsOneStartingCode",
         "directions": "TextFiles/ListsFiles/ListsOneDirections",
         "puzzleName": "One",
-        "puzzleIndex": "0"
+        "puzzleIndex": "0",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -655,7 +685,8 @@
         "startingCode": "TextFiles/ListsFiles/ListsTwoStartingCode",
         "directions": "TextFiles/ListsFiles/ListsTwoDirections",
         "puzzleName": "Two",
-        "puzzleIndex": "1"
+        "puzzleIndex": "1",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -681,7 +712,8 @@
         "startingCode": "TextFiles/ListsFiles/ListsThreeStartingCode",
         "directions": "TextFiles/ListsFiles/ListsThreeDirections",
         "puzzleName": "Three",
-        "puzzleIndex": "2"
+        "puzzleIndex": "2",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -703,7 +735,8 @@
         "startingCode": "TextFiles/ListsFiles/ListsFourStartingCode",
         "directions": "TextFiles/ListsFiles/ListsFourDirections",
         "puzzleName": "Four",
-        "puzzleIndex": "3"
+        "puzzleIndex": "3",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -719,7 +752,8 @@
         "hiddenTestCases": [
           {
             "problem": "[1, 2, 3], 2",
-            "answer": "3"
+            "answer": "3",
+            "oldCode": ""
           }
         ],
         "startingCode": "TextFiles/ListsFiles/ListsFiveStartingCode",
@@ -737,6 +771,7 @@
   {
     "puzzleName": "Functions",
     "index": "6",
+    "completed": false,
     "puzzles": [
       {
         "testCases": [
@@ -762,7 +797,8 @@
         "startingCode": "TextFiles/FunctionsFiles/FunctionsOneStartingCode",
         "directions": "TextFiles/FunctionsFiles/FunctionsOneDirections",
         "puzzleName": "One",
-        "puzzleIndex": "0"
+        "puzzleIndex": "0",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -788,7 +824,8 @@
         "startingCode": "TextFiles/FunctionsFiles/FunctionsTwoStartingCode",
         "directions": "TextFiles/FunctionsFiles/FunctionsTwoDirections",
         "puzzleName": "Two",
-        "puzzleIndex": "1"
+        "puzzleIndex": "1",
+        "oldCode": ""
       }
     ]
   },
@@ -830,7 +867,8 @@
         "startingCode": "TextFiles/GreekMythsFiles/GreekMythsChaosStartingCode",
         "directions": "TextFiles/GreekMythsFiles/GreekMythsChaosDirections",
         "puzzleName": "Chaos",
-        "puzzleIndex": "1"
+        "puzzleIndex": "1",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -856,7 +894,8 @@
         "startingCode": "TextFiles/GreekMythsFiles/GreekMythsFireStartingCode",
         "directions": "TextFiles/GreekMythsFiles/GreekMythsFireDirections",
         "puzzleName": "Fire",
-        "puzzleIndex": "2"
+        "puzzleIndex": "2",
+        "oldCode": ""
       },
       {
         "testCases": [
@@ -894,7 +933,8 @@
         "startingCode": "TextFiles/GreekMythsFiles/GreekMythsHadesStartingCode",
         "directions": "TextFiles/GreekMythsFiles/GreekMythsHadesDirections",
         "puzzleName": "Hades",
-        "puzzleIndex": "10"
+        "puzzleIndex": "10",
+        "oldCode": "3"
       },
       {
         "testCases": [
@@ -928,7 +968,8 @@
         "startingCode": "TextFiles/GreekMythsFiles/GreekMythsHadesStartingCode",
         "directions": "TextFiles/GreekMythsFiles/GreekMythsHadesDirections",
         "puzzleName": "Minotaur",
-        "puzzleIndex": "4"
+        "puzzleIndex": "4",
+        "oldCode": ""
       }
     ]
   }

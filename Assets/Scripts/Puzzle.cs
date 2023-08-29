@@ -81,19 +81,21 @@ public class Puzzle : Emulator
     public string directions;
     [JsonProperty("puzzleName")]
     public string puzzleName;
-
+    public string oldCode;
     public int puzzleIndex;
+
 
     // UI Components
     public TMP_Text directionsDisplay;
 
-    public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string clueImagePath, string startingCode, string directions, string puzzleType, string unlockKeyword, string puzzleName, int puzzleIndex)
+    public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string clueImagePath, string startingCode, string directions, string puzzleType, string unlockKeyword, string puzzleName, string oldCode, int puzzleIndex)
     {
         this.testCases          = new List<TestCase>(testCases);
         this.hiddenTestCases    = new List<TestCase>(hiddenTestCases);
         this.startingCode       = startingCode;
         this.directions         = directions;
         this.puzzleName         = puzzleName;
+        this.oldCode            = oldCode;
         this.puzzleIndex        = puzzleIndex;
     }
 
@@ -328,7 +330,6 @@ public class Puzzle : Emulator
         // Check if all tests passed
         if(!testFailed)
         {
-            //ShowClue();
             testOutput += $"<color=#00AB66>directory {puzzleName} is now unlocked. \n\nExit to terminal and use command `cd {puzzleName}` to move into the directory</color>";
             AudioManager.instance.PlaySuccessSoundEffect();
             GameManager.instance.PuzzleSolved(this.puzzleName);
@@ -360,6 +361,7 @@ public class Puzzle : Emulator
         AudioManager.instance.PlayButtonClickSoundEffect();
         gameObject.SetActive(false);
         GameManager.terminal.gameObject.SetActive(true);
+        oldCode = string.Join("\n", inputText);
     }
 
     // ========================= Helper Functions ========================= //
