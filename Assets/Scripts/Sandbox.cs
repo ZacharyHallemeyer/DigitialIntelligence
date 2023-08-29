@@ -300,6 +300,7 @@ public class Sandbox : Emulator
 
         EnableInput();
         SaveFile();
+        WriteToEmuConsole($"\n{currentFileName} successfully created\n");
     }
 
     public void RenameFile()
@@ -311,6 +312,7 @@ public class Sandbox : Emulator
 
         string currentNamePath = Path.Combine(fileDirectory, currentFileName);
         string newNamePath = Path.Combine(fileDirectory, fileNameInput.text);
+        string oldFileName = currentFileName;
         currentFileName = fileNameInput.text;
 
         // Add .py to file name if not included already
@@ -318,14 +320,14 @@ public class Sandbox : Emulator
         {
             newNamePath += ".py";
             currentFileName +=  ".py";
+            fileNameInput.text = currentFileName;
         }
 
         // Return out of function if same name
         if (currentNamePath == newNamePath) return;
 
-
         File.Move(currentNamePath, newNamePath);
-
+        WriteToEmuConsole($"\n{oldFileName} successfully renamed to {currentFileName}\n");
 
         DisplaySavedFiles();
     }
@@ -335,13 +337,13 @@ public class Sandbox : Emulator
         AudioManager.instance.PlayButtonClickSoundEffect();
         if (currentFileName == "") return;
 
-        Debug.Log("SAVE");
         fileSaved = true;
 
         string text = string.Join('\n', inputText);
         string path = Path.Combine(fileDirectory, currentFileName);
 
         File.WriteAllText(path, text);
+        WriteToEmuConsole($"\n{currentFileName} successfully saved\n");
     }
 
     private void OpenFile(string fileName)
@@ -393,6 +395,7 @@ public class Sandbox : Emulator
 
         fileSaved = true;
         File.Delete(path);
+        WriteToEmuConsole($"\n{currentFileName} successfully deleted\n");
         currentFileName = "";
 
         ClearCodeEditor();
