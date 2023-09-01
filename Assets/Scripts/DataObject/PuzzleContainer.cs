@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PuzzleContainer : MonoBehaviour
 {
-    public string puzzleName;
+    public string levelName;
     public int index;
-    public bool completed;
     public List<Puzzle> puzzles;
 
 
@@ -15,11 +14,10 @@ public class PuzzleContainer : MonoBehaviour
 
     }
 
-    public PuzzleContainer(string puzzleName, int index, bool completed, List<Puzzle> puzzles)
+    public PuzzleContainer(string levelName, int index, List<Puzzle> puzzles)
     {
-        this.puzzleName = puzzleName;
+        this.levelName = levelName;
         this.index = index;
-        this.completed = completed;
         this.puzzles = puzzles;
     }
 

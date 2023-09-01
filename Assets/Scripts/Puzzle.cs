@@ -1,41 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
 using Newtonsoft.Json;
-using System.Text;
-using IronPython.Hosting;
-using UnityEngine.UI;
-using System.Text.RegularExpressions;
 using System.IO;
 using TMPro;
-using Microsoft.Scripting.Hosting;
 using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.CSharp;
-
-
-// The PuzzleDataList class represents a serializable collection of Puzzle objects.
-[Serializable]
-public class PuzzleDataList
-{
-    public List<Puzzle> puzzles;
-}
-
-// The PuzzleData class holds data for a specific puzzle.
-[Serializable]
-public class PuzzleData
-{
-    public List<TestCase> testCases;
-    public List<TestCase> hiddenTestCases;
-    public string clueImagePath;
-    public string startingCode;
-    public string directions;
-    public string puzzleType;
-    public string unlockKeyword;
-    public int puzzleIndex;
-}
 
 // The TestCase class represents a test case for a puzzle.
 [Serializable]
@@ -81,26 +51,27 @@ public class Puzzle : Emulator
     public string directions;
     [JsonProperty("puzzleName")]
     public string puzzleName;
-    public string oldCode;
+    [JsonProperty("puzzleIndex")]
     public int puzzleIndex;
 
+    private string oldCode;
 
     // UI Components
     public TMP_Text directionsDisplay;
 
-    public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string clueImagePath, string startingCode, string directions, string puzzleType, string unlockKeyword, string puzzleName, string oldCode, int puzzleIndex)
+    public Puzzle(List<TestCase> testCases, List<TestCase> hiddenTestCases, string startingCode, string directions, string puzzleName, int puzzleIndex)
     {
         this.testCases          = new List<TestCase>(testCases);
         this.hiddenTestCases    = new List<TestCase>(hiddenTestCases);
         this.startingCode       = startingCode;
         this.directions         = directions;
         this.puzzleName         = puzzleName;
-        this.oldCode            = oldCode;
         this.puzzleIndex        = puzzleIndex;
     }
 
     public void Initialize(Puzzle puzzleData)
     {
+        Debug.Log("HI");
         this.testCases          = new List<TestCase>(puzzleData.testCases);
         this.hiddenTestCases    = new List<TestCase>(puzzleData.hiddenTestCases);
         this.startingCode       = puzzleData.startingCode;
@@ -118,6 +89,9 @@ public class Puzzle : Emulator
         codeFieldHeight = codeScrollRect.rect.height - verticalBuffer;
         verticalViewTop = 0;
         verticalViewBottom = codeFieldHeight;
+
+        // Get old code ("" if no old code avaliable)
+        oldCode = GetOldCode();
 
         // Set text
         SetPuzzleDisplay();
@@ -238,7 +212,16 @@ public class Puzzle : Emulator
     {
         // Set starting code
         // Set input field text
-        inputText = Resources.Load<TextAsset>(startingCode).text.Split('\n').ToList();
+        if(oldCode == "")
+        {
+            inputText = Resources.Load<TextAsset>(startingCode).text.Split('\n').ToList();
+        }
+        else
+        {
+            inputText = oldCode.Split('\n').ToList();
+        }
+
+
         coloredText = new List<string>();
 
         caretPosY = 0;
@@ -348,29 +331,23 @@ public class Puzzle : Emulator
     /// </summary>
     public void ResetPuzzle()
     {
+        oldCode = "";
         AudioManager.instance.PlayButtonClickSoundEffect();
         SetPuzzleDisplay();
     }
+
+    // ========================= Helper Functions ========================= //
 
     /// <summary>
     /// Exits the puzzle UI by seting the puzzle's state to inactive
     /// and sets the terminal UI to active
     /// </summary>
-    public void ExitPuzzleUI()
-    {
-        AudioManager.instance.PlayButtonClickSoundEffect();
-        gameObject.SetActive(false);
-        GameManager.terminal.gameObject.SetActive(true);
-        oldCode = string.Join("\n", inputText);
-    }
-
-    // ========================= Helper Functions ========================= //
-
     public void HidePuzzle()
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
         gameObject.SetActive(false);
         GameManager.terminal.ShowTerminal();
+        WriteToPuzzleJson();
     }
 
     public void ShowPuzzle()
@@ -387,6 +364,105 @@ public class Puzzle : Emulator
         coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         lineNumDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         SetColorSize();
+    }
+
+    private void WriteToPuzzleJson()
+    {
+        // Get puzzle data from Json
+        string data;
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+
+        // Check if persistent data of puzzles exist
+        if (File.Exists(persistentDataPath))
+        {
+            data = File.ReadAllText(persistentDataPath);
+        }
+        // Otherwise, get puzzle data from resources folder
+        else
+        {
+            GameManager.instance.CreatePersistentPuzzleFile();
+            data = File.ReadAllText(persistentDataPath);
+        }
+
+        List<LevelInfo> levelDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(data);
+
+
+        levelDataList[GameManager.levelIndex].puzzles[puzzleIndex].oldCode = string.Join("\n", inputText);
+
+        
+        // MAY USE LATER
+        /*
+        for( int levelDataIndex = 0; levelDataIndex < levelDataList.Count; levelDataIndex++)
+        {
+            if(GameManager.levelIndex == levelDataList[levelDataIndex].index)
+            {
+                for(int puzzleInfoIndex = 0; puzzleInfoIndex < levelDataList[levelDataIndex].puzzles.Count; puzzleInfoIndex++)
+                {
+                    if(puzzleIndex == levelDataList[levelDataIndex].puzzles[puzzleIndex].puzzleIndex)
+                    {
+                    }
+                }
+            }
+        }
+        */
+
+
+
+
+
+        // Serialize the updated list to a JSON string
+        var settings = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        };
+        //printPuzzleContainerList(puzzleDataList);
+        string updatedData = JsonConvert.SerializeObject(levelDataList, settings);
+
+        //string updatedData = JsonConvert.SerializeObject(puzzleDataList, Formatting.Indented);
+
+        // use: Persistent Data Path:
+        string path = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+        File.WriteAllText(path, updatedData);
+    }
+
+    private void printPuzzleContainerList(List<PuzzleContainer> puzzleContainers)
+    {
+        foreach(PuzzleContainer puzzleContainer in puzzleContainers)
+        {
+            Debug.Log(puzzleContainer.levelName);
+            Debug.Log(puzzleContainer.index);
+
+            foreach(Puzzle puzzle in puzzleContainer.puzzles)
+            {
+                Debug.Log("\t" + puzzle.puzzleName);
+                Debug.Log("\t" + puzzle.puzzleIndex);
+                Debug.Log("\t" + puzzle.puzzleIndex);
+            }
+        }
+    }
+
+    private string GetOldCode()
+    {
+        string data;
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+
+        // Check if persistent data of puzzles exist
+        if (File.Exists(persistentDataPath))
+        {
+            data = File.ReadAllText(persistentDataPath);
+        }
+        // Otherwise, get puzzle data from resources folder
+        else
+        {
+            GameManager.instance.CreatePersistentPuzzleFile();
+            data = File.ReadAllText(persistentDataPath);
+        }
+
+        List<LevelInfo> levelDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(data);
+
+        Debug.Log(levelDataList[GameManager.levelIndex].puzzles[puzzleIndex].oldCode);
+        return levelDataList[GameManager.levelIndex].puzzles[puzzleIndex].oldCode;
+
     }
 
 }

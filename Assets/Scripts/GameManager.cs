@@ -1,11 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Text;
 using Newtonsoft.Json;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Main game manager class responsible for controlling the game flow.
@@ -17,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static int levelIndex;
     public static string levelName;
     public static int numRemainingLockedFiles;
+    public static string persistentPuzzleFile = "levelProgress.json";
 
     // Puzzles
     public List<PuzzleContainer> puzzleDataList;
@@ -152,8 +149,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        
-        if(instance == null)
+
+        if (instance == null)
         {
             instance = this;
         }
@@ -201,7 +198,7 @@ public class GameManager : MonoBehaviour
     {
         numRemainingLockedFiles--;
 
-        if(numRemainingLockedFiles <= 0)
+        if (numRemainingLockedFiles <= 0)
         {
             // Level Completed!
 
@@ -255,13 +252,13 @@ public class GameManager : MonoBehaviour
         string output = "";
         output += "\n" + indent + dirData.dirName;
 
-        foreach(FileData fileData in dirData.files)
+        foreach (FileData fileData in dirData.files)
         {
             output += "\n\t" + indent + fileData.fileName;
             output += "\n\t" + indent + fileData.path;
         }
 
-        foreach(DirectoryData dirDataInner in dirData.directories)
+        foreach (DirectoryData dirDataInner in dirData.directories)
         {
             PrintDirectories(dirDataInner, indent + "\t");
         }
@@ -274,33 +271,94 @@ public class GameManager : MonoBehaviour
     void CreatePuzzles()
     {
         // Get puzzle data from Json
+        string data;
+        string persistentLevelData;
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, persistentPuzzleFile);
+
+
+        // Get Levels from level json
         TextAsset jsonData = Resources.Load<TextAsset>("JsonData/puzzles");
-        string data = jsonData.text;
+        data = jsonData.text;
         List<PuzzleContainer> puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
 
+        // Check if persistent data of puzzles exist
+        if (File.Exists(persistentDataPath))
+        {
+            persistentLevelData = File.ReadAllText(persistentDataPath);
+        }
+        // Otherwise, get puzzle data from resources folder
+        else
+        {
+            CreatePersistentPuzzleFile(puzzleDataList);
+            persistentLevelData = File.ReadAllText(persistentDataPath);
+        }
+        
         puzzles = new List<GameObject>();
 
-
-        foreach(Puzzle puzzleData in puzzleDataList[levelIndex].puzzles)
+        foreach (Puzzle puzzleData in puzzleDataList[levelIndex].puzzles)
         {
             // Create the Puzzle classes from the data 
             GameObject puzzleObject = Instantiate(puzzlePrefab);
             Puzzle puzzleComponent = puzzleObject.GetComponent<Puzzle>();
+            Debug.Log(puzzleData);
+
 
             // Add the class data to the puzzlePrefab
-            try
-            {
-                puzzleComponent.Initialize(puzzleData);
-            }
-            catch
-            {
-                // LEAVE EMPTY FOR NOW
-            }
+            puzzleComponent.Initialize(puzzleData);
 
             // Store the puzzle object in the puzzles list
             puzzles.Add(puzzleObject);
             puzzleObject.SetActive(false);
         }
+        
+
+    }
+
+
+    private void CreatePersistentPuzzleFile(List<PuzzleContainer> puzzleDataList)
+    {
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, persistentPuzzleFile);
+
+        List<LevelInfo> levelInfoList = new List<LevelInfo>();
+
+        foreach( PuzzleContainer puzzleContainer in puzzleDataList )
+        {
+            Debug.Log(puzzleContainer);
+            LevelInfo levelInfo = new LevelInfo();
+            levelInfo.levelName = puzzleContainer.levelName;
+            levelInfo.index = puzzleContainer.index;
+            levelInfo.completed = false;
+            levelInfo.puzzles = new List<PuzzleInfo>();
+
+            foreach(Puzzle puzzle in puzzleContainer.puzzles)
+            {
+                PuzzleInfo puzzleInfo = new PuzzleInfo();
+
+                puzzleInfo.puzzleIndex = puzzle.puzzleIndex;
+                puzzleInfo.oldCode = "";
+
+                levelInfo.puzzles.Add(puzzleInfo);
+            }
+
+            levelInfoList.Add(levelInfo);
+        }
+
+        // Serialize levelInfoList to JSON
+        string json = JsonConvert.SerializeObject(levelInfoList, Formatting.Indented);
+
+        // Write JSON to a file at the specified path
+        File.WriteAllText(persistentDataPath, json);
+    }
+
+    public void CreatePersistentPuzzleFile()
+    {
+        // Get Levels from level json
+        TextAsset jsonData = Resources.Load<TextAsset>("JsonData/puzzles");
+        string data = jsonData.text;
+
+        List<PuzzleContainer> puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
+
+        CreatePersistentPuzzleFile(puzzleDataList);
     }
 
     // ========================= Puzzles ========================= //
@@ -313,9 +371,9 @@ public class GameManager : MonoBehaviour
     public void PuzzleSolved(string puzzleName)
     {
         // Find puzzle in directories
-        foreach(DirectoryData dirData in currentDirectory.directories)
+        foreach (DirectoryData dirData in currentDirectory.directories)
         {
-            if(dirData.dirName == puzzleName)
+            if (dirData.dirName == puzzleName)
             {
                 dirData.unlocked = true;
                 terminal.PrintLineToTerminal($"<color={terminal.successColor}>Directory {puzzleName} successfully unlocked</color>", false);
@@ -344,6 +402,8 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+
     public static void GameWon()
     {
 
@@ -361,10 +421,41 @@ public class GameManager : MonoBehaviour
         Debug.Log("You won!!!!!");
     }
 
-    private static void GameFailed()
+
+    // Helper function
+
+    private void WriteToPuzzleJson()
     {
-        // TODO
-        Debug.Log("Game Lost :(");
+        // Get puzzle data from Json
+        string data;
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, persistentPuzzleFile);
+
+        // Check if persistent data of puzzles exist
+        if (File.Exists(persistentDataPath))
+        {
+            data = File.ReadAllText(persistentDataPath);
+        }
+        // Otherwise, get puzzle data from resources folder
+        else
+        {
+            TextAsset jsonData = Resources.Load<TextAsset>("JsonData/puzzles");
+            data = jsonData.text;
+        }
+
+        List<PuzzleContainer> puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
+
+        // Update puzzle data here
+        PuzzleContainer puzzleContainer = puzzleDataList[levelIndex];
+        //puzzleContainer.completed = true;
+
+        // Serialize the updated list to a JSON string
+        string updatedData = JsonConvert.SerializeObject(puzzleDataList, Formatting.Indented);
+
+        // use: Persistent Data Path:
+        string path = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+        File.WriteAllText(path, updatedData);
+
+
     }
 
 }

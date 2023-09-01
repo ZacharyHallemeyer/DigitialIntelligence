@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-using Newtonsoft.Json;
 using System.Text;
 using IronPython.Hosting;
 using UnityEngine.UI;
@@ -13,7 +12,6 @@ using TMPro;
 using Microsoft.Scripting.Hosting;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine.SceneManagement;
 
 
 public class Emulator : MonoBehaviour

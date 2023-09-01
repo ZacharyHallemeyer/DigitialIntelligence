@@ -180,11 +180,11 @@ public class MainMenu : MonoBehaviour
 
             // Get LevelButton component and assign puzzle container index
             LevelButton levelButton = button.GetComponent<LevelButton>();
-            levelButton.puzzleContainerName = puzzleContainer.puzzleName;
+            levelButton.puzzleContainerName = puzzleContainer.levelName;
             levelButton.puzzleContainerIndex = puzzleContainer.index;
 
             // Set button text to puzzle container name
-            levelButton.SetButtonText(puzzleContainer.puzzleName);
+            levelButton.SetButtonText(puzzleContainer.levelName);
 
             // Adjust scroll view
             LayoutRebuilder.ForceRebuildLayoutImmediate(levelScrollRect.content);
