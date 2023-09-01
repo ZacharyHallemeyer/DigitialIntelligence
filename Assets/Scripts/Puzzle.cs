@@ -71,7 +71,6 @@ public class Puzzle : Emulator
 
     public void Initialize(Puzzle puzzleData)
     {
-        Debug.Log("HI");
         this.testCases          = new List<TestCase>(puzzleData.testCases);
         this.hiddenTestCases    = new List<TestCase>(puzzleData.hiddenTestCases);
         this.startingCode       = puzzleData.startingCode;
@@ -390,39 +389,10 @@ public class Puzzle : Emulator
         levelDataList[GameManager.levelIndex].puzzles[puzzleIndex].oldCode = string.Join("\n", inputText);
 
         
-        // MAY USE LATER
-        /*
-        for( int levelDataIndex = 0; levelDataIndex < levelDataList.Count; levelDataIndex++)
-        {
-            if(GameManager.levelIndex == levelDataList[levelDataIndex].index)
-            {
-                for(int puzzleInfoIndex = 0; puzzleInfoIndex < levelDataList[levelDataIndex].puzzles.Count; puzzleInfoIndex++)
-                {
-                    if(puzzleIndex == levelDataList[levelDataIndex].puzzles[puzzleIndex].puzzleIndex)
-                    {
-                    }
-                }
-            }
-        }
-        */
-
-
-
-
-
         // Serialize the updated list to a JSON string
-        var settings = new JsonSerializerSettings
-        {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        };
-        //printPuzzleContainerList(puzzleDataList);
-        string updatedData = JsonConvert.SerializeObject(levelDataList, settings);
+        string updatedData = JsonConvert.SerializeObject(levelDataList, Formatting.Indented);
 
-        //string updatedData = JsonConvert.SerializeObject(puzzleDataList, Formatting.Indented);
-
-        // use: Persistent Data Path:
-        string path = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
-        File.WriteAllText(path, updatedData);
+        File.WriteAllText(persistentDataPath, updatedData);
     }
 
     private void printPuzzleContainerList(List<PuzzleContainer> puzzleContainers)
@@ -460,7 +430,6 @@ public class Puzzle : Emulator
 
         List<LevelInfo> levelDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(data);
 
-        Debug.Log(levelDataList[GameManager.levelIndex].puzzles[puzzleIndex].oldCode);
         return levelDataList[GameManager.levelIndex].puzzles[puzzleIndex].oldCode;
 
     }

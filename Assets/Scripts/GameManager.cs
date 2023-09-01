@@ -300,8 +300,6 @@ public class GameManager : MonoBehaviour
             // Create the Puzzle classes from the data 
             GameObject puzzleObject = Instantiate(puzzlePrefab);
             Puzzle puzzleComponent = puzzleObject.GetComponent<Puzzle>();
-            Debug.Log(puzzleData);
-
 
             // Add the class data to the puzzlePrefab
             puzzleComponent.Initialize(puzzleData);
@@ -442,20 +440,14 @@ public class GameManager : MonoBehaviour
             data = jsonData.text;
         }
 
-        List<PuzzleContainer> puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
+        List<LevelInfo> levelDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(data);
+        levelDataList[levelIndex].completed = true;
 
-        // Update puzzle data here
-        PuzzleContainer puzzleContainer = puzzleDataList[levelIndex];
-        //puzzleContainer.completed = true;
 
         // Serialize the updated list to a JSON string
-        string updatedData = JsonConvert.SerializeObject(puzzleDataList, Formatting.Indented);
+        string updatedData = JsonConvert.SerializeObject(levelDataList, Formatting.Indented);
 
-        // use: Persistent Data Path:
-        string path = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
-        File.WriteAllText(path, updatedData);
-
-
+        File.WriteAllText(persistentDataPath, updatedData);
     }
 
 }
