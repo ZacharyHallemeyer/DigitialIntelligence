@@ -292,7 +292,7 @@ public class GameManager : MonoBehaviour
         {
             // Quit to main menu
             MoveToMainMenu();
-            return
+            return;
         }
         
         puzzles = new List<GameObject>();

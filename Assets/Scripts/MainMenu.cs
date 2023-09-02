@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
 using System.IO;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -227,9 +228,13 @@ public class MainMenu : MonoBehaviour
             // Check if level is completed
             if(levelData[puzzleContainer.index].completed)
             {
+                Button buttonComponent = button.GetComponent<Button>();
+                TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
 
+                // Change background color to white
+                buttonComponent.image.color = new Color(1f, 1f, 1f);
+                buttonText.color = new Color(0f, 0f, 0f);
             }
-
         }
     }
 
