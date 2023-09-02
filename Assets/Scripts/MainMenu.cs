@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
-using TMPro;
+using System.IO;
 
 public class MainMenu : MonoBehaviour
 {
@@ -172,6 +171,26 @@ public class MainMenu : MonoBehaviour
         float originalCellSizeY = gridLayoutGroup.cellSize.y;
         float spacingY = gridLayoutGroup.spacing.y;
 
+        // Get persistent level data
+        List<LevelInfo> levelData;
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+        string persistentData;
+        // Check if persistent data of puzzles exist
+        if (File.Exists(persistentDataPath))
+        {
+            // Check if persistent data file is valid
+            ValidatePersistentPuzzleFile();
+        }
+        // Otherwise, get puzzle data from resources folder
+        else
+        {
+            CreatePersistentPuzzleFile(puzzleDataList);
+        }
+
+        persistentData = File.ReadAllText(persistentDataPath);
+        levelData = ConvertLevelInfoStringToList(persistentData);
+
+
         // Loop through levels
         foreach (PuzzleContainer puzzleContainer in puzzleDataList)
         {
@@ -203,6 +222,13 @@ public class MainMenu : MonoBehaviour
             {
                 StartLevel(levelButton.puzzleContainerIndex, levelButton.puzzleContainerName);
             });
+
+
+            // Check if level is completed
+            if(levelData[puzzleContainer.index].completed)
+            {
+
+            }
 
         }
     }
@@ -274,5 +300,149 @@ public class MainMenu : MonoBehaviour
         if(!PlayerPrefs.HasKey(PlayerPrefNames.CODE_CARET_COLOR)) {
             PlayerPrefs.SetString(PlayerPrefNames.CODE_CARET_COLOR, "#0000FF");
         }
+    }
+
+
+
+    // Data Manipulation
+
+    private List<LevelInfo> CreatePersistentPuzzleFile(List<PuzzleContainer> puzzleDataList)
+    {
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+
+        List<LevelInfo> levelInfoList = new List<LevelInfo>();
+
+        foreach (PuzzleContainer puzzleContainer in puzzleDataList)
+        {
+            LevelInfo levelInfo = new LevelInfo();
+            levelInfo.levelName = puzzleContainer.levelName;
+            levelInfo.index = puzzleContainer.index;
+            levelInfo.completed = false;
+            levelInfo.puzzles = new List<PuzzleInfo>();
+
+            foreach (Puzzle puzzle in puzzleContainer.puzzles)
+            {
+                PuzzleInfo puzzleInfo = new PuzzleInfo();
+
+                puzzleInfo.puzzleIndex = puzzle.puzzleIndex;
+                puzzleInfo.oldCode = "";
+
+                levelInfo.puzzles.Add(puzzleInfo);
+            }
+
+            levelInfoList.Add(levelInfo);
+        }
+
+        // Serialize levelInfoList to JSON
+        string json = JsonConvert.SerializeObject(levelInfoList, Formatting.Indented);
+
+        // Write JSON to a file at the specified path
+        File.WriteAllText(persistentDataPath, json);
+
+        return levelInfoList;
+    }
+
+    public void CreatePersistentPuzzleFile()
+    {
+        // Get Levels from level json
+        TextAsset jsonData = Resources.Load<TextAsset>("JsonData/puzzles");
+        string data = jsonData.text;
+
+        List<PuzzleContainer> puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
+
+        CreatePersistentPuzzleFile(puzzleDataList);
+    }
+
+    private void ValidatePersistentPuzzleFile()
+    {
+        bool deviationFound = false;
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+
+        // Get LevelInfo list
+        List<LevelInfo> levelInfoList = GetLevelInfoListFromPersistentDataFile();
+
+        
+        // Check if puzzleContainers is not the same amount as levelInfos
+        if(levelInfoList.Count != puzzleDataList.Count)
+        {
+            // If so, deviation found
+            deviationFound = true;
+        }
+        
+        // Loop through persistent data and puzzle data unitl the two level names/indexes do not match
+        int index = 0;
+        while (index < puzzleDataList.Count && !deviationFound)
+        {
+            // Check if current persistent data level info cooresponds with puzzle data
+            if(levelInfoList[index].levelName != puzzleDataList[index].levelName )
+            {
+                deviationFound = true;
+            }
+
+            index++;
+        }
+
+        if(deviationFound)
+        {
+            // Create a new persistent data file
+            CreatePersistentPuzzleFile(puzzleDataList);
+
+            // Get data from file
+            List<LevelInfo> newLevelInfoList = GetLevelInfoListFromPersistentDataFile();
+            // Add information from levelInfoList to new file
+
+            // Loop through new level info list 
+            for(index = 0; index < newLevelInfoList.Count; index++)
+            {
+                // Check if current level has information to add
+                if(newLevelInfoList[index].levelName == levelInfoList[index].levelName)
+                {
+                    newLevelInfoList[index].completed = levelInfoList[index].completed;
+                    
+
+                    // Loop through puzzles and add old code
+                    for(int puzzleIndex = 0; puzzleIndex < newLevelInfoList[index].puzzles.Count; puzzleIndex++)
+                    {
+                        PuzzleInfo newPuzzle = newLevelInfoList[index].puzzles[puzzleIndex];
+                        PuzzleInfo oldPuzzle = levelInfoList[index].puzzles[puzzleIndex];
+
+
+                        if (newPuzzle.puzzleIndex == oldPuzzle.puzzleIndex)
+                        {
+                            newPuzzle.oldCode = oldPuzzle.oldCode;
+                        }
+                    }
+
+                }
+            }
+
+
+            // Write newLevelInfoList information to file
+            string json = JsonConvert.SerializeObject(newLevelInfoList, Formatting.Indented);
+
+            // Write JSON to a file at the specified path
+            File.WriteAllText(persistentDataPath, json);
+
+        }
+
+    }
+
+
+    private List<LevelInfo> GetLevelInfoListFromPersistentDataFile()
+    {
+        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+
+        string levelInfoString = File.ReadAllText(persistentDataPath);
+
+        List<LevelInfo> puzzleDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(levelInfoString);
+
+        return puzzleDataList;
+    }
+
+    private List<LevelInfo> ConvertLevelInfoStringToList(string levelInfoString)
+    {
+        List<LevelInfo> puzzleDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(levelInfoString);
+
+        return puzzleDataList;
     }
 }
