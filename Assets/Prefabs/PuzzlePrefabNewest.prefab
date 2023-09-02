@@ -288,7 +288,6 @@ MonoBehaviour:
   lineNumDisplay: {fileID: 118615744276895097}
   emuConsole: {fileID: 118615744768775421}
   widthDisplay: {fileID: 4352416677820011909}
-  isChangingCode: 0
   lastInputPosition: {x: 0, y: 0}
   recolorAllText: 0
   lineMarginY: 0
@@ -313,7 +312,6 @@ MonoBehaviour:
   functionColor: '#00FFFF'
   stringColor: 
   verticalBuffer: 230
-  lineHeightScaler: 0
   testCases: []
   hiddenTestCases: []
   startingCode: 
@@ -355,7 +353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000052452087, y: 0.001012324}
+  m_AnchoredPosition: {x: 0.0000052452087, y: 0.0000638424}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &118615744170898234

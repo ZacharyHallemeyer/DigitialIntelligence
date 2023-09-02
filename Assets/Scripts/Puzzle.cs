@@ -368,7 +368,7 @@ public class Puzzle : Emulator
     private void WriteToPuzzleJson()
     {
         // Get puzzle data from Json
-        string data;
+        string data = "";
         string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
 
         // Check if persistent data of puzzles exist
@@ -379,8 +379,9 @@ public class Puzzle : Emulator
         // Otherwise, get puzzle data from resources folder
         else
         {
-            GameManager.instance.CreatePersistentPuzzleFile();
-            data = File.ReadAllText(persistentDataPath);
+            // Quit to Main Menu
+            GameManager.instance.MoveToMainMenu();
+            return;
         }
 
         List<LevelInfo> levelDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(data);
@@ -395,25 +396,9 @@ public class Puzzle : Emulator
         File.WriteAllText(persistentDataPath, updatedData);
     }
 
-    private void printPuzzleContainerList(List<PuzzleContainer> puzzleContainers)
-    {
-        foreach(PuzzleContainer puzzleContainer in puzzleContainers)
-        {
-            Debug.Log(puzzleContainer.levelName);
-            Debug.Log(puzzleContainer.index);
-
-            foreach(Puzzle puzzle in puzzleContainer.puzzles)
-            {
-                Debug.Log("\t" + puzzle.puzzleName);
-                Debug.Log("\t" + puzzle.puzzleIndex);
-                Debug.Log("\t" + puzzle.puzzleIndex);
-            }
-        }
-    }
-
     private string GetOldCode()
     {
-        string data;
+        string data = "";
         string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
 
         // Check if persistent data of puzzles exist
@@ -424,8 +409,9 @@ public class Puzzle : Emulator
         // Otherwise, get puzzle data from resources folder
         else
         {
-            GameManager.instance.CreatePersistentPuzzleFile();
-            data = File.ReadAllText(persistentDataPath);
+            // Quit to Main Menu
+            GameManager.instance.MoveToMainMenu();
+            return "";
         }
 
         List<LevelInfo> levelDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(data);

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Main game manager class responsible for controlling the game flow.
@@ -289,8 +290,9 @@ public class GameManager : MonoBehaviour
         // Otherwise, get puzzle data from resources folder
         else
         {
-            CreatePersistentPuzzleFile(puzzleDataList);
-            persistentLevelData = File.ReadAllText(persistentDataPath);
+            // Quit to main menu
+            MoveToMainMenu();
+            return
         }
         
         puzzles = new List<GameObject>();
@@ -310,53 +312,6 @@ public class GameManager : MonoBehaviour
         }
         
 
-    }
-
-
-    private void CreatePersistentPuzzleFile(List<PuzzleContainer> puzzleDataList)
-    {
-        string persistentDataPath = Path.Combine(Application.persistentDataPath, persistentPuzzleFile);
-
-        List<LevelInfo> levelInfoList = new List<LevelInfo>();
-
-        foreach( PuzzleContainer puzzleContainer in puzzleDataList )
-        {
-            Debug.Log(puzzleContainer);
-            LevelInfo levelInfo = new LevelInfo();
-            levelInfo.levelName = puzzleContainer.levelName;
-            levelInfo.index = puzzleContainer.index;
-            levelInfo.completed = false;
-            levelInfo.puzzles = new List<PuzzleInfo>();
-
-            foreach(Puzzle puzzle in puzzleContainer.puzzles)
-            {
-                PuzzleInfo puzzleInfo = new PuzzleInfo();
-
-                puzzleInfo.puzzleIndex = puzzle.puzzleIndex;
-                puzzleInfo.oldCode = "";
-
-                levelInfo.puzzles.Add(puzzleInfo);
-            }
-
-            levelInfoList.Add(levelInfo);
-        }
-
-        // Serialize levelInfoList to JSON
-        string json = JsonConvert.SerializeObject(levelInfoList, Formatting.Indented);
-
-        // Write JSON to a file at the specified path
-        File.WriteAllText(persistentDataPath, json);
-    }
-
-    public void CreatePersistentPuzzleFile()
-    {
-        // Get Levels from level json
-        TextAsset jsonData = Resources.Load<TextAsset>("JsonData/puzzles");
-        string data = jsonData.text;
-
-        List<PuzzleContainer> puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
-
-        CreatePersistentPuzzleFile(puzzleDataList);
     }
 
     // ========================= Puzzles ========================= //
@@ -450,4 +405,12 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(persistentDataPath, updatedData);
     }
 
+
+    // ========================= Navigation ========================= //
+
+    public void MoveToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        SceneManager.UnloadSceneAsync("Level");
+    }
 }
