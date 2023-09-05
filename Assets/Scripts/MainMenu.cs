@@ -232,7 +232,10 @@ public class MainMenu : MonoBehaviour
                 TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
 
                 // Change background color to white
-                buttonComponent.image.color = new Color(1f, 1f, 1f);
+                var buttonColors = buttonComponent.colors;
+                buttonColors.normalColor = new Color(1f, 1f, 1f);
+                buttonComponent.colors = buttonColors;
+                //buttonComponent.image.color = new Color(1f, 1f, 1f);
                 buttonText.color = new Color(0f, 0f, 0f);
             }
         }

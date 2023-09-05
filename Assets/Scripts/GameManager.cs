@@ -221,10 +221,11 @@ public class GameManager : MonoBehaviour
         DirectoryData rootDir = JsonConvert.DeserializeObject<DirectoryData>(data);
         // Assign parent directories
         AssignParentDirs(rootDir, null);
+
         // Assign current directory to root and set hasParent to false as it does not have a parent
         currentDirectory = rootDir;
         currentDirectory.hasParent = false;
-        //PrintDirectories(rootDir, "");
+        
         numRemainingLockedFiles = GetNumberOfLockedFiles(rootDir, 0);
     }
 
