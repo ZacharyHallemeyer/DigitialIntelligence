@@ -202,8 +202,7 @@ public class GameManager : MonoBehaviour
         if (numRemainingLockedFiles <= 0)
         {
             // Level Completed!
-
-
+            LevelCompleted();
         }
     }
 
@@ -352,9 +351,14 @@ public class GameManager : MonoBehaviour
 
     private void LevelCompleted()
     {
+        MarkLevelAsCompleted();
+
+        // Audio
+        AudioManager.instance.PlayLevelCompleteSoundEffect();
+
+        // Display (show pop-up informing of levels completion and asks player to either exit level or stay there)
 
     }
-
 
 
     public static void GameWon()
@@ -377,7 +381,7 @@ public class GameManager : MonoBehaviour
 
     // Helper function
 
-    private void WriteToPuzzleJson()
+    private void MarkLevelAsCompleted()
     {
         // Get puzzle data from Json
         string data;

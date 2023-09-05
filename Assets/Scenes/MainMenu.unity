@@ -4291,6 +4291,12 @@ MonoBehaviour:
     pitch: 1
     looping: 0
     source: {fileID: 0}
+  - name: LevelCompleteSoundEffect
+    clip: {fileID: 8300000, guid: d1a136b1406a7cd40a7642ab2e6a8eee, type: 3}
+    volume: 1
+    pitch: 1
+    looping: 0
+    source: {fileID: 0}
 --- !u!4 &2007376313
 Transform:
   m_ObjectHideFlags: 0

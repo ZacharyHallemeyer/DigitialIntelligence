@@ -50,6 +50,9 @@ public class Terminal : MonoBehaviour
         "hint"
     };
 
+    // Pop Up
+    public GameObject PopUpContainer;
+
 
     // REMOVE AFTER GAMEMANAGER IS ADDED
     public void Start()
@@ -174,7 +177,7 @@ public class Terminal : MonoBehaviour
     private void ColorizeCurrentLine(bool caretIncluded = true)
     {
         string line = terminalInput[terminalLineIndex];
-        string[] words = Regex.Split(line, @"(?<= )");
+        string[] words = Regex.Split(line, @"(?= )|(?<= )");
         int coloredCaretIndex = caretPositionX;
 
         if (words.Length <= 0)
@@ -204,8 +207,6 @@ public class Terminal : MonoBehaviour
             }
         }
 
-        //terminalColoredText[terminalLineIndex] = coloredLine + caret;
-        
         terminalColoredText[terminalLineIndex] = coloredLine;
         if(terminalColoredText[terminalLineIndex].Length <= coloredCaretIndex)
         {
@@ -213,6 +214,11 @@ public class Terminal : MonoBehaviour
         }
         else
         {
+            if(commands.Contains(GetWordAtIndex(line, caretPositionX)))
+            {
+                coloredCaretIndex -= "</color>".Length;
+            }
+
             terminalColoredText[terminalLineIndex] = terminalColoredText[terminalLineIndex].Insert(coloredCaretIndex, caret);
         }
     }
@@ -268,9 +274,12 @@ public class Terminal : MonoBehaviour
             terminalInput[terminalLineIndex] = "";
             caretPositionX = 0;
         }
-        else
+        else if (caretPositionX - 1 >= 0)
         {
-            terminalInput[terminalLineIndex] = line.Substring(0, line.Length - 1);
+            Debug.Log($"Before: |{terminalInput[terminalLineIndex]}|");
+            terminalInput[terminalLineIndex] = terminalInput[terminalLineIndex].Remove(caretPositionX - 1, 1);
+            Debug.Log($"After: |{terminalInput[terminalLineIndex]}|");
+            //terminalInput[terminalLineIndex] = line.Substring(0, line.Length - 1);
             caretPositionX--;
         }
         ColorizeCurrentLine();
@@ -454,10 +463,19 @@ public class Terminal : MonoBehaviour
                 // Check if correct unlock keyword 
                 if (file.unlockKeyword.ToLower() == keyword)
                 {
-                    AudioManager.instance.PlaySuccessSoundEffect();
-                    file.unlocked = true;
-                    GameManager.instance.FileUnlocked();
-                    PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
+                    // Check if file is already unlocked
+                    if(file.unlocked)
+                    {
+                        AudioManager.instance.PlaySuccessSoundEffect();
+                        PrintLineToTerminal($"<color={successColor}>{target} has already been unlocked</color>", false);
+                    }
+                    else
+                    {
+                        AudioManager.instance.PlaySuccessSoundEffect();
+                        file.unlocked = true;
+                        GameManager.instance.FileUnlocked();
+                        PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
+                    }
                 }
                 // Otherwise, print error message
                 else
@@ -887,4 +905,45 @@ public class Terminal : MonoBehaviour
 
         //ColorizeAllLines();
     }
+
+    // ==================== Level Complete ==================== //
+
+    public void ShowLevelCompletePopUp()
+    {
+        PopUpContainer.SetActive(true);
+    }
+
+    public void PopUpExitChosen()
+    {
+        GameManager.instance.MoveToMainMenu();
+    }
+
+    public void PopUpStayChosen()
+    {
+        PopUpContainer.SetActive(false);
+    }
+
+
+    // ==================== Helper Functions ==================== //
+    
+    private string GetWordAtIndex(string line, int index)
+    {
+        string[] words = Regex.Split(line, @"(?= )|(?<= )");
+        int currentIndex = 0;
+
+        foreach( string word in words )
+        {
+            currentIndex += word.Length;
+
+            if(index <= currentIndex)
+            {
+                return word;
+            }
+        }
+
+
+
+        return words[words.Length - 1];
+    }
+
 }

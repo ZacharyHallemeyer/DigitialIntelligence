@@ -158,6 +158,14 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void PlayLevelCompleteSoundEffect()
+    {
+        Sound s = Array.Find(soundsSoundEffects, sound => sound.name == "LevelCompleteSoundEffect");
+        if (s == null)
+            return;
+        s.source.Play();
+    }
+
     /// <summary>
     /// Set music audio clip's volume to player preference
     /// </summary>

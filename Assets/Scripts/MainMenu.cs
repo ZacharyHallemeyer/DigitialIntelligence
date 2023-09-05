@@ -308,9 +308,7 @@ public class MainMenu : MonoBehaviour
     }
 
 
-
-    // Data Manipulation
-
+    // ========================================= Data Manipulation =========================================  
     private List<LevelInfo> CreatePersistentPuzzleFile(List<PuzzleContainer> puzzleDataList)
     {
         string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
