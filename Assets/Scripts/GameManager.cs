@@ -226,7 +226,6 @@ public class GameManager : MonoBehaviour
         currentDirectory.hasParent = false;
         //PrintDirectories(rootDir, "");
         numRemainingLockedFiles = GetNumberOfLockedFiles(rootDir, 0);
-        Debug.Log(numRemainingLockedFiles);
     }
 
     /// <summary>
@@ -250,7 +249,6 @@ public class GameManager : MonoBehaviour
         {
             if(!fileData.unlocked)
             {
-                Debug.Log(fileData.fileName);
                 count++;
             }
         }
