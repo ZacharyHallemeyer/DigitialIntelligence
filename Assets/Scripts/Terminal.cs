@@ -276,10 +276,7 @@ public class Terminal : MonoBehaviour
         }
         else if (caretPositionX - 1 >= 0)
         {
-            Debug.Log($"Before: |{terminalInput[terminalLineIndex]}|");
             terminalInput[terminalLineIndex] = terminalInput[terminalLineIndex].Remove(caretPositionX - 1, 1);
-            Debug.Log($"After: |{terminalInput[terminalLineIndex]}|");
-            //terminalInput[terminalLineIndex] = line.Substring(0, line.Length - 1);
             caretPositionX--;
         }
         ColorizeCurrentLine();
@@ -431,6 +428,7 @@ public class Terminal : MonoBehaviour
         else
         {
             terminalInput[terminalLineIndex] = $"unlock {argument} ";
+            caretPositionX = terminalInput[terminalLineIndex].Length;
             ColorizeCurrentLine(true);
             DisplayText();
         }
@@ -775,6 +773,7 @@ public class Terminal : MonoBehaviour
         {
             oldCommandIndex--;
             terminalInput[terminalLineIndex] = oldCommands[oldCommandIndex];
+            caretPositionX = oldCommands[oldCommandIndex].Length;
             ColorizeCurrentLine();
             DisplayText();
         } 
@@ -782,6 +781,7 @@ public class Terminal : MonoBehaviour
         {
             oldCommandIndex = 0;
             terminalInput[terminalLineIndex] = oldCommands[oldCommandIndex];
+            caretPositionX = oldCommands[oldCommandIndex].Length;
             ColorizeCurrentLine();
             DisplayText();
         }
@@ -796,6 +796,7 @@ public class Terminal : MonoBehaviour
         {
             oldCommandIndex++;
             terminalInput[terminalLineIndex] = oldCommands[oldCommandIndex];
+            caretPositionX = oldCommands[oldCommandIndex].Length;
             ColorizeCurrentLine();
             DisplayText();
         }

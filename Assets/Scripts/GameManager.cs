@@ -224,7 +224,9 @@ public class GameManager : MonoBehaviour
         // Assign current directory to root and set hasParent to false as it does not have a parent
         currentDirectory = rootDir;
         currentDirectory.hasParent = false;
-        PrintDirectories(rootDir, "");
+        //PrintDirectories(rootDir, "");
+        numRemainingLockedFiles = GetNumberOfLockedFiles(rootDir, 0);
+        Debug.Log(numRemainingLockedFiles);
     }
 
     /// <summary>
@@ -232,7 +234,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="dir">current directory</param>
     /// <param name="parentDir">parent directory</param>
-    void AssignParentDirs(DirectoryData dir, DirectoryData parentDir)
+    private void AssignParentDirs(DirectoryData dir, DirectoryData parentDir)
     {
         dir.parentDir = parentDir;
         dir.hasParent = true;
@@ -240,6 +242,28 @@ public class GameManager : MonoBehaviour
         {
             AssignParentDirs(subdir, dir);
         }
+    }
+
+    private int GetNumberOfLockedFiles(DirectoryData currentDir, int count)
+    {
+        foreach( FileData fileData in currentDir.files )
+        {
+            if(!fileData.unlocked)
+            {
+                Debug.Log(fileData.fileName);
+                count++;
+            }
+        }
+
+        if(currentDir.directories.Count > 0)
+        {
+            foreach (DirectoryData subdir in currentDir.directories)
+            {
+                count = GetNumberOfLockedFiles(subdir, count);
+            }
+        }
+
+        return count;
     }
 
     /// <summary>
@@ -262,6 +286,8 @@ public class GameManager : MonoBehaviour
         {
             PrintDirectories(dirDataInner, indent + "\t");
         }
+
+        Debug.Log(output);
 
     }
 
@@ -351,36 +377,15 @@ public class GameManager : MonoBehaviour
 
     private void LevelCompleted()
     {
+
         MarkLevelAsCompleted();
 
         // Audio
         AudioManager.instance.PlayLevelCompleteSoundEffect();
 
         // Display (show pop-up informing of levels completion and asks player to either exit level or stay there)
-
+        terminal.ShowLevelCompletePopUp();
     }
-
-
-    public static void GameWon()
-    {
-
-        /*
-        // Loop through puzzle UI and remove
-        foreach(GameObject puzzle in puzzles)
-        {
-            Destroy(puzzle);
-        }
-        // Remove terminal
-        Destroy(terminalObject);
-
-        */
-
-        Debug.Log("You won!!!!!");
-    }
-
-
-    // Helper function
-
     private void MarkLevelAsCompleted()
     {
         // Get puzzle data from Json
@@ -408,7 +413,6 @@ public class GameManager : MonoBehaviour
 
         File.WriteAllText(persistentDataPath, updatedData);
     }
-
 
     // ========================= Navigation ========================= //
 
