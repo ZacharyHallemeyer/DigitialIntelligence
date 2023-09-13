@@ -6,76 +6,76 @@ CODE
 ===========================
 my_list = [1, 2, 3, 4, 5]
 
-# Accessing elements
-first_element = my_list[0]  # Access the first element (index 0)
-print(first_element)  # This will print 1
+<color=#23D1BA># Accessing elements</color>
+first_element = my_list[0]  <color=#23D1BA># Access the first element (index 0)</color>
+print(first_element)  <color=#23D1BA># This will print 1</color>
 
-# Modifying elements
-my_list[2] = 10  # Modify the third element (index 2)
-print(my_list)  # This will print [1, 2, 10, 4, 5]
+<color=#23D1BA># Modifying elements</color>
+my_list[2] = 10  <color=#23D1BA># Modify the third element (index 2)</color>
+print(my_list)  <color=#23D1BA># This will print [1, 2, 10, 4, 5]</color>
 
-# Adding elements
-my_list.append(6)  # Add an element to the end of the list
-print(my_list)  # This will print [1, 2, 10, 4, 5, 6]
+<color=#23D1BA># Adding elements</color>
+my_list.append(6)  <color=#23D1BA># Add an element to the end of the list</color>
+print(my_list)  <color=#23D1BA># This will print [1, 2, 10, 4, 5, 6]</color>
 
-# Removing elements
-my_list.remove(4)  # Remove the first occurrence of 4
-print(my_list)  # This will print [1, 2, 10, 5, 6]
+<color=#23D1BA># Removing elements</color>
+my_list.remove(4)  <color=#23D1BA># Remove the first occurrence of 4</color>
+print(my_list)  <color=#23D1BA># This will print [1, 2, 10, 5, 6]</color>
 
-# List length
-length = len(my_list)  # Get the number of elements in the list
-print(length)  # 5
+<color=#23D1BA># List length</color>
+length = len(my_list)  <color=#23D1BA># Get the number of elements in the list</color>
+print(length)  <color=#23D1BA># 5</color>
 
-# Checking for the existence of an element
-element_exists = 5 in my_list  # Check if 5 is in the list
-print(element_exists)  # True
+<color=#23D1BA># Checking for the existence of an element</color>
+element_exists = 5 in my_list  <color=#23D1BA># Check if 5 is in the list</color>
+print(element_exists)  <color=#23D1BA># True</color>
 
-# Finding the minimum and maximum values
-min_value = min(my_list)  # Find the minimum value in the list
-max_value = max(my_list)  # Find the maximum value in the list
-print(min_value, max_value)  # 1 5
+<color=#23D1BA># Finding the minimum and maximum values</color>
+min_value = min(my_list)  <color=#23D1BA># Find the minimum value in the list</color>
+max_value = max(my_list)  <color=#23D1BA># Find the maximum value in the list</color>
+print(min_value, max_value)  <color=#23D1BA># 1 5</color>
 
-# Copying and cloning lists (contd.)
-copy_of_list = my_list.copy()  # Create a shallow copy
-clone_of_list = list(my_list)  # Create another shallow copy
+<color=#23D1BA># Copying and cloning lists (contd.)</color>
+copy_of_list = my_list.copy()  <color=#23D1BA># Create a shallow copy</color>
+clone_of_list = list(my_list)  <color=#23D1BA># Create another shallow copy</color>
 
-# Creating a list with a repeated value
-repeated_list = [0] * 5  # Create a list with five 0s: [0, 0, 0, 0, 0]
+<color=#23D1BA># Creating a list with a repeated value</color>
+repeated_list = [0] * 5  <color=#23D1BA># Create a list with five 0s: [0, 0, 0, 0, 0]</color>
 
-# List comprehension
-squared_list = [x**2 for x in my_list]  # Create a new list with squared values
-filtered_list = [x for x in my_list if x % 2 == 0]  # Create a filtered list of even numbers
+<color=#23D1BA># List comprehension</color>
+squared_list = [x**2 for x in my_list]  <color=#23D1BA># Create a new list with squared values</color>
+filtered_list = [x for x in my_list if x % 2 == 0]  <color=#23D1BA># Create a filtered list of even numbers</color>
 
-# Joining lists
+<color=#23D1BA># Joining lists</color>
 list1 = [1, 2, 3]
 list2 = [4, 5, 6]
-combined_list = list1 + list2  # Concatenate two lists
-print(combined_list)  # [1, 2, 3, 4, 5, 6]
+combined_list = list1 + list2  <color=#23D1BA># Concatenate two lists</color>
+print(combined_list)  <color=#23D1BA># [1, 2, 3, 4, 5, 6]</color>
 
-# Iterating through a list
+<color=#23D1BA># Iterating through a list</color>
 for item in my_list:
     print(item)
 
-# List comprehension (contd.)
-squared_list = [x**2 for x in my_list]  # Create a new list with squared values
-filtered_list = [x for x in my_list if x % 2 == 0]  # Create a filtered list of even numbers
+<color=#23D1BA># List comprehension (contd.)</color>
+squared_list = [x**2 for x in my_list]  <color=#23D1BA># Create a new list with squared values</color>
+filtered_list = [x for x in my_list if x % 2 == 0]  <color=#23D1BA># Create a filtered list of even numbers</color>
 
-# Joining lists (contd.)
+<color=#23D1BA># Joining lists (contd.)</color>
 list1 = [1, 2, 3]
 list2 = [4, 5, 6]
-combined_list = list1 + list2  # Concatenate two lists
-print(combined_list)  # [1, 2, 3, 4, 5, 6]
+combined_list = list1 + list2  <color=#23D1BA># Concatenate two lists</color>
+print(combined_list)  <color=#23D1BA># [1, 2, 3, 4, 5, 6]</color>
 
-# Iterating through a list (contd.)
+<color=#23D1BA># Iterating through a list (contd.)</color>
 for item in my_list:
     print(item)
 
-# List slicing (contd.)
-sliced_elements = my_list[1:4]  # Slice elements (index 1 to 3)
-print(sliced_elements)  # [20, 25, 30]
+<color=#23D1BA># List slicing (contd.)</color>
+sliced_elements = my_list[1:4]  <color=#23D1BA># Slice elements (index 1 to 3)</color>
+print(sliced_elements)  <color=#23D1BA># [20, 25, 30]</color>
 
-# List comprehension (contd.)
-squared_list = [x**2 for x in my_list]  # Create a new list with squared values
-filtered_list = [x for x in my_list if x % 2 == 0]  # Create a filtered list of even numbers
+<color=#23D1BA># List comprehension (contd.)</color>
+squared_list = [x**2 for x in my_list]  <color=#23D1BA># Create a new list with squared values</color>
+filtered_list = [x for x in my_list if x % 2 == 0]  <color=#23D1BA># Create a filtered list of even numbers</color>
 
 ===========================

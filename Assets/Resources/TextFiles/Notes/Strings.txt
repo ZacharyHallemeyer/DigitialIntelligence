@@ -4,66 +4,66 @@ Strings are sequences of characters that can represent text or data. They are si
 
 CODE
 ===========================
-# Creating a string
+<color=#23D1BA># Creating a string</color>
 my_string = "Hello, World!"
 
-# Accessing characters
-first_char = my_string[0]  # Access the first character (index 0)
-last_char = my_string[-1]  # Access the last character (index -1)
-substring = my_string[7:12]  # Get a substring (index 7 to 11)
-print(first_char, last_char, substring)  # H ! World
+<color=#23D1BA># Accessing characters</color>
+first_char = my_string[0]  <color=#23D1BA># Access the first character (index 0)</color>
+last_char = my_string[-1]  <color=#23D1BA># Access the last character (index -1)</color>
+substring = my_string[7:12]  <color=#23D1BA># Get a substring (index 7 to 11)</color>
+print(first_char, last_char, substring)  <color=#23D1BA># H ! World</color>
 
-# String length
-length = len(my_string)  # Get the length of the string
-print(length)  # 13
+<color=#23D1BA># String length</color>
+length = len(my_string)  <color=#23D1BA># Get the length of the string</color>
+print(length)  <color=#23D1BA># 13</color>
 
-# Concatenating strings
+<color=#23D1BA># Concatenating strings</color>
 string1 = "Hello"
 string2 = "World"
-concatenated_string = string1 + ", " + string2  # Concatenate two strings
-print(concatenated_string)  # Hello, World
+concatenated_string = string1 + ", " + string2  <color=#23D1BA># Concatenate two strings</color>
+print(concatenated_string)  <color=#23D1BA># Hello, World</color>
 
-# Checking for substrings
-contains_hello = "Hello" in my_string  # Check if "Hello" is in the string
-print(contains_hello)  # True
+<color=#23D1BA># Checking for substrings</color>
+contains_hello = "Hello" in my_string  <color=#23D1BA># Check if "Hello" is in the string</color>
+print(contains_hello)  <color=#23D1BA># True</color>
 
-# Finding substrings
-index_of_comma = my_string.index(",")  # Get the index of the comma
-substring_after_comma = my_string[index_of_comma + 2:]  # Get substring after the comma
-print(index_of_comma, substring_after_comma)  # 5 World!
+<color=#23D1BA># Finding substrings</color>
+index_of_comma = my_string.index(",")  <color=#23D1BA># Get the index of the comma</color>
+substring_after_comma = my_string[index_of_comma + 2:]  <color=#23D1BA># Get substring after the comma</color>
+print(index_of_comma, substring_after_comma)  <color=#23D1BA># 5 World!</color>
 
-# Counting occurrences
-count_of_l = my_string.count("l")  # Count the number of times "l" appears
-print(count_of_l)  # 3
+<color=#23D1BA># Counting occurrences</color>
+count_of_l = my_string.count("l")  <color=#23D1BA># Count the number of times "l" appears</color>
+print(count_of_l)  <color=#23D1BA># 3</color>
 
-# Converting to lowercase and uppercase
-lowercase_string = my_string.lower()  # Convert to lowercase
-uppercase_string = my_string.upper()  # Convert to uppercase
-print(lowercase_string, uppercase_string)  # hello, world! HELLO, WORLD!
+<color=#23D1BA># Converting to lowercase and uppercase</color>
+lowercase_string = my_string.lower()  <color=#23D1BA># Convert to lowercase</color>
+uppercase_string = my_string.upper()  <color=#23D1BA># Convert to uppercase</color>
+print(lowercase_string, uppercase_string)  <color=#23D1BA># hello, world! HELLO, WORLD!</color>
 
-# Stripping whitespace
+<color=#23D1BA># Stripping whitespace</color>
 whitespace_string = "  This is a string with spaces   "
-stripped_string = whitespace_string.strip()  # Remove leading and trailing spaces
-print(stripped_string)  # "This is a string with spaces"
+stripped_string = whitespace_string.strip()  <color=#23D1BA># Remove leading and trailing spaces</color>
+print(stripped_string)  <color=#23D1BA># "This is a string with spaces"</color>
 
-# Splitting into a list
-word_list = my_string.split(",")  # Split the string at commas into a list
-print(word_list)  # ['Hello', ' World!']
+<color=#23D1BA># Splitting into a list</color>
+word_list = my_string.split(",")  <color=#23D1BA># Split the string at commas into a list</color>
+print(word_list)  <color=#23D1BA># ['Hello', ' World!']</color>
 
-# Joining a list of strings
-joined_string = ", ".join(word_list)  # Join the list with commas
-print(joined_string)  # Hello, World!
+<color=#23D1BA># Joining a list of strings</color>
+joined_string = ", ".join(word_list)  <color=#23D1BA># Join the list with commas</color>
+print(joined_string)  <color=#23D1BA># Hello, World!</color>
 
-# Replacing substrings
-new_string = my_string.replace("World", "Python")  # Replace "World" with "Python"
-print(new_string)  # Hello, Python!
+<color=#23D1BA># Replacing substrings</color>
+new_string = my_string.replace("World", "Python")  <color=#23D1BA># Replace "World" with "Python"</color>
+print(new_string)  <color=#23D1BA># Hello, Python!</color>
 
-# Checking for character types
-is_alpha = my_string.isalpha()  # Check if all characters are alphabetic
-is_digit = my_string.isdigit()  # Check if all characters are digits
+<color=#23D1BA># Checking for character types</color>
+is_alpha = my_string.isalpha()  <color=#23D1BA># Check if all characters are alphabetic</color>
+is_digit = my_string.isdigit()  <color=#23D1BA># Check if all characters are digits</color>
 
-# Formatting strings
-formatted_string = "Value: {:.2f}".format(3.14159)  # Format a floating-point number
-print(formatted_string)  # Value: 3.14
+<color=#23D1BA># Formatting strings</color>
+formatted_string = "Value: {:.2f}".format(3.14159)  <color=#23D1BA># Format a floating-point number</color>
+print(formatted_string)  <color=#23D1BA># Value: 3.14</color>
 
 ===========================

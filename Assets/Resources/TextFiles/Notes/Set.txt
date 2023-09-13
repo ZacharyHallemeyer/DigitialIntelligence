@@ -7,15 +7,15 @@ CODE
 my_set1 = {1, 2, 3}
 my_set2 = {3, 4, 5}
 
-# Union of sets
+<color=#23D1BA># Union of sets</color>
 union_set = my_set1.union(my_set2)
-print(union_set)  # This will print {1, 2, 3, 4, 5}
+print(union_set)  <color=#23D1BA># This will print {1, 2, 3, 4, 5}</color>
 
-# Intersection of sets
+<color=#23D1BA># Intersection of sets</color></color>
 intersection_set = my_set1.intersection(my_set2)
-print(intersection_set)  # This will print {3}
+print(intersection_set)  <color=#23D1BA># This will print {3}</color>
 
-# Difference between sets
+<color=#23D1BA># Difference between sets</color>
 difference_set = my_set1.difference(my_set2)
-print(difference_set)  # This will print {1, 2}
+print(difference_set)  <color=#23D1BA># This will print {1, 2}</color>
 ===========================

@@ -7,5 +7,5 @@ CODE
 import math
 
 result = math.sqrt(25)
-print(result)  # This will print the square root of 25, which is 5.0
+print(result)  <color=#23D1BA># This will print the square root of 25, which is 5.0</color>
 ===========================

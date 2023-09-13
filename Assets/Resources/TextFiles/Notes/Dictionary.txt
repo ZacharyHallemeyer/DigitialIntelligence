@@ -6,19 +6,19 @@ CODE
 ===========================
 my_dict = {"name": "John", "age": 30, "city": "New York"}
 
-# Accessing values
+<color=#23D1BA># Accessing values</color>
 name = my_dict["name"]
-print(name)  # This will print "John"
+print(name)  <color=#23D1BA># This will print "John"</color>
 
-# Modifying values
+<color=#23D1BA># Modifying values</color>
 my_dict["age"] = 35
-print(my_dict)  # This will print {"name": "John", "age": 35, "city": "New York"}
+print(my_dict)  <color=#23D1BA># This will print {"name": "John", "age": 35, "city": "New York"}</color>
 
-# Adding new key-value pairs
+<color=#23D1BA># Adding new key-value pairs</color>
 my_dict["country"] = "USA"
-print(my_dict)  # This will print {"name": "John", "age": 35, "city": "New York", "country": "USA"}
+print(my_dict)  <color=#23D1BA># This will print {"name": "John", "age": 35, "city": "New York", "country": "USA"}</color>
 
-# Removing key-value pairs
+<color=#23D1BA># Removing key-value pairs</color>
 del my_dict["city"]
-print(my_dict)  # This will print {"name": "John", "age": 35, "country": "USA"}
+print(my_dict)  <color=#23D1BA># This will print {"name": "John", "age": 35, "country": "USA"}</color>
 ===========================

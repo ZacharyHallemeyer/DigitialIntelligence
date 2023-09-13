@@ -10,7 +10,7 @@ def main():
 	localVariable = "Hello"
 	print(localVariable + " " globalVariable)	
 
-main() # This will print "Hello World" because globalVariable is defined outside of a function
-print(localVariable) # This will cause an error because localVariable can only be used in the main function
+main() <color=#23D1BA># This will print "Hello World" because globalVariable is defined outside of a function</color>
+print(localVariable) <color=#23D1BA># This will cause an error because localVariable can only be used in the main function</color>
 
 ======================

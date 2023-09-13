@@ -1,4 +1,4 @@
-<color=#800020>Conditionals</color>	
+<color#800020>Conditionals</color>	
 
 Conditionals allow a program to execute certain sections of code depending on if a condition is true or not.
 
@@ -24,28 +24,28 @@ If statements check if a condition is true or false. If the condition is True, t
 
 CODE
 ============================
-# the if statements if the condition is true and executes the code block following it if the condition is true.
+<color=#23D1BA># the if statements if the condition is true and executes the code block following it if the condition is true.</color>
 if 10 > 5:
 	print("10 is greater than 5")
 
-# The above prints "10 is greater than 5"
+<color=#23D1BA># The above prints "10 is greater than 5"</color>
 
-# Else statement
-# The else statement catches anything which isn't caught by the preceding conditions.
+<color=#23D1BA># Else statement </color>
+<color=#23D1BA># The else statement catches anything which isn't caught by the preceding conditions.</color>
 if 5 > 10:
 	print("5 is greater than 10")
 else:
 	print("5 is not greater than 10")
-# The above prints "5 is not greater than 10"
+<color=#23D1BA># The above prints "5 is not greater than 10"</color>
 
-# Elif statement
-# The elif keyword is a way of saying "if the previous conditions were not true, then try this condition". It stands for "else if".
+<color=#23D1BA># Elif statement</color>
+<color=#23D1BA># The elif keyword is a way of saying "if the previous conditions were not true, then try this condition". It stands for "else if".</color>
 if 5 > 10:
 	print("5 is greater than 10")
 elif 5 == 5:
 	print("5 is equal to 5")
 else:
 	print("5 is not greater than 10")
-# The above prints "5 is equal to 5"
+<color=#23D1BA># The above prints "5 is equal to 5"</color>
 	
 ============================

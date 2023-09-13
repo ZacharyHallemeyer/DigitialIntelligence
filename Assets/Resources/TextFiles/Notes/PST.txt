@@ -10,7 +10,7 @@ import os
 import datetime
 import json
 
-# Example usage of standard library modules
+<color=#23D1BA># Example usage of standard library modules</color>
 current_directory = os.getcwd()
 print(f"Current directory: {current_directory}")
 

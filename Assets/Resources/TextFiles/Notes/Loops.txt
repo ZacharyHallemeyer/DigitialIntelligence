@@ -8,17 +8,17 @@ For loops are used when you know in advance how many times you want to repeat a 
 
 CODE
 ===========================
-# Iterating over a list
+<color=#23D1BA># Iterating over a list</color>
 fruits = ["apple", "banana", "cherry"]
 for fruit in fruits:
     print(f"I like {fruit}s")
 
-# Iterating over a range of numbers
+<color=#23D1BA># Iterating over a range of numbers</color>
 for i in range(5):
     print(i)
-# This will print numbers 0 through 4
+<color=#23D1BA># This will print numbers 0 through 4</color>
 
-# Using the enumerate function to access both index and value
+<color=#23D1BA># Using the enumerate function to access both index and value</color>
 for index, value in enumerate(fruits):
     print(f"Index {index}: {value}")
 ===========================
@@ -29,19 +29,19 @@ While loops are used when you want to repeat a block of code as long as a certai
 
 CODE
 ===========================
-# Using a while loop to count down from 5
+<color=#23D1BA># Using a while loop to count down from 5</color>
 count = 5
 while count > 0:
     print(count)
     count -= 1
-# This will print numbers 5 through 1
+<color=#23D1BA># This will print numbers 5 through 1</color>
 
-# Using a while loop with user input
+<color=#23D1BA># Using a while loop with user input</color>
 user_input = input("Enter 'quit' to exit: ")
 while user_input != "quit":
     print(f"You entered: {user_input}")
     user_input = input("Enter 'quit' to exit: ")
-# This will keep asking for input until the user enters 'quit'
+<color=#23D1BA># This will keep asking for input until the user enters 'quit'</color>
 ===========================
 
 <color=#7500a3>Control Statements in Loops</color>
@@ -50,17 +50,17 @@ Inside loops, you can use control statements to change the flow of the loop. Com
 
 CODE
 ===========================
-# Using break to exit a loop prematurely
+<color=#23D1BA># Using break to exit a loop prematurely</color>
 for number in range(10):
     if number == 5:
         break
     print(number)
-# This will print numbers 0 through 4 and then exit the loop
+<color=#23D1BA># This will print numbers 0 through 4 and then exit the loop</color>
 
-# Using continue to skip the current iteration and move to the next
+<color=#23D1BA># Using continue to skip the current iteration and move to the next</color>
 for number in range(5):
     if number == 2:
         continue
     print(number)
-# This will print numbers 0, 1, 3, and 4, skipping 2
+<color=#23D1BA># This will print numbers 0, 1, 3, and 4, skipping 2</color>
 ===========================

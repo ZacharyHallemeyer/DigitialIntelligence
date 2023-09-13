@@ -7,10 +7,11 @@ Single-line comments start with the # character. Multi-line comments start and e
 
 CODE
 ===============
-# This is a single-line comment
+<color=#23D1BA># This is a single-line comment
 
 '''
 This is a
 multi-line comment
 '''
+</color>
 ===============

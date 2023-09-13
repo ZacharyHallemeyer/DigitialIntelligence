@@ -11,7 +11,7 @@ def printHello():
 
 printHello()
 printHello()
-# The above prints "Hello" twice
+<color=#23D1BA># The above prints "Hello" twice</color>
 
 =============================
 
@@ -26,7 +26,7 @@ def printHello(name):
 	print("Hello " + name)
 
 printHello("Zach")
-# The above prints "Hello Zach"
+<color=#23D1BA># The above prints "Hello Zach"</color>
 =============================
 
 
@@ -42,6 +42,6 @@ def makeHello(name):
 
 hello = makeHello("Zach")
 print(hello)
-# The above prints "Hello Zach"
+<color=#23D1BA># The above prints "Hello Zach"</color>
 
 =============================
