@@ -16,6 +16,12 @@ using System.Threading.Tasks;
 
 public class Emulator : MonoBehaviour
 {
+    public GameObject emulatorContainer;
+
+    // Notes
+    public GameObject notesContainer;
+    public PythonNotes pythonNotes;
+
     public ScrollRect coloredScrollRect;
 
     public RectTransform lineNumberRect;
@@ -1293,4 +1299,22 @@ public class Emulator : MonoBehaviour
         DisplayText();
         SetLineNumbers();
     }
+
+
+    // ================================== Python Notes ================================== 
+
+    // Hides the emulator and shows the notes
+    public void DisplayNotes()
+    {
+        emulatorContainer.SetActive(false);
+        notesContainer.SetActive(true);
+    }
+
+    // Hides the notes and shows the emulator
+    public void HideNotes()
+    {
+        emulatorContainer.SetActive(true);
+        notesContainer.SetActive(false);
+    }
+
 }

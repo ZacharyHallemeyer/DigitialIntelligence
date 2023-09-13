@@ -1,0 +1,51 @@
+<color=#800020>Conditionals</color>	
+
+Conditionals allow a program to execute certain sections of code depending on if a condition is true or not.
+
+<color=#7500a3>Comparison Operators</color> - These are used to compare values. They return either True or False.
+	
+	• Equal to (==)
+	• Not equal to (!=)
+	• Greater than (>)
+	• Less than (<)
+	• Greater than or equal to (>=)
+	• Less than or equal to (<=)
+
+<color=#7500a3>Logical Operators</color> - These are used to combine conditional statements.
+
+	• And (and) - True and True -> evaluates to True ; True and False -> evaluates to False
+	• Or (or) - True or True -> evaluates to True ; True or False -> evaluates to True
+	• Not (not) - True and not True -> evaluates to False ; True and not False -> evaluates to True
+
+<color=#7500a3>If statements</color>
+
+If statements check if a condition is true or false. If the condition is True, the code indented below it is run.	
+
+
+CODE
+============================
+# the if statements if the condition is true and executes the code block following it if the condition is true.
+if 10 > 5:
+	print("10 is greater than 5")
+
+# The above prints "10 is greater than 5"
+
+# Else statement
+# The else statement catches anything which isn't caught by the preceding conditions.
+if 5 > 10:
+	print("5 is greater than 10")
+else:
+	print("5 is not greater than 10")
+# The above prints "5 is not greater than 10"
+
+# Elif statement
+# The elif keyword is a way of saying "if the previous conditions were not true, then try this condition". It stands for "else if".
+if 5 > 10:
+	print("5 is greater than 10")
+elif 5 == 5:
+	print("5 is equal to 5")
+else:
+	print("5 is not greater than 10")
+# The above prints "5 is equal to 5"
+	
+============================

@@ -1,0 +1,17 @@
+
+<color=#800020>Basic Syntax</color>
+
+<color=#7500a3>Variables</color>
+
+Variables hold value in python. A variable will mainly hold numbers, booleans, strings, and data structures
+
+CODE
+=============================
+myVariable = 5
+myVariable = -5
+myVariable = .5
+myVariable = "Hello World!"
+myVariable = True
+myVariable = False
+myVariable = ["This", "is", "a", "list", "of", "strings"]
+=============================

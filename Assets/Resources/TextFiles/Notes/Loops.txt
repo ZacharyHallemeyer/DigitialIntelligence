@@ -1,0 +1,66 @@
+<color=#800020>Loops</color>
+
+Loops are used in Python to repeatedly execute a block of code as long as a certain condition is met. Python has two main types of loops: "for" loops and "while" loops.
+
+<color=#7500a3>For Loops</color>
+
+For loops are used when you know in advance how many times you want to repeat a block of code. They are often used for iterating over a sequence (like a list or a string).
+
+CODE
+===========================
+# Iterating over a list
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(f"I like {fruit}s")
+
+# Iterating over a range of numbers
+for i in range(5):
+    print(i)
+# This will print numbers 0 through 4
+
+# Using the enumerate function to access both index and value
+for index, value in enumerate(fruits):
+    print(f"Index {index}: {value}")
+===========================
+
+<color=#7500a3>While Loops</color>
+
+While loops are used when you want to repeat a block of code as long as a certain condition is true. They are useful when you don't know in advance how many times the loop should run.
+
+CODE
+===========================
+# Using a while loop to count down from 5
+count = 5
+while count > 0:
+    print(count)
+    count -= 1
+# This will print numbers 5 through 1
+
+# Using a while loop with user input
+user_input = input("Enter 'quit' to exit: ")
+while user_input != "quit":
+    print(f"You entered: {user_input}")
+    user_input = input("Enter 'quit' to exit: ")
+# This will keep asking for input until the user enters 'quit'
+===========================
+
+<color=#7500a3>Control Statements in Loops</color>
+
+Inside loops, you can use control statements to change the flow of the loop. Common control statements include "break" and "continue."
+
+CODE
+===========================
+# Using break to exit a loop prematurely
+for number in range(10):
+    if number == 5:
+        break
+    print(number)
+# This will print numbers 0 through 4 and then exit the loop
+
+# Using continue to skip the current iteration and move to the next
+for number in range(5):
+    if number == 2:
+        continue
+    print(number)
+# This will print numbers 0, 1, 3, and 4, skipping 2
+===========================

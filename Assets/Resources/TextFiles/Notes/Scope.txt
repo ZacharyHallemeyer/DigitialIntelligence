@@ -1,0 +1,16 @@
+<color=#800020>Scope</color>
+
+Scope determines where in your code a particular variable or name is valid and can be used. Understanding scope is crucial for writing clean and bug-free code. Python uses indentation (a tab or 4 spaces) to show scope. Identation is used in functions, if statements, loops, etc.
+
+Code
+======================
+globalVariable = "World"
+
+def main():
+	localVariable = "Hello"
+	print(localVariable + " " globalVariable)	
+
+main() # This will print "Hello World" because globalVariable is defined outside of a function
+print(localVariable) # This will cause an error because localVariable can only be used in the main function
+
+======================

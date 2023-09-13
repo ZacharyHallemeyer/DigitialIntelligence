@@ -1,0 +1,21 @@
+<color=#800020>Set</color>
+
+Sets are unordered collections of unique elements. They are useful for performing set operations like union, intersection, and difference. Here's how you can work with sets:
+
+CODE
+===========================
+my_set1 = {1, 2, 3}
+my_set2 = {3, 4, 5}
+
+# Union of sets
+union_set = my_set1.union(my_set2)
+print(union_set)  # This will print {1, 2, 3, 4, 5}
+
+# Intersection of sets
+intersection_set = my_set1.intersection(my_set2)
+print(intersection_set)  # This will print {3}
+
+# Difference between sets
+difference_set = my_set1.difference(my_set2)
+print(difference_set)  # This will print {1, 2}
+===========================

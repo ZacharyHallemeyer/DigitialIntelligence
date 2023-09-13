@@ -1,0 +1,47 @@
+<color=#800020>Functions</color>
+
+Functions are sections of code that can be called any number of times to execute.
+
+CODE
+=============================
+def printHello():
+	print("Hello")
+
+
+
+printHello()
+printHello()
+# The above prints "Hello" twice
+
+=============================
+
+<color=#7500a3>Parameters and Arguments</color>
+
+Functions can take parameters, which are values you can pass into the function.
+
+CODE
+=============================
+
+def printHello(name):
+	print("Hello " + name)
+
+printHello("Zach")
+# The above prints "Hello Zach"
+=============================
+
+
+<color=#7500a3>Return Values</color>
+
+Functions can return values. This allows functions to produce outputs that can be stored in variables or used in expressions.
+
+CODE
+=============================
+
+def makeHello(name):
+	return "Hello " + name
+
+hello = makeHello("Zach")
+print(hello)
+# The above prints "Hello Zach"
+
+=============================

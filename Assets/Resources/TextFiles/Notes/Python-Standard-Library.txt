@@ -1,0 +1,23 @@
+<color=#800020>Python Standard Library</color>
+
+The Python Standard Library is a collection of modules and packages that come with Python and provide a wide range of functionality. It includes modules for working with file I/O, regular expressions, networking, and much more. You can use these modules to save time and effort when developing Python applications.
+
+For example, you can use the `os` module to perform file and directory operations, the `datetime` module to work with dates and times, and the `json` module to work with JSON data.
+
+CODE
+===========================
+import os
+import datetime
+import json
+
+# Example usage of standard library modules
+current_directory = os.getcwd()
+print(f"Current directory: {current_directory}")
+
+current_time = datetime.datetime.now()
+print(f"Current time: {current_time}")
+
+data = '{"name": "John", "age": 30}'
+parsed_data = json.loads(data)
+print(parsed_data)
+===========================

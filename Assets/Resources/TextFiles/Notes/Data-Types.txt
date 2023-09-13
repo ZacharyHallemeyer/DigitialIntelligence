@@ -1,0 +1,12 @@
+
+<color=#800020>Data Types</color>
+
+Data types are different kinds of data that a variable can hold. Below are some of the common ones
+
+	1. Integer (int) - a whole number. For example: 1 or -1
+	2. Floating Point (float) - a decimal number. For example: .5 or -.5
+	3. String (str) - A sequence of characters surrounded by '', or "". For example: "Hello World"
+	4. Boolean (bool) - either True or False. For example: myVariable = True
+	5. Lists - A ordered collection of values and are surrounded by []. For example: ["Hello", " There"]
+	6. Tuples - Tuples are similar to lists but are immutable, meaning their elements cannot be changed after creation. For example, ("Hello", " There")
+	7. Dictionary (dict) - Dictionaries are a collection of keys and values. A key is used to get its value. For example: {"my key", "my value"}

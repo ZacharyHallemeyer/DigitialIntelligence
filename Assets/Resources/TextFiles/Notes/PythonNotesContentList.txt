@@ -1,0 +1,12 @@
+Basic-Syntax
+Scope
+Data-Types
+Conditionals
+Loops
+Comments
+Functions
+Modules
+Lists
+Dictionary
+Set
+Python-Standard-Library

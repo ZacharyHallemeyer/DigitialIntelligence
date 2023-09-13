@@ -1,0 +1,24 @@
+<color=#800020>Dictionary</color>
+
+Dictionaries are collections of key-value pairs, where each key maps to a value. They are unordered and are useful for storing and retrieving data based on unique keys. Here's how you can work with dictionaries:
+
+CODE
+===========================
+my_dict = {"name": "John", "age": 30, "city": "New York"}
+
+# Accessing values
+name = my_dict["name"]
+print(name)  # This will print "John"
+
+# Modifying values
+my_dict["age"] = 35
+print(my_dict)  # This will print {"name": "John", "age": 35, "city": "New York"}
+
+# Adding new key-value pairs
+my_dict["country"] = "USA"
+print(my_dict)  # This will print {"name": "John", "age": 35, "city": "New York", "country": "USA"}
+
+# Removing key-value pairs
+del my_dict["city"]
+print(my_dict)  # This will print {"name": "John", "age": 35, "country": "USA"}
+===========================

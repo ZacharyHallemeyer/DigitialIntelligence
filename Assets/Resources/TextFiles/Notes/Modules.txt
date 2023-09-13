@@ -1,0 +1,11 @@
+<color=#800020>Modules</color>
+
+Modules are Python files that contain functions, variables, and classes that you can use in your own programs. You can import modules into your code to access their functionality. Some common modules in Python include `math`, `random`, `datetime`, and `os`. Here's how you can import and use a module:
+
+CODE
+===========================
+import math
+
+result = math.sqrt(25)
+print(result)  # This will print the square root of 25, which is 5.0
+===========================

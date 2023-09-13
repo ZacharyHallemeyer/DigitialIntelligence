@@ -81,6 +81,8 @@ public class Sandbox : Emulator
         // Turn off input until user creates/opens a file
         DisableInput(true);
 
+        // Create Notes
+        pythonNotes.Initialize();
     }
 
     /// <summary>
