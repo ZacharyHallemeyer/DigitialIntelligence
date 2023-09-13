@@ -1,12 +1,13 @@
 Basic-Syntax
-Scope
 Data-Types
+Comments
 Conditionals
 Loops
-Comments
+Scope
 Functions
+PST
 Modules
 Lists
+Strings
 Dictionary
 Set
-Python-Standard-Library

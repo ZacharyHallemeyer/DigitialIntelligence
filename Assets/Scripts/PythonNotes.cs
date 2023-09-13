@@ -11,20 +11,15 @@ public class PythonNotes : MonoBehaviour
     private string pythonNotesDirectory = "TextFiles/Notes";
     private string contentsFileName = "PythonNotesContentList";
 
-    public TMP_Text contentText;
+    public TMP_Text notesText;
     public ScrollRect contentScrollRect;
     public GridLayoutGroup contentGridLayoutGroup;
     public GameObject contentButtonPrefab;
 
     public void Initialize()
     {
-        // Get python notes
-
         // Fill in table of contents
         FillTableOfContents();
-
-        // Set the notes section to first content
-
     }
 
     private void FillTableOfContents()
@@ -52,7 +47,12 @@ public class PythonNotes : MonoBehaviour
             });
         }
 
-        // Create a button for each content item
+
+        // Set notes text to first file if avaliable
+        if( pythonNotesContent.Count > 0 )
+        {
+            SetNotesSection(Path.Combine(pythonNotesDirectory, pythonNotesContent[0].Trim()));
+        }
     }
 
     private void SetNotesSection(string infoPath)
@@ -61,13 +61,20 @@ public class PythonNotes : MonoBehaviour
 
         if (textAsset != null)
         {
-            string pythonNotesContent = textAsset.text;
-            contentText.text = pythonNotesContent;
+            string[] pythonNotesContent = textAsset.text.Split('\n');
+            // Add extra space at the start of each line
+            pythonNotesContent = pythonNotesContent.Select(str => " " + str).ToArray();
+            notesText.text = "\n" + string.Join('\n', pythonNotesContent);
         }
         else
         {
             Debug.LogError("Failed to load content at path: " + infoPath);
         }
+    }
+
+    public void setFontSize(float fontSize)
+    {
+        notesText.fontSize = fontSize;
     }
 
 

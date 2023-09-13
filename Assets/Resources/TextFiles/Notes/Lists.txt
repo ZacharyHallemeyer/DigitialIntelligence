@@ -21,4 +21,61 @@ print(my_list)  # This will print [1, 2, 10, 4, 5, 6]
 # Removing elements
 my_list.remove(4)  # Remove the first occurrence of 4
 print(my_list)  # This will print [1, 2, 10, 5, 6]
+
+# List length
+length = len(my_list)  # Get the number of elements in the list
+print(length)  # 5
+
+# Checking for the existence of an element
+element_exists = 5 in my_list  # Check if 5 is in the list
+print(element_exists)  # True
+
+# Finding the minimum and maximum values
+min_value = min(my_list)  # Find the minimum value in the list
+max_value = max(my_list)  # Find the maximum value in the list
+print(min_value, max_value)  # 1 5
+
+# Copying and cloning lists (contd.)
+copy_of_list = my_list.copy()  # Create a shallow copy
+clone_of_list = list(my_list)  # Create another shallow copy
+
+# Creating a list with a repeated value
+repeated_list = [0] * 5  # Create a list with five 0s: [0, 0, 0, 0, 0]
+
+# List comprehension
+squared_list = [x**2 for x in my_list]  # Create a new list with squared values
+filtered_list = [x for x in my_list if x % 2 == 0]  # Create a filtered list of even numbers
+
+# Joining lists
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+combined_list = list1 + list2  # Concatenate two lists
+print(combined_list)  # [1, 2, 3, 4, 5, 6]
+
+# Iterating through a list
+for item in my_list:
+    print(item)
+
+# List comprehension (contd.)
+squared_list = [x**2 for x in my_list]  # Create a new list with squared values
+filtered_list = [x for x in my_list if x % 2 == 0]  # Create a filtered list of even numbers
+
+# Joining lists (contd.)
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+combined_list = list1 + list2  # Concatenate two lists
+print(combined_list)  # [1, 2, 3, 4, 5, 6]
+
+# Iterating through a list (contd.)
+for item in my_list:
+    print(item)
+
+# List slicing (contd.)
+sliced_elements = my_list[1:4]  # Slice elements (index 1 to 3)
+print(sliced_elements)  # [20, 25, 30]
+
+# List comprehension (contd.)
+squared_list = [x**2 for x in my_list]  # Create a new list with squared values
+filtered_list = [x for x in my_list if x % 2 == 0]  # Create a filtered list of even numbers
+
 ===========================

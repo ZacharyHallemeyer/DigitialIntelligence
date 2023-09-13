@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86a9a5e074f1d443ab5610f8d84c562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentText: {fileID: 4332183141322800421}
+  notesText: {fileID: 4332183141322800421}
   contentScrollRect: {fileID: 4258375555438248279}
   contentGridLayoutGroup: {fileID: 126847574578415863}
   contentButtonPrefab: {fileID: 340352375436452953, guid: 7d0df6abf9d22e44297ae4bf99dfdf40, type: 3}
