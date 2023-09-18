@@ -50,20 +50,9 @@ public class Hub : MonoBehaviour
         story = "\n" + Resources.Load<TextAsset>(hubInfo.storyPath).text;
         infoText.text = story;
 
-        // Set notes text
-        notes = "\n" + Resources.Load<TextAsset>(hubInfo.notesPath).text;
-
         // Show story text and hide notes text
         SetFontSize();
         ShowStoryText();
-    }
-
-    /// <summary>
-    /// Moves to notes section
-    /// </summary>
-    public void ShowNotesText()
-    {
-        infoText.text = notes;
     }
 
     /// <summary>
@@ -90,15 +79,6 @@ public class Hub : MonoBehaviour
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
         ShowStoryText();
-    }
-
-    /// <summary>
-    /// Moves to notes section
-    /// </summary>
-    public void NotesButtonClick()
-    {
-        AudioManager.instance.PlayButtonClickSoundEffect();
-        ShowNotesText();
     }
 
     /// <summary>

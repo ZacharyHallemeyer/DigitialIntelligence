@@ -432,8 +432,6 @@ public class MainMenu : MonoBehaviour
         }
 
     }
-
-
     private List<LevelInfo> GetLevelInfoListFromPersistentDataFile()
     {
         string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
@@ -450,5 +448,11 @@ public class MainMenu : MonoBehaviour
         List<LevelInfo> puzzleDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(levelInfoString);
 
         return puzzleDataList;
+    }
+
+
+    private void ResetPlayerProgress()
+    {
+        CreatePersistentPuzzleFile();
     }
 }

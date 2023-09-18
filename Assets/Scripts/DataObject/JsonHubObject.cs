@@ -6,5 +6,4 @@ public class JsonHubObject
 {
     public string name;
     public string storyPath;
-    public string notesPath;
 }

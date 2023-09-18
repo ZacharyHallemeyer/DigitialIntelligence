@@ -4,9 +4,10 @@
 
   For now, let's go over keywords and built-in functions. Don't worry about understanding python on a deep level right now as this will only get in your way at the moment! For now, just try to understand python at a high level. Let's go over an example
 
-<color=#097969>
+CODE
+==========================
  print("Hello World!")
-</color>
+==========================
 
   The function `print()` tells the computer to print the text passed into the function to the console. Try this by running the code with the run button! Make sure to surrond the text that you want to print with quotation marks as this will tell the computer that the text is a string. A string is what computers recongize as text
 

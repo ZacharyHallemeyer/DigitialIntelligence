@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     public Hub hub;
 
 
-
     public static readonly List<KeyValuePair<string, int>> pythonKeyWords = new List<KeyValuePair<string, int>>()
     {
         // Python keywords, color: Crimson Red

@@ -2,41 +2,33 @@
   {
     "name": "Tutorial",
     "storyPath": "TextFiles/TutorialFiles/TutorialStory",
-    "notesPath": "TextFiles/TutorialFiles/TutorialNotes"
   },
   {
     "name": "Greek Myths",
     "storyPath": "TextFiles/GreekMythsFiles/GreekMythsStory",
-    "notesPath": "TextFiles/GreekMythsFiles/GreekMythsNotes"
   },
   {
     "name": "Conditionals",
     "storyPath": "TextFiles/ConditionalsFiles/ConditionalsStory",
-    "notesPath": "TextFiles/ConditionalsFiles/ConditionalsNotes"
   },
   {
     "name": "Loops",
     "storyPath": "TextFiles/LoopsFiles/loopsStory",
-    "notesPath": "TextFiles/LoopsFiles/loopsNotes"
   },
   {
     "name": "Strings",
     "storyPath": "TextFiles/StringsFiles/StringsStory",
-    "notesPath": "TextFiles/StringsFiles/StringsNotes"
   },
   {
     "name": "Lists",
     "storyPath": "TextFiles/ListsFiles/ListsStory",
-    "notesPath": "TextFiles/ListsFiles/ListsNotes"
   },
   {
     "name": "Functions",
     "storyPath": "TextFiles/FunctionsFiles/FunctionsStory",
-    "notesPath": "TextFiles/FunctionsFiles/FunctionsNotes"
   },
   {
     "name": "Variables",
     "storyPath": "TextFiles/VariablesFiles/VariablesStory",
-    "notesPath": "TextFiles/VariablesFiles/VariablesNotes"
   }
 ]

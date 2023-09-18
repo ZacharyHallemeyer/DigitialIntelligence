@@ -1,6 +1,6 @@
-Functions are like workers. They preform a specified task when they are called to do so. You have already been using functions as each puzzle uses a main function and returns a value at the end of the function. 
+In this section, we'll explore functions. Functions are like reusable blocks of code that perform specific tasks or actions. They act as self-contained units within your program, accepting input, processing it, and producing output. Functions are like mini-programs within your larger program, allowing you to break down complex tasks into manageable pieces. They're essential in programming for organizing code, promoting reusability, and making your programs more modular and efficient. Understanding how to create and use functions is a fundamental skill that enables you to build organized and scalable software.
 
-This is the basics of a function. A function has code that will be run each time it is run. It can return a value or it can return nothing. This basic syntax is as follows
+This basic syntax is as follows
 
 def myFunction():
 	

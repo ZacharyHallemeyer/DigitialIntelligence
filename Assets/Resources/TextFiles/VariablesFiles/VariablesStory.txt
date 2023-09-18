@@ -1,1 +1,1 @@
-This is the story
+In this level, we will be going over variables. Variables are placeholders used in programming to store and manage different types of data, such as numbers, text, and more. They serve as essential building blocks in coding, allowing us to store information, perform calculations, and create dynamic programs. Understanding how to work with variables is a fundamental skill that will empower you to solve a wide range of coding challenges.

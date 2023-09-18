@@ -4,16 +4,16 @@
   "unlocked": true,
   "files": [
     {
-      "fileName": "InformationFile",
-      "path": "Tutorial/InformationFile",
+      "fileName": "InfoFile",
+      "path": "Tutorial/InfoFile",
       "question": "",
       "unlockKeyword": "",
       "unlocked": true
     },
     {
-      "fileName": "InformationDirectory",
-      "path": "Tutorial/InformationDirectory",
-      "question": "What is 2 + 2",
+      "fileName": "InfoDir",
+      "path": "Tutorial/InfoDir",
+      "question": "What is 2 + 2 (numeric character)",
       "unlockKeyword": "4",
       "unlocked": false
     }
@@ -25,9 +25,9 @@
       "unlocked": false,
       "files": [
         {
-          "fileName": "InformationLevelOne",
-          "path": "Tutorial/LevelOne/InformationLevelOne",
-          "question": "What is the command to move into a directory",
+          "fileName": "InfoOne",
+          "path": "Tutorial/LevelOne/InfoOne",
+          "question": "What is the command to move into a directory? (one word)",
           "unlockKeyword": "cd",
           "unlocked": false
         }
@@ -41,7 +41,7 @@
             {
               "fileName": "InformationLevelTwo",
               "path": "Tutorial/LevelOne/LevelTwo/InformationLevelTwo",
-              "question": "What button do you press to exit out of the puzzle and back to the terminal",
+              "question": "What button do you press to exit out of the puzzle and back to the terminal? (one word)",
               "unlockKeyword": "exit",
               "unlocked": false
             }
@@ -53,9 +53,9 @@
               "unlocked": false,
               "files": [
                 {
-                  "fileName": "InformationLevelThree",
-                  "path": "Tutorial/LevelOne/LevelTwo/LevelThree/InformationLevelThree",
-                  "question": "What do you need to a return at the end of the function main?",
+                  "fileName": "InfoThree",
+                  "path": "Tutorial/LevelOne/LevelTwo/LevelThree/InfoThree",
+                  "question": "What do you need to a return at the end of the function main? (one word)",
                   "unlockKeyword": "value",
                   "unlocked": false
                 }
