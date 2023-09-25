@@ -83,6 +83,15 @@ public class Sandbox : Emulator
 
         // Create Notes
         pythonNotes.Initialize();
+
+
+        widthDisplay.text = "a";
+        widthDisplay.ForceMeshUpdate();
+        Debug.Log("Count: " + widthDisplay.textInfo.lineCount);
+        Debug.Log("Count: " + widthDisplay.text);
+        Debug.Log("Width: " + widthDisplay.preferredWidth);
+        Debug.Log("Height: " + widthDisplay.textInfo.lineInfo[0].lineHeight);
+
     }
 
     /// <summary>
@@ -90,6 +99,11 @@ public class Sandbox : Emulator
     /// </summary>
     void Update()
     {
+        // =========================== TESTING ===========================
+        //Debug.Log(Input.mousePosition);
+        // =========================== TESTING END ===========================
+
+
         // Check for change in input field scroll position
         Vector2 newInputPosition = coloredCodeRect.anchoredPosition;
         if (lastInputPosition != newInputPosition)

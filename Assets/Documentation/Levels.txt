@@ -15,8 +15,6 @@ How to add levels
 		• This folder will contain the story and notes for your level as well as the starting code and directions for each puzzle
 		• My naming scheme for story -> levelName + "Story"
 			○ This file will contain the text for displaying story to the hub
-		• My naming scheme for notes -> levelName + "Notes"
-			○ This file will contain the text for displaying notes to the hub
 		• My naming scheme for puzzle starting code -> puzzle name + "StartingCode"
 			○ This file will contain the text for the starting code of a puzzle
 		• My naming scheme for puzzle directions -> puzzle name + "Directions"

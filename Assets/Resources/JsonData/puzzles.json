@@ -58,7 +58,7 @@
         "hiddenTestCases": [],
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableOneStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableOneDirections",
-        "puzzleName": "VariableOne",
+        "puzzleName": "One",
         "puzzleIndex": "0"
       },
       {
@@ -75,7 +75,7 @@
         "hiddenTestCases": [],
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableTwoStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableTwoDirections",
-        "puzzleName": "VariableTwo",
+        "puzzleName": "Two",
         "puzzleIndex": "1"
       },
       {
@@ -96,7 +96,7 @@
         "hiddenTestCases": [],
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableThreeStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableThreeDirections",
-        "puzzleName": "VariableThree",
+        "puzzleName": "Three",
         "puzzleIndex": "2"
       },
       {
@@ -109,7 +109,7 @@
         "hiddenTestCases": [],
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableFourStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableFourDirections",
-        "puzzleName": "VariableFour",
+        "puzzleName": "Four",
         "puzzleIndex": "3"
       },
       {
@@ -122,7 +122,7 @@
         "hiddenTestCases": [],
         "startingCode": "TextFiles/VariablesFiles/VariablesVariableFiveStartingCode",
         "directions": "TextFiles/VariablesFiles/VariablesVariableFiveDirections",
-        "puzzleName": "VariableFive",
+        "puzzleName": "Five",
         "puzzleIndex": "4"
       }
     ]
