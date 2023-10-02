@@ -97,7 +97,7 @@ public class Sandbox : Emulator
         Debug.Log("Width: " + widthDisplay.preferredWidth);
         Debug.Log("Height: " + widthDisplay.textInfo.lineInfo[0].lineHeight);
 
-        CreateNewLine(caretPosY);
+        CreateNewLineCover(caretPosY);
     }
 
     public float reverseNumber(float num, float min, float max)

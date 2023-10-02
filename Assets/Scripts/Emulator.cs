@@ -420,7 +420,7 @@ public class Emulator : MonoBehaviour
         inputText.Insert(caretPosY + 1, indent);
         coloredText.Insert(caretPosY + 1, indent);
 
-        CreateNewLine(caretPosY+1);
+        CreateNewLineCover(caretPosY+1);
 
         ColorizeCurrentLine(false);
         DisplayText();
@@ -541,6 +541,8 @@ public class Emulator : MonoBehaviour
 
                 ColorizeCurrentLine(true);
                 DisplayText();
+
+                RemoveLineCover();
 
                 return;
             }
@@ -1318,7 +1320,7 @@ public class Emulator : MonoBehaviour
 
     // ================================== Mouse Input ===================================
 
-    public void CreateNewLine(int lineNumber)
+    public void CreateNewLineCover(int lineNumber)
     {
         // Create line
         //GameObject line = Instantiate(linePrefab, coloredCodeRect);
@@ -1335,28 +1337,18 @@ public class Emulator : MonoBehaviour
             MoveCaretWithMouse(lineInfo);
         });
 
-        RectTransform lineRectTransform = line.GetComponent<RectTransform>();
-
+        lineObjects.Add(line);
         // Check if new line is the ending line
-        if(caretPosY+2 >= inputText.Count)
-        {
-            lineRectTransform.anchoredPosition = new Vector2(lineRectTransform.anchoredPosition.x, linePosition);
-            lineObjects.Add(line);
-        }
-        else
+        if(caretPosY+2 < inputText.Count)
         {
             // Add to line object list
-            lineObjects.Insert(lineNumber, line);
-            float foundLinePosition = lineObjects[caretPosY].GetComponent<RectTransform>().anchoredPosition.y;
-            lineRectTransform.anchoredPosition = new Vector2(lineRectTransform.anchoredPosition.x, foundLinePosition);
 
             // Move each line after new line down one slot
-            for (int lineIndex = lineNumber; lineIndex < lineObjects.Count; lineIndex++)
+            for (int lineIndex = 0; lineIndex < lineObjects.Count; lineIndex++)
             {
                 GameObject currentLine = lineObjects[lineIndex];
-                RectTransform currentLineRectTrans = currentLine.GetComponent<RectTransform>();
-                Vector2 rectTrans = currentLineRectTrans.anchoredPosition;
-                currentLineRectTrans.anchoredPosition = new Vector2(rectTrans.x, rectTrans.y - charHeight);
+                LineInfo currentLineInfo = currentLine.GetComponent<LineInfo>();
+                currentLineInfo.lineNumber = lineIndex;
             }
         }
 
@@ -1365,6 +1357,13 @@ public class Emulator : MonoBehaviour
 
         // Adjust parent position to account for scroll view scaling
         fileParentContainer.transform.position = new Vector2(fileParentContainer.transform.position.x, fileParentContainer.transform.position.y + 10);
+    }
+
+    private void RemoveLineCover()
+    {
+        int index = lineObjects.Count - 1;
+        Destroy(lineObjects[index]);
+        lineObjects.RemoveAt(lineObjects.Count - 1);
     }
 
     public void MoveCaretWithMouse(LineInfo lineInfo)
