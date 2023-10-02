@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleContainer : MonoBehaviour
+public class PuzzleContainer 
 {
     public string levelName;
     public int index;

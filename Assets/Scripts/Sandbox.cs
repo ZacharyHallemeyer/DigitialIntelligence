@@ -16,7 +16,6 @@ public class Sandbox : Emulator
     public GameObject sliderContainer;
     public GameObject colorContainer;
 
-
     // Prefabs
     public GameObject filePrefab;
 
@@ -41,6 +40,8 @@ public class Sandbox : Emulator
     // Input fields
     public TMP_InputField fileNameInput;
 
+    // Mouse
+
     public void Start()
     {
         Initialize();
@@ -59,6 +60,7 @@ public class Sandbox : Emulator
         caretPosY = 0;
         numOfLines = 1;
 
+        SetFontSize();
         SetColorSize();
         SetLineNumbers();
 
@@ -87,11 +89,20 @@ public class Sandbox : Emulator
 
         widthDisplay.text = "a";
         widthDisplay.ForceMeshUpdate();
+        charWidth = widthDisplay.preferredWidth;
+        charHeight = widthDisplay.textInfo.lineInfo[0].lineHeight;
+        
         Debug.Log("Count: " + widthDisplay.textInfo.lineCount);
         Debug.Log("Count: " + widthDisplay.text);
         Debug.Log("Width: " + widthDisplay.preferredWidth);
         Debug.Log("Height: " + widthDisplay.textInfo.lineInfo[0].lineHeight);
 
+        CreateNewLine(caretPosY);
+    }
+
+    public float reverseNumber(float num, float min, float max)
+    {
+        return (max + min) - num;
     }
 
     /// <summary>
@@ -100,7 +111,47 @@ public class Sandbox : Emulator
     void Update()
     {
         // =========================== TESTING ===========================
-        //Debug.Log(Input.mousePosition);
+        //Debug.Log("Width: " + widthDisplay.preferredWidth);
+
+        /*
+        GameObject line = Instantiate(linePrefab, coloredCodeRect);
+        RectTransform lineRectTransform = line.GetComponent<RectTransform>();
+        lineRectTransform.anchoredPosition = new Vector2(lineRectTransform.anchoredPosition.x, linePosition);
+        linePosition -= charHeight;
+        */
+
+        /*
+        Debug.Log(Input.mousePosition);
+
+        float charactersToXPostion = (Input.mousePosition.x - 140) / charWidth;
+        float inverseYPosition = reverseNumber(Input.mousePosition.y, 0, 1080);
+        float charactersToYPostion = (inverseYPosition - 60) / charWidth; 
+        if(Input.GetMouseButtonDown(0))
+        {
+            //Debug.Log(Input.mousePosition.x);
+            //Debug.Log(inverseYPosition);
+            RemoveCaretFromLine(caretPosY);
+            ColorizeCurrentLine(false);
+            caretPosX = (int)charactersToXPostion;
+            caretPosY = (int)charactersToYPostion;
+            Debug.Log("X: " + caretPosX);
+            Debug.Log("Y: " + caretPosY);
+
+            if(inputText.Count < caretPosY)
+            {
+                caretPosY = 0;
+            }
+            else if (caretPosX > inputText[caretPosY].Length)
+            {
+                //caretPosX = inputText[caretPosY].Length - 1; 
+                caretPosX = 0; 
+            }
+
+            ColorizeCurrentLine(true);
+            DisplayText();
+        }
+        */
+
         // =========================== TESTING END ===========================
 
 
@@ -576,6 +627,13 @@ public class Sandbox : Emulator
         coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         lineNumDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         pythonNotes.setFontSize(PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15));
+
+
+        widthDisplay.text = "a";
+        widthDisplay.ForceMeshUpdate();
+        charWidth = widthDisplay.preferredWidth;
+        charHeight = widthDisplay.textInfo.lineInfo[0].lineHeight;
+
         SetColorSize();
     }
 

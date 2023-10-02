@@ -53,13 +53,6 @@ public class Terminal : MonoBehaviour
     // Pop Up
     public GameObject PopUpContainer;
 
-
-    // REMOVE AFTER GAMEMANAGER IS ADDED
-    public void Start()
-    {
-        //Initialize();
-    }
-
     /// <summary>
     /// Initializes the terminal by doing the following
     /// 1. Initialize variables
@@ -565,7 +558,6 @@ public class Terminal : MonoBehaviour
                 // Check if the file is unlocked 
                 if(file.unlocked)
                 {
-                    Debug.Log(file.path);
                     string fileContent = Resources.Load<TextAsset>(file.path).text;
                     PrintLineToTerminal(fileContent, false);
                 }

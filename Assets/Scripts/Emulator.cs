@@ -16,7 +16,11 @@ using System.Threading.Tasks;
 
 public class Emulator : MonoBehaviour
 {
+    // Containers
     public GameObject emulatorContainer;
+
+    // Prefabs
+    public GameObject linePrefab;
 
     // Notes
     public GameObject notesContainer;
@@ -25,6 +29,7 @@ public class Emulator : MonoBehaviour
     public ScrollRect coloredScrollRect;
 
     public RectTransform lineNumberRect;
+    public RectTransform lineRect;
     public RectTransform coloredCodeRect;
     public RectTransform codeScrollRect;
 
@@ -72,6 +77,14 @@ public class Emulator : MonoBehaviour
 
     public float verticalBuffer = 230;
 
+    // Mouse
+    public List<GameObject> lineObjects = new List<GameObject>();
+    public float linePosition = -7.5f;
+    public float charWidth;
+    public float charHeight;
+    public GameObject fileParentContainer;
+    public GridLayoutGroup fileGroup;
+
     /// <summary>
     /// OnScroll is called when the input field is scrolled.
     /// It updates the position of the line numbers to match the scroll position.
@@ -80,6 +93,7 @@ public class Emulator : MonoBehaviour
     public void OnScroll(Vector2 scrollPosition)
     {
         lineNumberRect.anchoredPosition = new Vector2(lineNumberRect.anchoredPosition.x, scrollPosition.y - 150);
+        lineRect.anchoredPosition = new Vector2(lineRect.anchoredPosition.x, scrollPosition.y - 150);
     }
 
     // ========================= Navigation ========================= //
@@ -405,6 +419,8 @@ public class Emulator : MonoBehaviour
         // Add new lines
         inputText.Insert(caretPosY + 1, indent);
         coloredText.Insert(caretPosY + 1, indent);
+
+        CreateNewLine(caretPosY+1);
 
         ColorizeCurrentLine(false);
         DisplayText();
@@ -1300,6 +1316,75 @@ public class Emulator : MonoBehaviour
         SetLineNumbers();
     }
 
+    // ================================== Mouse Input ===================================
+
+    public void CreateNewLine(int lineNumber)
+    {
+        // Create line
+        //GameObject line = Instantiate(linePrefab, coloredCodeRect);
+        GameObject line = Instantiate(linePrefab, fileParentContainer.transform);
+
+        // Add LineInfo component
+        LineInfo lineInfo = line.AddComponent<LineInfo>();
+        lineInfo.lineNumber = lineNumber;
+
+        // Add onClick functionality
+        line.GetComponent<Button>().onClick.AddListener(() =>
+        {
+
+            MoveCaretWithMouse(lineInfo);
+        });
+
+        RectTransform lineRectTransform = line.GetComponent<RectTransform>();
+
+        // Check if new line is the ending line
+        if(caretPosY+2 >= inputText.Count)
+        {
+            lineRectTransform.anchoredPosition = new Vector2(lineRectTransform.anchoredPosition.x, linePosition);
+            lineObjects.Add(line);
+        }
+        else
+        {
+            // Add to line object list
+            lineObjects.Insert(lineNumber, line);
+            float foundLinePosition = lineObjects[caretPosY].GetComponent<RectTransform>().anchoredPosition.y;
+            lineRectTransform.anchoredPosition = new Vector2(lineRectTransform.anchoredPosition.x, foundLinePosition);
+
+            // Move each line after new line down one slot
+            for (int lineIndex = lineNumber; lineIndex < lineObjects.Count; lineIndex++)
+            {
+                GameObject currentLine = lineObjects[lineIndex];
+                RectTransform currentLineRectTrans = currentLine.GetComponent<RectTransform>();
+                Vector2 rectTrans = currentLineRectTrans.anchoredPosition;
+                currentLineRectTrans.anchoredPosition = new Vector2(rectTrans.x, rectTrans.y - charHeight);
+            }
+        }
+
+        // Adjust linePosition for next line
+        linePosition -= charHeight * 1.25f;
+
+        // Adjust parent position to account for scroll view scaling
+        fileParentContainer.transform.position = new Vector2(fileParentContainer.transform.position.x, fileParentContainer.transform.position.y + 10);
+    }
+
+    public void MoveCaretWithMouse(LineInfo lineInfo)
+    {
+        RemoveCaretFromLine(caretPosY);
+        ColorizeCurrentLine(false);
+
+        caretPosY = lineInfo.lineNumber;
+
+        float charactersToXPostion = (Input.mousePosition.x - 140) / charWidth;
+        caretPosX = (int)charactersToXPostion;
+        
+        if (caretPosX > inputText[caretPosY].Length)
+        {
+            caretPosX = inputText[caretPosY].Length; 
+        }
+
+        ColorizeCurrentLine(true);
+        DisplayText();
+    }
 
     // ================================== Python Notes ================================== 
 
@@ -1316,5 +1401,6 @@ public class Emulator : MonoBehaviour
         emulatorContainer.SetActive(true);
         notesContainer.SetActive(false);
     }
+
 
 }
