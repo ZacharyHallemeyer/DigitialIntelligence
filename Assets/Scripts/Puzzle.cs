@@ -83,11 +83,17 @@ public class Puzzle : Emulator
 
         inputText.Add("");
 
-
         codeFieldWidth = codeScrollRect.rect.width;
         codeFieldHeight = codeScrollRect.rect.height - verticalBuffer;
         verticalViewTop = 0;
         verticalViewBottom = codeFieldHeight;
+
+        // Mouse input set up
+        SetFontSize(false);
+        widthDisplay.text = "a";
+        widthDisplay.ForceMeshUpdate();
+        charWidth = widthDisplay.preferredWidth;
+        charHeight = widthDisplay.textInfo.lineInfo[0].lineHeight;
 
         // Get old code ("" if no old code avaliable)
         oldCode = GetOldCode();
@@ -98,6 +104,8 @@ public class Puzzle : Emulator
 
         // Create Notes
         pythonNotes.Initialize();
+
+        //CreateNewLineCover(caretPosY);
     }
 
 
@@ -212,6 +220,7 @@ public class Puzzle : Emulator
     /// </summary>
     public void SetPuzzleDisplay()
     {
+        List<string> startingCodeList = new List<string>();
         // Set starting code
         // Set input field text
         if(oldCode == "")
@@ -221,6 +230,11 @@ public class Puzzle : Emulator
         else
         {
             inputText = oldCode.Split('\n').ToList();
+        }
+
+        for(int index = 0; index < inputText.Count; index++)
+        {
+            CreateNewLineCover(index);
         }
 
 
@@ -358,7 +372,7 @@ public class Puzzle : Emulator
         gameObject.SetActive(true);
     }
 
-    public override void SetFontSize()
+    public void SetFontSize(bool setColors = true)
     {
         emuConsole.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CONSOLE_FONT_SIZE, 15);
         directionsDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15);
@@ -366,7 +380,10 @@ public class Puzzle : Emulator
         coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         lineNumDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         pythonNotes.setFontSize(PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15));
-        SetColorSize();
+        if (setColors)
+        {
+            SetColorSize(setColors);
+        }
     }
 
     private void WriteToPuzzleJson()

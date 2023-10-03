@@ -92,11 +92,6 @@ public class Sandbox : Emulator
         charWidth = widthDisplay.preferredWidth;
         charHeight = widthDisplay.textInfo.lineInfo[0].lineHeight;
         
-        Debug.Log("Count: " + widthDisplay.textInfo.lineCount);
-        Debug.Log("Count: " + widthDisplay.text);
-        Debug.Log("Width: " + widthDisplay.preferredWidth);
-        Debug.Log("Height: " + widthDisplay.textInfo.lineInfo[0].lineHeight);
-
         CreateNewLineCover(caretPosY);
     }
 

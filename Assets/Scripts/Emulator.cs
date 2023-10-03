@@ -422,14 +422,18 @@ public class Emulator : MonoBehaviour
 
         CreateNewLineCover(caretPosY+1);
 
+        RemoveCaretFromLine(caretPosY);
         ColorizeCurrentLine(false);
         DisplayText();
 
+        Debug.Log($"{caretPosX}, {caretPosY}");
         // Check if any text will be carried to the next line
         if (inputText[caretPosY].Length > caretPosX)
         {
+            Debug.Log("Text found to carry over");
+
             // Move the text to the next line
-            inputText[caretPosY + 1] = inputText[caretPosY].Substring(caretPosX);
+            inputText[caretPosY + 1] = indent + inputText[caretPosY].Substring(caretPosX);
             inputText[caretPosY] = inputText[caretPosY].Substring(0, caretPosX);
             ColorizeCurrentLine(false);
             DisplayText();
@@ -528,6 +532,9 @@ public class Emulator : MonoBehaviour
             // Check if current line is not the first line
             if (caretPosY > 0)
             {
+                // Set cursor X to the end of the new line
+                caretPosX = inputText[caretPosY - 1].Length;
+
                 // Add the text of the current line to the last line
                 inputText[caretPosY - 1] += inputText[caretPosY];
                 coloredText[caretPosY - 1] += coloredText[caretPosY];
@@ -536,8 +543,6 @@ public class Emulator : MonoBehaviour
                 coloredText.RemoveAt(caretPosY);
                 caretPosY--;
 
-                // Set cursor X to the end of the current line
-                caretPosX = inputText[caretPosY].Length;
 
                 ColorizeCurrentLine(true);
                 DisplayText();
@@ -1134,13 +1139,15 @@ public class Emulator : MonoBehaviour
         SetColorSize();
     }
 
-    public void SetColorSize()
+    public void SetColorSize(bool colorizeLines = true)
     {
         caret = $"<color={PlayerPrefs.GetString(PlayerPrefNames.CODE_CARET_COLOR)}>|</color>";
         keywordColor = PlayerPrefs.GetString(PlayerPrefNames.CODE_KEYWORD_COLOR);
         functionColor = PlayerPrefs.GetString(PlayerPrefNames.CODE_FUNCTION_COLOR);
         stringColor = PlayerPrefs.GetString(PlayerPrefNames.CODE_STRING_COLOR);
-        ColorizeAllLines();
+
+        if( colorizeLines )
+            ColorizeAllLines();
     }
 
     public void ColorizeAllLines()
@@ -1323,7 +1330,6 @@ public class Emulator : MonoBehaviour
     public void CreateNewLineCover(int lineNumber)
     {
         // Create line
-        //GameObject line = Instantiate(linePrefab, coloredCodeRect);
         GameObject line = Instantiate(linePrefab, fileParentContainer.transform);
 
         // Add LineInfo component
@@ -1333,17 +1339,16 @@ public class Emulator : MonoBehaviour
         // Add onClick functionality
         line.GetComponent<Button>().onClick.AddListener(() =>
         {
-
             MoveCaretWithMouse(lineInfo);
         });
 
+        // Add to line object list
         lineObjects.Add(line);
-        // Check if new line is the ending line
+        
+        // Check if new line is not the ending line
         if(caretPosY+2 < inputText.Count)
-        {
-            // Add to line object list
-
-            // Move each line after new line down one slot
+        { 
+            // Adjust the line numbers
             for (int lineIndex = 0; lineIndex < lineObjects.Count; lineIndex++)
             {
                 GameObject currentLine = lineObjects[lineIndex];
@@ -1368,21 +1373,40 @@ public class Emulator : MonoBehaviour
 
     public void MoveCaretWithMouse(LineInfo lineInfo)
     {
+        int tabDecrement = 2;
+        int characterOffset = 140; // Account for the code input being offset by 140
+           
+        // Remove caret from old line
         RemoveCaretFromLine(caretPosY);
         ColorizeCurrentLine(false);
 
+        // Move caret to new line
         caretPosY = lineInfo.lineNumber;
 
-        float charactersToXPostion = (Input.mousePosition.x - 140) / charWidth;
-        caretPosX = (int)charactersToXPostion;
+        // Calculate which character based on mouse position
+        float charactersToXPostion = (Input.mousePosition.x - characterOffset) / charWidth;
+        // Account for the increased space of tabs
+        foreach( char character in inputText[caretPosY] )
+        {
+            if (character == '\t')
+            {
+                charactersToXPostion -= tabDecrement;
+            }
+        }
         
+        // Move caret to calculated character
+        caretPosX = (int)charactersToXPostion;
+        // If there is no character at mouse position, move to end of line
         if (caretPosX > inputText[caretPosY].Length)
         {
             caretPosX = inputText[caretPosY].Length; 
         }
 
+        // Show newly placed caret
         ColorizeCurrentLine(true);
         DisplayText();
+
+        Debug.Log($"Mouse moved to {caretPosX}, {caretPosY}");
     }
 
     // ================================== Python Notes ================================== 
