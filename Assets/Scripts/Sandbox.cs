@@ -179,7 +179,14 @@ public class Sandbox : Emulator
             else if (Input.GetKeyDown(KeyCode.Tab) && !processingInput)
             {
                 fileSaved = false;
-                StartCoroutine(HandleTabWithDelay());
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    StartCoroutine(HandleShiftTabWithDelay());
+                }
+                else
+                {
+                    StartCoroutine(HandleTabWithDelay());
+                }
             }
             // Check if duplicate (CRTL + D)
             else if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.D) && !processingInput)

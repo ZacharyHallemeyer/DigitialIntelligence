@@ -190,7 +190,14 @@ public class Puzzle : Emulator
             // Check if input is tab
             else if (Input.GetKeyDown(KeyCode.Tab) && !processingInput)
             {
-                StartCoroutine(HandleTabWithDelay());
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    StartCoroutine(HandleShiftTabWithDelay());
+                }
+                else
+                {
+                    StartCoroutine(HandleTabWithDelay());
+                }
             }
             // Check if duplicate (CRTL + D)
             else if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.D) && !processingInput)

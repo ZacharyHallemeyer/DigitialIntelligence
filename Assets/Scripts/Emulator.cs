@@ -590,6 +590,44 @@ public class Emulator : MonoBehaviour
     }
 
     /// <summary>
+    /// Handles the Tab key input with a delay between each action.
+    /// </summary>
+    /// <returns>An IEnumerator object.</returns>
+    public IEnumerator HandleShiftTabWithDelay()
+    {
+        processingInput = true;
+        HandleShiftTab();
+        yield return new WaitForSeconds(initialProcessingDelay);
+        while ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKey(KeyCode.Tab) )
+        {
+            HandleShiftTab();
+            yield return new WaitForSeconds(processingDelay);
+        }
+        processingInput = false;
+    }
+
+    /// <summary>
+    /// Handles the behavior when the Tab key is pressed.
+    /// Inserts a tab character ('\t') at the caret position.
+    /// </summary>
+    public void HandleShiftTab()
+    {
+        // Find first tab
+        int deleteIndex = inputText[caretPosY].IndexOf('\t');
+
+        // If no tab is found, return out of function (do nothing)
+        if (deleteIndex == -1)
+            return;
+
+        inputText[caretPosY] = inputText[caretPosY].Remove(deleteIndex, 1);
+        caretPosX--;
+
+        ColorizeCurrentLine(true);
+        DisplayText();
+
+    }
+
+    /// <summary>
     /// Handles the CRTL+D (duplicate line) input with a delay between each action.
     /// </summary>
     /// <returns>An IEnumerator object.</returns>
