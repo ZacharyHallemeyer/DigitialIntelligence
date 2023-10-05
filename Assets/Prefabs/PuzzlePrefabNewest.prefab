@@ -285,7 +285,7 @@ MonoBehaviour:
   pythonNotes: {fileID: 2138956890149289051}
   coloredScrollRect: {fileID: 8744479293937121311}
   lineNumberRect: {fileID: 118615744745817177}
-  lineRect: {fileID: 0}
+  lineRect: {fileID: 6033494293031963534}
   coloredCodeRect: {fileID: 1474165783565637850}
   codeScrollRect: {fileID: 4304837955958473399}
   coloredCodeDisplay: {fileID: 3492477017586277857}
@@ -320,8 +320,8 @@ MonoBehaviour:
   linePosition: 0
   charWidth: 0
   charHeight: 0
-  fileParentContainer: {fileID: 0}
-  fileGroup: {fileID: 0}
+  fileParentContainer: {fileID: 278166934509029754}
+  fileGroup: {fileID: 3725724716075597544}
   testCases: []
   hiddenTestCases: []
   startingCode: 
@@ -362,7 +362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000052452087, y: 0.00017781778}
+  m_AnchoredPosition: {x: 0.0000052452087, y: 0.0003649211}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &118615744170898234
