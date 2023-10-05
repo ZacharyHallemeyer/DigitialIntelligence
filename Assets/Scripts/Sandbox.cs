@@ -95,61 +95,11 @@ public class Sandbox : Emulator
         CreateNewLineCover(caretPosY);
     }
 
-    public float reverseNumber(float num, float min, float max)
-    {
-        return (max + min) - num;
-    }
-
     /// <summary>
     /// Updates the input handling and executes corresponding actions based on the user's input.
     /// </summary>
     void Update()
     {
-        // =========================== TESTING ===========================
-        //Debug.Log("Width: " + widthDisplay.preferredWidth);
-
-        /*
-        GameObject line = Instantiate(linePrefab, coloredCodeRect);
-        RectTransform lineRectTransform = line.GetComponent<RectTransform>();
-        lineRectTransform.anchoredPosition = new Vector2(lineRectTransform.anchoredPosition.x, linePosition);
-        linePosition -= charHeight;
-        */
-
-        /*
-        Debug.Log(Input.mousePosition);
-
-        float charactersToXPostion = (Input.mousePosition.x - 140) / charWidth;
-        float inverseYPosition = reverseNumber(Input.mousePosition.y, 0, 1080);
-        float charactersToYPostion = (inverseYPosition - 60) / charWidth; 
-        if(Input.GetMouseButtonDown(0))
-        {
-            //Debug.Log(Input.mousePosition.x);
-            //Debug.Log(inverseYPosition);
-            RemoveCaretFromLine(caretPosY);
-            ColorizeCurrentLine(false);
-            caretPosX = (int)charactersToXPostion;
-            caretPosY = (int)charactersToYPostion;
-            Debug.Log("X: " + caretPosX);
-            Debug.Log("Y: " + caretPosY);
-
-            if(inputText.Count < caretPosY)
-            {
-                caretPosY = 0;
-            }
-            else if (caretPosX > inputText[caretPosY].Length)
-            {
-                //caretPosX = inputText[caretPosY].Length - 1; 
-                caretPosX = 0; 
-            }
-
-            ColorizeCurrentLine(true);
-            DisplayText();
-        }
-        */
-
-        // =========================== TESTING END ===========================
-
-
         // Check for change in input field scroll position
         Vector2 newInputPosition = coloredCodeRect.anchoredPosition;
         if (lastInputPosition != newInputPosition)
@@ -433,6 +383,7 @@ public class Sandbox : Emulator
             inputText[index] = line;
             coloredText.Add(line);
             ColorizeCurrentLine(false);
+            CreateNewLineCover(index);
             caretPosY++;
             numOfLines++;
         }
