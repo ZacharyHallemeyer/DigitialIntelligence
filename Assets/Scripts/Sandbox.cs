@@ -188,6 +188,13 @@ public class Sandbox : Emulator
                     StartCoroutine(HandleTabWithDelay());
                 }
             }
+            // Check if input is tab
+            else if ( ( Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) ) 
+                      && Input.GetKey(KeyCode.Slash) && !processingInput)
+            {
+                fileSaved = false;
+                StartCoroutine(HandleCommentLineWithDelay());
+            }
             // Check if duplicate (CRTL + D)
             else if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.D) && !processingInput)
             {

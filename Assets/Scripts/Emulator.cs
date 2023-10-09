@@ -96,7 +96,7 @@ public class Emulator : MonoBehaviour
         lineRect.anchoredPosition = new Vector2(lineRect.anchoredPosition.x, scrollPosition.y - 150);
     }
 
-    // ========================= Navigation ========================= //
+    // ========================= Emulator User Input ========================= //
 
     /// <summary>
     /// Handles the Up Arrow key input with a delay between each action.
@@ -773,6 +773,82 @@ public class Emulator : MonoBehaviour
     }
 
     /// <summary>
+    /// Handles the CTRL+Slash (comment line) key input with a delay between each action.
+    /// </summary>
+    /// <returns>An IEnumerator object.</returns>
+    public IEnumerator HandleCommentLineWithDelay()
+    {
+        processingInput = true;
+
+        HandleCommentLine();
+
+        yield return new WaitForSeconds(initialProcessingDelay);
+        while ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKey(KeyCode.Slash))
+        {
+            HandleCommentLine();
+            yield return new WaitForSeconds(processingDelay);
+        }
+
+        processingInput = false;
+    }
+
+    /// <summary>
+    /// Handles commenting and uncommenting a line in the inputText at the current caret position.
+    /// If the line is already commented, it will be uncommented. If not, it will be commented.
+    /// </summary>
+    public void HandleCommentLine()
+    {
+        int indentNum = 0;
+        bool isAlreadyCommented = false;
+        string commentString = "# ";
+        
+        // Check for indent
+        foreach( char character in inputText[caretPosY])
+        {
+            if( character == '\t' )
+            {
+                indentNum++;
+            }
+            else if (character == '#')
+            {
+                isAlreadyCommented = true;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        // If the line is already commented, uncomment the line
+        if(isAlreadyCommented)
+        {
+            string originalString = inputText[caretPosY];
+            // Attempt to remove comment string
+            inputText[caretPosY] = inputText[caretPosY].Replace(commentString, "");
+
+            // If the user removed the space in front of the #
+            if(inputText[caretPosY] == originalString)
+            {
+                inputText[caretPosY] = inputText[caretPosY].Replace("#", "");
+                caretPosX--;
+            }
+            // Otherwise move caret commentString's length back
+            else
+            {
+                caretPosX -= commentString.Length;
+            }
+        }
+        else // Otherwise, comment the line
+        {
+            inputText[caretPosY] = inputText[caretPosY].Insert(indentNum, commentString);
+            caretPosX += commentString.Length;
+        }
+
+        ColorizeCurrentLine(true);
+        DisplayText();
+    }
+
+    /// <summary>
     /// Handles the input of a character and inserts it at the current caret position in the current line.
     /// It updates the input text, caret position, colors the current line, and updates the display.
     /// </summary>
@@ -786,6 +862,8 @@ public class Emulator : MonoBehaviour
         ColorizeCurrentLine(true);
         DisplayText();
     }
+
+    // ================================== Emulator Display ================================== 
 
     /// <summary>
     /// Colorizes the current line of the input text based on syntax highlighting rules.
