@@ -86,13 +86,37 @@ public class Sandbox : Emulator
         // Create Notes
         pythonNotes.Initialize();
 
-
+        // Get normal char width
         widthDisplay.text = "a";
         widthDisplay.ForceMeshUpdate();
         charWidth = widthDisplay.preferredWidth;
         charHeight = widthDisplay.textInfo.lineInfo[0].lineHeight;
-        
+
+        // Get tab width
+        widthDisplay.text = "\ta";
+        widthDisplay.ForceMeshUpdate();
+        tabWidth = widthDisplay.preferredWidth - charWidth;
+
         CreateNewLineCover(caretPosY);
+        Debug.Log($"{charWidth}, {tabWidth}");
+
+
+
+
+
+
+        // TESTING BELOW THIS COMMENT
+        string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ:[],{}()#";
+
+        foreach (char letter in alphabet)
+        {
+            widthDisplay.text = "a";
+            widthDisplay.ForceMeshUpdate();
+            float width = widthDisplay.preferredWidth;
+            
+            Debug.Log( $"{letter}: {width}" );
+        }
+
     }
 
     /// <summary>
@@ -302,6 +326,7 @@ public class Sandbox : Emulator
             return;
         }
 
+        RemoveAllLineCovers();
         string fileName = "NewFile" + UnityEngine.Random.Range(0, 1000) + ".py";
         string path = Path.Combine(fileDirectory, fileName);
 
@@ -368,6 +393,7 @@ public class Sandbox : Emulator
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
 
+
         if (!fileSaved)
         {
             fileToOpen = fileName;
@@ -376,6 +402,7 @@ public class Sandbox : Emulator
             return;
         }
 
+        RemoveAllLineCovers();
         EnableInput();
 
         string fileContent = File.ReadAllText(Path.Combine(fileDirectory, fileName));

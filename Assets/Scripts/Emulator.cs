@@ -12,6 +12,7 @@ using TMPro;
 using Microsoft.Scripting.Hosting;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.EventSystems;
 
 
 public class Emulator : MonoBehaviour
@@ -64,6 +65,7 @@ public class Emulator : MonoBehaviour
     public float lineHeight;
     public int scrollPadding;
     public float processingDelay = .01f;
+    public static readonly string TAB = "    ";
 
     // Puzzle variables
     public object pythonResult;
@@ -82,6 +84,7 @@ public class Emulator : MonoBehaviour
     public float linePosition = -7.5f;
     public float charWidth;
     public float charHeight;
+    public float tabWidth;
     public GameObject fileParentContainer;
     public GridLayoutGroup fileGroup;
 
@@ -93,7 +96,7 @@ public class Emulator : MonoBehaviour
     public void OnScroll(Vector2 scrollPosition)
     {
         lineNumberRect.anchoredPosition = new Vector2(lineNumberRect.anchoredPosition.x, scrollPosition.y - 150);
-        lineRect.anchoredPosition = new Vector2(lineRect.anchoredPosition.x, scrollPosition.y - 150);
+        lineRect.anchoredPosition = new Vector2(lineRect.anchoredPosition.x, scrollPosition.y - 175);
     }
 
     // ========================= Emulator User Input ========================= //
@@ -420,18 +423,15 @@ public class Emulator : MonoBehaviour
         inputText.Insert(caretPosY + 1, indent);
         coloredText.Insert(caretPosY + 1, indent);
 
-        CreateNewLineCover(caretPosY+1);
+        CreateNewLineCover(caretPosY + 1);
 
         RemoveCaretFromLine(caretPosY);
         ColorizeCurrentLine(false);
         DisplayText();
 
-        Debug.Log($"{caretPosX}, {caretPosY}");
         // Check if any text will be carried to the next line
         if (inputText[caretPosY].Length > caretPosX)
         {
-            Debug.Log("Text found to carry over");
-
             // Move the text to the next line
             inputText[caretPosY + 1] = indent + inputText[caretPosY].Substring(caretPosX);
             inputText[caretPosY] = inputText[caretPosY].Substring(0, caretPosX);
@@ -526,12 +526,12 @@ public class Emulator : MonoBehaviour
         // Check if this backspace is at the beginning of a line that is not the first line 
         if (caretPosX < 0)
         {
-            RemoveLineNumber();
             // Set caret x position to 0
             caretPosX = 0;
             // Check if current line is not the first line
             if (caretPosY > 0)
             {
+                RemoveLineNumber();
                 // Set cursor X to the end of the new line
                 caretPosX = inputText[caretPosY - 1].Length;
 
@@ -598,7 +598,7 @@ public class Emulator : MonoBehaviour
         processingInput = true;
         HandleShiftTab();
         yield return new WaitForSeconds(initialProcessingDelay);
-        while ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKey(KeyCode.Tab) )
+        while ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKey(KeyCode.Tab))
         {
             HandleShiftTab();
             yield return new WaitForSeconds(processingDelay);
@@ -662,6 +662,9 @@ public class Emulator : MonoBehaviour
         DisplayText();
 
         caretPosY++;
+        CreateNewLineCover(caretPosY );
+        AddLineNumber();
+
         ColorizeCurrentLine(true);
         DisplayText();
     }
@@ -801,11 +804,11 @@ public class Emulator : MonoBehaviour
         int indentNum = 0;
         bool isAlreadyCommented = false;
         string commentString = "# ";
-        
+
         // Check for indent
-        foreach( char character in inputText[caretPosY])
+        foreach (char character in inputText[caretPosY])
         {
-            if( character == '\t' )
+            if (character == '\t')
             {
                 indentNum++;
             }
@@ -820,14 +823,14 @@ public class Emulator : MonoBehaviour
         }
 
         // If the line is already commented, uncomment the line
-        if(isAlreadyCommented)
+        if (isAlreadyCommented)
         {
             string originalString = inputText[caretPosY];
             // Attempt to remove comment string
             inputText[caretPosY] = inputText[caretPosY].Replace(commentString, "");
 
             // If the user removed the space in front of the #
-            if(inputText[caretPosY] == originalString)
+            if (inputText[caretPosY] == originalString)
             {
                 inputText[caretPosY] = inputText[caretPosY].Replace("#", "");
                 caretPosX--;
@@ -1245,7 +1248,6 @@ public class Emulator : MonoBehaviour
         emuConsole.ForceMeshUpdate(true);
     }
 
-
     public virtual void SetFontSize()
     {
         widthDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
@@ -1262,7 +1264,7 @@ public class Emulator : MonoBehaviour
         functionColor = PlayerPrefs.GetString(PlayerPrefNames.CODE_FUNCTION_COLOR);
         stringColor = PlayerPrefs.GetString(PlayerPrefNames.CODE_STRING_COLOR);
 
-        if( colorizeLines )
+        if (colorizeLines)
             ColorizeAllLines();
     }
 
@@ -1447,10 +1449,12 @@ public class Emulator : MonoBehaviour
     {
         // Create line
         GameObject line = Instantiate(linePrefab, fileParentContainer.transform);
+        //line.GetComponent<RectTransform>().position = new Vector2(line.GetComponent<RectTransform>().position.x + 20, line.GetComponent<RectTransform>().position.y);
 
         // Add LineInfo component
         LineInfo lineInfo = line.AddComponent<LineInfo>();
         lineInfo.lineNumber = lineNumber;
+        lineInfo.emulator = this;
 
         // Add onClick functionality
         line.GetComponent<Button>().onClick.AddListener(() =>
@@ -1460,10 +1464,10 @@ public class Emulator : MonoBehaviour
 
         // Add to line object list
         lineObjects.Add(line);
-        
+
         // Check if new line is not the ending line
-        if(caretPosY+2 < inputText.Count)
-        { 
+        if (caretPosY + 2 < inputText.Count)
+        {
             // Adjust the line numbers
             for (int lineIndex = 0; lineIndex < lineObjects.Count; lineIndex++)
             {
@@ -1487,11 +1491,22 @@ public class Emulator : MonoBehaviour
         lineObjects.RemoveAt(lineObjects.Count - 1);
     }
 
+    public void RemoveAllLineCovers()
+    {
+        foreach( GameObject lineCover in lineObjects )
+        {
+            Destroy(lineCover);
+        }
+
+        lineObjects = new List<GameObject>();
+    }
+
     public void MoveCaretWithMouse(LineInfo lineInfo)
     {
-        int tabDecrement = 2;
+        // After getting click position, unselect the button
+
         int characterOffset = 140; // Account for the code input being offset by 140
-           
+
         // Remove caret from old line
         RemoveCaretFromLine(caretPosY);
         ColorizeCurrentLine(false);
@@ -1500,29 +1515,83 @@ public class Emulator : MonoBehaviour
         caretPosY = lineInfo.lineNumber;
 
         // Calculate which character based on mouse position
-        float charactersToXPostion = (Input.mousePosition.x - characterOffset) / charWidth;
         // Account for the increased space of tabs
-        foreach( char character in inputText[caretPosY] )
+        float originalX = Input.mousePosition.x;
+        foreach (char character in inputText[caretPosY])
         {
             if (character == '\t')
             {
-                charactersToXPostion -= tabDecrement;
+                originalX -= tabWidth;
+                originalX += charWidth;
             }
         }
-        
+
+        float charactersToXPostion = (originalX - characterOffset) / charWidth;
+        Debug.Log($"Moving to X: {charactersToXPostion} with mouse position {Input.mousePosition.x}");
+
         // Move caret to calculated character
         caretPosX = (int)charactersToXPostion;
         // If there is no character at mouse position, move to end of line
         if (caretPosX > inputText[caretPosY].Length)
         {
-            caretPosX = inputText[caretPosY].Length; 
+            caretPosX = inputText[caretPosY].Length;
+        }
+        else if (caretPosX < 0)
+        {
+            caretPosX = 0;
         }
 
         // Show newly placed caret
         ColorizeCurrentLine(true);
         DisplayText();
+        //Debug.Log($"Line Width {charHeight = widthDisplay.textInfo.lineInfo[caretPosY].width}");
+    }
 
-        Debug.Log($"Mouse moved to {caretPosX}, {caretPosY}");
+    public void MoveCaretWithMouse(Vector2 localPoint, int lineNumber)
+    {
+        // After getting click position, unselect the button
+
+        //int characterOffset = 140; // Account for the code input being offset by 140
+        int characterOffset = 0; // Account for the code input being offset by 140
+
+        // Remove caret from old line
+        RemoveCaretFromLine(caretPosY);
+        ColorizeCurrentLine(false);
+
+        // Move caret to new line
+        caretPosY = lineNumber;
+
+        // Calculate which character based on mouse position
+        // Account for the increased space of tabs
+        float originalX = localPoint.x;
+        foreach (char character in inputText[caretPosY])
+        {
+            if (character == '\t')
+            {
+                originalX -= tabWidth;
+                originalX += charWidth;
+            }
+        }
+
+        float charactersToXPostion = (originalX - characterOffset) / charWidth;
+        Debug.Log($"Moving to X: {charactersToXPostion} with mouse position {localPoint.x}");
+
+        // Move caret to calculated character
+        caretPosX = (int)charactersToXPostion;
+        // If there is no character at mouse position, move to end of line
+        if (caretPosX > inputText[caretPosY].Length)
+        {
+            caretPosX = inputText[caretPosY].Length;
+        }
+        else if (caretPosX < 0)
+        {
+            caretPosX = 0;
+        }
+
+        // Show newly placed caret
+        ColorizeCurrentLine(true);
+        DisplayText();
+        //Debug.Log($"Line Width {charHeight = widthDisplay.textInfo.lineInfo[caretPosY].width}");
     }
 
     // ================================== Python Notes ================================== 
