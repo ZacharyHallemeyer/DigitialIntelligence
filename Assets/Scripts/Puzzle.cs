@@ -104,8 +104,6 @@ public class Puzzle : Emulator
 
         // Create Notes
         pythonNotes.Initialize();
-
-        //CreateNewLineCover(caretPosY);
     }
 
 
@@ -387,6 +385,21 @@ public class Puzzle : Emulator
         coloredCodeDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         lineNumDisplay.fontSize = PlayerPrefs.GetFloat(PlayerPrefNames.CODE_FONT_SIZE, 15);
         pythonNotes.setFontSize(PlayerPrefs.GetFloat(PlayerPrefNames.DIRECTIONS_FONT_SIZE, 15));
+
+        widthDisplay.text = "a";
+        widthDisplay.ForceMeshUpdate();
+        charWidth = widthDisplay.preferredWidth;
+        charHeight = widthDisplay.textInfo.lineInfo[0].lineHeight;
+
+        Vector3 parentContainerPos = lineScrollRect.GetComponent<RectTransform>().anchoredPosition;
+        parentContainerPos.y = -157.96f - charHeight;
+        lineScrollRect.GetComponent<RectTransform>().anchoredPosition = parentContainerPos;
+
+
+        Vector2 cellSize = lineCoverGroup.cellSize;
+        cellSize.y = charHeight;
+        lineCoverGroup.cellSize = cellSize;
+
         if (setColors)
         {
             SetColorSize(setColors);

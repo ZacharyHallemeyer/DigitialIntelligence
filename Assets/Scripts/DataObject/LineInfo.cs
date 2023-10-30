@@ -21,9 +21,10 @@ public class LineInfo : MonoBehaviour, IPointerClickHandler
                 eventData.pressEventCamera,
                 out Vector2 localPoint);
 
-               
+            Debug.Log("AH");
             if(IsInsideBounds(eventData.position))
             {
+                Debug.Log("Double AH");
                 localPoint.x = localPoint.x - 20; 
                 emulator.MoveCaretWithMouse(localPoint, lineNumber);
             }
