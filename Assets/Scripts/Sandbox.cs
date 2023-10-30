@@ -98,25 +98,6 @@ public class Sandbox : Emulator
         tabWidth = widthDisplay.preferredWidth - charWidth;
 
         CreateNewLineCover(caretPosY);
-        Debug.Log($"{charWidth}, {tabWidth}");
-
-
-
-
-
-
-        // TESTING BELOW THIS COMMENT
-        string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ:[],{}()#";
-
-        foreach (char letter in alphabet)
-        {
-            widthDisplay.text = "a";
-            widthDisplay.ForceMeshUpdate();
-            float width = widthDisplay.preferredWidth;
-            
-            Debug.Log( $"{letter}: {width}" );
-        }
-
     }
 
     /// <summary>
@@ -576,7 +557,6 @@ public class Sandbox : Emulator
         settingsContainer.SetActive(true);
     }
 
-
     /// <summary>
     /// Moves to hub
     /// </summary>
@@ -620,6 +600,15 @@ public class Sandbox : Emulator
         widthDisplay.ForceMeshUpdate();
         charWidth = widthDisplay.preferredWidth;
         charHeight = widthDisplay.textInfo.lineInfo[0].lineHeight;
+
+        Vector3 parentContainerPos = lineScrollRect.GetComponent<RectTransform>().anchoredPosition;
+        parentContainerPos.y = -157.96f - charHeight;
+        lineScrollRect.GetComponent<RectTransform>().anchoredPosition = parentContainerPos;
+
+
+        Vector2 cellSize = lineCoverGroup.cellSize;
+        cellSize.y = charHeight;
+        lineCoverGroup.cellSize = cellSize;
 
         SetColorSize();
     }

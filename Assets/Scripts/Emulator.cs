@@ -28,11 +28,15 @@ public class Emulator : MonoBehaviour
     public PythonNotes pythonNotes;
 
     public ScrollRect coloredScrollRect;
+    public ScrollRect lineNumScrollRect;
+    public ScrollRect lineScrollRect;
 
     public RectTransform lineNumberRect;
     public RectTransform lineRect;
     public RectTransform coloredCodeRect;
     public RectTransform codeScrollRect;
+
+    public GridLayoutGroup lineCoverGroup;
 
     // Text Components
     public TMP_Text coloredCodeDisplay; // This text component displays the colored text
@@ -96,7 +100,27 @@ public class Emulator : MonoBehaviour
     public void OnScroll(Vector2 scrollPosition)
     {
         lineNumberRect.anchoredPosition = new Vector2(lineNumberRect.anchoredPosition.x, scrollPosition.y - 150);
-        lineRect.anchoredPosition = new Vector2(lineRect.anchoredPosition.x, scrollPosition.y - 175);
+        //lineRect.anchoredPosition = new Vector2(lineRect.anchoredPosition.x, scrollPosition.y - 175);
+        //lineRect.anchoredPosition = scrollPosition;
+        lineRect.anchoredPosition = new Vector2(scrollPosition.x - 400, scrollPosition.y - 175);
+    }
+    /// <summary>
+    /// OnScroll is called when the input field is scrolled.
+    /// It updates the position of the line numbers to match the scroll position.
+    /// </summary>
+    /// <param name="scrollPosition">The new scroll position.</param>
+    public void OnScroll(float horizontalNormPos, float verticalNormPos)
+    {
+        lineNumScrollRect.verticalNormalizedPosition = verticalNormPos;
+
+        Debug.Log($"Changing {lineScrollRect.horizontalNormalizedPosition }, {lineScrollRect.verticalNormalizedPosition } " +
+            $"to {horizontalNormPos}, {verticalNormPos}");
+
+        lineScrollRect.horizontalNormalizedPosition = horizontalNormPos;
+        lineScrollRect.verticalNormalizedPosition = verticalNormPos;
+
+        Debug.Log($"Should be equal {lineScrollRect.horizontalNormalizedPosition }, {lineScrollRect.verticalNormalizedPosition } " +
+                    $"to {horizontalNormPos}, {verticalNormPos}");
     }
 
     // ========================= Emulator User Input ========================= //
@@ -1344,8 +1368,6 @@ public class Emulator : MonoBehaviour
             coloredScrollRect.horizontalNormalizedPosition = 0;
         }
 
-
-
         // Handle follow vertically
         lineHeight = lineInfo.lineHeight;
         float totalHeight = coloredCodeDisplay.textInfo.lineCount * lineHeight;
@@ -1353,6 +1375,7 @@ public class Emulator : MonoBehaviour
 
         coloredScrollRect.verticalNormalizedPosition = 1 - Normalize(caretHeight, 0, totalHeight + lineHeight);
 
+        //OnScroll(coloredScrollRect.horizontalNormalizedPosition, coloredScrollRect.verticalNormalizedPosition);
 
         /* OLD SCROLL VIEW CODE....MAY USE EVENTUALLY
         if (caretHeight < verticalViewTop)
@@ -1455,12 +1478,7 @@ public class Emulator : MonoBehaviour
         LineInfo lineInfo = line.AddComponent<LineInfo>();
         lineInfo.lineNumber = lineNumber;
         lineInfo.emulator = this;
-
-        // Add onClick functionality
-        line.GetComponent<Button>().onClick.AddListener(() =>
-        {
-            MoveCaretWithMouse(lineInfo);
-        });
+        lineInfo.scrollViewBounds = codeScrollRect;
 
         // Add to line object list
         lineObjects.Add(line);
@@ -1474,14 +1492,19 @@ public class Emulator : MonoBehaviour
                 GameObject currentLine = lineObjects[lineIndex];
                 LineInfo currentLineInfo = currentLine.GetComponent<LineInfo>();
                 currentLineInfo.lineNumber = lineIndex;
+
+                //Vector2 size = lineInfo.gameObject.GetComponent<RectTransform>().sizeDelta;
+                //size.y = charHeight;
+                //lineInfo.gameObject.GetComponent<RectTransform>().sizeDelta = size;
+
             }
         }
 
         // Adjust linePosition for next line
-        linePosition -= charHeight * 1.25f;
+        linePosition -= charHeight;
 
         // Adjust parent position to account for scroll view scaling
-        fileParentContainer.transform.position = new Vector2(fileParentContainer.transform.position.x, fileParentContainer.transform.position.y + 10);
+        //fileParentContainer.transform.position = new Vector2(fileParentContainer.transform.position.x, fileParentContainer.transform.position.y - charHeight / 2);
     }
 
     private void RemoveLineCover()
@@ -1551,9 +1574,6 @@ public class Emulator : MonoBehaviour
     {
         // After getting click position, unselect the button
 
-        //int characterOffset = 140; // Account for the code input being offset by 140
-        int characterOffset = 0; // Account for the code input being offset by 140
-
         // Remove caret from old line
         RemoveCaretFromLine(caretPosY);
         ColorizeCurrentLine(false);
@@ -1564,17 +1584,25 @@ public class Emulator : MonoBehaviour
         // Calculate which character based on mouse position
         // Account for the increased space of tabs
         float originalX = localPoint.x;
-        foreach (char character in inputText[caretPosY])
+        int charIndex = 0;
+        bool beginningCharFound = false;
+        while (charIndex < inputText[caretPosY].Length && !beginningCharFound)
         {
+            char character = inputText[caretPosY][charIndex];
             if (character == '\t')
             {
                 originalX -= tabWidth;
                 originalX += charWidth;
             }
+            else
+            {
+                beginningCharFound = true;
+            }
+
+            charIndex++;
         }
 
-        float charactersToXPostion = (originalX - characterOffset) / charWidth;
-        Debug.Log($"Moving to X: {charactersToXPostion} with mouse position {localPoint.x}");
+        float charactersToXPostion = originalX  / charWidth;
 
         // Move caret to calculated character
         caretPosX = (int)charactersToXPostion;
@@ -1591,7 +1619,6 @@ public class Emulator : MonoBehaviour
         // Show newly placed caret
         ColorizeCurrentLine(true);
         DisplayText();
-        //Debug.Log($"Line Width {charHeight = widthDisplay.textInfo.lineInfo[caretPosY].width}");
     }
 
     // ================================== Python Notes ================================== 

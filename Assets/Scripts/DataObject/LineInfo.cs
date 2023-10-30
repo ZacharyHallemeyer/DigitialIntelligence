@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 
 public class LineInfo : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField]
+    public RectTransform scrollViewBounds;
+
     public Emulator emulator;
     public int lineNumber;
 
@@ -18,12 +21,24 @@ public class LineInfo : MonoBehaviour, IPointerClickHandler
                 eventData.pressEventCamera,
                 out Vector2 localPoint);
 
-            // Here, we call the function responsible for moving the caret, passing in the necessary information.
-            //MoveCaretWithMouse(localPoint, /* You need to pass the appropriate LineInfo here */);
-            localPoint.x = localPoint.x - 20; 
                
-            Debug.Log(localPoint);
-            emulator.MoveCaretWithMouse(localPoint, lineNumber);
+            if(IsInsideBounds(eventData.position))
+            {
+                localPoint.x = localPoint.x - 20; 
+                emulator.MoveCaretWithMouse(localPoint, lineNumber);
+            }
         }
+    }
+
+    // Returns true if the line button is pressed in the scroll view
+    // Returns false if the line button is pressed outside the scroll view
+    private bool IsInsideBounds(Vector2 position)
+    {
+        // Convert position to local space of ScrollView
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(scrollViewBounds, position, null, out localPoint);
+
+        // Check if the local position is within the bounds of the ScrollView
+        return scrollViewBounds.rect.Contains(localPoint);
     }
 }
