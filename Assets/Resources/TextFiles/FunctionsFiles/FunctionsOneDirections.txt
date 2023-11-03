@@ -1,3 +1,17 @@
 Directions:
 
-For this puzzle, you will need to calculate the sum of two numbers in the function called `sum` and return that value
+For this puzzle, you will need to calculate the sum of two numbers in the function called `sum` and return that value. 
+You call a function by writing its name and add () to the end of it
+
+CODE
+==========================
+def sum(numOne, numTwo)
+	return 0
+
+sum(5, 10)
+==========================
+
+OUTPUT
+==========================
+0
+==========================

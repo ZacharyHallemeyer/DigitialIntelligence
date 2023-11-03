@@ -7,6 +7,6 @@ def main(parameterNumber):
 
 
 # Call the main function with different arguments and print the results
-print(main(5))
-print(main(6))
-print(main(100))
+print(main(5)) # should print "Less than or equal to 5"
+print(main(6)) # should print "Greater than 5"
+print(main(100)) # should print "Greater than 5"

@@ -1,12 +1,15 @@
 Directions:
-Parameters are utilized within functions. These are variables or values that are fed into a function, to be subsequently employed within that function. Here's an example:
+Parameters are utilized within functions. These are variables or values that are fed into a function, to be used within that function. Here's an example:
 
+CODE
+==========================
 def main(variable): # 'variable' is the parameter
 print(variable)
 
 main(5) # Here, '5' is the argument passed to the function
 main(10) # Here, '10' is the argument passed to the function
+==========================
 
-In this case, '5' and '10' are the arguments we're passing to our function main, and variable is the parameter that receives these arguments.
+In this case, '5' and '10' are the arguments we're passing to our function main, and the variable is the parameter that receives these arguments.
 
-5 and 10 will be printed after this code runs.
+5 and 10 will be printed on different lines after this code runs.

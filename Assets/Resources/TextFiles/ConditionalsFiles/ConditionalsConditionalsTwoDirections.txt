@@ -2,7 +2,10 @@ Directions:
 
 If statements allow a computer to execute code when only a conditional evaluates to True. The basic structure of an if statement is as follows:
 
+CODE
+==========================
 if(condition) :
     # This code runs if the condition is True
 else:
     # This code runs if the condition is False
+==========================

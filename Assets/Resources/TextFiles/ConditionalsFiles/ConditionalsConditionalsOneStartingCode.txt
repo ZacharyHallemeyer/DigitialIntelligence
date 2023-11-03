@@ -2,12 +2,13 @@ def main(parameterNumber):
 	testingNumber = 5
 	
 	# Check if the `parameterNumber` is less than or equal to `testingNumber`
-	# Store the result in `booleanResult`
+	# Store the result in `booleanResult`, something like the following
+	# booleanResult = 1 < 2
 
 
 	# Return the boolean result
 	return booleanResult
 
-print(main(3))
-print(main(5))
-print(main(6))
+print(main(3)) # should print True
+print(main(5)) # should print True
+print(main(6)) # should print False

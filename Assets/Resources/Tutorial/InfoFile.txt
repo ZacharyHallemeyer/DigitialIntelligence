@@ -1,4 +1,4 @@
-You have run your first commands! Great job!
+You have run your first command! Great job!
 
 This level will be easy as we are just learning the ropes of the game. There is a locked file and a locked directory in the current directory. 
 

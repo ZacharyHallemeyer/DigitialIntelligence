@@ -17,4 +17,5 @@ def main():
 
 	return helloWorld
 
-main()
+main() # This should print "Hello World"
+

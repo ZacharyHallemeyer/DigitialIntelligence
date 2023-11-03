@@ -4,8 +4,11 @@ Conditionals are like instructions for a computer to make decisions. They allow 
 
 Conditionals are either true or false. In Python, there are Booleans (written as bool) which can hold either True or False. For example:
 
+CODE
+==========================
 trueBool = True
 falseBool = False
+==========================
 
 Booleans can be assigned directly or by using comparison operators. The available comparison operators are listed below:
 
@@ -29,7 +32,10 @@ Booleans can be assigned directly or by using comparison operators. The availabl
 	○ 1 <= 2 # True
 With comparison operators, we can compute our own boolean variables as seen below:
 
+CODE
+==========================
 booleanVariable = 1 < 2 # True
 booleanVariable = 2 < 1 # False
+==========================
 
 For the puzzle, you need to check if the number passed into the function main is less than or equal to the variable testingNumber and return the calculated value.

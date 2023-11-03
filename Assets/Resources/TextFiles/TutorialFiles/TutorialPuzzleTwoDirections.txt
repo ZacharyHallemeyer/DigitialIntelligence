@@ -1,8 +1,6 @@
 <color=#8B0000>  Directions</color>
 
-  The code you will be writing is in python syntax. Python is a very popular programming language and is a very desirable skill in the workforce. During this tutorial and the next few levels, you will learn the basics of python. 
-
-  For now, let's go over keywords and built-in functions. Don't worry about understanding python on a deep level right now as this will only get in your way at the moment! For now, just try to understand python at a high level. Let's go over an example
+  The code you will be writing is in python syntax. Python is a very popular programming language and is a very desirable skill in the workforce. For now, let's go over keywords and built-in functions.
 
 CODE
 ==========================
