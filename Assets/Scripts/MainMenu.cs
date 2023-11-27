@@ -124,7 +124,7 @@ public class MainMenu : MonoBehaviour
     public void StartLevel(int levelIndex, string levelName)
     {
         AudioManager.instance.PlayButtonClickSoundEffect();
-        // Set game manager level index 
+        // Set game manager level index
         GameManager.levelIndex = levelIndex;
         GameManager.levelName = levelName;
         // move to level scene
@@ -162,7 +162,7 @@ public class MainMenu : MonoBehaviour
 
     /// <summary>
     /// Creates a section for levels
-    /// A button is created for every level in the puzzle.json file 
+    /// A button is created for every level in the puzzle.json file
     /// THe button contains both puzzle index and puzzle name
     /// </summary>
     private void CreateLevelMenu()
@@ -311,7 +311,7 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    // ========================================= Data Manipulation =========================================  
+    // ========================================= Data Manipulation =========================================
     private List<LevelInfo> CreatePersistentPuzzleFile(List<PuzzleContainer> puzzleDataList)
     {
         string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
@@ -367,14 +367,14 @@ public class MainMenu : MonoBehaviour
         // Get LevelInfo list
         List<LevelInfo> levelInfoList = GetLevelInfoListFromPersistentDataFile();
 
-        
+
         // Check if puzzleContainers is not the same amount as levelInfos
         if(levelInfoList.Count != puzzleDataList.Count)
         {
             // If so, deviation found
             deviationFound = true;
         }
-        
+
         // Loop through persistent data and puzzle data unitl the two level names/indexes do not match
         int index = 0;
         while (index < puzzleDataList.Count && !deviationFound)
@@ -397,14 +397,14 @@ public class MainMenu : MonoBehaviour
             List<LevelInfo> newLevelInfoList = GetLevelInfoListFromPersistentDataFile();
             // Add information from levelInfoList to new file
 
-            // Loop through new level info list 
+            // Loop through new level info list
             for(index = 0; index < newLevelInfoList.Count; index++)
             {
                 // Check if current level has information to add
                 if(newLevelInfoList[index].levelName == levelInfoList[index].levelName)
                 {
                     newLevelInfoList[index].completed = levelInfoList[index].completed;
-                    
+
 
                     // Loop through puzzles and add old code
                     for(int puzzleIndex = 0; puzzleIndex < newLevelInfoList[index].puzzles.Count; puzzleIndex++)
@@ -451,7 +451,7 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    private void ResetPlayerProgress()
+    public void ResetPlayerProgress()
     {
         CreatePersistentPuzzleFile();
     }
