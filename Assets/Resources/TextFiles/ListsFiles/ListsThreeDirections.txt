@@ -1,3 +1,13 @@
 Directions:
 
 For this puzzle, reverse the order of the items in the list.
+
+To create a list and add items to it, do the following
+
+CODE 
+=========================
+myList = []
+
+myList.append("Hello")
+print(myList[0]) # prints "Hello"
+=========================
