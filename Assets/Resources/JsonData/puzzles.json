@@ -665,7 +665,7 @@
           },
           {
             "problem": "[\"apple\", \"banana\", \"cherry\"]",
-            "answer": "[\"cherry\", \"banana\", \"apple\"]"
+            "answer": "['cherry', 'banana', 'apple']"
           }
         ],
         "hiddenTestCases": [
@@ -691,7 +691,7 @@
           },
           {
             "problem": "[\"apple\", \"banana\"], [\"cherry\", \"date\"]",
-            "answer": "[\"apple\", \"banana\", \"cherry\", \"date\"]"
+            "answer": "['apple', 'banana', 'cherry', 'date']"
           }
         ],
         "hiddenTestCases": [
