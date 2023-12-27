@@ -336,10 +336,15 @@ public class Puzzle : Emulator
         {
             testOutput += $"<color=#CC0000>directory {puzzleName} is still locked. \n\nEdit your code and try again!";
             AudioManager.instance.PlayErrorSoundEffect();
+
+            // Store that puzzle was unlocked
+            StoreDirectoryUnlock();
         }
 
         WriteToEmuConsole(testOutput);
     }
+
+    
 
     /// <summary>
     /// Resets the puzzle by calling the SetPuzzleDisplay method.
@@ -401,9 +406,9 @@ public class Puzzle : Emulator
         }
     }
 
+    // Stores user code for puzzle instance
     private void WriteToPuzzleJson()
     {
-        Debug.Log("Hello");
         // Get puzzle data from Json
         string puzzlePath = $"{GameManager.levelName}/Puzzle.json";
         string data = File.ReadAllText(puzzlePath);
@@ -420,6 +425,43 @@ public class Puzzle : Emulator
         catch (System.Exception e)
         {
             Debug.Log(e);
+        }
+    }
+
+    private void StoreDirectoryUnlock()
+    {
+        string structurePath = $"{GameManager.levelName}/Structure.json";
+        string data = File.ReadAllText(structurePath);
+
+        DirectoryData rootDir = JsonConvert.DeserializeObject<DirectoryData>(data);
+
+        // Unlock the directory in json
+        StoreDirectoryUnlockHelper(rootDir);
+
+        // store new directory data
+        try
+        {
+            string json = JsonConvert.SerializeObject(rootDir, Formatting.Indented);
+            File.WriteAllText(structurePath, json);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log(e);
+        }
+    }
+
+    private void StoreDirectoryUnlockHelper(DirectoryData currentDir)
+    {
+        foreach(DirectoryData childDir in currentDir.directories) 
+        {
+            if( childDir.dirName == puzzleName )
+            {
+                childDir.unlocked = true;
+            }
+            else
+            {
+                StoreDirectoryUnlockHelper(childDir);
+            }
         }
     }
 }

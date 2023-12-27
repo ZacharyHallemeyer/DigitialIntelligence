@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.IO;
+using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 
 /// <summary>
@@ -466,6 +467,9 @@ public class Terminal : MonoBehaviour
                         file.unlocked = true;
                         GameManager.instance.FileUnlocked();
                         PrintLineToTerminal($"<color={successColor}>{target} was successfully unlocked</color>", false);
+
+                        // Store that the file was unlocked
+                        StoreFileUnlock(file.fileName);
                     }
                 }
                 // Otherwise, print error message
@@ -939,4 +943,44 @@ public class Terminal : MonoBehaviour
         return words[words.Length - 1];
     }
 
+    // ==================== Data Storage ==================== //
+
+    private void StoreFileUnlock(string targetFileName)
+    {
+        string structurePath = $"{GameManager.levelName}/Structure.json";
+        string data = File.ReadAllText(structurePath);
+
+        DirectoryData rootDir = JsonConvert.DeserializeObject<DirectoryData>(data);
+
+        StoreFileUnlockHelper(rootDir, targetFileName);
+
+        // store new directory data
+        try
+        {
+            string json = JsonConvert.SerializeObject(rootDir, Formatting.Indented);
+            File.WriteAllText(structurePath, json);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log(e);
+        }
+
+    }
+
+    private void StoreFileUnlockHelper(DirectoryData currentDir, string targetFileName)
+    {
+        foreach(FileData file in currentDir.files)
+        {
+            if(file.fileName == targetFileName)
+            {
+                file.unlocked = true;
+                return;
+            }
+        }
+
+        foreach (DirectoryData childDir in currentDir.directories)
+        {
+            StoreFileUnlockHelper(childDir, targetFileName);
+        }
+    }
 }

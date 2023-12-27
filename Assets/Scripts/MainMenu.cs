@@ -209,7 +209,6 @@ public class MainMenu : MonoBehaviour
         
         foreach(string level in levels)
         {
-            Debug.Log(level);
             if( !orderedLevels.Contains(level))
             {
 

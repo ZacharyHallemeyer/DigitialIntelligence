@@ -226,8 +226,6 @@ public class GameManager : MonoBehaviour
         // Get file system structure from json file
         string data = File.ReadAllText($"{levelName}/Structure.json");
 
-
-
         // Convert json to DirectoryData object
         DirectoryData rootDir = JsonConvert.DeserializeObject<DirectoryData>(data);
         // Assign parent directories
