@@ -1,0 +1,70 @@
+{
+  "dirName": "",
+  "path": "Tutorial/",
+  "unlocked": true,
+  "files": [
+    {
+      "fileName": "InfoFile",
+      "path": "Tutorial/InfoFile",
+      "question": "",
+      "unlockKeyword": "",
+      "unlocked": true
+    },
+    {
+      "fileName": "InfoDir",
+      "path": "Tutorial/InfoDir",
+      "question": "What is 2 + 2 (numeric character)",
+      "unlockKeyword": "4",
+      "unlocked": false
+    }
+  ],
+  "directories": [
+    {
+      "dirName": "LevelOne",
+      "path": "Tutorial/LevelOne",
+      "unlocked": false,
+      "files": [
+        {
+          "fileName": "InfoOne",
+          "path": "Tutorial/LevelOne/InfoOne",
+          "question": "What is the command to move into a directory? (one word)",
+          "unlockKeyword": "cd",
+          "unlocked": false
+        }
+      ],
+      "directories": [
+        {
+          "dirName": "LevelTwo",
+          "path": "Tutorial/LevelOne/LevelTwo",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "InformationLevelTwo",
+              "path": "Tutorial/LevelOne/LevelTwo/InformationLevelTwo",
+              "question": "What button do you press to exit out of the puzzle and back to the terminal? (one word)",
+              "unlockKeyword": "exit",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+            {
+              "dirName": "LevelThree",
+              "path": "Tutorial/LevelOne/LevelTwo/LevelThree",
+              "unlocked": false,
+              "files": [
+                {
+                  "fileName": "InfoThree",
+                  "path": "Tutorial/LevelOne/LevelTwo/LevelThree/InfoThree",
+                  "question": "What do you need to a return at the end of the function main? (one word)",
+                  "unlockKeyword": "value",
+                  "unlocked": false
+                }
+              ],
+              "directories": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

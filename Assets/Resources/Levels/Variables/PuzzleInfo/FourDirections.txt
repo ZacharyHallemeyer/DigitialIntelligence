@@ -1,0 +1,23 @@
+Directions:
+Variables can also hold a datatype known as strings. Strings are text that the computer can hold and use. For instance, a variable can hold the sentence: "Hello World!" as a string
+
+Examples of Strings:
+
+CODE
+==========================
+stringVariable = "Hello World!"
+print(stringVariable) # This will print "Hello World"
+==========================
+
+Strings can be modified and manipulated with python code. A basic way to do this is to add two strings with + which is called concatenation
+
+Examples of concatenation
+
+CODE
+==========================
+firstName = "John"
+lastName = "Doe"
+print(firstName + lastName) # Prints "JohnDoe"
+==========================
+
+For this puzzle, you will have to follow the directions in the code. You will need to concatenate two strings and return the concatenation.

@@ -1,0 +1,11 @@
+def main(base, exponent):
+		result = 1
+
+		# Calculate the exponentiation of the base and the exponent with a while or for loop
+
+		return result
+
+print(main(1, 2)) # Should print 1
+print(main(2, 2)) # Should print 4
+print(main(5, 5)) # Should print 3125
+print(main(5, 2)) # Should print 25

@@ -1,0 +1,1 @@
+Every item in a list has an assigned index value starting from 0. Accessing items by referring to the index number is called indexing.

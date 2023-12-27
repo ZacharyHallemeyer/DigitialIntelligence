@@ -1,0 +1,40 @@
+{
+  "dirName": "",
+  "path": "Functions/",
+  "unlocked": true,
+  "files": [],
+  "directories": [
+    {
+      "dirName": "One",
+      "path": "Functions/One",
+      "unlocked": false,
+      "files": [
+        {
+          "fileName": "Definition",
+          "path": "Functions/One/Definition",
+          "question": "What keyword is used to define a function? (one word)",
+          "unlockKeyword": "def",
+          "unlocked": false
+        }
+      ],
+      "directories": [
+        {
+          "dirName": "Two",
+          "path": "Functions/One/Two",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "Arguments",
+              "path": "Functions/One/Two/Arguments",
+              "question": "In a function, what do we call the variables listed inside the parentheses? (one word, plural)",
+              "unlockKeyword": "parameters",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+          ]
+        }
+      ]
+    }
+  ]
+}

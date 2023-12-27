@@ -1,1 +1,0 @@
-The "not" (!) operator allows you to reverse the Boolean value of a condition. It's like looking at the opposite side of a coin.

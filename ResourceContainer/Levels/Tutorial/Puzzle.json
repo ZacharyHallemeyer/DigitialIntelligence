@@ -1,0 +1,45 @@
+  {
+    "levelName": "Tutorial",
+    "index": "0",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": ""
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/OneStartingCode.txt",
+        "directions": "PuzzleInfo/OneDirections.txt",
+        "puzzleName": "LevelOne",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "Printing from a function!"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/TwoStartingCode.txt",
+        "directions": "PuzzleInfo/TwoDirections.txt",
+        "puzzleName": "LevelTwo",
+        "puzzleIndex": "1"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "Hi"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/ThreeStartingCode.txt",
+        "directions": "PuzzleInfo/ThreeDirections.txt",
+        "puzzleName": "LevelThree",
+        "puzzleIndex": "2"
+      }
+    ]
+  }

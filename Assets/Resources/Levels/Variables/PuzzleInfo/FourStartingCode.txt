@@ -1,0 +1,21 @@
+def main():
+	helloVariable = "Hello"
+	worldVariable = " World"
+
+	print(helloVariable)
+	print(worldVariable)
+
+	# Create a new variable called `helloWorld` and set it to ""  
+	# which is an empty string
+	
+	# Set the variable `helloWorld` to the variables 
+	# helloVariable and worldVariable with `+`
+
+	# The value in `helloWorld` should now be "Hello World"
+
+	print(helloWorld)
+
+	return helloWorld
+
+main() # This should print "Hello World"
+

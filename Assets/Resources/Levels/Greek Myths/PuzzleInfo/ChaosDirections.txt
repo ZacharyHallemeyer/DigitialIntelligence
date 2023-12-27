@@ -1,0 +1,13 @@
+Directions
+Sorting an integer list is your task! Follow these steps:
+1. Start with the given list of integers.
+2. Sort the list in ascending order.
+   - For example, [2, 1, 4, 3] becomes [1, 2, 3, 4].
+3. Once you have sorted the list, it will be the final result.
+4. Remember to return the sorted list as the output of your function.
+
+Example:
+Sort the list [2, 1, 4, 3] using the steps above:
+- After sorting, the list becomes [1, 2, 3, 4].
+
+Now it's your turn! Write a function to sort the given list of integers, following these steps. Good luck!

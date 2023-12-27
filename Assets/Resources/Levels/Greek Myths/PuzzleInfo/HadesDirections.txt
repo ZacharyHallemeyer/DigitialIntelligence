@@ -1,0 +1,15 @@
+Directions
+
+In this task, you are given a list of unique integers ranging from 1 to `n`. However, there's a catch - one integer might be missing, and your task is to identify it.
+
+A complete list is a sequence of `n` integers without any skips, for example: `[1, 2, 3, 4, 5]` for `n = 5`. A list with a missing number will skip one integer in the sequence, like so: `[1, 3, 4, 5, 6]` where `2` is missing.
+
+Your mission is to write a function that takes such a list as input and returns the missing number. If no number is missing, the function should return -1. Keep in mind that the list may not be sorted!
+
+Example
+
+Suppose you're given the list `[3, 1, 6, 2, 5]`, after sorting it becomes `[1, 2, 3, 5, 6]`. The number `4` is missing from the sequence, so your function should return `4`.
+
+In case of the list `[3, 1, 2]`, even though it's not sorted, it's a complete list with no missing numbers. Thus, after sorting it into `[1, 2, 3]` and checking for any missing numbers, your function should return `-1`.
+
+Now, it's your turn! Implement the function following the guidelines above, carefully handling all edge cases. Best of luck!

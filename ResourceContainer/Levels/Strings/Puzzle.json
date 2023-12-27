@@ -1,0 +1,144 @@
+  {
+    "levelName": "Strings",
+    "index": "4",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "\"hello\"",
+            "answer": "olleh"
+          },
+          {
+            "problem": "\"world\"",
+            "answer": "dlrow"
+          },
+          {
+            "problem": "\"python\"",
+            "answer": "nohtyp"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "\"ahhhhhhhh\"",
+            "answer": "hhhhhhhha"
+          }
+        ],
+        "startingCode": "PuzzleInfo/OneStartingCode.txt",
+        "directions": "PuzzleInfo/OneDirections.txt",
+        "puzzleName": "One",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "\"abcdefg\"",
+            "answer": "aceg"
+          },
+          {
+            "problem": "\"123456\"",
+            "answer": "135"
+          },
+          {
+            "problem": "\"python\"",
+            "answer": "pto"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "\"12345678\"",
+            "answer": "1357"
+          }
+        ],
+        "startingCode": "PuzzleInfo/TwoStartingCode.txt",
+        "directions": "PuzzleInfo/TwoDirections.txt",
+        "puzzleName": "Two",
+        "puzzleIndex": "1"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "\"hello\"",
+            "answer": "2"
+          },
+          {
+            "problem": "\"world\"",
+            "answer": "1"
+          },
+          {
+            "problem": "\"python\"",
+            "answer": "1"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "\"zach\"",
+            "answer": "1"
+          },
+          {
+            "problem": "\"education\"",
+            "answer": "5"
+          }
+        ],
+        "startingCode": "PuzzleInfo/ThreeStartingCode.txt",
+        "directions": "PuzzleInfo/ThreeDirections.txt",
+        "puzzleName": "Three",
+        "puzzleIndex": "2"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "\"radar\"",
+            "answer": "True"
+          },
+          {
+            "problem": "\"level\"",
+            "answer": "True"
+          },
+          {
+            "problem": "\"hello\"",
+            "answer": "False"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "\"rotor\"",
+            "answer": "True"
+          },
+          {
+            "problem": "\"Zach\"",
+            "answer": "False"
+          }
+        ],
+        "startingCode": "PuzzleInfo/FourStartingCode.txt",
+        "directions": "PuzzleInfo/FourDirections.txt",
+        "puzzleName": "Four",
+        "puzzleIndex": "3"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "\"hello world\", \"-\"",
+            "answer": "hello-world"
+          },
+          {
+            "problem": "\"Python is great\", \"_\"",
+            "answer": "Python_is_great"
+          },
+          {
+            "problem": "\"a b c\", \"*\"",
+            "answer": "a*b*c"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "\"zach is cool\", \"_\"",
+            "answer": "zach_is_cool"
+          }
+        ],
+        "startingCode": "PuzzleInfo/FiveStartingCode.txt",
+        "directions": "PuzzleInfo/FiveDirections.txt",
+        "puzzleName": "Five",
+        "puzzleIndex": "4"
+      }
+    ]
+  }

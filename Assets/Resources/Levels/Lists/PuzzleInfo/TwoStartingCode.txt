@@ -1,0 +1,8 @@
+def main(lst, item):
+	result = False
+	# Check if the item exists in the given list
+
+	return result
+
+print(main([1, 2, 3], 2))   # Should print True
+print(main(["apple", "banana", "cherry"], "grape"))   # Should print False

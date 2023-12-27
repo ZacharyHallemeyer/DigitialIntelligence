@@ -1,0 +1,140 @@
+  {
+    "levelName": "Loops",
+    "index": "3",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "0",
+            "answer": "0"
+          },
+          {
+            "problem": "1",
+            "answer": "0"
+          },
+          {
+            "problem": "2",
+            "answer": "1"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "20",
+            "answer": "190"
+          }
+        ],
+        "startingCode": "PuzzleInfo/OneStartingCode.txt",
+        "directions": "PuzzleInfo/OneDirections.txt",
+        "puzzleName": "One",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "4"
+          },
+          {
+            "problem": "6",
+            "answer": "-1"
+          },
+          {
+            "problem": "1",
+            "answer": "0"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "57",
+            "answer": "-1"
+          }
+        ],
+        "startingCode": "PuzzleInfo/TwoStartingCode.txt",
+        "directions": "PuzzleInfo/TwoDirections.txt",
+        "puzzleName": "Two",
+        "puzzleIndex": "1"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "0",
+            "answer": "1"
+          },
+          {
+            "problem": "1",
+            "answer": "1"
+          },
+          {
+            "problem": "3",
+            "answer": "6"
+          },
+          {
+            "problem": "4",
+            "answer": "24"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "5",
+            "answer": "120"
+          }
+        ],
+        "startingCode": "PuzzleInfo/ThreeStartingCode.txt",
+        "directions": "PuzzleInfo/ThreeDirections.txt",
+        "puzzleName": "Three",
+        "puzzleIndex": "2"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "2, 10",
+            "answer": "1024"
+          },
+          {
+            "problem": "5, 5",
+            "answer": "3125"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "1, 1",
+            "answer": "1"
+          },
+          {
+            "problem": "5, 6",
+            "answer": "15625"
+          }
+        ],
+        "startingCode": "PuzzleInfo/FourStartingCode.txt",
+        "directions": "PuzzleInfo/FourDirections.txt",
+        "puzzleName": "Four",
+        "puzzleIndex": "3"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "1",
+            "answer": "*\n"
+          },
+          {
+            "problem": "5",
+            "answer": "*****\n*****\n*****\n*****\n*****\n"
+          },
+          {
+            "problem": "6",
+            "answer": "******\n******\n******\n******\n******\n******\n"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "10",
+            "answer": "**********\n**********\n**********\n**********\n**********\n**********\n**********\n**********\n**********\n**********\n"
+          }
+        ],
+        "startingCode": "PuzzleInfo/FiveStartingCode.txt",
+        "directions": "PuzzleInfo/FiveDirections.txt",
+        "puzzleName": "Five",
+        "puzzleIndex": "4"
+      }
+    ]
+  }

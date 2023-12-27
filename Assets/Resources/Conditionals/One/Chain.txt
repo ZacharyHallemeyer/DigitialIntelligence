@@ -1,1 +1,0 @@
-You can "nest" conditionals inside each other, creating a chain of decisions. This is like having multiple boxes inside one another, and you need to check each box to find the right one.

@@ -1,0 +1,13 @@
+Directions:
+
+There are also if-else statements (elif). The if-else statements are used to check multiple conditions in a sequence. The structure is as follows:
+
+CODE
+==========================
+if(conditionOne):
+	This code runs if conditionOne is True
+elif(conditionTwo):
+	This code runs if conditionOne is False and conditionTwo is True
+else:
+	This code runs if conditionOne and conditionTwo are False
+==========================

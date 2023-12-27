@@ -1,0 +1,16 @@
+<color=#8B0000>  Directions</color>
+
+  The code you will be writing is in python syntax. Python is a very popular programming language and is a very desirable skill in the workforce. For now, let's go over keywords and built-in functions.
+
+CODE
+==========================
+ print("Hello World!")
+==========================
+
+  The function `print()` tells the computer to print the text passed into the function to the console. Try this by running the code with the run button! Make sure to surrond the text that you want to print with quotation marks as this will tell the computer that the text is a string. A string is what computers recongize as text
+
+  If you ran the code, you will notice that the output is red and is an error message. This is because the print statement at line 5 is indented with a tab. Remove the tab and run the code again, and there should be no errors
+
+  Notice that the code is being run from top to bottom. 
+
+  For this puzzle to pass the tests, you will just need to remove the error and run the tests to solve the puzzle

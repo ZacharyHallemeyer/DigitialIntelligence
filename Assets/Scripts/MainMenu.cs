@@ -3,8 +3,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.IO;
 using TMPro;
+using UnityEditor;
+using System.Linq;
+using System.Threading;
+using System.Security.AccessControl;
+using System.Security.Principal;
+
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -35,6 +43,9 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //CreateResourcesPathJson();
+        DownloadExternalResources();
+
         SetPlayerPrefs();
         startContainer.SetActive(true);
         aboutContainer.SetActive(false);
@@ -44,14 +55,11 @@ public class MainMenu : MonoBehaviour
         levelMenuUI.Add(levelScrollView);
 
         // Create level menu
-        ReadPuzzleData();
         CreateLevelMenu();
 
         // Hide level menu
         levelScrollView.SetActive(false);
 
-        //
-        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // ============================== Buttons ============================== //
@@ -167,50 +175,69 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void CreateLevelMenu()
     {
-        GridLayoutGroup gridLayoutGroup = levelScrollRect.content.GetComponent<GridLayoutGroup>();
-
-        float originalCellSizeY = gridLayoutGroup.cellSize.y;
-        float spacingY = gridLayoutGroup.spacing.y;
-
-        // Get persistent level data
-        List<LevelInfo> levelData;
+        List<LevelInfo> levelInfoList = new List<LevelInfo>();
         string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
-        string persistentData;
-        // Check if persistent data of puzzles exist
-        if (File.Exists(persistentDataPath))
+        // Check if persistent data file already exists
+        if ( !File.Exists(persistentDataPath) )
         {
-            // Check if persistent data file is valid
-            ValidatePersistentPuzzleFile();
+            // If not, create it for further use
+            CreatePersistentPuzzleFile();
         }
-        // Otherwise, get puzzle data from resources folder
         else
         {
-            CreatePersistentPuzzleFile(puzzleDataList);
+            // Otherwise, get the data stored in persistent data
+            levelInfoList = GetLevelInfoListFromPersistentDataFile();
         }
 
-        persistentData = File.ReadAllText(persistentDataPath);
-        levelData = ConvertLevelInfoStringToList(persistentData);
 
+        // CREATE LEVEL BUTTONS
+        GridLayoutGroup gridLayoutGroup = levelScrollRect.content.GetComponent<GridLayoutGroup>();
+        float originalCellSizeY = gridLayoutGroup.cellSize.y;
+        float spacingY = gridLayoutGroup.spacing.y;
+        string baseOutputDirectory = "ResourceContainer/Levels";
+        string[] levels = Directory.GetDirectories(baseOutputDirectory);
 
-        // Loop through levels
-        foreach (PuzzleContainer puzzleContainer in puzzleDataList)
+        // Reorder default levels to prespecified order
+        List<string> orderedLevels = new List<string>{ "ResourceContainer/Levels\\Tutorial", 
+                                                        "ResourceContainer/Levels\\Variables", 
+                                                        "ResourceContainer/Levels\\Conditionals",
+                                                         "ResourceContainer/Levels\\Loops",
+                                                         "ResourceContainer/Levels\\Lists",
+                                                         "ResourceContainer/Levels\\Strings",
+                                                         "ResourceContainer/Levels\\Functions",
+                                                         "ResourceContainer/Levels\\Greek Myths" };
+        
+        foreach(string level in levels)
+        {
+            Debug.Log(level);
+            if( !orderedLevels.Contains(level))
+            {
+
+                orderedLevels.Add(level);
+            }
+        }
+
+        int count = 0;
+        foreach(string level in orderedLevels)
         {
             // Create Button
             GameObject button = Instantiate(levelButtonPrefab, levelScrollRect.content);
+            int indexOfFilename = level.IndexOf("\\");
+            string levelName = level.Substring(indexOfFilename+1);
+
 
             // Get LevelButton component and assign puzzle container index
             LevelButton levelButton = button.GetComponent<LevelButton>();
-            levelButton.puzzleContainerName = puzzleContainer.levelName;
-            levelButton.puzzleContainerIndex = puzzleContainer.index;
+            levelButton.puzzleContainerName = level;
 
             // Set button text to puzzle container name
-            levelButton.SetButtonText(puzzleContainer.levelName);
+            levelButton.SetButtonText(levelName);
 
             // Adjust scroll view
             LayoutRebuilder.ForceRebuildLayoutImmediate(levelScrollRect.content);
 
             // Update currentYPosition
-            float currentYPosition = (originalCellSizeY + spacingY) * (puzzleDataList.Count + puzzleContainer.index);
+            float currentYPosition = (originalCellSizeY + spacingY) * (count);
 
             // Adjust position
             RectTransform rectTransform = levelButton.GetComponent<RectTransform>();
@@ -224,21 +251,29 @@ public class MainMenu : MonoBehaviour
                 StartLevel(levelButton.puzzleContainerIndex, levelButton.puzzleContainerName);
             });
 
+            count++;
 
-            // Check if level is completed
-            if(levelData[puzzleContainer.index].completed)
+            if(levelInfoList != null)
             {
-                Button buttonComponent = button.GetComponent<Button>();
-                TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+                // Check if level is completed
+                foreach(LevelInfo levelInfo in levelInfoList)
+                {
+                    if( levelInfo.levelName == level && levelInfo.completed)
+                    {
+                        Button buttonComponent = button.GetComponent<Button>();
+                        TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
 
-                // Change background color to white
-                var buttonColors = buttonComponent.colors;
-                buttonColors.normalColor = new Color(1f, 1f, 1f);
-                buttonComponent.colors = buttonColors;
-                //buttonComponent.image.color = new Color(1f, 1f, 1f);
-                buttonText.color = new Color(0f, 0f, 0f);
+                        // Change background color to white
+                        var buttonColors = buttonComponent.colors;
+                        buttonColors.normalColor = new Color(1f, 1f, 1f);
+                        buttonComponent.colors = buttonColors;
+                        //buttonComponent.image.color = new Color(1f, 1f, 1f);
+                        buttonText.color = new Color(0f, 0f, 0f);
+                    }
+                }
             }
         }
+
     }
 
     private void ReadPuzzleData()
@@ -247,6 +282,13 @@ public class MainMenu : MonoBehaviour
         TextAsset jsonData = Resources.Load<TextAsset>("JsonData/puzzles");
         string data = jsonData.text;
         puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
+    }
+
+    private List<string> GetLevels()
+    {
+        string levelsPath = "Levels";
+
+        return null;
     }
 
     private void SetPlayerPrefs()
@@ -312,126 +354,14 @@ public class MainMenu : MonoBehaviour
 
 
     // ========================================= Data Manipulation =========================================
-    private List<LevelInfo> CreatePersistentPuzzleFile(List<PuzzleContainer> puzzleDataList)
+    private void CreatePersistentPuzzleFile()
     {
         string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
-
-        List<LevelInfo> levelInfoList = new List<LevelInfo>();
-
-        foreach (PuzzleContainer puzzleContainer in puzzleDataList)
-        {
-            LevelInfo levelInfo = new LevelInfo();
-            levelInfo.levelName = puzzleContainer.levelName;
-            levelInfo.index = puzzleContainer.index;
-            levelInfo.completed = false;
-            levelInfo.puzzles = new List<PuzzleInfo>();
-
-            foreach (Puzzle puzzle in puzzleContainer.puzzles)
-            {
-                PuzzleInfo puzzleInfo = new PuzzleInfo();
-
-                puzzleInfo.puzzleIndex = puzzle.puzzleIndex;
-                puzzleInfo.oldCode = "";
-
-                levelInfo.puzzles.Add(puzzleInfo);
-            }
-
-            levelInfoList.Add(levelInfo);
-        }
-
-        // Serialize levelInfoList to JSON
-        string json = JsonConvert.SerializeObject(levelInfoList, Formatting.Indented);
 
         // Write JSON to a file at the specified path
-        File.WriteAllText(persistentDataPath, json);
-
-        return levelInfoList;
+        File.WriteAllText(persistentDataPath, "");
     }
 
-    public void CreatePersistentPuzzleFile()
-    {
-        // Get Levels from level json
-        TextAsset jsonData = Resources.Load<TextAsset>("JsonData/puzzles");
-        string data = jsonData.text;
-
-        List<PuzzleContainer> puzzleDataList = JsonConvert.DeserializeObject<List<PuzzleContainer>>(data);
-
-        CreatePersistentPuzzleFile(puzzleDataList);
-    }
-
-    private void ValidatePersistentPuzzleFile()
-    {
-        bool deviationFound = false;
-        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
-
-        // Get LevelInfo list
-        List<LevelInfo> levelInfoList = GetLevelInfoListFromPersistentDataFile();
-
-
-        // Check if puzzleContainers is not the same amount as levelInfos
-        if(levelInfoList.Count != puzzleDataList.Count)
-        {
-            // If so, deviation found
-            deviationFound = true;
-        }
-
-        // Loop through persistent data and puzzle data unitl the two level names/indexes do not match
-        int index = 0;
-        while (index < puzzleDataList.Count && !deviationFound)
-        {
-            // Check if current persistent data level info cooresponds with puzzle data
-            if(levelInfoList[index].levelName != puzzleDataList[index].levelName )
-            {
-                deviationFound = true;
-            }
-
-            index++;
-        }
-
-        if(deviationFound)
-        {
-            // Create a new persistent data file
-            CreatePersistentPuzzleFile(puzzleDataList);
-
-            // Get data from file
-            List<LevelInfo> newLevelInfoList = GetLevelInfoListFromPersistentDataFile();
-            // Add information from levelInfoList to new file
-
-            // Loop through new level info list
-            for(index = 0; index < newLevelInfoList.Count; index++)
-            {
-                // Check if current level has information to add
-                if(newLevelInfoList[index].levelName == levelInfoList[index].levelName)
-                {
-                    newLevelInfoList[index].completed = levelInfoList[index].completed;
-
-
-                    // Loop through puzzles and add old code
-                    for(int puzzleIndex = 0; puzzleIndex < newLevelInfoList[index].puzzles.Count; puzzleIndex++)
-                    {
-                        PuzzleInfo newPuzzle = newLevelInfoList[index].puzzles[puzzleIndex];
-                        PuzzleInfo oldPuzzle = levelInfoList[index].puzzles[puzzleIndex];
-
-
-                        if (newPuzzle.puzzleIndex == oldPuzzle.puzzleIndex)
-                        {
-                            newPuzzle.oldCode = oldPuzzle.oldCode;
-                        }
-                    }
-
-                }
-            }
-
-
-            // Write newLevelInfoList information to file
-            string json = JsonConvert.SerializeObject(newLevelInfoList, Formatting.Indented);
-
-            // Write JSON to a file at the specified path
-            File.WriteAllText(persistentDataPath, json);
-
-        }
-
-    }
     private List<LevelInfo> GetLevelInfoListFromPersistentDataFile()
     {
         string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
@@ -450,9 +380,105 @@ public class MainMenu : MonoBehaviour
         return puzzleDataList;
     }
 
-
     public void ResetPlayerProgress()
     {
         CreatePersistentPuzzleFile();
+    }
+
+    // ========================= Resources ========================= //
+    /*
+    private void CreateResourcesPathJson()
+    {
+        string resourcePath = "Assets/Resources";
+        string outputPath = "Assets/Resources/ResourcePaths.json";
+
+        List<string> resourcePaths = new List<string>();
+
+        // Recursively scan the Resources folder and collect relative paths
+        string[] allAssets = AssetDatabase.FindAssets("", new[] { resourcePath });
+        foreach (string assetGUID in allAssets)
+        {
+            string assetPath = AssetDatabase.GUIDToAssetPath(assetGUID);
+            string relativePath = assetPath.Replace(resourcePath + "/", "");
+            resourcePaths.Add(relativePath);
+        }
+
+        // Serialize the list of paths to JSON
+        string json = JsonConvert.SerializeObject(resourcePaths, Formatting.Indented);
+
+        // Write the JSON data to the output file
+        File.WriteAllText(outputPath, json);
+
+        Debug.Log("Resource paths exported to " + outputPath);
+    }
+    */
+
+    private void DownloadExternalResources()
+    {
+        string resourcesPath = "ResourcePaths";
+        string baseOutputDirectory = "ResourceContainer";
+        
+        if( Directory.Exists(baseOutputDirectory) )
+        {
+            Debug.Log("Resources already copied...Returning now");
+            return;
+        }
+
+        Directory.CreateDirectory($"{baseOutputDirectory}");
+
+        string resourcesUnparsed = Resources.Load<TextAsset>(resourcesPath).text;
+        List<string> resources = JsonConvert.DeserializeObject<List<string>>(resourcesUnparsed);
+
+        foreach(string resource in resources)
+        {
+            if(resource.EndsWith(".txt") || resource.EndsWith(".json"))
+            {
+                int indexOfDot = resource.IndexOf('.');
+                string resourceNoExtension = resource.Substring(0, indexOfDot);
+                string text = Resources.Load<TextAsset>(resourceNoExtension).text;
+
+                using (StreamWriter writer = new StreamWriter($"{baseOutputDirectory}/{resource}"))
+                {
+                    writer.Write(text);
+                }
+
+                string filePath = Path.Combine(baseOutputDirectory, resource);
+                SetFilePermissions(filePath);
+            }
+            else
+            {
+                Directory.CreateDirectory($"{baseOutputDirectory}/{resource}");
+            }
+
+
+        }
+    }
+
+    private static void SetFilePermissions(string filePath)
+    {
+        try
+        {
+            // Get the file's existing security settings
+            FileSecurity fileSecurity = File.GetAccessControl(filePath);
+
+            // Define a new access rule for read and write permissions
+            FileSystemAccessRule accessRule = new FileSystemAccessRule(
+                new SecurityIdentifier(WellKnownSidType.WorldSid, null),
+                FileSystemRights.ReadAndExecute | FileSystemRights.Write,
+                InheritanceFlags.None,
+                PropagationFlags.None,
+                AccessControlType.Allow
+            );
+
+            // Add the access rule to the file's security settings
+            fileSecurity.AddAccessRule(accessRule);
+
+            // Apply the modified security settings to the file
+            File.SetAccessControl(filePath, fileSecurity);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Error setting file permissions: {e.Message}");
+        }
     }
 }

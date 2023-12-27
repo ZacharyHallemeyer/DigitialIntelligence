@@ -1,0 +1,10 @@
+In this section, we'll explore functions. Functions are like reusable blocks of code that perform specific tasks or actions. They act as self-contained units within your program, accepting input, processing it, and producing output. Functions are like mini-programs within your larger program, allowing you to break down complex tasks into manageable pieces. They're essential in programming for organizing code, promoting reusability, and making your programs more modular and efficient. Understanding how to create and use functions is a fundamental skill that enables you to build organized and scalable software.
+
+This basic syntax is as follows
+
+def myFunction():
+	
+	# Code here
+
+	# return here
+

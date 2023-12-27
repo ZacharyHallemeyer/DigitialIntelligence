@@ -1,0 +1,5 @@
+Concept: 
+Since strings can be enclosed in quotes, there might be situations where you want to include quotes inside a string or represent other special characters. This is where "escape sequences" come in. They are character combinations that start with a backslash (\) and represent special characters.
+
+Example: 
+The escape sequence for a newline is \n. So, the string "Hello\nWorld" would be printed as:

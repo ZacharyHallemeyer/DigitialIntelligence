@@ -1,0 +1,5 @@
+Concept: 
+Strings are immutable, which means that once a string is created, it cannot be modified. Any operation that seems to alter the string (like replacement or concatenation) actually creates a new string. The original string remains unchanged.
+
+Example: 
+If you have the string s = "Hello", and you try to change the first letter to J, you can't directly modify s. Instead, you'd create a new string like s_new = "J" + s[1:].

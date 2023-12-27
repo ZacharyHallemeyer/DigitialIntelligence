@@ -1,0 +1,10 @@
+def main(myString, replacement):
+	result = ""
+
+	# Replace all spaces in 'myString' with the 'replacement' string
+
+	return result
+
+print(main("hello world", "-"))	  # Should print "hello-world"
+print(main("Python is great", "_"))  # Should print "Python_is_great"
+print(main("a b c", "*"))			# Should print "a*b*c"

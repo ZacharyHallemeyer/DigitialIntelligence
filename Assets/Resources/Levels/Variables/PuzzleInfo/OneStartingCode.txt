@@ -1,0 +1,14 @@
+def main():
+	# This is a variable declaration and assignment
+	# After this line, the variable called numberVariable will hold the value 5
+	numberVariable = 5
+	print(numberVariable)
+
+	# Set the numberVariable value to -5 in the same fashion as above	
+
+	print(numberVariable)
+
+	return numberVariable
+
+print(main())
+ 

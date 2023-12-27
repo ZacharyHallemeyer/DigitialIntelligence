@@ -1,0 +1,1 @@
+Unlike strings, lists are mutable. This means that their content can be modified after creation by accessing items through their index and assigning new values.

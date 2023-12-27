@@ -1,0 +1,1 @@
+In Python, you can use the "range()" function to generate a sequence of numbers, which is super handy for creating loops that run a specific number of times.

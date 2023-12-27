@@ -1,0 +1,5 @@
+Concept: 
+A string is a sequence of characters. In many programming languages, including Python, strings are represented by characters enclosed within single ('), double ("), or triple (''' or """) quotes. This means that strings can contain letters, numbers, symbols, spaces, and even special characters like newline (\n) or tab (\t).
+
+Example: 
+The text "Hello, World!" is a string.

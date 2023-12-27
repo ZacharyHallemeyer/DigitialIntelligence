@@ -1,0 +1,10 @@
+def main(myString):
+	result = ""
+
+	# Use every other character from 'myString' and store in 'result'
+
+	return result
+
+print(main("abcdefg")) # Should print "aceg"
+print(main("123456"))  # Should print "135"
+print(main("python"))  # Should print "pto"

@@ -1,0 +1,183 @@
+  {
+    "levelName": "Conditionals",
+    "index": "2",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "True"
+          },
+          {
+            "problem": "6",
+            "answer": "False"
+          },
+          {
+            "problem": "-5",
+            "answer": "True"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/OneStartingCode.txt",
+        "directions": "PuzzleInfo/OneDirections.txt",
+        "puzzleName": "One",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "6",
+            "answer": "Greater than 5"
+          },
+          {
+            "problem": "5",
+            "answer": "Less than or equal to 5"
+          },
+          {
+            "problem": "-5",
+            "answer": "Less than or equal to 5"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/TwoStartingCode.txt",
+        "directions": "PuzzleInfo/TwoDirections.txt",
+        "puzzleName": "Two",
+        "puzzleIndex": "1"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "120",
+            "answer": "Greater than 100"
+          },
+          {
+            "problem": "100",
+            "answer": "Greater than 50"
+          },
+          {
+            "problem": "51",
+            "answer": "Greater than 50"
+          },
+          {
+            "problem": "50",
+            "answer": "Greater than 25"
+          },
+          {
+            "problem": "25",
+            "answer": "Less than 25"
+          },
+          {
+            "problem": "20",
+            "answer": "Less than 25"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/ThreeStartingCode.txt",
+        "directions": "PuzzleInfo/ThreeDirections.txt",
+        "puzzleName": "Three",
+        "puzzleIndex": "2"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "0",
+            "answer": "Between 0 and 10"
+          },
+          {
+            "problem": "5",
+            "answer": "Between 0 and 10"
+          },
+          {
+            "problem": "10",
+            "answer": "Between 0 and 10"
+          },
+          {
+            "problem": "11",
+            "answer": "Between 11 and 20"
+          },
+          {
+            "problem": "15",
+            "answer": "Between 11 and 20"
+          },
+          {
+            "problem": "20",
+            "answer": "Between 11 and 20"
+          },
+          {
+            "problem": "21",
+            "answer": "Between 21 and 30"
+          },
+          {
+            "problem": "25",
+            "answer": "Between 21 and 30"
+          },
+          {
+            "problem": "30",
+            "answer": "Between 21 and 30"
+          },
+          {
+            "problem": "-1",
+            "answer": "Not between 0 and 30"
+          },
+          {
+            "problem": "31",
+            "answer": "Not between 0 and 30"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/FourStartingCode.txt",
+        "directions": "PuzzleInfo/FourDirections.txt",
+        "puzzleName": "Four",
+        "puzzleIndex": "3"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "100",
+            "answer": "A"
+          },
+          {
+            "problem": "90",
+            "answer": "A"
+          },
+          {
+            "problem": "89",
+            "answer": "B"
+          },
+          {
+            "problem": "80",
+            "answer": "B"
+          },
+          {
+            "problem": "79",
+            "answer": "C"
+          },
+          {
+            "problem": "70",
+            "answer": "C"
+          },
+          {
+            "problem": "69",
+            "answer": "D"
+          },
+          {
+            "problem": "60",
+            "answer": "D"
+          },
+          {
+            "problem": "59",
+            "answer": "F"
+          },
+          {
+            "problem": "20",
+            "answer": "F"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/FiveStartingCode.txt",
+        "directions": "PuzzleInfo/FiveDirections.txt",
+        "puzzleName": "Five",
+        "puzzleIndex": "4"
+      }
+    ]
+  }

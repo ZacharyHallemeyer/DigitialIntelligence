@@ -1,0 +1,6 @@
+Directions:
+
+A good way to use functions is to create a function for repeated task. For instance, if you are getting the max number is a list multiple times in a program. It is a good idea to implement a function for this task.
+
+
+For this puzzle, you will be implementing a function called `findMax` that will take a list of numbers as a parameter and return the max number in the list

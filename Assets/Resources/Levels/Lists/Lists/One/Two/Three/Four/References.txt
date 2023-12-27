@@ -1,0 +1,1 @@
+Due to lists being mutable, assigning a list to another variable doesn't create a new list, but rather a reference to the original list. This means changes made through one variable will affect the other.

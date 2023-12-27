@@ -1,1 +1,0 @@
-Conditionals act like "decision makers" in your code. They help your program decide which code blocks to execute based on certain conditions.

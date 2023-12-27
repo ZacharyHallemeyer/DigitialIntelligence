@@ -1,0 +1,1 @@
+Think of variables as containers that hold information. Just like you might use labeled boxes to store different items, variables have names that help you identify and access the data they contain.

@@ -1,0 +1,13 @@
+print("Hello World!")
+
+print("This is being printed to console")
+
+	print("notice it does not matter how many lines are between this line and the last print statement")
+
+
+def main():
+
+	return "Printing from a function!"
+
+
+print(main())

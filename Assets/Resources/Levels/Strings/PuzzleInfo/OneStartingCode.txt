@@ -1,0 +1,11 @@
+# reverse string and return reversed string
+def main(myString):
+	result = ""
+
+	# Reverse the string 'myString' and store in 'result'
+
+	return result
+
+print(main("hello")) # Should print "olleh"
+print(main("world")) # Should print "dlrow"
+print(main("python")) # Should print "nohtyp"

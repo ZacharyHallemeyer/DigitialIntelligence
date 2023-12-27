@@ -1,0 +1,86 @@
+{
+  "dirName": "",
+  "path": "Lists/",
+  "unlocked": true,
+  "files": [],
+  "directories": [
+    {
+      "dirName": "One",
+      "path": "Lists/One",
+      "unlocked": false,
+      "files": [
+        {
+          "fileName": "Definition",
+          "path": "Lists/One/Definition",
+          "question": "In Python, what mutable data type is used to store multiple items in a single variable? (one word)",
+          "unlockKeyword": "list",
+          "unlocked": false
+        }
+      ],
+      "directories": [
+        {
+          "dirName": "Two",
+          "path": "Lists/One/Two",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "Indexing",
+              "path": "Lists/One/Two/Indexing",
+              "question": "Can a python list hold different types of data? (Yes or No)",
+              "unlockKeyword": "Yes",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+            {
+              "dirName": "Three",
+              "path": "Lists/One/Two/Three",
+              "unlocked": false,
+              "files": [
+                {
+                  "fileName": "Mutability",
+                  "path": "Lists/One/Two/Three/Mutability",
+                  "question": "What position or number is assigned to the first item in a list? (one number)",
+                  "unlockKeyword": "0",
+                  "unlocked": false
+                }
+              ],
+              "directories": [
+                {
+                  "dirName": "Four",
+                  "path": "Lists/One/Two/Three/Four",
+                  "unlocked": false,
+                  "files": [
+                    {
+                      "fileName": "References",
+                      "path": "Lists/One/Two/Three/Four/References",
+                      "question": "Can the content of a list be changed after its creation? (Yes or No)",
+                      "unlockKeyword": "Yes",
+                      "unlocked": false
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "dirName": "Five",
+                      "path": "Lists/One/Two/Three/Four/Five",
+                      "unlocked": false,
+                      "files": [
+                        {
+                          "fileName": "Nesting",
+                          "path": "Lists/One/Two/Three/Four/Five/Nesting",
+                          "question": "Which function is used to determine the number of items in a list? (inlcude parentheses)",
+                          "unlockKeyword": "len()",
+                          "unlocked": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

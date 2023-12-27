@@ -1,0 +1,83 @@
+  {
+    "levelName": "Variables",
+    "index": "1",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "-5"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/OneStartingCode.txt",
+        "directions": "PuzzleInfo/OneDirections.txt",
+        "puzzleName": "One",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "5"
+          },
+          {
+            "problem": "10",
+            "answer": "10"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/TwoStartingCode.txt",
+        "directions": "PuzzleInfo/TwoDirections.txt",
+        "puzzleName": "Two",
+        "puzzleIndex": "1"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "25"
+          },
+          {
+            "problem": "10",
+            "answer": "50"
+          },
+          {
+            "problem": "-5",
+            "answer": "-25"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/ThreeStartingCode.txt",
+        "directions": "PuzzleInfo/ThreeDirections.txt",
+        "puzzleName": "Three",
+        "puzzleIndex": "2"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "Hello World"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/FourStartingCode.txt",
+        "directions": "PuzzleInfo/FourDirections.txt",
+        "puzzleName": "Four",
+        "puzzleIndex": "3"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "",
+            "answer": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+          }
+        ],
+        "hiddenTestCases": [],
+        "startingCode": "PuzzleInfo/FiveStartingCode.txt",
+        "directions": "PuzzleInfo/FiveDirections.txt",
+        "puzzleName": "Five",
+        "puzzleIndex": "4"
+      }
+    ]
+  }

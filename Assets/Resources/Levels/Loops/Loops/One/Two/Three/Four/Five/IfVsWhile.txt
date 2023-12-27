@@ -1,0 +1,1 @@
+"if" statements control whether a block of code is executed based on a condition, while "while" loops repeatedly execute a block of code as long as a condition remains true. They can work together to create dynamic, interactive programs that adapt and respond to changing conditions.

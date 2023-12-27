@@ -1,0 +1,1 @@
+Variables have a scope, which defines where they can be accessed. Some variables are global (accessible throughout the entire program), while others are local (accessible only within a specific function or code block)

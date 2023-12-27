@@ -1,0 +1,138 @@
+  {
+    "levelName": "Greek Myths",
+    "index": "7",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 20, 15, 3]",
+            "answer": "[1, 2, 3, 15, 20]"
+          },
+          {
+            "problem": "[1, 5, 4, 3, 2]",
+            "answer": "[1, 2, 3, 4, 5]"
+          },
+          {
+            "problem": "[12, 5, 9, 3, 18, 1, 10, 15, 7, 2, 14, 20, 6, 8, 19, 11, 17, 4, 16, 13]",
+            "answer": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[2, 4, 40, 30, 6]",
+            "answer": "[2, 4, 6, 30, 40]"
+          },
+          {
+            "problem": "[2, 10, 8, 6, 4]",
+            "answer": "[2, 4, 6, 8, 10]"
+          },
+          {
+            "problem": "[48, 20, 36, 12, 72, 4, 40, 60, 28, 8, 56, 80, 24, 32, 76, 44, 68, 16, 64, 52]",
+            "answer": "[4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80]"
+          }
+        ],
+        "startingCode": "PuzzleInfo/ChaosStartingCode.txt",
+        "directions": "PuzzleInfo/ChaosDirections.txt",
+        "puzzleName": "Chaos",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "\"czggj\"",
+            "answer": "hello"
+          },
+          {
+            "problem": "\"kizphjijpgomvhdxmjnxjkdxndgdxjqjgxvijxjidjndn\"",
+            "answer": "pneumonoultramicroscopicsilicovolcanoconiosis"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "\"czggjczggj\"",
+            "answer": "hellohello"
+          },
+          {
+            "problem": "\"kizphjijpgomvhdxmjnxjkdxndgdxjqjgxvijxjidjndnkizphjijpgomvhdxmjnxjkdxndgdxjqjgxvijxjidjndn\"",
+            "answer": "pneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosis"
+          }
+        ],
+        "startingCode": "PuzzleInfo/FireStartingCode.txt",
+        "directions": "PuzzleInfo/FireDirections.txt",
+        "puzzleName": "Fire",
+        "puzzleIndex": "1"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1,3,2]",
+            "answer": "-1"
+          },
+          {
+            "problem": "[1,5,4,3,2]",
+            "answer": "-1"
+          },
+          {
+            "problem": "[1,3,4,5,6]",
+            "answer": "2"
+          },
+          {
+            "problem": "[1,3,4,5,2,7]",
+            "answer": "6"
+          },
+          {
+            "problem": "[1,2,4,3,5,6,8,9,10]",
+            "answer": "-1"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[1,3,2,4]",
+            "answer": "-1"
+          },
+          {
+            "problem": "[1,3,4,5,2,6,8]",
+            "answer": "3"
+          }
+        ],
+        "startingCode": "PuzzleInfo/HadesStartingCode.txt",
+        "directions": "PuzzleInfo/HadesDirections.txt",
+        "puzzleName": "Hades",
+        "puzzleIndex": "2"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "5",
+            "answer": "5"
+          },
+          {
+            "problem": "10",
+            "answer": "55"
+          },
+          {
+            "problem": "7",
+            "answer": "13"
+          },
+          {
+            "problem": "0",
+            "answer": "0"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "6",
+            "answer": "8"
+          },
+          {
+            "problem": "9",
+            "answer": "34"
+          }
+        ],
+        "startingCode": "PuzzleInfo/HadesStartingCode.txt",
+        "directions": "PuzzleInfo/HadesDirections.txt",
+        "puzzleName": "Minotaur",
+        "puzzleIndex": "3"
+      }
+    ]
+  }

@@ -1,1 +1,0 @@
-The most common conditional statement is the "if-else" statement. It's like a dance where your program checks a condition, and if it's true, it executes one set of instructions; if false, it executes another set.

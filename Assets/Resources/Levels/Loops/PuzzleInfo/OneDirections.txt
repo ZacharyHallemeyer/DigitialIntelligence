@@ -1,0 +1,16 @@
+Directions:
+Loops are structures that allow you to repeat a piece of code multiple times. There are two main types of functions called `for` and `while`
+
+For loops are used for iterating over data. For instance, a for loop is able to iterate over each character in a string and every element in a list. 
+The basic syntax is seen below 
+
+CODE
+==========================
+for index in range(10):
+	print(index) # This will print 0 to 9 
+
+for index in range(1, 11):
+	print(index) # This will print 1 to 10
+==========================
+
+For this puzzle, you will need to calculate the sum of all numbers less than the parameter called `limit`

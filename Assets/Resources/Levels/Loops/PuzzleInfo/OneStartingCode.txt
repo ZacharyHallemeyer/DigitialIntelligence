@@ -1,0 +1,15 @@
+def main(limit):
+	
+	sum = 0
+	
+	# Calculate the sum of all numbers less than `limit` with a for loop
+	# So 0 should return 0, 1 should return 0
+	# 2 should return 1, 5 should return 10
+
+	return sum
+	
+
+print(main(1))
+print(main(10))
+print(main(20))
+print(main(50))

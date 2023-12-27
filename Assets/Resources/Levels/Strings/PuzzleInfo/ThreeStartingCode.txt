@@ -1,0 +1,14 @@
+def main(myString):
+	result = 0
+
+	# Count the number of vowels in the string 'myString'
+
+	return result
+
+print(main("hello"))  # Should print 2
+print(main("world"))  # Should print 1
+print(main("python")) # Should print 1
+
+
+
+

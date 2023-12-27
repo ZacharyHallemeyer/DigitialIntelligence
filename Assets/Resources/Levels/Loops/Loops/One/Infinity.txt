@@ -1,0 +1,1 @@
+With a "while True" loop, you can create infinite loops. But remember, you need a way to break out, or you might end up in a loop forever!

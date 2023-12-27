@@ -8,7 +8,7 @@ using System.Linq;
 
 public class PythonNotes : MonoBehaviour
 {
-    private string pythonNotesDirectory = "TextFiles/Notes";
+    private string pythonNotesDirectory = "Notes";
     private string contentsFileName = "PythonNotesContentList";
 
     public TMP_Text notesText;

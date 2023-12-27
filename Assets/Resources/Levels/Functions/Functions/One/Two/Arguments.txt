@@ -1,0 +1,1 @@
+Parameters are variables listed inside the parentheses in a function's definition. Arguments are values sent to the function when it's called.

@@ -1,0 +1,125 @@
+
+  {
+    "levelName": "Lists",
+    "index": "5",
+    "puzzles": [
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3]",
+            "answer": "1"
+          },
+          {
+            "problem": "[\"apple\", \"banana\", \"cherry\"]",
+            "answer": "apple"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[4,5,6]",
+            "answer": "4"
+          }
+        ],
+        "startingCode": "PuzzleInfo/OneStartingCode.txt",
+        "directions": "PuzzleInfo/OneDirections.txt",
+        "puzzleName": "One",
+        "puzzleIndex": "0"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3], 2",
+            "answer": "True"
+          },
+          {
+            "problem": "[\"apple\", \"banana\", \"cherry\"], \"grape\"",
+            "answer": "False"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[5,6,7], 6",
+            "answer": "True"
+          },
+          {
+            "problem": "[5,6,7], 8",
+            "answer": "False"
+          }
+        ],
+        "startingCode": "PuzzleInfo/TwoStartingCode.txt",
+        "directions": "PuzzleInfo/TwoDirections.txt",
+        "puzzleName": "Two",
+        "puzzleIndex": "1"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3]",
+            "answer": "[3, 2, 1]"
+          },
+          {
+            "problem": "[\"apple\", \"banana\", \"cherry\"]",
+            "answer": "['cherry', 'banana', 'apple']"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[5, 6 ,7]",
+            "answer": "[7, 6, 5]"
+          },
+          {
+            "problem": "[8, 9]",
+            "answer": "[9, 8]"
+          }
+        ],
+        "startingCode": "PuzzleInfo/ThreeStartingCode.txt",
+        "directions": "PuzzleInfo/ThreeDirections.txt",
+        "puzzleName": "Three",
+        "puzzleIndex": "2"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2], [3, 4]",
+            "answer": "[1, 2, 3, 4]"
+          },
+          {
+            "problem": "[\"apple\", \"banana\"], [\"cherry\", \"date\"]",
+            "answer": "['apple', 'banana', 'cherry', 'date']"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[3, 4], [1, 2]",
+            "answer": "[3, 4, 1, 2]"
+          }
+        ],
+        "startingCode": "PuzzleInfo/FourStartingCode.txt",
+        "directions": "PuzzleInfo/FourDirections.txt",
+        "puzzleName": "Four",
+        "puzzleIndex": "3"
+      },
+      {
+        "testCases": [
+          {
+            "problem": "[1, 2, 3], 1",
+            "answer": "2"
+          },
+          {
+            "problem": "[\"apple\", \"banana\", \"cherry\"], 2",
+            "answer": "cherry"
+          }
+        ],
+        "hiddenTestCases": [
+          {
+            "problem": "[1, 2, 3], 2",
+            "answer": "3"
+          }
+        ],
+        "startingCode": "PuzzleInfo/FiveStartingCode.txt",
+        "directions": "PuzzleInfo/FiveDirections.txt",
+        "puzzleName": "Five",
+        "puzzleIndex": "4"
+      }
+    ]
+  }

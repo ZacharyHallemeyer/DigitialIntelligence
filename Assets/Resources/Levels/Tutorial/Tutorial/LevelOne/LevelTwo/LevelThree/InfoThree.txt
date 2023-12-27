@@ -1,0 +1,5 @@
+Great job! You have completed the tutorial!
+
+Now you are ready to start learning about python and get to the fun levels! If you already know alot about python, you can skip the levels that go over python fundamentals such as Variables or Conditionals. 
+
+Because all of the files and directories have been unlocked, you can now use the command `extract` to complete the level. 

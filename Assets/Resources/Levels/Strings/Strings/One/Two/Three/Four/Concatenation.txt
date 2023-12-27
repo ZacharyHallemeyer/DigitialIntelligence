@@ -1,0 +1,5 @@
+Concept: 
+Strings can be joined or "concatenated" using the + operator. This forms a new string by connecting two or more strings end-to-end.
+
+Example: 
+"Hello" + " " + "World" results in the string "Hello World".

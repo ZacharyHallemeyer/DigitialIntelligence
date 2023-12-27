@@ -1,0 +1,79 @@
+{
+  "dirName": "",
+  "path": "Greek Myths/",
+  "unlocked": true,
+  "files": [
+    {
+      "fileName": "Creation",
+      "path": "Greek Myths/Creation",
+      "question": "",
+      "unlockKeyword": "",
+      "unlocked": true
+    }
+  ],
+  "directories": [
+    {
+      "dirName": "Chaos",
+      "path": "Greek Myths/Chaos",
+      "unlocked": false,
+      "files": [
+        {
+          "fileName": "Prometheus",
+          "path": "Greek Myths/Chaos/Prometheus",
+          "question": "Who is the earth in Greek mythology",
+          "unlockKeyword": "gaia"   ,
+          "unlocked": false
+        }
+      ],
+      "directories": [
+        {
+          "dirName": "Fire",
+          "path": "Greek Myths/Chaos/Fire",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "Persephone",
+              "path": "Greek Myths/Chaos/Fire/Persephone",
+              "question": "What did Prometheus steal",
+              "unlockKeyword": "fire",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+            {
+              "dirName": "Hades",
+              "path": "Greek Myths/Chaos/Fire/Hades",
+              "unlocked": false,
+              "files": [
+                {
+                  "fileName": "Theseus",
+                  "path": "Greek Myths/Chaos/Fire/Hades/Theseus",
+                  "question": "Who is Persephone's mother",
+                  "unlockKeyword": "Demeter",
+                  "unlocked": false
+                }
+              ],
+              "directories": [
+                {
+                  "dirName": "Minotaur",
+                  "path": "Greek Myths/Chaos/Fire/Hades/Minotaur",
+                  "unlocked": false,
+                  "files": [
+                    {
+                      "fileName": "Pandora",
+                      "path": "Greek Myths/Chaos/Fire/Hades/Minotaur/Pandora",
+                      "question": "The Minotaur is half-bull and half-__",
+                      "unlockKeyword": "human",
+                      "unlocked": false
+                    }
+                  ],
+                  "directories": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

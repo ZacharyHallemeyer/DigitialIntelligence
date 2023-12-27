@@ -1,0 +1,23 @@
+Directions
+Calculating the Fibonacci sequence value is your mission! Follow these steps:
+    1. Take the given integer as input to your main function.
+    2. Calculate the Fibonacci sequence value for the given number using the appropriate method.
+    3. Return the Fibonacci sequence value as the final result of your function.
+
+About the Fibonacci Sequence:
+The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones. It typically starts with 0 and 1.
+For example, the Fibonacci sequence begins as follows: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.
+Each number is obtained by adding the two previous numbers in the sequence. The first two numbers are defined as 0 and 1.
+
+Calculation Process
+To calculate the Fibonacci sequence value for a given number, follow these steps:
+    - If the given number is 0, return 0.
+    - If the given number is 1, return 1.
+    - For any other number, recursively calculate the sum of the Fibonacci sequence values for the two preceding numbers.
+    - Continue this process until you reach the given number in the sequence.
+
+Example
+Let's calculate the Fibonacci sequence value for the number 10 using the steps above:
+- The Fibonacci sequence value for 10 is 55, so we would return 55.
+
+Now it's your turn! Write a function that accepts an integer as input, calculates the Fibonacci sequence value, and follows the steps above to return the Fibonacci sequence value as the final result. Good luck!

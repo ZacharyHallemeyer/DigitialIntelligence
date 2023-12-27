@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using Newtonsoft.Json;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class Hub : MonoBehaviour
 {
@@ -26,29 +27,17 @@ public class Hub : MonoBehaviour
         JsonHubObject hubInfo = null;
 
         // Get hub information list
-        TextAsset jsonData = Resources.Load<TextAsset>("JsonData/HubInfoList");
-        string data = jsonData.text;
-        List<JsonHubObject> jsonHubInfoList = JsonConvert.DeserializeObject<List<JsonHubObject>>(data);
-
-        // Get level information from list
-        foreach(JsonHubObject currentHubInfo in jsonHubInfoList)
-        {
-            if(currentHubInfo.name == levelName)
-            {
-                hubInfo = currentHubInfo;
-            }
-        }
+        story = File.ReadAllText($"{levelName}/Story.txt");
 
         // Check if hub info was found
-        if(hubInfo == null)
+        if(story == null)
         {
             infoText.text = "<color=#FF0000>Hub info was not found</color>";
             return;
         }
 
         // Set story text
-        story = "\n" + Resources.Load<TextAsset>(hubInfo.storyPath).text;
-        infoText.text = story;
+        infoText.text = "/n" + story;
 
         // Show story text and hide notes text
         SetFontSize();

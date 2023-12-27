@@ -1,0 +1,1 @@
+Different types of loops have their strengths. While "for" loops are great for iterating over sequences, "while" loops are like endurance races, repeating until a condition changes.

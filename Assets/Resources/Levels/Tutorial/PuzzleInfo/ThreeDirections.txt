@@ -1,0 +1,13 @@
+<color=#8B0000>  Directions</color>
+
+You may have already noticed that there is code that looks like the following in the previous puzzles
+
+CODE
+==========================
+  def main():
+	return ""
+==========================
+
+This is because the system checks the return values to make sure that the puzzle has been completed. Basically, you will be instructed to return a value after the keyword `return` in the function called main. The value you return will be tested with the correct output and if your output matches the correct output, the puzzle will be solved.
+
+For this puzzle, simply return the value "Hi" and run the tests.

@@ -1,0 +1,21 @@
+Directions:
+There are many things that you can do with variables. One of the main ways to use variables is to perform mathematical operations on the variables
+
+Operations:
+• + → will add two values, for instance, 1 + 1 will result in two and variableOne + variableTwo will result in the sum 
+• - → will subtract two values, for instance, 1 - 1 will result in zero and variableOne - variableTwo will result in the difference
+• * → will multiply two values, for instance, 1 * 1 will result in one and variableOne * variableTwo will result in the product 
+• / → will divide two values, for instance, 1 / 1 will result in two and variableOne / variableTwo will result in the quotient
+
+CODE
+==========================
+numberVariable = 5
+numberVariable = numberVariable + 5
+print(numberVariable) # This will print 10
+
+numberVariable = 5
+numberVariable += 5
+print(numberVariable) # This will print 10
+==========================
+
+For this puzzle, Follow the directions in the code. You will need to perform mathematical operations on a variable called numberVariables.

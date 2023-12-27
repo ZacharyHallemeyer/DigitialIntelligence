@@ -1,0 +1,9 @@
+Directions:
+Time to practice what you have learned!
+
+An integer from 0 to 100 will be passed into the function main. You will need to do the following:
+    • Return an "A" string if the grade is between 90 and 100
+    • Return a "B" string if the grade is between 80 and 89
+    • Return a "C" string if the grade is between 70 and 79
+    • Return a "D" string if the grade is between 60 and 69
+    • Return a "F" string if the grade is less than 59

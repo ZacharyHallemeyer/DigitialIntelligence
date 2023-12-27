@@ -1,0 +1,4 @@
+def main():
+	return "" # Change "" to "Hi"
+
+print( main() )

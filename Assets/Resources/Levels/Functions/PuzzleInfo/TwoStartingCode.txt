@@ -1,0 +1,14 @@
+def main(listNum):
+	
+	return findMax(listNum)
+
+def findMax(listNum):
+	max = 0
+
+	# Find max number in `listNum`
+
+	# return max number
+
+print(main([1,2,3,4,5]))
+print(main([1,2,3,40,5]))
+print(main([1,2,39,40,5]))

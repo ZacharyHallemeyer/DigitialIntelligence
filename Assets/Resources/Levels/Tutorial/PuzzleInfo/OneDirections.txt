@@ -1,0 +1,5 @@
+<color=#8B0000>Directions</color>
+
+  You simply need to press the run tests button to solve the puzzle and unlock the directory. Try it now, exit the terminal, and cd into the unlocked directory!  
+
+  By the way! If you press the Run button, "Hello World!" will print to the console

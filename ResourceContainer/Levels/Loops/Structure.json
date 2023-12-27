@@ -1,0 +1,86 @@
+{
+  "dirName": "",
+  "path": "Loops/",
+  "unlocked": true,
+  "files": [],
+  "directories": [
+    {
+      "dirName": "One",
+      "path": "Loops/One",
+      "unlocked": false,
+      "files": [
+        {
+          "fileName": "Infinity",
+          "path": "Loops/One/Infinity",
+          "question": "What type of loop is used to iterate over sequences like lists or strings? (one word response)",
+          "unlockKeyword": "for",
+          "unlocked": false
+        }
+      ],
+      "directories": [
+        {
+          "dirName": "Two",
+          "path": "Loops/One/Two",
+          "unlocked": false,
+          "files": [
+            {
+              "fileName": "Range",
+              "path": "Loops/One/Two/Range",
+              "question": "What's the keyword to define a block of code that repeats while a condition is true? (one word response)",
+              "unlockKeyword": "while",
+              "unlocked": false
+            }
+          ],
+          "directories": [
+            {
+              "dirName": "Three",
+              "path": "Loops/One/Two/Three",
+              "unlocked": false,
+              "files": [
+                {
+                  "fileName": "Debug",
+                  "path": "Loops/One/Two/Three/Debug",
+                  "question": "Can for loops do everything a while loop can? (Yes or No)",
+                  "unlockKeyword": "No",
+                  "unlocked": false
+                }
+              ],
+              "directories": [
+                {
+                  "dirName": "Four",
+                  "path": "Loops/One/Two/Three/Four",
+                  "unlocked": false,
+                  "files": [
+                    {
+                      "fileName": "ForVsWhile",
+                      "path": "Loops/One/Two/Three/Four/ForVsWhile",
+                      "question": "Do while loops execute their block of code at least once? (Yes or No)",
+                      "unlockKeyword": "No",
+                      "unlocked": false
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "dirName": "Five",
+                      "path": "Loops/One/Two/Three/Four/Five",
+                      "unlocked": false,
+                      "files": [
+                        {
+                          "fileName": "IfVsWhile",
+                          "path": "Loops/One/Two/Three/Four/Five/IfVsWhile",
+                          "question": "Can you use an if statement inside a loop? (Yes or No)",
+                          "unlockKeyword": "Yes",
+                          "unlocked": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

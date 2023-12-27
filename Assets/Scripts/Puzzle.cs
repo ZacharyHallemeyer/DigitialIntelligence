@@ -54,7 +54,7 @@ public class Puzzle : Emulator
     [JsonProperty("puzzleIndex")]
     public int puzzleIndex;
 
-    private string oldCode;
+    private string oldCode = "";
 
     // UI Components
     public TMP_Text directionsDisplay;
@@ -78,6 +78,7 @@ public class Puzzle : Emulator
         this.puzzleIndex        = puzzleData.puzzleIndex;
         this.puzzleName         = puzzleData.puzzleName;
 
+
         pythonFunctions = new List<string>();
         pythonFinishedEvent = new ManualResetEvent(false);
 
@@ -96,7 +97,7 @@ public class Puzzle : Emulator
         charHeight = widthDisplay.textInfo.lineInfo[0].lineHeight;
 
         // Get old code ("" if no old code avaliable)
-        oldCode = GetOldCode();
+        oldCode = "";
 
         // Set text
         SetPuzzleDisplay();
@@ -211,11 +212,7 @@ public class Puzzle : Emulator
                     HandleTextInput(inputChar);
                 }
             }
-
-            
-
         }
-        //coloredScrollRect.verticalNormalizedPosition = normalizedPos;
     }
 
     // ========================= Puzzle Code ========================= //
@@ -225,23 +222,18 @@ public class Puzzle : Emulator
     /// </summary>
     public void SetPuzzleDisplay()
     {
+        string path;
         List<string> startingCodeList = new List<string>();
-        // Set starting code
-        // Set input field text
-        if(oldCode == "")
-        {
-            inputText = Resources.Load<TextAsset>(startingCode).text.Split('\n').ToList();
-        }
-        else
-        {
-            inputText = oldCode.Split('\n').ToList();
-        }
+
+        // Set starting code (inputText)
+        path = Path.Combine(GameManager.baseDirectory, GameManager.levelName);
+        path = Path.Combine(GameManager.levelName, startingCode);
+        inputText = File.ReadAllText(path).Split('\n').ToList();
 
         for(int index = 0; index < inputText.Count; index++)
         {
             CreateNewLineCover(index);
         }
-
 
         coloredText = new List<string>();
 
@@ -266,7 +258,9 @@ public class Puzzle : Emulator
         SetLineNumbers();
 
         // Set directions text
-        directionsDisplay.text = "\n" + Resources.Load<TextAsset>(directions).text;
+        path = Path.Combine(GameManager.baseDirectory, GameManager.levelName);
+        path = Path.Combine(GameManager.levelName, directions);
+        directionsDisplay.text = "\n" + File.ReadAllText(path);
     }
 
     /// <summary>
@@ -352,7 +346,8 @@ public class Puzzle : Emulator
     /// </summary>
     public void ResetPuzzle()
     {
-        oldCode = "";
+        // TODO: Reset starting code to base resource version
+
         AudioManager.instance.PlayButtonClickSoundEffect();
         SetPuzzleDisplay();
     }
@@ -408,57 +403,23 @@ public class Puzzle : Emulator
 
     private void WriteToPuzzleJson()
     {
+        Debug.Log("Hello");
         // Get puzzle data from Json
-        string data = "";
-        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
+        string puzzlePath = $"{GameManager.levelName}/Puzzle.json";
+        string data = File.ReadAllText(puzzlePath);
+        PuzzleContainer puzzleDataContainer = JsonConvert.DeserializeObject<PuzzleContainer>(data);
 
-        // Check if persistent data of puzzles exist
-        if (File.Exists(persistentDataPath))
-        {
-            data = File.ReadAllText(persistentDataPath);
-        }
-        // Otherwise, get puzzle data from resources folder
-        else
-        {
-            // Quit to Main Menu
-            GameManager.instance.MoveToMainMenu();
-            return;
-        }
-
-        List<LevelInfo> levelDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(data);
-
-
-        levelDataList[GameManager.levelIndex].puzzles[puzzleIndex].oldCode = string.Join("\n", inputText);
-
+        // Write current code starting code
+        string path = Path.Combine(GameManager.baseDirectory, GameManager.levelName);
+        path = Path.Combine(GameManager.levelName, startingCode);
         
-        // Serialize the updated list to a JSON string
-        string updatedData = JsonConvert.SerializeObject(levelDataList, Formatting.Indented);
-
-        File.WriteAllText(persistentDataPath, updatedData);
-    }
-
-    private string GetOldCode()
-    {
-        string data = "";
-        string persistentDataPath = Path.Combine(Application.persistentDataPath, GameManager.persistentPuzzleFile);
-
-        // Check if persistent data of puzzles exist
-        if (File.Exists(persistentDataPath))
+        try
         {
-            data = File.ReadAllText(persistentDataPath);
+            File.WriteAllText(path, string.Join("\n", inputText));
         }
-        // Otherwise, get puzzle data from resources folder
-        else
+        catch (System.Exception e)
         {
-            // Quit to Main Menu
-            GameManager.instance.MoveToMainMenu();
-            return "";
+            Debug.Log(e);
         }
-
-        List<LevelInfo> levelDataList = JsonConvert.DeserializeObject<List<LevelInfo>>(data);
-
-        return levelDataList[GameManager.levelIndex].puzzles[puzzleIndex].oldCode;
-
     }
-
 }

@@ -1,0 +1,10 @@
+def main(myString):
+	result = False
+
+	# Determine if 'myString' is a palindrome
+
+	return result
+
+print(main("radar"))  # Should print True
+print(main("hello"))  # Should print False
+print(main("level"))  # Should print True
