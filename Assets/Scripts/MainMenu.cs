@@ -95,6 +95,14 @@ public class MainMenu : MonoBehaviour
         settingsContainer.SetActive(true);
     }
 
+    // Moves to Level Creater
+    public void CreateButtonClick()
+    {
+        AudioManager.instance.PlayButtonClickSoundEffect();
+        SceneManager.LoadScene("Creator");
+        SceneManager.UnloadSceneAsync("MainMenu");
+    }
+
     // Close application
     public void QuitButtonClick()
     {
